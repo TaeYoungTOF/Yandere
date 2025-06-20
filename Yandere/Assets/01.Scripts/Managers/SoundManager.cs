@@ -20,6 +20,14 @@ public class SoundManager : MonoBehaviour
         SFX_ENDING,
         SFX_CLCIK,
     }
+    
+    // audioclop 담을 수 있는 배열
+    [SerializeField] private AudioClip[] bgms;
+    [SerializeField] private AudioMixerGroup[] sfxs;
+    
+    // 플레이 하는 audiosource
+    [SerializeField] AudioSource audioBgm;
+    [SerializeField] AudioSource audioSfx;
 
     private void Awake()
     {
