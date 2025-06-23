@@ -18,9 +18,11 @@ public class EnemyData : ScriptableObject
     
     [Header("적 체력")]
     [Tooltip("적의 체력을 설정합니다.")]
+    [SerializeField]
     public float HP;
     
     [Header("적 데미지")]
     [Tooltip("적의 데미지를 설절합니다.")]
+    [SerializeField]
     public float Damage;
 }
