@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour
     public enum EBgm
     {
         BGM_TITLE,
-        BGM_GAME,
+        BGM_MAIN,
     }
     
     public enum ESfx
