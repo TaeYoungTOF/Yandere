@@ -53,5 +53,10 @@ public class PlayerController : MonoBehaviour, IDamagable
    {
       
    }
+
+   public void Die()
+   {
+      
+   }
    
 }

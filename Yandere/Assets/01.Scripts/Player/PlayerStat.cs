@@ -12,6 +12,14 @@ public class PlayerStat
     public int CurrentEXP { get; set; }                 //플레이어 현재 경험치
     public int MaxEXP { get; set; }                     //플레이어 최대 경험치
     public float PlayerMoveSpeed { get; set; }          //플레이어 이동속도
-    public int CurrentGold { get; set; }                //플레이어 현재 보유골드
+    
 
+}
+
+public class PlayerResource
+{
+    public int CurrentGold { get; set; }                //플레이어 현재 보유골드
+    public int PremiumCurrency { get; set; }            //플레이어 유료 재화
+    public int SkillPoint { get; set; }                 //플레이어 스킬 포인트
+    public int ObsessionPoint { get; set; }             //플레이어 집착 포인트
 }
