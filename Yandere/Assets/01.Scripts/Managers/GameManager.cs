@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public MoneyManager MoneyManager { get; private set; }
+    public SpawnManager SpawnManager { get; private set; }
 
     private AutoSaveSystem _autoSaveSystem;
     [SerializeField] private float autoSaveInterval = 30f;
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        SpawnManager = GetComponentInChildren<SpawnManager>();
     }
 
     private void Start()
