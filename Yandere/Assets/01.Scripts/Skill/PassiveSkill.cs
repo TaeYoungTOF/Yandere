@@ -11,6 +11,7 @@ public class PassiveSkill : BaseSkill
 
     public override void OnEquip(Transform caster)
     {
+        /*
         Player player = caster.GetComponent<Player>();
 
         if (player != null)
@@ -18,10 +19,12 @@ public class PassiveSkill : BaseSkill
             player.maxHealth += bonusHealth;
             player.moveSpeed += bonusMoveSpeed;
         }
+        */
     }
 
     public override void OnUnequip(Transform caster)
     {
+        /*
         Player player = caster.GetComponent<Player>();
 
         if (player != null)
@@ -29,5 +32,6 @@ public class PassiveSkill : BaseSkill
             player.maxHealth -= bonusHealth;
             player.moveSpeed -= bonusMoveSpeed;
         }
+        */
     }
 }
