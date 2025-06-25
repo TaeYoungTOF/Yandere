@@ -7,6 +7,7 @@ public class BaseSkill : ScriptableObject
     [Header("Basic Info")]
     public string skillName;
     public Sprite skillIcon;
+    public string description;
     public SkillType skillType;
     public int level = 1;
 
