@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 
     public MoneyManager MoneyManager { get; private set; }
     public SpawnManager SpawnManager { get; private set; }
+    
+    [SerializeField] private PlayerManager playerManager;
+    public PlayerManager PlayerManager => playerManager;
 
     private AutoSaveSystem _autoSaveSystem;
     [SerializeField] private float autoSaveInterval = 30f;

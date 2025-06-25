@@ -39,7 +39,13 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // 메서드 추가
+    public void OpenPausePanel(string panelName)
+    {
+        if (panelDict.ContainsKey(panelName))
+        {
+            panelDict[panelName].SetActive(true);
+        }
+    }
 
 
 }
