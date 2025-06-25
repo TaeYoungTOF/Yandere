@@ -35,6 +35,12 @@ public class EnemyData : ScriptableObject
     [SerializeField]
     public int Atk;
     
+    // 적 이동속도
+    [Header("적 이동속도")] 
+    [Tooltip("적의 이동속도를 설정합니다.")] 
+    [SerializeField]
+    public int Movespeed;
+    
     // 적이 맞는 데미지
     [Header("적 데미지")]
     [Tooltip("적이 받는 데미지를 설절합니다.")]
