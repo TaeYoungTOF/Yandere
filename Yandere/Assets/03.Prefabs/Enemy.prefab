@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2274727493802489948}
   - component: {fileID: 741957775119769552}
+  - component: {fileID: 4740971253672445620}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2274727493802489948
 Transform:
   m_ObjectHideFlags: 0
@@ -60,6 +61,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4740971253672445620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848765488387581411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7aaa14d3964b74c8c9ef9ac0bbd5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  moveSpeed: 5
+  dectionRange: 5
 --- !u!1 &5141304807427747412
 GameObject:
   m_ObjectHideFlags: 0
