@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -23,16 +23,10 @@ public class SkillButton : MonoBehaviour
     public void OnClick()
     {
         SkillManager manager = FindObjectOfType<SkillManager>();
-
         if (!manager.equippedSkills.Contains(skill))
-        {
             manager.EquipSkill(skill);
-        }
         else
-        {
-            skill.LevelUp();  // ÀÌ¹Ì ÀÖ´Ù¸é ·¹º§¾÷
-        }
-
+            skill.LevelUp();
         FindObjectOfType<SkillSelectUI>().Hide();
     }
 }
