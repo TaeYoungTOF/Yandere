@@ -619,7 +619,7 @@ TextureImporter:
         width: 5
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -627,6 +627,48 @@ TextureImporter:
       bones: []
       spriteID: d092e80aeb382cc4cb3669c88d0f7e25
       internalID: 602668531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PastelUi_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 252
+        width: 88
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 39, y: 25, z: 39, w: 25}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6adfeb9a66abe8e48a98dbcd443c62f5
+      internalID: 255035780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PastelUi_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 253
+        width: 48
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dceaae96e85bc724684296b41927baac
+      internalID: 431128840
       vertices: []
       indices: 
       edges: []
@@ -657,6 +699,8 @@ TextureImporter:
       Panel_02: 1379052377
       Panel_03: 1587322138
       Panel_04: -1526247503
+      PastelUi_0: 255035780
+      PastelUi_1: 431128840
       PauseButton_01: 1755750439
       PauseButton_02: 1110756418
       PauseIcon_01: 923073882
