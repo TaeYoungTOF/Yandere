@@ -29,6 +29,7 @@ public class Button_Stage : MonoBehaviour
         StageManager.Instance.currnetStageData = stageData;
 
         GameManager.Instance.SetStage();
+        StageManager.Instance.StartWave();
         _stageSelectPanel.SetActive(false);
     }
 

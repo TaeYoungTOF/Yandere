@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EnemyController : IDamagble
+public class EnemyController : MonoBehaviour, IDamagable
 {
     private Transform target;
 
@@ -36,5 +36,10 @@ public class EnemyController : IDamagble
     protected Vector2 DirectionToTarget()
     {
         return (target.position - transform.position).normalized;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Debug.Log($"[EnemyController] {name}이 {damage}의 피해를 입었습니다.");
     }
 }

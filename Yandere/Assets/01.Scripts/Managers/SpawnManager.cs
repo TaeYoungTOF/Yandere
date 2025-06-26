@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public GameObject enemyPrefab; 
+
     [Header("Spawn Settings")]
 
     [SerializeField] private List<Rect> spawnAreas; // 적을 생성할 영역 리스트
-    [SerializeField] private Color gizmoColor = new Color(1, 0, 0, 0.3f); // 기즈모 색상
+    //[SerializeField] private Color gizmoColor = new Color(1, 0, 0, 0.3f); // 기즈모 색상
     [SerializeField] private float spawnInterval = 0.2f;
     [SerializeField] private float waveInterval = 1f;
+    [SerializeField] private float spawnRadius = 3f;
+
+    private Transform playerTransform;
 
     private void Start()
     {
-        // StartCoroutine(SpawnRoutine());
+        playerTransform = StageManager.Instance.Player.transform;
     }
 
-    private IEnumerator SpawnRoutine()
+    public IEnumerator SpawnRoutine()
     {
         while (true)
         {
@@ -27,6 +32,7 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        /**
         GameObject enemy = ObjectPoolManager.Instance.GetFromPool((int)PoolType.DefaultEnemy);
 
         if (enemy != null)
@@ -36,22 +42,32 @@ public class SpawnManager : MonoBehaviour
             enemy.SetActive(true);
 
             /**@todo
-            Enemy 초기화*/
-        }
+            Enemy 초기화
+        }*/
+        Debug.Log("[SpawnManager] Spawn");
+        Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity);
     }
 
     private Vector3 GetRandomSpawnPosition()
     {
-        if (spawnAreas.Count == 0)
-            return transform.position;
+        if (playerTransform == null)
+        {
+            Debug.LogWarning("[SpawnManager] Player Transform is null.");
+            return Vector3.zero;
+        }
 
-        Rect area = spawnAreas[Random.Range(0, spawnAreas.Count)];
-        float x = Random.Range(area.xMin, area.xMax);
-        float y = Random.Range(area.yMin, area.yMax);
+        Vector2 center = playerTransform.position;
 
-        return new Vector3(x, y, 0f); // 2D 기준
+        float x = Random.Range(-spawnRadius, spawnRadius) + center.x;
+        float yOffset = Mathf.Sqrt(Mathf.Pow(spawnRadius, 2) - Mathf.Pow(x - center.x, 2));
+        yOffset *= Random.Range(0, 2) == 0 ? -1 : 1;
+
+        float y = center.y + yOffset;
+
+        return new Vector3(x, y, 0);
     }
 
+    /**
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = gizmoColor;
@@ -62,5 +78,5 @@ public class SpawnManager : MonoBehaviour
             Vector3 size = new Vector3(area.width, area.height, 0.1f);
             Gizmos.DrawCube(center, size);
         }
-    }
+    }*/
 }

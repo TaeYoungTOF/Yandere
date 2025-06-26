@@ -5,6 +5,9 @@ public class StageManager : MonoBehaviour
     public static StageManager Instance { get; private set; }
 
     public StageData currnetStageData;
+    private SpawnManager _spawnManager;
+
+    public Player Player { get; private set; }
 
 
     [SerializeField] private PlayerManager playerManager;
@@ -31,11 +34,14 @@ public class StageManager : MonoBehaviour
             }
         }
 
+        Player = FindObjectOfType<Player>();
         Init();
     }
 
     private void Start()
-    {        
+    {
+        _spawnManager = GetComponentInChildren<SpawnManager>();
+
         _levelUpManager = GetComponent<LevelUpManager>();
 
         _stageClearUI = _stageClearUIGameObject.GetComponent<UI_StageClear>();
@@ -44,6 +50,11 @@ public class StageManager : MonoBehaviour
     private void Init()
     {
         _stageSelectGameObject.SetActive(true);
+    }
+
+    public void StartWave()
+    {
+        StartCoroutine(_spawnManager.SpawnRoutine());
     }
 
     public void PlayerLevelUp()
