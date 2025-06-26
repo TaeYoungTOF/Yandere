@@ -31,12 +31,21 @@ public class PlayerController : MonoBehaviour, IDamagable
       // 이동 입력값이 0 일시 리턴 (회전 X) 
       if (moveVec.sqrMagnitude == 0)
          return;
+<<<<<<< Jubin_feat/UI,PlayerAnim
+      //
+      // // 1. 이동 방향에 따른 회전 각도 계산 (z축 기준, 단위: 도)
+      // float angle = Mathf.Atan2(moveVec.y, moveVec.x) * Mathf.Rad2Deg;
+      //
+      // // 2. 각도를 Rigidbody2D에 직접 적용 (바로 회전)
+      // rigidbody.rotation = angle;
+=======
       
       // 1. 이동 방향에 따른 회전 각도 계산 (z축 기준, 단위: 도)
       //float angle = Mathf.Atan2(moveVec.y, moveVec.x) * Mathf.Rad2Deg;
    
       // 2. 각도를 Rigidbody2D에 직접 적용 (바로 회전)
       //_rigidbody.rotation = angle;
+>>>>>>> dev
    }
    
    public void TakeDamage(int damage)

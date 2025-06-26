@@ -39,11 +39,44 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void OpenPausePanel(string panelName)
+    public void OpenPausePanel()
     {
-        if (panelDict.ContainsKey(panelName))
+        panelDict["InGame_Panel_Pause"].SetActive(true);
+    }
+
+    public void OpenDPSPanel()
+    {
+        panelDict["InGame_Panel_DPS"].SetActive(true);
+    }
+    public void OpenBackLobbyPanel()
+    {
+        panelDict["InGame_Panel_BackLobby"].SetActive(true);
+    }
+
+    public void OpenSettingPanel()
+    {
+        panelDict["InGame_Panel_Setting"].SetActive(true);
+    }
+
+
+    public void InGameUiCloseButton(int index)
+    {
+        switch (index)
         {
-            panelDict[panelName].SetActive(true);
+            case 1 :
+                panelDict["InGame_Panel_Pause"].SetActive(false);
+                break;
+            case 2 :
+                panelDict["InGame_Panel_BackLobby"].SetActive(false);
+                Debug.Log("아직 미구현 입니다");
+                break;
+            case 3 :
+                panelDict["InGame_Panel_BackLobby"].SetActive(false);
+                break;
+            case 4 :
+                panelDict["InGame_Panel_Setting"].SetActive(false);
+                break;
+            
         }
     }
 
