@@ -1,26 +1,19 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseSkill : ScriptableObject
 {
-    [Header("Basic Info")]
     public string skillName;
     public Sprite skillIcon;
     public string description;
     public SkillType skillType;
     public int level = 1;
 
-    [Header("Upgrade")]
     public float levelDamageBonus;
     public float levelCooldownReduction;
 
-    public virtual void LevelUp()
-    {
-        level++;
-    }
-
-    // ∞¯≈Î ¿Œ≈Õ∆‰¿ÃΩ∫
+    public virtual void LevelUp() { level++; }
     public virtual void Activate(Transform caster) { }
     public virtual void OnEquip(Transform caster) { }
     public virtual void OnUnequip(Transform caster) { }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +6,11 @@ public class SkillSelectUI : MonoBehaviour
 {
     public GameObject panel;
     public List<SkillButton> skillButtons;
+
+    void Start()
+    {
+        panel.SetActive(false);
+    }
 
     public void Show(List<BaseSkill> options)
     {

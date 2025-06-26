@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,13 +7,20 @@ public class GameManager : MonoBehaviour
 
     public MoneyManager MoneyManager { get; private set; }
     public SpawnManager SpawnManager { get; private set; }
-    
-    [SerializeField] private PlayerManager playerManager;
-    public PlayerManager PlayerManager => playerManager;
 
+    /** @todo SaveSystem 추후 조정
     private AutoSaveSystem _autoSaveSystem;
     [SerializeField] private float autoSaveInterval = 30f;
-    private float _timer;
+    private float _timer;*/
+
+    [Header("Stage Data")]
+    public StageData[] stageDatas;
+    [SerializeField] private int _maxStageIndex;
+    public int MaxStageIndex
+    {
+        get => _maxStageIndex;
+    }
+    public int currentStageIndex;
 
     private void Awake()
     {
@@ -30,22 +38,65 @@ public class GameManager : MonoBehaviour
         }
 
         SpawnManager = GetComponentInChildren<SpawnManager>();
+
+        // StageData 개수만큼 _maxStageIndex 자동 설정
+        stageDatas = Resources.LoadAll<StageData>("Stage");
+        _maxStageIndex = stageDatas.Length;
+        Debug.Log($"[GameManager] Loaded {_maxStageIndex} stages from Stages folder");
     }
 
     private void Start()
     {
-        _timer = 0f;
+        //_timer = 0f;
     }
 
     private void Update()
     {
+        /** @새애 SaveSystem 추후 조정
         _timer += Time.unscaledDeltaTime;
         if (_timer >= autoSaveInterval)
         {
             _autoSaveSystem.AutoSave();
+        }*/
+    }
+
+    public void GameStart()
+    {
+        SceneManager.LoadScene("GameScene");
+        Time.timeScale = 0;
+    }
+
+    public void SetStage()
+    {
+        Debug.Log($"[GameManager] Set Stage {currentStageIndex}");
+        Time.timeScale = 1f;
+    }
+
+    public void LoadTitleScene()
+    {
+        Debug.Log("[GameManager] Call Title Scene");
+
+        SceneManager.LoadScene("TitleScene");
+    }
+
+    public void LoadNextStage()
+    {
+        if (currentStageIndex < MaxStageIndex)
+        {
+            currentStageIndex++;
+            Debug.Log($"[GameManager] Loading Next Stage: {currentStageIndex}");
+
+            // 여기서 현재 씬이 바뀌지 않는다면 SetStage로 새 스테이지 설정만 하면 됨
+            SetStage();
+        }
+        else
+        {
+            Debug.Log("[GameManager] All stages cleared. Returning to Title Scene.");
+            LoadTitleScene();
         }
     }
 
+    /** @todo SaveSystem 추후 조정
     private void OnApplicationPause(bool pause)
     {
         if (pause)
@@ -57,6 +108,6 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         _autoSaveSystem.SaveOnPauseOrQuit();
-    }
+    }*/
 
 }
