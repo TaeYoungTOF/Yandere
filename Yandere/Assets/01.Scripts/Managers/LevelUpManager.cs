@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,10 +16,9 @@ public class LevelUpManager : MonoBehaviour
     private List<BaseSkill> GetRandomSkillOptions(int count)
     {
         List<BaseSkill> available = new List<BaseSkill>();
-
         foreach (var skill in allSkills)
         {
-            if (!SkillManagerInstance().equippedSkills.Contains(skill) || skill.level < 5)
+            if (!FindObjectOfType<SkillManager>().equippedSkills.Contains(skill) || skill.level < 5)
                 available.Add(skill);
         }
 
@@ -27,16 +26,10 @@ public class LevelUpManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             if (available.Count == 0) break;
-
             int rand = Random.Range(0, available.Count);
             result.Add(available[rand]);
             available.RemoveAt(rand);
         }
         return result;
-    }
-
-    private SkillManager SkillManagerInstance()
-    {
-        return FindObjectOfType<SkillManager>();  // ¿ŒΩ∫≈œΩ∫ ∞°¡Æø¿±‚
     }
 }
