@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
@@ -9,14 +10,12 @@ public class StageManager : MonoBehaviour
     private SpawnManager _spawnManager;
     public bool IsUIOpened = false;
 
-
-    [SerializeField] private PlayerManager playerManager;
-    public PlayerManager PlayerManager => playerManager;
-    private LevelUpManager _levelUpManager;
-
     /** 임시코드*/
     [SerializeField] private UI_StageClear _stageClearUI;
-    [SerializeField] private UI_Timer _uiTimer;
+    [SerializeField] private UI_Timer _TimerUI;
+    [SerializeField] private SkillSelectUI _skillSelectUI;
+    public List<BaseSkill> allSkills;
+    /*UIManager로 이관*/
 
     [Header("Timer")]
     private float _elapsedTime = 0f;
@@ -50,8 +49,7 @@ public class StageManager : MonoBehaviour
 
         currentStageData = GameManager.Instance.currentStageData;
 
-        _levelUpManager = GetComponent<LevelUpManager>();
-
+        Player.stat.ResetStat();
         StartWave();
     }
 
@@ -70,9 +68,10 @@ public class StageManager : MonoBehaviour
             if (_elapsedTime > _maxTime)
                 _elapsedTime = _maxTime;
 
-            _uiTimer.UpdateTime(ElapsedMinutes, ElapsedSeconds);
+            
+            /**@todo UIManager로 이관*/
+            _TimerUI.UpdateTime(ElapsedMinutes, ElapsedSeconds);
         }
-        // 추가 기능
 
     }
 
@@ -81,17 +80,38 @@ public class StageManager : MonoBehaviour
         StartCoroutine(_spawnManager.SpawnRoutine());
     }
 
-    public void PlayerLevelUp()
-    {
-        Debug.Log("[StageManager] Player Level Up!");
-        
-        _levelUpManager.OnLevelUp();
-    }
-
     public void StageClear()
     {
         Debug.Log("[StageManager] Stage Clear!!");
 
         _stageClearUI.CallStageClearUI();
+    }
+
+    public void LevelUpEvent()
+    {
+        Debug.Log("[StageManager] Call Level Up Event");        
+        
+        var options = GetRandomSkillOptions(3);
+        _skillSelectUI.Show(options);
+    }
+
+    private List<BaseSkill> GetRandomSkillOptions(int count)
+    {
+        List<BaseSkill> available = new List<BaseSkill>();
+        foreach (var skill in allSkills)
+        {
+            if (!FindObjectOfType<SkillManager>().equippedSkills.Contains(skill) || skill.level < 5)
+                available.Add(skill);
+        }
+
+        List<BaseSkill> result = new List<BaseSkill>();
+        for (int i = 0; i < count; i++)
+        {
+            if (available.Count == 0) break;
+            int rand = Random.Range(0, available.Count);
+            result.Add(available[rand]);
+            available.RemoveAt(rand);
+        }
+        return result;
     }
 }
