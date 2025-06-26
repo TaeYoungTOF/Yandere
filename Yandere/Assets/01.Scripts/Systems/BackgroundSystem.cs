@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BackgroundTiler : MonoBehaviour
 {
-    public Transform player;
+    public Transform playerCamera;
     public Sprite[] tileSprites = new Sprite[9];
     public float tileSize = 10f;
 
@@ -28,26 +28,17 @@ public class BackgroundTiler : MonoBehaviour
     Update 제거하고, 플레이어가 입력을 받을 때, UpdateBackground 호출하게 하기*/
     private void Update()
     {
-        Vector2 playerOffset = player.position;
-        Vector2Int offsetInTiles = new Vector2Int(
-            Mathf.FloorToInt(playerOffset.x / tileSize),
-            Mathf.FloorToInt(playerOffset.y / tileSize)
-        );
-
-        if (offsetInTiles != currentCenter)
-        {
-            currentCenter = offsetInTiles;
-            UpdateTilePositions();
-        }
+        UpdateBackground();
     }
 
     public void UpdateBackground()
     {
-        Vector2 playerOffset = player.position;
-        Vector2Int offsetInTiles = new Vector2Int(
-            Mathf.FloorToInt(playerOffset.x / tileSize),
-            Mathf.FloorToInt(playerOffset.y / tileSize)
-        );
+        Vector2 camPos = playerCamera.position;
+
+        int centerX = Mathf.RoundToInt(camPos.x / tileSize);
+        int centerY = Mathf.RoundToInt(camPos.y / tileSize);
+
+        Vector2Int offsetInTiles = new Vector2Int(centerX, centerY);
 
         if (offsetInTiles != currentCenter)
         {
@@ -70,10 +61,11 @@ public class BackgroundTiler : MonoBehaviour
             int dx = (i % 3) - 1;     // -1, 0, 1
             int dy = (i / 3) - 1;     // -1, 0, 1
 
-            Vector2Int tileIndex = currentCenter + new Vector2Int(dx, dy);
-            Vector3 worldPos = new Vector3(tileIndex.x * tileSize, tileIndex.y * tileSize, 0f);
+        Vector2Int tileOffset = new Vector2Int(dx, dy);
+        Vector2Int tileIndex = currentCenter + tileOffset;
 
-            renderers[i].transform.position = worldPos;
+        Vector3 worldPos = new Vector3(tileIndex.x * tileSize, tileIndex.y * tileSize, 0f);
+        renderers[i].transform.position = worldPos;
         }
     }
 }
