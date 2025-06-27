@@ -6417,7 +6417,6 @@ MonoBehaviour:
   currentStageData: {fileID: 0}
   IsUIOpened: 0
   _stageClearUI: {fileID: 1137326277}
-  _TimerUI: {fileID: 926759414}
   _skillSelectUI: {fileID: 765517860}
   allSkills:
   - {fileID: 11400000, guid: ce7f0806dd8e74c4990b498cf5f39861, type: 2}
@@ -8115,7 +8114,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 926759413}
-  - component: {fileID: 926759414}
   m_Layer: 5
   m_Name: HUD_TimeDisplay
   m_TagString: Untagged
@@ -8144,19 +8142,6 @@ RectTransform:
   m_AnchoredPosition: {x: -420, y: -200}
   m_SizeDelta: {x: 240, y: 50}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &926759414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926759412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a30c91e0e8d1a409a0dd76eb8d4808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeText: {fileID: 825377842}
 --- !u!1 &944010379
 GameObject:
   m_ObjectHideFlags: 0
@@ -11494,7 +11479,7 @@ RectTransform:
   - {fileID: 764213614}
   - {fileID: 1137326278}
   - {fileID: 765517859}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1725014473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12921,7 +12906,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1637800174}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1725014473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14695,7 +14680,7 @@ GameObject:
   - component: {fileID: 1725014473}
   - component: {fileID: 1725014472}
   m_Layer: 0
-  m_Name: '[ UIManager ]'
+  m_Name: UIManager_Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14713,12 +14698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf254af95daba74ea815cadc1162a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanels:
-  - {fileID: 2029630615}
-  - {fileID: 1002071122}
-  - {fileID: 1027415493}
-  - {fileID: 40336441}
-  - {fileID: 2006774686}
   text: {fileID: 0}
 --- !u!4 &1725014473
 Transform:
@@ -14732,7 +14711,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1267579566}
+  - {fileID: 1482781696}
+  - {fileID: 1750047534}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1726166484
@@ -15041,7 +15023,7 @@ RectTransform:
   - {fileID: 40336442}
   - {fileID: 1027415494}
   - {fileID: 2006774687}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1725014473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17003,6 +16985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029630616}
   - component: {fileID: 2029630617}
+  - component: {fileID: 2029630618}
   m_Layer: 5
   m_Name: InGame_Panel_HUD
   m_TagString: Untagged
@@ -17049,6 +17032,23 @@ MonoBehaviour:
   ConformX: 1
   ConformY: 1
   Logging: 0
+--- !u!114 &2029630618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029630615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ff564419b493644a50da8d5e22c68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goldCountText: {fileID: 528221179}
+  _killCountText: {fileID: 950909896}
+  _timeText: {fileID: 825377842}
+  _expImage: {fileID: 1156490653}
+  _levelText: {fileID: 2146561908}
 --- !u!1 &2034936739
 GameObject:
   m_ObjectHideFlags: 0
@@ -19729,11 +19729,8 @@ SceneRoots:
   - {fileID: 523189284}
   - {fileID: 510134085}
   - {fileID: 895308579}
-  - {fileID: 1725014473}
   - {fileID: 1999354856}
-  - {fileID: 1267579566}
-  - {fileID: 1482781696}
-  - {fileID: 1750047534}
+  - {fileID: 1725014473}
   - {fileID: 1863622890}
   - {fileID: 709524319}
   - {fileID: 1101165682}

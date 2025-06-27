@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public void GainExp(float amount)
     {
         stat.currentExp += amount * stat.expGain;
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateExpImage();
+
         while (stat.currentExp >= stat.requiredExp)
         {
             stat.currentExp -= stat.requiredExp;
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour
     public void LevelUp()
     {
         stat.level++;
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
 
         // 경험치통 공식 추후 수정
         stat.requiredExp *= 1.1f;

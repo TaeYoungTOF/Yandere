@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillSelectUI : MonoBehaviour
+public class UI_SkillSelect : MonoBehaviour
 {
     public GameObject panel;
     public List<SkillButton> skillButtons;

@@ -2,12 +2,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_StageClear : MonoBehaviour
+public class UI_StageClear : ToggleableUI
 {
     [SerializeField] private GameObject StageClearPanel;
     [SerializeField] private Button _homeButton;
     [SerializeField] private Button _nextButton;
     [SerializeField] private TMP_Text _clearText;
+
+    protected override UIState GetUIState()
+    {
+        return UIState.StageClear;
+    }
 
     public void CallStageClearUI()
     {
