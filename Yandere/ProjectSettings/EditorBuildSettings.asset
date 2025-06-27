@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/00.Scenes/KyungHyunTestScene/EnemyScene.unity
-    guid: 7aa03554f5feb694ba8027e2aa1d9fe8
+    path: Assets/00.Scenes/TitleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/00.Scenes/KyungHyunTestScene/TitleScene.unity
-    guid: 420a24b0ea8632048906669de32e67d1
+    path: Assets/00.Scenes/GameScene.unity
+    guid: 1039c10e925851340b8e1f86a83449ec
   m_configObjects: {}
