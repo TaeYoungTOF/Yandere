@@ -17,10 +17,21 @@ public class ExpOrb : MonoBehaviour
     {
         if (player == null) return;
 
-        float dist = Vector3.Distance(transform.position, player.position);
-        if (dist < 2f)
+        float distance = Vector3.Distance(transform.position, player.position);
+
+        if (distance < 2f)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+
+            if (distance < 0.3f)
+            {
+                var p = player.GetComponent<Player>();
+                if (p != null)
+                {
+                    p.GainExp(expAmount);
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
