@@ -43,13 +43,13 @@ public class StageManager : MonoBehaviour
     }
 
     private void Start()
-    {        
-        Player = FindObjectOfType<Player>();
+    {
         _spawnManager = GetComponentInChildren<SpawnManager>();
 
         currentStageData = GameManager.Instance.currentStageData;
 
-        Player.stat.ResetStat();
+        Player = FindObjectOfType<Player>();
+        Player.Init(this);
         StartWave();
     }
 
@@ -60,6 +60,12 @@ public class StageManager : MonoBehaviour
             Time.timeScale = 0f;
 
             return;
+        }
+
+        if (Player.stat.currentHealth <= 0)
+        {
+            Time.timeScale = 0f;
+            GameOver();
         }
 
         if (_elapsedTime < _maxTime)
@@ -85,6 +91,13 @@ public class StageManager : MonoBehaviour
         Debug.Log("[StageManager] Stage Clear!!");
 
         _stageClearUI.CallStageClearUI();
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("[StageManager] Game Over");
+
+        // GameOver UI 부르기
     }
 
     public void LevelUpEvent()

@@ -14,10 +14,9 @@ public class TY_Debug : MonoBehaviour
 
     public void DebugLevelUp()
     {
-        Debug.Log("[Debug] Level Up");
+        Debug.Log("[Debug] Gain 50 Exp");
 
-        StageManager.Instance.Player.LevelUp();
-        StageManager.Instance.LevelUpEvent();
+        StageManager.Instance.Player.GainExp(50);
     }
 
     public void DebugStageClear()
