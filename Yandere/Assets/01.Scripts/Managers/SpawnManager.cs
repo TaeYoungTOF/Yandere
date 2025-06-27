@@ -16,13 +16,10 @@ public class SpawnManager : MonoBehaviour
 
     private Transform playerTransform;
 
-    private void Start()
-    {
-        playerTransform = StageManager.Instance.Player.transform;
-    }
-
     public IEnumerator SpawnRoutine()
     {
+        playerTransform = StageManager.Instance.Player.transform;
+
         while (true)
         {
             SpawnEnemy();

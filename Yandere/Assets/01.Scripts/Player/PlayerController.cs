@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IDamagable
    
       
       // 받아온 입력값 * 플레이어 이동스탯 * 델타타임 을 "moveVec"에 값을 넣어줌
-      transform.position += moveVec * StageManager.Instance.PlayerManager.PlayerStat.BasePlayerMoveSpeed * Time.deltaTime;
+      transform.position += moveVec * StageManager.Instance.Player.stat.moveSpeed * Time.deltaTime;
       
       
       // 이동 입력값이 0 일시 리턴 (회전 X) 

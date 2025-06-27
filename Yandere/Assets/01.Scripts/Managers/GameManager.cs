@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         get => _maxStageIndex;
     }
-    public int currentStageIndex;
+    public StageData currentStageData;
 
     private void Awake()
     {
@@ -60,16 +60,18 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
-    public void GameStart()
+    public void SetStage(StageData stageData)
     {
-        SceneManager.LoadScene("GameScene");
-        Time.timeScale = 0;
+        currentStageData = stageData;
+
+        Debug.Log($"[GameManager] Set Stage {currentStageData.stageIndex}");
     }
 
-    public void SetStage()
+    public void LoadGameScene()
     {
-        Debug.Log($"[GameManager] Set Stage {currentStageIndex}");
-        Time.timeScale = 1f;
+        Debug.Log("[GameManager] Call Game Scene");
+
+        SceneManager.LoadScene("GameScene");
     }
 
     public void LoadTitleScene()
@@ -81,19 +83,23 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextStage()
     {
-        if (currentStageIndex < MaxStageIndex)
-        {
-            currentStageIndex++;
-            Debug.Log($"[GameManager] Loading Next Stage: {currentStageIndex}");
+        int nextIndex = currentStageData.stageIndex;
 
-            // 여기서 현재 씬이 바뀌지 않는다면 SetStage로 새 스테이지 설정만 하면 됨
-            SetStage();
-        }
-        else
+        if (nextIndex >= MaxStageIndex)
         {
-            Debug.Log("[GameManager] All stages cleared. Returning to Title Scene.");
+            Debug.Log("[GameManager] Last Stage. Return to Title");
+
             LoadTitleScene();
+            return;
         }
+
+        nextIndex++;
+
+        currentStageData = stageDatas[nextIndex - 1];
+
+        Debug.Log($"[GameManager] Load Next Stage: {currentStageData.stageIndex}");
+
+        LoadGameScene();
     }
 
     /** @todo SaveSystem 추후 조정

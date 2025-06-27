@@ -5,7 +5,6 @@ public class TY_Debug : MonoBehaviour
 {
     [SerializeField] private Button _levelUpButton;
     [SerializeField] private Button _stageClearButton;
-    [SerializeField] private GameObject _skillSelectPanel;
 
     private void Start()
     {
@@ -17,9 +16,8 @@ public class TY_Debug : MonoBehaviour
     {
         Debug.Log("[Debug] Level Up");
 
-        StageManager.Instance.PlayerLevelUp();
-
-        _skillSelectPanel.SetActive(true);
+        StageManager.Instance.Player.LevelUp();
+        StageManager.Instance.LevelUpEvent();
     }
 
     public void DebugStageClear()
