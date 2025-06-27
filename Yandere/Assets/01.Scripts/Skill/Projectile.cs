@@ -4,44 +4,43 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 10f;
-    public float lifeTime = 5f;
-    public float maxDistance = 20f;
-    public float damage = 10f;
+    float damage, speed, range;
+    int pierceCount;
+    LayerMask enemyLayer;
 
-    private Vector2 moveDirection;
-    private Vector2 spawnPosition;
+    Vector2 moveDir;
+    Vector2 spawnPos;
+
+    public void Initialize(float damage, float speed, float range, int pierceCount, LayerMask enemyLayer)
+    {
+        this.damage = damage;
+        this.speed = speed;
+        this.range = range;
+        this.pierceCount = pierceCount;
+        this.enemyLayer = enemyLayer;
+    }
 
     void Start()
     {
-        moveDirection = transform.up;
-        spawnPosition = transform.position;
-        Destroy(gameObject, lifeTime);
+        moveDir = transform.up;
+        spawnPos = transform.position;
     }
 
     void Update()
     {
-        transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-
-        float distance = Vector2.Distance(spawnPosition, transform.position);
-        if (distance > maxDistance)
-        {
+        transform.Translate(moveDir * speed * Time.deltaTime);
+        if (Vector2.Distance(spawnPos, transform.position) > range)
             Destroy(gameObject);
-        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        /*
-        if (other.CompareTag("Enemy"))
+        if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
-            Destroy(gameObject);
+            //other.GetComponent<Enemy>()?.TakeDamage(damage);
+            pierceCount--;
+            if (pierceCount < 0)
+                Destroy(gameObject);
         }
-        */
     }
 }
