@@ -5,8 +5,10 @@ using UnityEngine.EventSystems;
 
 public class EnemyController : MonoBehaviour, IDamagable
 {
+    // 타겟 설정 
     private Transform target;
 
+    // 인식 범위 설정
     [SerializeField] private float followRange = 15f;
 
     public void InIt(Transform target)
