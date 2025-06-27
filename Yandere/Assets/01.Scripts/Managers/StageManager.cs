@@ -1,23 +1,30 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
 
-    public StageData currnetStageData;
-    private SpawnManager _spawnManager;
-
+    public StageData currentStageData;
     public Player Player { get; private set; }
-
-
-    [SerializeField] private PlayerManager playerManager;
-    public PlayerManager PlayerManager => playerManager;
-    private LevelUpManager _levelUpManager;
+    private SpawnManager _spawnManager;
+    public bool IsUIOpened = false;
 
     /** 임시코드*/
-    [SerializeField] private GameObject _stageSelectGameObject;
-    [SerializeField] private GameObject _stageClearUIGameObject;
-    private UI_StageClear _stageClearUI;
+    [SerializeField] private UI_StageClear _stageClearUI;
+    [SerializeField] private UI_Timer _TimerUI;
+    [SerializeField] private SkillSelectUI _skillSelectUI;
+    public List<BaseSkill> allSkills;
+    /*UIManager로 이관*/
+
+    [Header("Timer")]
+    private float _elapsedTime = 0f;
+    private const float _maxTime = 15 * 60f; // 15분
+
+    public int ElapsedMinutes => Mathf.FloorToInt(_elapsedTime / 60f);
+    public int ElapsedSeconds => Mathf.FloorToInt(_elapsedTime % 60f);
+    public float ElapsedTime => _elapsedTime;
+
 
     
     private void Awake()
@@ -33,49 +40,78 @@ public class StageManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-        Player = FindObjectOfType<Player>();
-        Init();
     }
 
     private void Start()
-    {
+    {        
+        Player = FindObjectOfType<Player>();
         _spawnManager = GetComponentInChildren<SpawnManager>();
 
-        _levelUpManager = GetComponent<LevelUpManager>();
+        currentStageData = GameManager.Instance.currentStageData;
 
-        _stageClearUI = _stageClearUIGameObject.GetComponent<UI_StageClear>();
+        Player.stat.ResetStat();
+        StartWave();
     }
 
-    private void Init()
+    private void Update()
     {
-        _stageSelectGameObject.SetActive(true);
+        if (IsUIOpened)
+        {
+            Time.timeScale = 0f;
+
+            return;
+        }
+
+        if (_elapsedTime < _maxTime)
+        {
+            _elapsedTime += Time.deltaTime;
+            if (_elapsedTime > _maxTime)
+                _elapsedTime = _maxTime;
+
+            
+            /**@todo UIManager로 이관*/
+            _TimerUI.UpdateTime(ElapsedMinutes, ElapsedSeconds);
+        }
+
     }
 
-    public void StartWave()
+    private void StartWave()
     {
         StartCoroutine(_spawnManager.SpawnRoutine());
     }
 
-    public void PlayerLevelUp()
-    {
-        Debug.Log("[StageManager] Player Level Up!");
-        
-        _levelUpManager.OnLevelUp();
-    }
-
     public void StageClear()
     {
-        Debug.Log("[StageManager] Stage Clear");
-        //Time.timeScale = 0;
+        Debug.Log("[StageManager] Stage Clear!!");
 
         _stageClearUI.CallStageClearUI();
-
-        ResetStage();
     }
 
-    private void ResetStage()
+    public void LevelUpEvent()
     {
+        Debug.Log("[StageManager] Call Level Up Event");        
+        
+        var options = GetRandomSkillOptions(3);
+        _skillSelectUI.Show(options);
+    }
 
+    private List<BaseSkill> GetRandomSkillOptions(int count)
+    {
+        List<BaseSkill> available = new List<BaseSkill>();
+        foreach (var skill in allSkills)
+        {
+            if (!FindObjectOfType<SkillManager>().equippedSkills.Contains(skill) || skill.level < 5)
+                available.Add(skill);
+        }
+
+        List<BaseSkill> result = new List<BaseSkill>();
+        for (int i = 0; i < count; i++)
+        {
+            if (available.Count == 0) break;
+            int rand = Random.Range(0, available.Count);
+            result.Add(available[rand]);
+            available.RemoveAt(rand);
+        }
+        return result;
     }
 }

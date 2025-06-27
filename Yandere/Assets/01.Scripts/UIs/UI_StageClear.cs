@@ -18,7 +18,7 @@ public class UI_StageClear : MonoBehaviour
         _homeButton.onClick.AddListener(LoadTitleScene);
         _nextButton.onClick.AddListener(LoadNextStage);
 
-        _clearText.text = $"Stage {GameManager.Instance.currentStageIndex} Clear!!";
+        _clearText.text = $"Stage {GameManager.Instance.currentStageData.stageIndex} Clear!!";
     }
 
     private void LoadTitleScene()
