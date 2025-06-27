@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-     /* public void OpenPausePanel()
+      public void OpenPausePanel()
     {
         panelDict["InGame_Panel_Pause"].SetActive(true);
     }
@@ -59,21 +59,8 @@ public class UIManager : MonoBehaviour
     public void OpenSettingPanel()
     {
         panelDict["InGame_Panel_Setting"].SetActive(true);
-    }  */
-
-    private void Start()
-    {
-        panelDict["InGame_Panel_Pause"].SetActive(true);
-        panelDict["InGame_Panel_DPS"].SetActive(true);
-        panelDict["InGame_Panel_BackLobby"].SetActive(true);
-        panelDict["InGame_Panel_Setting"].SetActive(true);
-        
-        
-        OpenPausePanel.onClick.AddListener(OpenPausePanel);
-        OpenDPSPanel.onClick.AddListener(OpenDPSPanel);
-        OpenBackLobbyPanel.onClick.AddListener(OpenBackLobbyPanel);
-        OpenSettingPanel.onClick.AddListener(OpenSettingPanel);
-    }
+    }  
+    
 
 
     public void InGameUiCloseButton(int index)
