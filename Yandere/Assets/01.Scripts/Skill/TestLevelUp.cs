@@ -10,8 +10,8 @@ public class TestLevelUp : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Debug.Log("테스트용 경험치 +50 획득");
-            player.GainExp(50);
+            Debug.Log("테스트용 경험치 +100 획득");
+            player.GainExp(100);
         }
     }
 }

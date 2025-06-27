@@ -14,6 +14,8 @@ public class SkillSelectUI : MonoBehaviour
 
     public void Show(List<BaseSkill> options)
     {
+        Debug.Log($"SkillSelectPanel 활성화 시도 전 상태: {gameObject.activeSelf}, 부모 상태: {transform.parent?.gameObject.activeSelf}");
+
         panel.SetActive(true);
         for (int i = 0; i < skillButtons.Count; i++)
         {

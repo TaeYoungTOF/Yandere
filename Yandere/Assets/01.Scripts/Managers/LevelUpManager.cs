@@ -9,6 +9,8 @@ public class LevelUpManager : MonoBehaviour
 
     public void OnLevelUp()
     {
+        Debug.Log("레벨업 매니저 - 스킬 선택 UI 호출됨");
+
         var options = GetRandomSkillOptions(3);
         skillSelectUI.Show(options);
     }
