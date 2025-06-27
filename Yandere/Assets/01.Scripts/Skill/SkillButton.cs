@@ -22,13 +22,20 @@ public class SkillButton : MonoBehaviour
 
     public void OnClick()
     {
+        Debug.Log($"[SkillButton] 클릭된 스킬: {skill?.skillName ?? "null"}");
+
         SkillManager manager = FindObjectOfType<SkillManager>();
-        if (!manager.equippedSkills.Contains(skill))
+        if (skill == null)
         {
-            manager.EquipSkill(skill);
+            Debug.LogError("SkillButton: skill이 null입니다!");
+            return;
         }
+
+        if (!manager.equippedSkills.Contains(skill))
+            manager.EquipSkill(skill);
         else
             skill.LevelUp();
+
         FindObjectOfType<SkillSelectUI>().Hide();
     }
 }

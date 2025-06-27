@@ -115,7 +115,7 @@ MonoBehaviour:
   damageZonePrefab: {fileID: 1659161540340427902, guid: 73ef9395960bf724cb9841baec599c1d, type: 3}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!212 &-1501566720263957058
 SpriteRenderer:
   m_ObjectHideFlags: 0
