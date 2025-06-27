@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Texts")]
     [SerializeField] private TextMeshProUGUI text; // 예시 텍스트입니다. 삭제하셔도 됩니다.
+
+    
 
     private void Awake()
     {
@@ -39,7 +42,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void OpenPausePanel()
+     /* public void OpenPausePanel()
     {
         panelDict["InGame_Panel_Pause"].SetActive(true);
     }
@@ -56,17 +59,20 @@ public class UIManager : MonoBehaviour
     public void OpenSettingPanel()
     {
         panelDict["InGame_Panel_Setting"].SetActive(true);
-    }
+    }  */
 
-    public void OpenButtonSettings()
+    private void Start()
     {
-        panelDict["InGame_Panel_Settings"].SetActive(true);
+        panelDict["InGame_Panel_Pause"].SetActive(true);
+        panelDict["InGame_Panel_DPS"].SetActive(true);
+        panelDict["InGame_Panel_BackLobby"].SetActive(true);
+        panelDict["InGame_Panel_Setting"].SetActive(true);
         
         
-        OpenPausePanel.onClick.AddListener(OpenPausePanel());
-        OpenDPSPanel.onClick.AddListener(OpenDPSPanel());
-        OpenBackLobbyPanel.onClick.AddListener(OpenBackLobbyPanel());
-        OpenSettingPanel.onClick.AddListener(OpenSettingPanel());
+        OpenPausePanel.onClick.AddListener(OpenPausePanel);
+        OpenDPSPanel.onClick.AddListener(OpenDPSPanel);
+        OpenBackLobbyPanel.onClick.AddListener(OpenBackLobbyPanel);
+        OpenSettingPanel.onClick.AddListener(OpenSettingPanel);
     }
 
 
