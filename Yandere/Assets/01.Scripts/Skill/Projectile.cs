@@ -4,40 +4,45 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    float damage, speed, range;
-    int pierceCount;
-    LayerMask enemyLayer;
+    protected float damage;
+    protected float speed;
+    protected float range;
+    protected int pierceCount;
+    protected LayerMask enemyLayer;
 
-    Vector2 moveDir;
-    Vector2 spawnPos;
+    protected Vector2 spawnPos;
+    protected Vector2 moveDir;
 
-    public void Initialize(float damage, float speed, float range, int pierceCount, LayerMask enemyLayer)
+    public virtual void Initialize(float damage, float speed, float range, int pierceCount, LayerMask enemyLayer)
     {
         this.damage = damage;
         this.speed = speed;
         this.range = range;
         this.pierceCount = pierceCount;
         this.enemyLayer = enemyLayer;
-    }
 
-    void Start()
-    {
-        moveDir = transform.up;
         spawnPos = transform.position;
+        moveDir = transform.up;
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        transform.Translate(moveDir * speed * Time.deltaTime);
+        transform.Translate(moveDir * speed * Time.deltaTime, Space.World);
+
         if (Vector2.Distance(spawnPos, transform.position) > range)
             Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            //other.GetComponent<Enemy>()?.TakeDamage(damage);
+            var target = other.GetComponent<IDamagable>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
+
             pierceCount--;
             if (pierceCount < 0)
                 Destroy(gameObject);

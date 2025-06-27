@@ -24,7 +24,9 @@ public class SkillButton : MonoBehaviour
     {
         SkillManager manager = FindObjectOfType<SkillManager>();
         if (!manager.equippedSkills.Contains(skill))
+        {
             manager.EquipSkill(skill);
+        }
         else
             skill.LevelUp();
         FindObjectOfType<SkillSelectUI>().Hide();

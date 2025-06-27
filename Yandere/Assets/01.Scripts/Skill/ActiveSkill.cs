@@ -19,7 +19,7 @@ public class ActiveSkill : BaseSkill
         if (projectilePrefab == null || caster == null)
             return;
 
-        GameObject proj = Instantiate(projectilePrefab, caster.position, caster.rotation);
+        GameObject proj = Instantiate(projectilePrefab, caster.position + caster.up * 1f, caster.rotation);
         var projectile = proj.GetComponent<Projectile>();
         if (projectile != null)
         {
