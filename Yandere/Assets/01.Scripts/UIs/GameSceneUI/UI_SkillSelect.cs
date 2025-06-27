@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillSelectUI : MonoBehaviour
+public class UI_SkillSelect : ToggleableUI
 {
-    public GameObject panel;
-    public List<SkillButton> skillButtons;
+    [SerializeField] private GameObject _skillSelectPanel;
+    [SerializeField] private List<SkillButton> skillButtons;
 
-    void Start()
+    private void Start()
     {
-        panel.SetActive(false);
+        Init();
+        _skillSelectPanel.SetActive(false);
+    }
+
+    protected override UIState GetUIState()
+    {
+        return UIState.SkillSelect;
     }
 
     public void Show(List<BaseSkill> options)
     {
         Debug.Log($"SkillSelectPanel 활성화 시도 전 상태: {gameObject.activeSelf}, 부모 상태: {transform.parent?.gameObject.activeSelf}");
+        _skillSelectPanel.SetActive(true);
 
-        panel.SetActive(true);
         for (int i = 0; i < skillButtons.Count; i++)
         {
             if (i < options.Count)
@@ -29,7 +35,7 @@ public class SkillSelectUI : MonoBehaviour
 
     public void Hide()
     {
-        panel.SetActive(false);
+        _skillSelectPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 }

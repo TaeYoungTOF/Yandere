@@ -11,9 +11,8 @@ public class StageManager : MonoBehaviour
     public bool IsUIOpened = false;
 
     /** 임시코드*/
-    [SerializeField] private UI_StageClear _stageClearUI;
-    [SerializeField] private UI_Timer _TimerUI;
-    [SerializeField] private SkillSelectUI _skillSelectUI;
+    //[SerializeField] private UI_StageClear _stageClearUI;
+    [SerializeField] private UI_SkillSelect _skillSelectUI;
     public List<BaseSkill> allSkills;
     /*UIManager로 이관*/
 
@@ -45,11 +44,12 @@ public class StageManager : MonoBehaviour
     private void Start()
     {        
         Player = FindObjectOfType<Player>();
+        Player.Init(this);
+
         _spawnManager = GetComponentInChildren<SpawnManager>();
 
         currentStageData = GameManager.Instance.currentStageData;
 
-        Player.stat.ResetStat();
         StartWave();
     }
 
@@ -62,6 +62,12 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        if (Player.stat.currentHealth <= 0)
+        {
+            Time.timeScale = 0f;
+            GameOver();
+        }
+
         if (_elapsedTime < _maxTime)
         {
             _elapsedTime += Time.deltaTime;
@@ -69,8 +75,7 @@ public class StageManager : MonoBehaviour
                 _elapsedTime = _maxTime;
 
             
-            /**@todo UIManager로 이관*/
-            _TimerUI.UpdateTime(ElapsedMinutes, ElapsedSeconds);
+            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(ElapsedMinutes, ElapsedSeconds);
         }
 
     }
@@ -84,7 +89,15 @@ public class StageManager : MonoBehaviour
     {
         Debug.Log("[StageManager] Stage Clear!!");
 
-        _stageClearUI.CallStageClearUI();
+        //_stageClearUI.CallStageClearUI();
+        UIManager.Instance.GetPanel<UI_StageClear>().CallStageClearUI();
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("[StageManager] Game Over");
+
+        // GameOver UI 부르기
     }
 
     public void LevelUpEvent()

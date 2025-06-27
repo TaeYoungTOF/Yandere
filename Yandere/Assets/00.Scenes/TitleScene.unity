@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageDatas: []
   _maxStageIndex: 0
-  currentStageIndex: 0
+  currentStageData: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,9 +743,8 @@ GameObject:
   - component: {fileID: 1482781695}
   - component: {fileID: 1482781694}
   - component: {fileID: 1482781693}
-  - component: {fileID: 1482781697}
   m_Layer: 5
-  m_Name: UIManager_Game
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -829,20 +828,37 @@ RectTransform:
   - {fileID: 758059170}
   - {fileID: 1243728706}
   - {fileID: 8628001458347774540}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1629245649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1482781697
+--- !u!1 &1629245647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1629245649}
+  - component: {fileID: 1629245648}
+  m_Layer: 0
+  m_Name: UIManager_Game
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1629245648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482781692}
+  m_GameObject: {fileID: 1629245647}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddf134c99cae9794a9c467ce0e6b1798, type: 3}
@@ -851,6 +867,22 @@ MonoBehaviour:
   _stageSelectPanel: {fileID: 1349833030597839445}
   _gameStartButton: {fileID: 1243728707}
   text: {fileID: 0}
+--- !u!4 &1629245649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629245647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1482781696}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &484323901562645199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,11 +910,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageButtonPrefab: {fileID: 8926898507818196029, guid: ff53561e590abad4f8c5bd33da518381, type: 3}
   _contentParent: {fileID: 3363650499114776238}
-  _stageDatas:
-  - {fileID: 11400000, guid: 29d76cadd13816645bb0732df2489154, type: 2}
-  - {fileID: 11400000, guid: b6b3e08500ff55547a974d399c5a2956, type: 2}
-  - {fileID: 11400000, guid: 3164111d551a1224db5748edae086228, type: 2}
-  - {fileID: 11400000, guid: 7b31d26a8d8ffaf4ea50699853378a79, type: 2}
 --- !u!222 &937745359954157906
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1380,6 +1407,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1482781696}
   - {fileID: 523189284}
+  - {fileID: 1629245649}
   - {fileID: 89111829}
