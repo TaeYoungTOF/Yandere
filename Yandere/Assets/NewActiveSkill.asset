@@ -17,10 +17,10 @@ MonoBehaviour:
   description: dfgg
   skillType: 0
   level: 1
-  levelDamageBonus: 0
-  levelCooldownReduction: 0
-  damage: 0
+  levelDamageBonus: 100
+  levelCooldownReduction: 0.1
+  damage: 20
   cooldown: 5
-  range: 0
+  range: 1
   pierceCount: 0
   projectilePrefab: {fileID: 7828242614093739081, guid: 89556aa23e747764eb99d19b0b50063a, type: 3}
