@@ -6038,9 +6038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10fa36cfb3588f46ae12b5565af1a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageDatas: []
-  _maxStageIndex: 0
-  currentStageIndex: 0
+  playerManager: {fileID: 0}
+  autoSaveInterval: 30
 --- !u!4 &930993466
 Transform:
   m_ObjectHideFlags: 0

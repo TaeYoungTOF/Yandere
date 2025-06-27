@@ -58,6 +58,17 @@ public class UIManager : MonoBehaviour
         panelDict["InGame_Panel_Setting"].SetActive(true);
     }
 
+    public void OpenButtonSettings()
+    {
+        panelDict["InGame_Panel_Settings"].SetActive(true);
+        
+        
+        OpenPausePanel.onClick.AddListener(OpenPausePanel());
+        OpenDPSPanel.onClick.AddListener(OpenDPSPanel());
+        OpenBackLobbyPanel.onClick.AddListener(OpenBackLobbyPanel());
+        OpenSettingPanel.onClick.AddListener(OpenSettingPanel());
+    }
+
 
     public void InGameUiCloseButton(int index)
     {
