@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour, IDamagable
         return (target.position - transform.position).normalized;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         Debug.Log($"[EnemyController] {name}이 {damage}의 피해를 입었습니다.");
     }

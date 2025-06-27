@@ -4,44 +4,48 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 10f;
-    public float lifeTime = 5f;
-    public float maxDistance = 20f;
-    public float damage = 10f;
+    protected float damage;
+    protected float speed;
+    protected float range;
+    protected int pierceCount;
+    protected LayerMask enemyLayer;
 
-    private Vector2 moveDirection;
-    private Vector2 spawnPosition;
+    protected Vector2 spawnPos;
+    protected Vector2 moveDir;
 
-    void Start()
+    public virtual void Initialize(float damage, float speed, float range, int pierceCount, LayerMask enemyLayer)
     {
-        moveDirection = transform.up;
-        spawnPosition = transform.position;
-        Destroy(gameObject, lifeTime);
+        this.damage = damage;
+        this.speed = speed;
+        this.range = range;
+        this.pierceCount = pierceCount;
+        this.enemyLayer = enemyLayer;
+
+        spawnPos = transform.position;
+        moveDir = transform.up;
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+        transform.Translate(moveDir * speed * Time.deltaTime, Space.World);
 
-        float distance = Vector2.Distance(spawnPosition, transform.position);
-        if (distance > maxDistance)
-        {
+        if (Vector2.Distance(spawnPos, transform.position) > range)
             Destroy(gameObject);
-        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        /*
-        if (other.CompareTag("Enemy"))
+        if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
+            var target = other.GetComponent<IDamagable>();
+            if (target != null)
             {
-                enemy.TakeDamage(damage);
+                target.TakeDamage(damage);
             }
-            Destroy(gameObject);
+
+            pierceCount--;
+            if (pierceCount < 0)
+                Destroy(gameObject);
         }
-        */
     }
 }

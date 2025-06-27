@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour, IDamagable
       //_rigidbody.rotation = angle;
    }
    
-   public void TakeDamage(int damage)
+   public void TakeDamage(float damage)
    {
       
    }

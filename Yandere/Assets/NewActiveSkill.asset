@@ -23,4 +23,8 @@ MonoBehaviour:
   cooldown: 5
   range: 1
   pierceCount: 0
-  projectilePrefab: {fileID: 7828242614093739081, guid: 89556aa23e747764eb99d19b0b50063a, type: 3}
+  projectileSpeed: 0
+  projectilePrefab: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
