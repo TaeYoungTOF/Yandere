@@ -4,10 +4,16 @@ using UnityEngine.UI;
 
 public class UI_StageClear : ToggleableUI
 {
-    [SerializeField] private GameObject StageClearPanel;
+    [SerializeField] private GameObject _stageClearPanel;
     [SerializeField] private Button _homeButton;
     [SerializeField] private Button _nextButton;
     [SerializeField] private TMP_Text _clearText;
+
+    private void Start()
+    {
+        Init();
+        _stageClearPanel.SetActive(false);
+    }
 
     protected override UIState GetUIState()
     {
@@ -16,7 +22,7 @@ public class UI_StageClear : ToggleableUI
 
     public void CallStageClearUI()
     {
-        StageClearPanel.SetActive(true);
+        _stageClearPanel.SetActive(true);
 
         _homeButton.onClick.RemoveAllListeners();
         _nextButton.onClick.RemoveAllListeners();
@@ -30,14 +36,14 @@ public class UI_StageClear : ToggleableUI
     {
         GameManager.Instance.LoadTitleScene();
 
-        StageClearPanel.SetActive(false);
+        _stageClearPanel.SetActive(false);
     }
 
     private void LoadNextStage()
     {
         GameManager.Instance.LoadNextStage();
 
-        StageClearPanel.SetActive(false);
+        _stageClearPanel.SetActive(false);
 
     }
 }

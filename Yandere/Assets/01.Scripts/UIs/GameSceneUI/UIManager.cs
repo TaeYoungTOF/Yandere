@@ -38,22 +38,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Init();
-    }
-
-    private void Init()
-    {
-        foreach (var panel in typedPanels.Values)
-        {
-            if (panel is IBaseUI baseUI)
-            {
-                baseUI.Init();
-            }
-        }
-    }
-
     public void SetUIState(UIState state)
     {
         _currentState = state;

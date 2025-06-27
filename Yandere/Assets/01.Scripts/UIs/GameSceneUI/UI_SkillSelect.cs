@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_SkillSelect : MonoBehaviour
+public class UI_SkillSelect : ToggleableUI
 {
-    public GameObject panel;
-    public List<SkillButton> skillButtons;
+    [SerializeField] private GameObject _skillSelectPanel;
+    [SerializeField] private List<SkillButton> skillButtons;
 
-    void Start()
+    private void Start()
     {
-        panel.SetActive(false);
+        Init();
+        _skillSelectPanel.SetActive(false);
+    }
+
+    protected override UIState GetUIState()
+    {
+        return UIState.SkillSelect;
     }
 
     public void Show(List<BaseSkill> options)
     {
-        panel.SetActive(true);
+        _skillSelectPanel.SetActive(true);
         for (int i = 0; i < skillButtons.Count; i++)
         {
             if (i < options.Count)
@@ -27,7 +33,7 @@ public class UI_SkillSelect : MonoBehaviour
 
     public void Hide()
     {
-        panel.SetActive(false);
+        _skillSelectPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 }

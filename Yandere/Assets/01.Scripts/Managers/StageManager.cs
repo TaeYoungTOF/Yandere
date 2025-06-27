@@ -75,7 +75,7 @@ public class StageManager : MonoBehaviour
                 _elapsedTime = _maxTime;
 
             
-            //UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(ElapsedMinutes, ElapsedSeconds);
+            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(ElapsedMinutes, ElapsedSeconds);
         }
 
     }

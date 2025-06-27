@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_GameHUD : MonoBehaviour, IBaseUI
+public class UI_GameHUD : MonoBehaviour
 {
     [SerializeField] private TMP_Text _goldCountText;
     [SerializeField] private TMP_Text _killCountText;
@@ -14,7 +14,7 @@ public class UI_GameHUD : MonoBehaviour, IBaseUI
     private int _gold = 0;
     private int _killCount = 0;
 
-    public void Init()
+    private void Start()
     {
         UIManager.Instance.RegisterPanel(this);
 

@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public abstract class ToggleableUI : MonoBehaviour, IBaseUI
+public abstract class ToggleableUI : MonoBehaviour
 {
     protected UIManager uiManager;
 
-    public void Init()
+    public virtual void Init()
     {
         uiManager = UIManager.Instance;
 
         uiManager.RegisterPanel(this);
-        gameObject.SetActive(false);
     }
 
     protected abstract UIState GetUIState();
