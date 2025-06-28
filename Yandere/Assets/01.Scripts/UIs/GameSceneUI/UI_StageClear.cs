@@ -11,39 +11,31 @@ public class UI_StageClear : ToggleableUI
 
     private void Start()
     {
-        Init();
+        Init(_stageClearPanel);
         _stageClearPanel.SetActive(false);
+
+        _homeButton.onClick.RemoveAllListeners();
+        _nextButton.onClick.RemoveAllListeners();
+        _homeButton.onClick.AddListener(GameManager.Instance.LoadTitleScene);
+        _nextButton.onClick.AddListener(GameManager.Instance.LoadNextStage);
     }
 
-    protected override UIState GetUIState()
+    public override UIState GetUIState()
     {
         return UIState.StageClear;
     }
 
-    public void CallStageClearUI()
+    public override void UIAction()
     {
-        _stageClearPanel.SetActive(true);
+        _clearText.text = $"Stage {StageManager.Instance.currentStageData.stageIndex} Clear !!";
 
-        _homeButton.onClick.RemoveAllListeners();
-        _nextButton.onClick.RemoveAllListeners();
-        _homeButton.onClick.AddListener(LoadTitleScene);
-        _nextButton.onClick.AddListener(LoadNextStage);
-
-        _clearText.text = $"Stage {GameManager.Instance.currentStageData.stageIndex} Clear!!";
-    }
-
-    private void LoadTitleScene()
-    {
-        GameManager.Instance.LoadTitleScene();
-
-        _stageClearPanel.SetActive(false);
-    }
-
-    private void LoadNextStage()
-    {
-        GameManager.Instance.LoadNextStage();
-
-        _stageClearPanel.SetActive(false);
-
+        if (StageManager.Instance.currentStageData.stageIndex == GameManager.Instance.MaxStageIndex)
+        {
+            _nextButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            _nextButton.gameObject.SetActive(true);
+        }
     }
 }

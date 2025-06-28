@@ -9,6 +9,7 @@ public class UI_GameHUD : MonoBehaviour
     [SerializeField] private TMP_Text _timeText;
     [SerializeField] private Image _expImage;
     [SerializeField] private TMP_Text _levelText;
+    [SerializeField] private Button _pauseButton;
 
     private PlayerStat _stat;
     private int _gold = 0;
@@ -25,6 +26,9 @@ public class UI_GameHUD : MonoBehaviour
         UpdateTime(0, 0);
         UpdateExpImage();
         UpdateLevel();
+
+        _pauseButton.onClick.RemoveAllListeners();
+        _pauseButton.onClick.AddListener(OnClickPauseBUtton);
     }
 
     public void UpdateGold(int amount)
@@ -48,12 +52,17 @@ public class UI_GameHUD : MonoBehaviour
 
     public void UpdateExpImage()
     {
-        float ratio = (float)_stat.currentExp / _stat.requiredExp;
+        float ratio = _stat.currentExp / _stat.requiredExp;
         _expImage.fillAmount = Mathf.Clamp01(ratio);
     }
 
     public void UpdateLevel()
     {
-        _levelText.text = _stat.level.ToString();
+        _levelText.text = $"LV. {_stat.level}";
+    }
+
+    public void OnClickPauseBUtton()
+    {
+        UIManager.Instance.SetUIState(UIState.Pause);
     }
 }

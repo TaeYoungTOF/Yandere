@@ -1,20 +1,29 @@
+using System;
 using UnityEngine;
 
 public abstract class ToggleableUI : MonoBehaviour
 {
     protected UIManager uiManager;
+    protected GameObject panel;
 
-    public virtual void Init()
+    public virtual void Init(GameObject panel)
     {
         uiManager = UIManager.Instance;
 
         uiManager.RegisterPanel(this);
+
+        this.panel = panel;
     }
 
-    protected abstract UIState GetUIState();
+    public abstract UIState GetUIState();
+
+    public virtual void UIAction()
+    {
+
+    }
 
     public void SetActive(UIState state)
     {
-        gameObject.SetActive(GetUIState() == state);
+        panel.SetActive(GetUIState() == state);
     }
 }
