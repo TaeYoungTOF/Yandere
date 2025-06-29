@@ -5,7 +5,7 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
 
-    public StageData currentStageData;
+    //public StageData currentStageData;
     public Player Player { get; private set; }
     private SpawnManager _spawnManager;
     public bool IsUIOpened = false;
@@ -48,7 +48,7 @@ public class StageManager : MonoBehaviour
 
         _spawnManager = GetComponentInChildren<SpawnManager>();
 
-        currentStageData = GameManager.Instance.currentStageData;
+       // currentStageData = GameManager.Instance.currentStageData;
 
         StartWave();
     }
