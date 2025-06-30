@@ -11,6 +11,8 @@ public class UI_GameHUD : MonoBehaviour
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private Button _pauseButton;
 
+    [SerializeField] private Image _healthImage;
+
     private PlayerStat _stat;
     private int _gold = 0;
     private int _killCount = 0;
@@ -59,6 +61,12 @@ public class UI_GameHUD : MonoBehaviour
     public void UpdateLevel()
     {
         _levelText.text = $"LV. {_stat.level}";
+    }
+
+    public void UpdateHealthImage()
+    {
+        float ratio = _stat.currentHealth / _stat.maxHealth;
+        _healthImage.fillAmount = Mathf.Clamp01(ratio);
     }
 
     public void OnClickPauseBUtton()

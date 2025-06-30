@@ -9,15 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a1ece5762ae9a7f48a389f64f900ef03, type: 3}
   m_Name: TestEnemyData03
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  monsterPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
-  enemyType: 0
-  enemyAttackType: 0
-  monsterName: Enemy03
-  monsterMaxHp: 100
-  monsterAttack: 10
-  attackCooldown: 1
-  monsterMoveSpeed: 2
-  monsterExp: 0

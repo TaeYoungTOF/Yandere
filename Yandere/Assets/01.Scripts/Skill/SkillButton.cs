@@ -26,5 +26,6 @@ public class SkillButton : MonoBehaviour
             skill.LevelUp();
 
         UIManager.Instance.SetUIState(UIState.None);
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateExpImage();
     }
 }
