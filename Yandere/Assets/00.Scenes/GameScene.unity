@@ -1767,7 +1767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b067bdfa09d7b44f973b69de6e4638a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 848765488387581411, guid: 5f45f917715c21747b6279b78eec4395, type: 3}
+  enemyPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
   spawnAreas: []
   spawnInterval: 5
   waveInterval: 1
@@ -9753,7 +9753,7 @@ GameObject:
   - component: {fileID: 1101165678}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

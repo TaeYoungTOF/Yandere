@@ -21,6 +21,9 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     // 공격 타입 컴포넌트
     private EnemyMeleeAttack _enemyMeleeAttack;
     private EnemyRangedAttack _enemyRangedAttack;
+
+    // Item Drop 컴포넌트
+    [SerializeField] private DropTable _dropTable;
     
     
     [Header("separationRadius 세팅")]
@@ -155,9 +158,18 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         isDead = true;                                                      // 죽은 상태체크
         _rigidbody2D.velocity = Vector2.zero;                               // Vector2.zero(0,0)을 _rigidbody2D.velocity에 넣어줌 (안 움직이게 하는 코드)
         _animator.SetTrigger("Dead");                                 // 애니메이터의 파라미터(트리거) "Dead"를 실행
+
+        var context = new DropContext
+        {
+            Position = transform.position,
+            DropTable = _dropTable
+        };
+
+        ItemDropManager.Instance.HandleDrop(context);
+
         Destroy(gameObject, 1.0f);
     }
-    
+
     void AvoidOtherEnemies()
     {
         Collider2D[] nearEnemies = Physics2D.OverlapCircleAll(transform.position, separationRadius, enemyLayer);
