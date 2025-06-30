@@ -58,6 +58,7 @@ public class StageManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             GameOver();
+            return;
         }
 
         Time.timeScale = 1f;

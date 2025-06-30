@@ -10,6 +10,13 @@ public enum EventType
     AddBossEnemy,
 }
 
+[System.Serializable]
+public class EnemySpawnWeigth
+{
+    public GameObject enemyPrefab;
+    [Range(1, 100)] public int spawnWeight;
+}
+
 [CreateAssetMenu(fileName = "SpawnData", menuName = "SpawnData", order = 0)]
 public class SpawnData : ScriptableObject {
 
@@ -26,5 +33,5 @@ public class SpawnData : ScriptableObject {
     public int spawnAmount;
 
     [Tooltip("생성되는 모든 enemy")]
-    public List<EnemyData> enemyList;
+    public List<EnemySpawnWeigth> enemyList;
 }
