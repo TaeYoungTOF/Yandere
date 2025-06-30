@@ -1767,10 +1767,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b067bdfa09d7b44f973b69de6e4638a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
-  spawnAreas: []
-  spawnInterval: 5
-  waveInterval: 1
+  _spawnData: {fileID: 11400000, guid: f3e7df4401893594d847612e7054c0d0, type: 2}
+  _spawnWeights: []
+  spawnArea:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
   spawnRadius: 3
 --- !u!1 &209708927
 GameObject:
@@ -3325,6 +3330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c870e0089e6602c40ac4f21adc52a22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultDropItemPrefab: {fileID: 48673281385559624, guid: 80155a67610115f4a86bfceba4406098, type: 3}
 --- !u!4 &391570518
 Transform:
   m_ObjectHideFlags: 0
@@ -6233,6 +6239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStageData: {fileID: 0}
   IsUIOpened: 0
+  _maxTime: 0
 --- !u!4 &709524319
 Transform:
   m_ObjectHideFlags: 0
@@ -6247,8 +6254,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 208524083}
-  - {fileID: 2869872445666669753}
   - {fileID: 391570518}
+  - {fileID: 2869872445666669753}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &715081382

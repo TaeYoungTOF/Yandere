@@ -15,6 +15,7 @@ public class EnemySpawnWeigth
 {
     public GameObject enemyPrefab;
     [Range(1, 100)] public int spawnWeight;
+    public DropTable dropTable;
 }
 
 [CreateAssetMenu(fileName = "SpawnData", menuName = "SpawnData", order = 0)]
@@ -23,8 +24,8 @@ public class SpawnData : ScriptableObject {
     [Tooltip("스폰 이벤트 유형")]
     public EventType eventType;
 
-    [Tooltip("스폰 이벤트 발생 시간")]
-    public float time;
+    [Tooltip("스폰 이벤트 종료 시간")]
+    public float endTime;
 
     [Tooltip("스폰 간격")]
     public float spawnInterval;

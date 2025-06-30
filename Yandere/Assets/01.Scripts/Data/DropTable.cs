@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DropTable", menuName = "DropTable", order = 1)]
+[System.Serializable]
+public class DropEntry
+{
+    public GameObject itemPrefab;
+
+    [Range(0, 100)] public int probability;
+}
+
+[CreateAssetMenu(fileName = "DropTable", menuName = "DropTable", order = 0)]
 public class DropTable : ScriptableObject
 {
-    [System.Serializable]
-    public class DropEntry
-    {
-        public GameObject itemPrefab;
-
-        [Range(0f, 1f)] public float probability;
-    }
-
-    public List<DropEntry> entries = new();
+    public List<DropEntry> entries;
 }

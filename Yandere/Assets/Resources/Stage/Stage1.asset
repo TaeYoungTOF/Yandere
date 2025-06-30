@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   stageIndex: 1
-  clearTime: 0
-  achievements:
-  - rank: 0
-    isCleared: 0
-    description: 
+  clearTime: 600
+  achievements: []
   spwanDatas:
-  - {fileID: 11400000, guid: e3eab4a563a2d4946bd3a48032d794b8, type: 2}
+  - {fileID: 11400000, guid: f3e7df4401893594d847612e7054c0d0, type: 2}

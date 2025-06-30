@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ public struct Achievement
 {
     [Range(0, 2)] public int rank;
     public bool isCleared;
-    public string description;
+    [Multiline(3)] public string description;
 }
 
 [CreateAssetMenu(fileName = "StageData", menuName = "StageData", order = 0)]
@@ -19,8 +18,8 @@ public class StageData : ScriptableObject {
 
     public List<Achievement> achievements;
 
-    public List<SpawnData> spwanDatas; // 코루틴 등록해서 비동기 호출
-
+    public List<SpawnData> spwanDatas;
+    
     // clearRewards 리스트
 
 

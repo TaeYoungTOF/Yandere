@@ -23,7 +23,7 @@ public class UI_GameHUD : MonoBehaviour
 
         UpdateGold(0);
         UpdateKillCount(0);
-        UpdateTime(0, 0);
+        UpdateTime(0);
         UpdateExpImage();
         UpdateLevel();
 
@@ -45,9 +45,9 @@ public class UI_GameHUD : MonoBehaviour
         Debug.Log("[GameHUD UI] Increase kill count");
     }
 
-    public void UpdateTime(int minutes, int seconds)
+    public void UpdateTime(float time)
     {
-        _timeText.text = $"{minutes:00}:{seconds:00}";
+        _timeText.text = $"{Mathf.FloorToInt(time/60f):00}:{Mathf.FloorToInt(time%60f):00}";
     }
 
     public void UpdateExpImage()
