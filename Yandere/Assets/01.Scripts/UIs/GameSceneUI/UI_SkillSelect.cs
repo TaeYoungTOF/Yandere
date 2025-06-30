@@ -1,41 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class UI_SkillSelect : ToggleableUI
 {
     [SerializeField] private GameObject _skillSelectPanel;
-    [SerializeField] private List<SkillButton> skillButtons;
+    [SerializeField] private List<SkillButton> _skillButtons;
+    [SerializeField] private List<BaseSkill> _allSkills;
+
 
     private void Start()
     {
-        Init();
+        Init(_skillSelectPanel);
         _skillSelectPanel.SetActive(false);
     }
 
-    protected override UIState GetUIState()
+    public override UIState GetUIState()
     {
         return UIState.SkillSelect;
     }
 
-    public void Show(List<BaseSkill> options)
-    {
-        Debug.Log($"SkillSelectPanel 활성화 시도 전 상태: {gameObject.activeSelf}, 부모 상태: {transform.parent?.gameObject.activeSelf}");
-        _skillSelectPanel.SetActive(true);
-
-        for (int i = 0; i < skillButtons.Count; i++)
-        {
-            if (i < options.Count)
-                skillButtons[i].Setup(options[i]);
-            else
-                skillButtons[i].gameObject.SetActive(false);
-        }
-        Time.timeScale = 0f;
+    public override void UIAction()
+    {        
+        var options = GetRandomSkillOptions(3);
+        Show(options);
     }
 
-    public void Hide()
+    private List<BaseSkill> GetRandomSkillOptions(int count)
     {
-        _skillSelectPanel.SetActive(false);
-        Time.timeScale = 1f;
+        List<BaseSkill> available = new List<BaseSkill>();
+        foreach (var skill in _allSkills)
+        {
+            if (!FindObjectOfType<SkillManager>().equippedSkills.Contains(skill) || skill.level < 5)
+                available.Add(skill);
+        }
+
+        List<BaseSkill> result = new List<BaseSkill>();
+        for (int i = 0; i < count; i++)
+        {
+            if (available.Count == 0) break;
+            int rand = Random.Range(0, available.Count);
+            result.Add(available[rand]);
+            available.RemoveAt(rand);
+        }
+        return result;
+    }
+
+    public void Show(List<BaseSkill> options)
+    {
+        for (int i = 0; i < _skillButtons.Count; i++)
+        {
+            if (i < options.Count)
+                _skillButtons[i].Setup(options[i]);
+            else
+                _skillButtons[i].gameObject.SetActive(false);
+        }
     }
 }

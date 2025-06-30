@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ExpOrb : MonoBehaviour
+public class ExpOrb : Item
 {
-    public int expAmount = 10;
+    [SerializeField] private float _expAmount = 10;
     public float moveSpeed = 8f;
+
+    /**
     private Transform player;
 
     void OnEnable()
@@ -22,21 +22,15 @@ public class ExpOrb : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         }
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Player p = other.GetComponent<Player>();
-            if (p != null) p.GainExp(expAmount);
+            StageManager.Instance.Player.GainExp(_expAmount);
 
             Destroy(gameObject);
         }
-    }
-
-    public void SetExp(int exp)
-    {
-        expAmount = exp;
     }
 }

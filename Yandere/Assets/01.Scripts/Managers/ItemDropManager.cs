@@ -24,14 +24,14 @@ public class ItemDropManager : MonoBehaviour
         {
             if (Random.value <= entry.probability)
             {
-                SpawnItem(entry.itemData, context.Position);
+                SpawnItem(entry.itemPrefab, context.Position);
             }
         }
     }
 
-    private void SpawnItem(ItemData itemData, Vector3 pos)
+    private void SpawnItem(GameObject itemPrefab, Vector3 pos)
     {
-        GameObject go = Instantiate(itemData.prefab, pos, Quaternion.identity);
+        GameObject go = Instantiate(itemPrefab, pos, Quaternion.identity);
         // 또는 오브젝트 풀링 사용 가능:
         // GameObject go = ObjectPool.Instance.Get(itemData.prefab);
         // go.transform.position = pos;
