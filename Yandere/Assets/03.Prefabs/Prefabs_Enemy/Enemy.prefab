@@ -82,7 +82,7 @@ MonoBehaviour:
   pushForce: 0.8
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
 --- !u!58 &5569739380141773139
 CircleCollider2D:
   m_ObjectHideFlags: 0
