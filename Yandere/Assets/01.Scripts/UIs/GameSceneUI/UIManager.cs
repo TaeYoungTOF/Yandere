@@ -6,6 +6,7 @@ public enum UIState
 {
     None,
     Pause,
+    Setting,
     SkillSelect,
     StageClear,
     GameOver,
@@ -16,12 +17,10 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [Header("Panels")]
-    private Dictionary<System.Type, Component> typedPanels = new();
+    [SerializeField] private GameObject _joyStick;
+    private Dictionary<System.Type, Component> _typedPanels = new();
 
-    [Header("UI Texts")]
-    [SerializeField] private TextMeshProUGUI text; // 예시 텍스트입니다. 삭제하셔도 됩니다.
-
-    private UIState _currentState = UIState.None;
+    [SerializeField] private UIState _currentState;
 
     private void Awake()
     {
@@ -36,17 +35,27 @@ public class UIManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        SetUIState(UIState.None);
     }
 
     public void SetUIState(UIState state)
     {
         _currentState = state;
 
-        foreach (var panel in typedPanels.Values)
+        StageManager.Instance.IsUIOpened = _currentState != UIState.None;
+        _joyStick.SetActive(_currentState == UIState.None);
+
+        foreach (var panel in _typedPanels.Values)
         {
             if (panel is ToggleableUI toggleUI)
             {
                 toggleUI.SetActive(state);
+
+                if (toggleUI.GetUIState() == _currentState)
+                {
+                    toggleUI.UIAction();
+                }
             }
         }
     }
@@ -55,10 +64,10 @@ public class UIManager : MonoBehaviour
     {
         var type = panel.GetType();
 
-        if (!typedPanels.ContainsKey(type))
+        if (!_typedPanels.ContainsKey(type))
         {
-            typedPanels.Add(type, panel);
-            Debug.Log($"[UIManager] Register success {typedPanels[type].name}");
+            _typedPanels.Add(type, panel);
+            //Debug.Log($"[UIManager] Register success {typedPanels[type].name}");
         }
         else
         {
@@ -69,7 +78,7 @@ public class UIManager : MonoBehaviour
     public T GetPanel<T>() where T : Component
     {
         var type = typeof(T);
-        if (typedPanels.TryGetValue(type, out var panel))
+        if (_typedPanels.TryGetValue(type, out var panel))
             return panel as T;
 
         Debug.LogWarning($"[UIManager] Panel of type {type.Name} not found.");

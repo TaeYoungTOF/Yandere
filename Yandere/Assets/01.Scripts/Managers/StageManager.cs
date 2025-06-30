@@ -10,21 +10,13 @@ public class StageManager : MonoBehaviour
     private SpawnManager _spawnManager;
     public bool IsUIOpened = false;
 
-    /** 임시코드*/
-    //[SerializeField] private UI_StageClear _stageClearUI;
-    [SerializeField] private UI_SkillSelect _skillSelectUI;
-    public List<BaseSkill> allSkills;
-    /*UIManager로 이관*/
 
     [Header("Timer")]
     private float _elapsedTime = 0f;
     private const float _maxTime = 15 * 60f; // 15분
-
     public int ElapsedMinutes => Mathf.FloorToInt(_elapsedTime / 60f);
     public int ElapsedSeconds => Mathf.FloorToInt(_elapsedTime % 60f);
     public float ElapsedTime => _elapsedTime;
-
-
     
     private void Awake()
     {
@@ -48,7 +40,7 @@ public class StageManager : MonoBehaviour
 
         _spawnManager = GetComponentInChildren<SpawnManager>();
 
-        currentStageData = GameManager.Instance.currentStageData;
+       currentStageData = GameManager.Instance.currentStageData;
 
         StartWave();
     }
@@ -67,6 +59,8 @@ public class StageManager : MonoBehaviour
             Time.timeScale = 0f;
             GameOver();
         }
+
+        Time.timeScale = 1f;
 
         if (_elapsedTime < _maxTime)
         {
@@ -87,44 +81,22 @@ public class StageManager : MonoBehaviour
 
     public void StageClear()
     {
-        Debug.Log("[StageManager] Stage Clear!!");
+        Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
 
-        //_stageClearUI.CallStageClearUI();
-        UIManager.Instance.GetPanel<UI_StageClear>().CallStageClearUI();
+        UIManager.Instance.SetUIState(UIState.StageClear);
     }
 
     public void GameOver()
     {
         Debug.Log("[StageManager] Game Over");
 
-        // GameOver UI 부르기
+        UIManager.Instance.SetUIState(UIState.GameOver);
     }
 
     public void LevelUpEvent()
     {
-        Debug.Log("[StageManager] Call Level Up Event");        
-        
-        var options = GetRandomSkillOptions(3);
-        _skillSelectUI.Show(options);
-    }
+        Debug.Log("[StageManager] Call Level Up Event");
 
-    private List<BaseSkill> GetRandomSkillOptions(int count)
-    {
-        List<BaseSkill> available = new List<BaseSkill>();
-        foreach (var skill in allSkills)
-        {
-            if (!FindObjectOfType<SkillManager>().equippedSkills.Contains(skill) || skill.level < 5)
-                available.Add(skill);
-        }
-
-        List<BaseSkill> result = new List<BaseSkill>();
-        for (int i = 0; i < count; i++)
-        {
-            if (available.Count == 0) break;
-            int rand = Random.Range(0, available.Count);
-            result.Add(available[rand]);
-            available.RemoveAt(rand);
-        }
-        return result;
+        UIManager.Instance.SetUIState(UIState.SkillSelect);
     }
 }
