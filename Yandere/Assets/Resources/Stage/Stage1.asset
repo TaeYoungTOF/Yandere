@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   stageIndex: 1
-  maxWave: 5
-  monsterPrefabs: []
-  stageAchievement: 0
+  clearTime: 600
+  achievements: []
+  spwanDatas:
+  - {fileID: 11400000, guid: f3e7df4401893594d847612e7054c0d0, type: 2}

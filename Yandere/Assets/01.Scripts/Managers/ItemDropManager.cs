@@ -1,39 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class DropContext
 {
-    public Vector3 Position;
-    public DropTable DropTable;
+    public Vector3 position;
+    public DropTable dropTable;
 }
 
 public class ItemDropManager : MonoBehaviour
 {
-    public static ItemDropManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    // 임시 디버깅 코드
+    [SerializeField] private GameObject _defaultDropItemPrefab;
 
     public void HandleDrop(DropContext context)
     {
-        if (context.DropTable == null || context.DropTable.entries.Count == 0)
-            return;
-
-        foreach (var entry in context.DropTable.entries)
+        if (context == null || context.dropTable == null)
         {
-            if (Random.value <= entry.probability)
+            Debug.LogWarning("[ItemDropManager] DropContext나 DropTable이 null입니다.");
+            return;
+        }
+
+        foreach (var entry in context.dropTable.entries)
+        {
+            float roll = Random.Range(0f, 100f);
+            if (roll <= entry.probability)
             {
-                SpawnItem(entry.itemPrefab, context.Position);
+                Instantiate(entry.itemPrefab, context.position, Quaternion.identity);
+                Debug.Log($"[ItemDropManager] {entry.itemPrefab.name} 드롭됨 (확률 {entry.probability}%)");
             }
         }
-    }
 
-    private void SpawnItem(GameObject itemPrefab, Vector3 pos)
-    {
-        GameObject go = Instantiate(itemPrefab, pos, Quaternion.identity);
-        // 또는 오브젝트 풀링 사용 가능:
-        // GameObject go = ObjectPool.Instance.Get(itemData.prefab);
-        // go.transform.position = pos;
+        // 임시 디버깅 코드
+        Instantiate(_defaultDropItemPrefab, context.position, Quaternion.identity);
     }
 }
