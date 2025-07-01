@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cefb1a1cba1d98c4998bb893a742c625, type: 3}
-  m_Name: SpawnData 2
+  m_Name: TestWaveData
   m_EditorClassIdentifier: 
-  eventType: 2
-  endTime: 300
+  eventType: 0
+  endTime: 30
   spawnInterval: 3
-  spawnAmount: 9
+  spawnAmount: 3
   enemyList:
   - enemyPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
-    spawnWeight: 3
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
-    spawnWeight: 4
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
-    spawnWeight: 2
+    spawnWeight: 1
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}

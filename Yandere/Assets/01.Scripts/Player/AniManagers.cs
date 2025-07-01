@@ -43,8 +43,7 @@ namespace FreewrokGame
                 isPose = false; 
                 isRun = false;
                 this.gameObject.transform.localPosition = new Vector3(11, -8, 0);
-                this.gameObject.transform.localScale = new Vector3(1, 1, 1);
-                
+                this.gameObject.transform.localScale = new Vector3(1, 1, 1);                
             }
         }
 

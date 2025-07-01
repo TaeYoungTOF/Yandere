@@ -34,15 +34,7 @@ public class EnemyMeleeAttack : MonoBehaviour
         }
 
         // 플레이어한테 데미지 주기
-        PlayerController playerController = playerTransform.GetComponent<PlayerController>();
-        if (playerController != null)
-        {
-            playerController.TakeDamage(damage);
-            Debug.Log($"근접 공격 성공! {damage} 데미지를 플레이어에게 줌");
-        }
-        else
-        {
-            Debug.Log("EnemyMeleeAttack: PlayerController 컴포넌트 없음!");
-        }
+        StageManager.Instance.Player.TakeDamage(damage);
+        Debug.Log($"근접 공격 성공! {damage} 데미지를 플레이어에게 줌");
     }
 }

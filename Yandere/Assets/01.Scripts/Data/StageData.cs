@@ -9,7 +9,7 @@ public struct Achievement
     [Multiline(3)] public string description;
 }
 
-[CreateAssetMenu(fileName = "StageData", menuName = "StageData", order = 0)]
+[CreateAssetMenu(fileName = "StageData", menuName = "Stage/StageData", order = 0)]
 public class StageData : ScriptableObject {
     public int stageIndex;
 
@@ -18,7 +18,7 @@ public class StageData : ScriptableObject {
 
     public List<Achievement> achievements;
 
-    public List<SpawnData> spwanDatas;
+    public List<WaveData> spwanDatas;
     
     // clearRewards 리스트
 

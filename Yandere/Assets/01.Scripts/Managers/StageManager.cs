@@ -10,7 +10,7 @@ public class StageManager : MonoBehaviour
     public SpawnManager SpawnManager { get; private set; }
     public ItemDropManager ItemDropManager { get; private set; }
     public StageData currentStageData;
-    public SpawnData currentSpawnData;
+    public WaveData currentSpawnData;
 
     public bool IsUIOpened = false;
 
@@ -96,7 +96,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private IEnumerator StartWaveRoutine(SpawnData spawnData)
+    private IEnumerator StartWaveRoutine(WaveData spawnData)
     {
         yield return StartCoroutine(SpawnManager.HandleWave(spawnData));
     }

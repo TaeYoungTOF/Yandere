@@ -18,8 +18,8 @@ public class EnemySpawnWeigth
     public DropTable dropTable;
 }
 
-[CreateAssetMenu(fileName = "SpawnData", menuName = "SpawnData", order = 0)]
-public class SpawnData : ScriptableObject {
+[CreateAssetMenu(fileName = "WaveData", menuName = "Stage/WaveData", order = 1)]
+public class WaveData : ScriptableObject {
 
     [Tooltip("스폰 이벤트 유형")]
     public EventType eventType;
