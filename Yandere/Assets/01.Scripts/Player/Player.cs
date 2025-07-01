@@ -4,11 +4,14 @@ public class Player : MonoBehaviour, IDamagable
 {
     private StageManager _stageManager;
     public PlayerStat stat = new();
+    public PlayerController PlayerController { get; private set; }
 
     public void Init(StageManager stageManager)
     {
         _stageManager = stageManager;
         stat.ResetStat();
+
+        PlayerController = GetComponent<PlayerController>();
     }
 
     // 경험치 획득 처리

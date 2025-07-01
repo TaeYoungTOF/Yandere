@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public FloatingJoystick floatingJoystick;
-    private Rigidbody2D _rigidbody;
+    public FloatingJoystick floatingJoystick;    
     private Vector3 moveVec;
-
     private Vector3 lastMoveDir = Vector2.right;
 
+    private Rigidbody2D _rigidbody;
+    public PlayerAnim PlayerAnim { get; private set; }
+    private PlayerStat _stat;
+    [SerializeField] private const float _runSpeed = 1;
 
-
-    private void Awake()
+    private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        PlayerAnim = GetComponentInChildren<PlayerAnim>();
+        _stat = StageManager.Instance.Player.stat;
     }
 
     private void Update()
@@ -31,8 +32,22 @@ public class PlayerController : MonoBehaviour
             lastMoveDir = new Vector3(x, y).normalized;
         }
 
+        //PlayerAnim.targetAnimators[(int)targetDirectType.forward].gameObject.SetActive(y > 0);
+        //PlayerAnim.targetAnimators[(int)targetDirectType.backward].gameObject.SetActive(y > 0);
+
+        PlayerAnim.targetType = y > 0 ? targetDirectType.backward : targetDirectType.forward;
+
+        if (x > 0 || y > 0)
+        {
+            PlayerAnim.SetAni(_stat.moveSpeed >= _runSpeed ? AniType.run : AniType.walk);
+        }
+        else
+        {
+            PlayerAnim.SetAni(AniType.idle);
+        }
+
         // 이동 처리
-        transform.position += StageManager.Instance.Player.stat.moveSpeed * Time.deltaTime * moveVec;
+        transform.position += _stat.moveSpeed * Time.deltaTime * moveVec;
 
         // 회전 생략
     }

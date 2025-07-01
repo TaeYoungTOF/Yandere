@@ -106,6 +106,8 @@ public class StageManager : MonoBehaviour
         Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
 
         UIManager.Instance.SetUIState(UIState.StageClear);
+
+        Player.PlayerController.PlayerAnim.SetAni(AniType.win);
     }
 
     public void GameOver()
@@ -113,6 +115,8 @@ public class StageManager : MonoBehaviour
         Debug.Log("[StageManager] Game Over");
 
         UIManager.Instance.SetUIState(UIState.GameOver);
+
+        Player.PlayerController.PlayerAnim.SetAni(AniType.lose);
     }
 
     public void LevelUpEvent()
