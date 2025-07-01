@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewNemyData", menuName = "Enemy/EnemyData", order = 1)]
+[CreateAssetMenu(fileName = "EnemyData", menuName = "Enemy/EnemyData", order = 1)]
 public class EnemyData : ScriptableObject
 {
     // 적 프리펩
