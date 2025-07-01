@@ -11,6 +11,8 @@ public class UI_GameHUD : MonoBehaviour
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private Button _pauseButton;
 
+    [SerializeField] private Image _healthImage;
+
     private PlayerStat _stat;
     private int _gold = 0;
     private int _killCount = 0;
@@ -23,7 +25,7 @@ public class UI_GameHUD : MonoBehaviour
 
         UpdateGold(0);
         UpdateKillCount(0);
-        UpdateTime(0, 0);
+        UpdateTime(0);
         UpdateExpImage();
         UpdateLevel();
 
@@ -45,9 +47,9 @@ public class UI_GameHUD : MonoBehaviour
         Debug.Log("[GameHUD UI] Increase kill count");
     }
 
-    public void UpdateTime(int minutes, int seconds)
+    public void UpdateTime(float time)
     {
-        _timeText.text = $"{minutes:00}:{seconds:00}";
+        _timeText.text = $"{Mathf.FloorToInt(time/60f):00}:{Mathf.FloorToInt(time%60f):00}";
     }
 
     public void UpdateExpImage()
@@ -59,6 +61,12 @@ public class UI_GameHUD : MonoBehaviour
     public void UpdateLevel()
     {
         _levelText.text = $"LV. {_stat.level}";
+    }
+
+    public void UpdateHealthImage()
+    {
+        float ratio = _stat.currentHealth / _stat.maxHealth;
+        _healthImage.fillAmount = Mathf.Clamp01(ratio);
     }
 
     public void OnClickPauseBUtton()

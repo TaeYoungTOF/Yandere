@@ -1,23 +1,25 @@
-using System.Collections.Generic;
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
 
-    public StageData currentStageData;
     public Player Player { get; private set; }
-    private SpawnManager _spawnManager;
+    public SpawnManager SpawnManager { get; private set; }
+    public ItemDropManager ItemDropManager { get; private set; }
+    public StageData currentStageData;
+    public SpawnData currentSpawnData;
+
     public bool IsUIOpened = false;
 
 
     [Header("Timer")]
+    [SerializeField] private float _maxTime;
     private float _elapsedTime = 0f;
-    private const float _maxTime = 15 * 60f; // 15분
-    public int ElapsedMinutes => Mathf.FloorToInt(_elapsedTime / 60f);
-    public int ElapsedSeconds => Mathf.FloorToInt(_elapsedTime % 60f);
     public float ElapsedTime => _elapsedTime;
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -34,15 +36,19 @@ public class StageManager : MonoBehaviour
     }
 
     private void Start()
-    {        
+    {
         Player = FindObjectOfType<Player>();
         Player.Init(this);
 
-        _spawnManager = GetComponentInChildren<SpawnManager>();
+        SpawnManager = GetComponentInChildren<SpawnManager>();
+        ItemDropManager = GetComponentInChildren<ItemDropManager>();
 
-       currentStageData = GameManager.Instance.currentStageData;
+        currentStageData = GameManager.Instance.currentStageData;
+        currentSpawnData = currentStageData.spwanDatas[0];
 
-        StartWave();
+        _maxTime = currentStageData.clearTime;
+
+        StartCoroutine(StartWaveRoutine(currentSpawnData));
     }
 
     private void Update()
@@ -58,6 +64,7 @@ public class StageManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             GameOver();
+            return;
         }
 
         Time.timeScale = 1f;
@@ -68,15 +75,30 @@ public class StageManager : MonoBehaviour
             if (_elapsedTime > _maxTime)
                 _elapsedTime = _maxTime;
 
-            
-            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(ElapsedMinutes, ElapsedSeconds);
+
+            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
         }
 
+        if (currentSpawnData.endTime <= _elapsedTime)
+        {
+            SpawnManager.StopSpawn();
+
+            int nextIndex = currentStageData.spwanDatas.IndexOf(currentSpawnData) + 1;
+            if (nextIndex < currentStageData.spwanDatas.Count)
+            {
+                currentSpawnData = currentStageData.spwanDatas[nextIndex];
+                StartCoroutine(StartWaveRoutine(currentSpawnData));
+            }
+            else
+            {
+                Debug.Log("[StageManager] All Spawn Event End");
+            }
+        }
     }
 
-    private void StartWave()
+    private IEnumerator StartWaveRoutine(SpawnData spawnData)
     {
-        StartCoroutine(_spawnManager.SpawnRoutine());
+        yield return StartCoroutine(SpawnManager.HandleWave(spawnData));
     }
 
     public void StageClear()
