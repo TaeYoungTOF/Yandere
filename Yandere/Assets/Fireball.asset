@@ -41,6 +41,20 @@ MonoBehaviour:
     explosionRadius: 2
     projectileCount: 2
     cooldown: 5
+  - damage: 10
+    speed: 1
+    range: 10
+    pierceCount: 10
+    explosionRadius: 2
+    projectileCount: 2
+    cooldown: 5
+  - damage: 10
+    speed: 1
+    range: 10
+    pierceCount: 10
+    explosionRadius: 2
+    projectileCount: 2
+    cooldown: 5
   projectilePrefab: {fileID: 1536784821431451360, guid: c064775f6fdad7942a80688e802e1f87, type: 3}
   enemyLayer:
     serializedVersion: 2

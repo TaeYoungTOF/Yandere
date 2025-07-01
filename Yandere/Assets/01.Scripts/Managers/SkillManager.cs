@@ -12,7 +12,10 @@ public class SkillManager : MonoBehaviour
 
     private void Awake()
     {
-        if (allSkillsToReset.Count == 0)
+        if (allSkillsToReset == null || allSkillsToReset.Count == 0)
+        {
+            return;
+        }
 
         foreach (var skill in allSkillsToReset)
         {

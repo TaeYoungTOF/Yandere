@@ -34,7 +34,6 @@ public class ActiveSkill : BaseSkill
         }
         else
         {
-            // 기본: Sequential 발사 (ex. Fireball)
             if (caster.TryGetComponent(out MonoBehaviour mb))
             {
                 mb.StartCoroutine(FireSequentially(stat, caster));
