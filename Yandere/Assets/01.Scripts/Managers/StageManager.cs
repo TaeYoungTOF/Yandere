@@ -33,12 +33,13 @@ public class StageManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        
+        Player = FindObjectOfType<Player>();
+        Player.Init(this);
     }
 
     private void Start()
     {
-        Player = FindObjectOfType<Player>();
-        Player.Init(this);
 
         SpawnManager = GetComponentInChildren<SpawnManager>();
         ItemDropManager = GetComponentInChildren<ItemDropManager>();
