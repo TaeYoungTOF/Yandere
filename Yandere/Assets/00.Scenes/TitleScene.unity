@@ -3754,7 +3754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c44e4c1e0801fe43be2f869e5aa2cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stageButtonPrefab: {fileID: 1990427454}
+  _stageButtonPrefab: {fileID: 8926898507818196029, guid: ff53561e590abad4f8c5bd33da518381, type: 3}
   _contentParent: {fileID: 1990427455}
 --- !u!1 &799165846
 GameObject:
@@ -6245,7 +6245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1482781693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8537,6 +8537,7 @@ GameObject:
   - component: {fileID: 1990427458}
   - component: {fileID: 1990427457}
   - component: {fileID: 1990427456}
+  - component: {fileID: 1990427459}
   m_Layer: 5
   m_Name: GameInButton
   m_TagString: Untagged
@@ -8607,19 +8608,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1990427457}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 89111830}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetStage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 29d76cadd13816645bb0732df2489154, type: 2}
-          m_ObjectArgumentAssemblyTypeName: StageData, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1990427457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8658,6 +8647,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990427454}
   m_CullTransparentMesh: 1
+--- !u!114 &1990427459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990427454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd47978ba9603c14d9e98e4682a34eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageButton: {fileID: 1990427456}
+  _stageIndexText: {fileID: 87701946}
+  stageData: {fileID: 11400000, guid: 29d76cadd13816645bb0732df2489154, type: 2}
 --- !u!1 &1999201138
 GameObject:
   m_ObjectHideFlags: 0
@@ -9358,7 +9362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1514197288987748481
 MonoBehaviour:
   m_ObjectHideFlags: 0
