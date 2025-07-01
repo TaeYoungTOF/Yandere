@@ -10,7 +10,7 @@ public class StageManager : MonoBehaviour
     public SpawnManager SpawnManager { get; private set; }
     public ItemDropManager ItemDropManager { get; private set; }
     public StageData currentStageData;
-    public SpawnData currentSpawnData;
+    public WaveData currentSpawnData;
 
     public bool IsUIOpened = false;
 
@@ -96,7 +96,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private IEnumerator StartWaveRoutine(SpawnData spawnData)
+    private IEnumerator StartWaveRoutine(WaveData spawnData)
     {
         yield return StartCoroutine(SpawnManager.HandleWave(spawnData));
     }
@@ -106,6 +106,8 @@ public class StageManager : MonoBehaviour
         Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
 
         UIManager.Instance.SetUIState(UIState.StageClear);
+
+        Player.PlayerController.PlayerAnim.SetAni(AniType.win);
     }
 
     public void GameOver()
@@ -113,6 +115,8 @@ public class StageManager : MonoBehaviour
         Debug.Log("[StageManager] Game Over");
 
         UIManager.Instance.SetUIState(UIState.GameOver);
+
+        Player.PlayerController.PlayerAnim.SetAni(AniType.lose);
     }
 
     public void LevelUpEvent()

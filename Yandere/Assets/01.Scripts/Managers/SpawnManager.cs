@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    private SpawnData _currentSpawnData;
+    private WaveData _currentSpawnData;
     private Coroutine _spawnRoutine;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float spawnRadius = 3f;
+    [SerializeField] private float _spawnRadius = 3f;
     [SerializeField] private List<EnemySpawnWeigth> _spawnWeights;
     [SerializeField] private float _spawnInterval;
     [SerializeField] private int _spawnAmount;
 
-    public void SetSpawnData(SpawnData spawnData)
+    public void SetSpawnData(WaveData spawnData)
     {
         _currentSpawnData = spawnData;
         _spawnWeights = _currentSpawnData.enemyList;
@@ -21,7 +21,7 @@ public class SpawnManager : MonoBehaviour
         _spawnAmount = _currentSpawnData.spawnAmount;
     }
 
-    public IEnumerator HandleWave(SpawnData spawnData)
+    public IEnumerator HandleWave(WaveData spawnData)
     {
         SetSpawnData(spawnData);
 
@@ -106,8 +106,8 @@ public class SpawnManager : MonoBehaviour
         }
 
         Vector2 center = playerTransform.position;
-        float x = Random.Range(-spawnRadius, spawnRadius) + center.x;
-        float yOffset = Mathf.Sqrt(spawnRadius * spawnRadius - Mathf.Pow(x - center.x, 2));
+        float x = Random.Range(-_spawnRadius, _spawnRadius) + center.x;
+        float yOffset = Mathf.Sqrt(_spawnRadius * _spawnRadius - Mathf.Pow(x - center.x, 2));
         yOffset *= Random.Range(0, 2) == 0 ? -1 : 1;
 
         return new Vector3(x, center.y + yOffset, 0);

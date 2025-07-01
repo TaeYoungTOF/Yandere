@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0fc12a5ddc600c4fb424dea7a689d55, type: 3}
-  m_Name: Stage1
+  m_Script: {fileID: 11500000, guid: cefb1a1cba1d98c4998bb893a742c625, type: 3}
+  m_Name: WaveData5
   m_EditorClassIdentifier: 
-  stageIndex: 1
-  clearTime: 900
-  achievements: []
-  spwanDatas:
-  - {fileID: 11400000, guid: 9c8080ed0475aae4b8d3aa8d1a784dfc, type: 2}
+  eventType: 4
+  endTime: 900
+  spawnInterval: 0
+  spawnAmount: 1
+  enemyList:
+  - enemyPrefab: {fileID: 0}
+    spawnWeight: 0
+    dropTable: {fileID: 0}
