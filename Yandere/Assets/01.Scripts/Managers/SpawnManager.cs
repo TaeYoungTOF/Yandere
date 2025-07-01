@@ -4,49 +4,101 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject enemyPrefab; 
+    private SpawnData _currentSpawnData;
+    private Coroutine _spawnRoutine;
 
     [Header("Spawn Settings")]
-
-    [SerializeField] private List<Rect> spawnAreas; // 적을 생성할 영역 리스트
-    //[SerializeField] private Color gizmoColor = new Color(1, 0, 0, 0.3f); // 기즈모 색상
-    [SerializeField] private float spawnInterval = 0.2f;
-    [SerializeField] private float waveInterval = 1f;
     [SerializeField] private float spawnRadius = 3f;
+    [SerializeField] private List<EnemySpawnWeigth> _spawnWeights;
+    [SerializeField] private float _spawnInterval;
+    [SerializeField] private int _spawnAmount;
 
-    private Transform playerTransform;
-
-    public IEnumerator SpawnRoutine()
+    public void SetSpawnData(SpawnData spawnData)
     {
-        playerTransform = StageManager.Instance.Player.transform;
+        _currentSpawnData = spawnData;
+        _spawnWeights = _currentSpawnData.enemyList;
+        _spawnInterval = _currentSpawnData.spawnInterval;
+        _spawnAmount = _currentSpawnData.spawnAmount;
+    }
 
+    public IEnumerator HandleWave(SpawnData spawnData)
+    {
+        SetSpawnData(spawnData);
+
+        yield return null;
+
+        switch (spawnData.eventType)
+        {
+            case EventType.StartWave:
+                Debug.Log("[SpawnManager] StartWave");
+                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
+                yield return _spawnRoutine;
+                break;
+            case EventType.AddStrongerEnemy:
+                Debug.Log("[SpawnManager] AddStrongerEnemy");
+                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
+                yield return _spawnRoutine;
+                break;
+            case EventType.AddEliteEnemy:
+                Debug.Log("[SpawnManager] AddEliteEnemy");
+                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
+                yield return _spawnRoutine;
+                break;
+            case EventType.AddRangeEnemy:
+                Debug.Log("[SpawnManager] AddRangeEnemy");
+                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
+                yield return _spawnRoutine;
+                break;
+            case EventType.AddBossEnemy:
+                Debug.Log("[SpawnManager] AddBossEnemy");
+                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
+                yield return _spawnRoutine;
+                break;
+            default:
+                Debug.LogWarning("[SpawnManager] Unknown EventType");
+                break;
+        }
+    }
+
+    private IEnumerator SpawnRoutine(float spawnInterval, int spawnAmount)
+    {
         while (true)
         {
-            SpawnEnemy();
+            int totalWeight = 0;
+            foreach (var entry in _spawnWeights)
+                totalWeight += entry.spawnWeight;
+
+            foreach (var entry in _spawnWeights)
+            {
+                float ratio = (float)entry.spawnWeight / totalWeight;
+                int count = Mathf.RoundToInt(spawnAmount * ratio);
+
+                for (int i = 0; i < count; i++)
+                {
+                    InstantiateEnemy(entry);
+                }
+            }
+
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
-    private void SpawnEnemy()
+    private void InstantiateEnemy(EnemySpawnWeigth entry)
     {
-        /**
-        GameObject enemy = ObjectPoolManager.Instance.GetFromPool((int)PoolType.DefaultEnemy);
+        var position = GetRandomSpawnPosition();
+        var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity);
 
-        if (enemy != null)
+        if (instance.TryGetComponent<EnemyController>(out var controller))
         {
-            Vector3 spawnPosition = GetRandomSpawnPosition();
-            enemy.transform.position = spawnPosition;
-            enemy.SetActive(true);
-
-            /**@todo
-            Enemy 초기화
-        }*/
-        Debug.Log("[SpawnManager] Spawn");
-        Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            var dropContext = new DropContext { dropTable = entry.dropTable };
+            controller.SetDropContext(dropContext);
+        }
     }
 
     private Vector3 GetRandomSpawnPosition()
     {
+        Transform playerTransform = StageManager.Instance.Player.transform;
+
         if (playerTransform == null)
         {
             Debug.LogWarning("[SpawnManager] Player Transform is null.");
@@ -54,26 +106,19 @@ public class SpawnManager : MonoBehaviour
         }
 
         Vector2 center = playerTransform.position;
-
         float x = Random.Range(-spawnRadius, spawnRadius) + center.x;
-        float yOffset = Mathf.Sqrt(Mathf.Pow(spawnRadius, 2) - Mathf.Pow(x - center.x, 2));
+        float yOffset = Mathf.Sqrt(spawnRadius * spawnRadius - Mathf.Pow(x - center.x, 2));
         yOffset *= Random.Range(0, 2) == 0 ? -1 : 1;
 
-        float y = center.y + yOffset;
-
-        return new Vector3(x, y, 0);
+        return new Vector3(x, center.y + yOffset, 0);
     }
 
-    /**
-    private void OnDrawGizmosSelected()
+    public void StopSpawn()
     {
-        Gizmos.color = gizmoColor;
-
-        foreach (var area in spawnAreas)
+        if (_spawnRoutine != null)
         {
-            Vector3 center = new Vector3(area.center.x, area.center.y, 0f);
-            Vector3 size = new Vector3(area.width, area.height, 0.1f);
-            Gizmos.DrawCube(center, size);
+            StopCoroutine(_spawnRoutine);
+            _spawnRoutine = null;
         }
-    }*/
+    }
 }

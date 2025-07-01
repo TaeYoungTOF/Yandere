@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     private EnemyRangedAttack _enemyRangedAttack;
 
     // Item Drop 컴포넌트
-    [SerializeField] private DropTable _dropTable;
+    [SerializeField] private DropContext _dropContext;
     
     
     [Header("separationRadius 세팅")]
@@ -87,6 +87,14 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
             }
         }
     }
+
+    // DropContext를 세팅하는 메서드입니다
+    public void SetDropContext(DropContext context)
+    {
+        _dropContext = context;
+        _dropContext.position = transform.position;
+    }
+
     public void MonsterMove()
     {
        
@@ -159,13 +167,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         _rigidbody2D.velocity = Vector2.zero;                               // Vector2.zero(0,0)을 _rigidbody2D.velocity에 넣어줌 (안 움직이게 하는 코드)
         _animator.SetTrigger("Dead");                                 // 애니메이터의 파라미터(트리거) "Dead"를 실행
 
-        var context = new DropContext
-        {
-            Position = transform.position,
-            DropTable = _dropTable
-        };
-
-        ItemDropManager.Instance.HandleDrop(context);
+        _dropContext.position = transform.position;
+        StageManager.Instance.ItemDropManager.HandleDrop(_dropContext);
 
         Destroy(gameObject, 1.0f);
     }
