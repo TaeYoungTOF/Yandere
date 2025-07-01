@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a1fe39ed5277d4a966c9bdc861be3f, type: 3}
+  m_Name: Tornado
+  m_EditorClassIdentifier: 
+  skillName: "\uD68C\uC804\uD558\uB294\uCE7C\uB0A0"
+  skillIcon: {fileID: 21300000, guid: 8c21c06b5a3df0d4dbbfc5817e232e8a, type: 3}
+  description: "\uD50C\uB808\uC774\uC5B4 \uC8FC\uBCC0\uC744 \uACF5\uC804\uD558\uB294
+    \uD1A0\uB124\uC774\uB3C4\uAC00 \uC0DD\uC131\uB429\uB2C8\uB2E4"
+  skillType: 0
+  level: 4
+  levelDamageBonus: 0
+  levelCooldownReduction: 0.1
+  levelStats:
+  - damage: 2
+    speed: 1
+    range: 1
+    pierceCount: 1
+    explosionRadius: 0.5
+    projectileCount: 1
+    cooldown: 5
+  projectilePrefab: {fileID: 3694563535188298317, guid: 2fc7f7f5d9169eb4cbdfb592556bbfb2, type: 3}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024

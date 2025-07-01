@@ -18858,6 +18858,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1101165681}
   equippedSkills: []
+  allSkillsToReset:
+  - {fileID: 11400000, guid: 1d6205d73c1e00b468f4c13802126f67, type: 2}
+  - {fileID: 11400000, guid: ce7f0806dd8e74c4990b498cf5f39861, type: 2}
+  - {fileID: 11400000, guid: 4fd95a3eb70905f40a72092446408d60, type: 2}
+  - {fileID: 11400000, guid: 51a30ab90727262478462a04b3c6f52f, type: 2}
 --- !u!222 &5234707704591148919
 CanvasRenderer:
   m_ObjectHideFlags: 0
