@@ -23,6 +23,10 @@ public class EnemyHitBox : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        enemyController.SetAttackRange(false);
+        if (other.CompareTag("Player"))
+        {
+            enemyController.SetAttackRange(false);
+            Debug.Log("HitBox Trigger Exit");
+        }
     }
 }
