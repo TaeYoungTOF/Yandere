@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IDamagable
     public FloatingJoystick floatingJoystick;    
     private Vector3 moveVec;
     private Vector3 lastMoveDir = Vector2.right;
-    public PlayerAnim PlayerAnim { get; private set; }
+    //public PlayerAnim PlayerAnim { get; private set; }
     [SerializeField] private const float _runSpeed = 10;
 
 
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IDamagable
         _stageManager = stageManager;
         stat.ResetStat();
 
-        PlayerAnim = GetComponentInChildren<PlayerAnim>();
+        //PlayerAnim = GetComponentInChildren<PlayerAnim>();
         _itemLayer = LayerMask.NameToLayer("Item");
     }
 
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour, IDamagable
         //PlayerAnim.targetAnimators[(int)targetDirectType.forward].gameObject.SetActive(y > 0);
         //PlayerAnim.targetAnimators[(int)targetDirectType.backward].gameObject.SetActive(y > 0);
 
-        PlayerAnim.targetType = y > 0 ? targetDirectType.backward : targetDirectType.forward;
+        /*PlayerAnim.targetType = y > 0 ? targetDirectType.backward : targetDirectType.forward;
 
         if (x > 0 || y > 0)
         {
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour, IDamagable
         else
         {
             PlayerAnim.SetAni(AniType.idle);
-        }
+        }*/
 
         // 이동 처리
         transform.position += stat.moveSpeed * Time.deltaTime * moveVec;

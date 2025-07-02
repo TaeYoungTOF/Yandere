@@ -110,7 +110,7 @@ public class StageManager : MonoBehaviour
 
         UIManager.Instance.SetUIState(UIState.StageClear);
 
-        Player.PlayerAnim.SetAni(AniType.win);
+        //Player.PlayerAnim.SetAni(AniType.win);
     }
 
     public void GameOver()
@@ -119,7 +119,7 @@ public class StageManager : MonoBehaviour
 
         UIManager.Instance.SetUIState(UIState.GameOver);
 
-        Player.PlayerAnim.SetAni(AniType.lose);
+        //Player.PlayerAnim.SetAni(AniType.lose);
     }
 
     public void LevelUpEvent()

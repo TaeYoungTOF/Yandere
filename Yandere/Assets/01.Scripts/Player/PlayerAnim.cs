@@ -2,15 +2,18 @@ using UnityEngine;
 public enum targetDirectType
 {
     forward = 0,
-    backward = 1
+    backward = 1,
+    right = 2,
+    left = 3,    
 }
+
 public enum AniType
 {
     idle = 0,
-    walk = 1,
-    run = 2,
-    win = 3,
-    lose = 4
+    move = 1,
+    attack1 = 2,
+    attack2 = 3 ,
+    hurt = 4,
 }
 
 public class PlayerAnim : MonoBehaviour
