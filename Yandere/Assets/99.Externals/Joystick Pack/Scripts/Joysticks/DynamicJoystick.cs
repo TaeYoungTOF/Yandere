@@ -37,5 +37,6 @@ public class DynamicJoystick : Joystick
             background.anchoredPosition += difference;
         }
         base.HandleInput(magnitude, normalised, radius, cam);
+        base.FocusInput(magnitude, normalised, radius, cam);
     }
 }

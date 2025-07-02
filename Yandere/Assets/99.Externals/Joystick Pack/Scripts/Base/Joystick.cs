@@ -56,6 +56,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchorMax = center;
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
+        focus.anchorMin = center;
+        focus.anchorMax = center;
+        focus.pivot = center;
         focus.anchoredPosition = Vector2.zero;
     }
 
@@ -75,10 +78,23 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         input = (eventData.position - position) / (radius * canvas.scaleFactor);
         FormatInput();
         HandleInput(input.magnitude, input.normalized, radius, cam);
+        FocusInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
+        focus.anchoredPosition = input * radius * handleRange;
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
+    {
+        if (magnitude > deadZone)
+        {
+            if (magnitude > 1)
+                input = normalised;
+        }
+        else
+            input = Vector2.zero;
+    }
+    
+    protected virtual void FocusInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
         if (magnitude > deadZone)
         {
