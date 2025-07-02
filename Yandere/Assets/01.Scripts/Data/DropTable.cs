@@ -9,7 +9,7 @@ public class DropEntry
     [Range(0, 100)] public int probability;
 }
 
-[CreateAssetMenu(fileName = "DropTable", menuName = "DropTable", order = 0)]
+[CreateAssetMenu(fileName = "DropTable", menuName = "Stage/DropTable", order = 2)]
 public class DropTable : ScriptableObject
 {
     public List<DropEntry> entries;
