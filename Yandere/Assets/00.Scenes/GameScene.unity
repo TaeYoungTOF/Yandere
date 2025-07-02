@@ -4959,6 +4959,10 @@ PrefabInstance:
       propertyPath: _healthImage
       value: 
       objectReference: {fileID: 324537096}
+    - target: {fileID: 4772815924552494077, guid: de9a8d653177f7742b03585746921b20, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8040483769581730732, guid: de9a8d653177f7742b03585746921b20, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

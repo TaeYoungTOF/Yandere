@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.12536505, g: 0, b: 0.20754719, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1467,7 +1467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22035107, g: 0.2028302, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6443302, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1475,7 +1475,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 7482667652216324306, guid: 263481917979cbe47a7352e00c134e46, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -1532,7 +1532,7 @@ MonoBehaviour:
   _goldCountText: {fileID: 4181028623649734034}
   _killCountText: {fileID: 7773920348449508106}
   _timeText: {fileID: 7211697243680014215}
-  _expImage: {fileID: 7151701939172966266}
+  _expImage: {fileID: 4772815924552494077}
   _levelText: {fileID: 201952622786414040}
   _pauseButton: {fileID: 5944514552274535681}
   _healthImage: {fileID: 0}
