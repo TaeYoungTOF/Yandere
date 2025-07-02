@@ -33,6 +33,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
+    [SerializeField] private RectTransform focus = null;
     private RectTransform baseRect = null;
 
     private Canvas canvas;
@@ -55,6 +56,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchorMax = center;
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
+        focus.anchoredPosition = Vector2.zero;
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
