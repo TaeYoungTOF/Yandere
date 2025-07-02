@@ -48,7 +48,7 @@ public class WoundofParting : MonoBehaviour
 
         Vector2 lastDirection = Vector2.right;
 
-        var controller = player.GetComponent<PlayerController>();
+        var controller = player.GetComponent<Player>();
         if (controller != null)
         {
             lastDirection = controller.GetLastMoveDirection();

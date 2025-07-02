@@ -33,7 +33,7 @@ public class StageManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
+
         Player = FindObjectOfType<Player>();
         Player.Init(this);
     }
@@ -45,7 +45,7 @@ public class StageManager : MonoBehaviour
         ItemDropManager = GetComponentInChildren<ItemDropManager>();
 
         currentStageData = GameManager.Instance.currentStageData;
-        currentSpawnData = currentStageData.spwanDatas[0];
+        currentSpawnData = currentStageData.waveDatas[0];
 
         _maxTime = currentStageData.clearTime;
 
@@ -80,19 +80,21 @@ public class StageManager : MonoBehaviour
             UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
         }
 
+        if (currentSpawnData == null) return;
+
         if (currentSpawnData.endTime <= _elapsedTime)
         {
             SpawnManager.StopSpawn();
 
-            int nextIndex = currentStageData.spwanDatas.IndexOf(currentSpawnData) + 1;
-            if (nextIndex < currentStageData.spwanDatas.Count)
+            int nextIndex = currentStageData.waveDatas.IndexOf(currentSpawnData) + 1;
+            if (nextIndex < currentStageData.waveDatas.Count)
             {
-                currentSpawnData = currentStageData.spwanDatas[nextIndex];
+                currentSpawnData = currentStageData.waveDatas[nextIndex];
                 StartCoroutine(StartWaveRoutine(currentSpawnData));
             }
             else
             {
-                Debug.Log("[StageManager] All Spawn Event End");
+                //Debug.Log("[StageManager] All Spawn Event End");
             }
         }
     }
@@ -108,7 +110,7 @@ public class StageManager : MonoBehaviour
 
         UIManager.Instance.SetUIState(UIState.StageClear);
 
-        Player.PlayerController.PlayerAnim.SetAni(AniType.win);
+        Player.PlayerAnim.SetAni(AniType.win);
     }
 
     public void GameOver()
@@ -117,7 +119,7 @@ public class StageManager : MonoBehaviour
 
         UIManager.Instance.SetUIState(UIState.GameOver);
 
-        Player.PlayerController.PlayerAnim.SetAni(AniType.lose);
+        Player.PlayerAnim.SetAni(AniType.lose);
     }
 
     public void LevelUpEvent()

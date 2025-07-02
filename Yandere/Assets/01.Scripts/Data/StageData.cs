@@ -18,7 +18,7 @@ public class StageData : ScriptableObject {
 
     public List<Achievement> achievements;
 
-    public List<WaveData> spwanDatas;
+    public List<WaveData> waveDatas;
     
     // clearRewards 리스트
 
