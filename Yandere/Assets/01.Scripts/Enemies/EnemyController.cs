@@ -72,19 +72,39 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
             Debug.Log("테스트: H 키로 데미지!");
             TakeDamage(10f);
         }
-        
+        //
+        // if (isDead) return;
+        //
+        //
+        // if (isInAttackRange)
+        // {
+        //     attackTimer -= Time.deltaTime;
+        //
+        //     if (attackTimer <= 0f)
+        //     {
+        //         MonsterAttack();
+        //         attackTimer = enemyData.attackCooldown; // 쿨 리셋
+        //     }
+        // }
         if (isDead) return;
 
-       
         if (isInAttackRange)
         {
-            attackTimer -= Time.deltaTime;
+            if (attackTimer > 0f)
+            {
+                attackTimer -= Time.deltaTime;
+            }
 
             if (attackTimer <= 0f)
             {
+                Debug.Log("몬스터 어택 실행 전");
                 MonsterAttack();
-                attackTimer = enemyData.attackCooldown; // 쿨 리셋
+                attackTimer = enemyData.attackCooldown; // 쿨타임 리셋!
             }
+        }
+        else
+        {
+            // attackTimer = 0; ❌ 이거 절대 리셋하지 말기!
         }
     }
 
