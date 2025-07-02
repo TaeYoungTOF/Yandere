@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: WaveData0
   m_EditorClassIdentifier: 
   eventType: 0
-  endTime: 9999999
-  spawnInterval: 9999999
-  spawnAmount: 1
+  endTime: 30
+  spawnInterval: 3
+  spawnAmount: 3
   enemyList:
-  - enemyPrefab: {fileID: 0}
-    spawnWeight: 0
-    dropTable: {fileID: 0}
-  - enemyPrefab: {fileID: 0}
-    spawnWeight: 0
-    dropTable: {fileID: 0}
-  - enemyPrefab: {fileID: 0}
-    spawnWeight: 0
-    dropTable: {fileID: 0}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
+    spawnWeight: 2
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
+    spawnWeight: 3
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 426c24634e7bb0744a023822e5f27f2a, type: 3}
+    spawnWeight: 5
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}

@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5569739380141773139}
   - component: {fileID: 4844741395259935571}
   m_Layer: 10
-  m_Name: EnemyPrefabs_Normal_Melee_OldMan
-  m_TagString: Enemy
+  m_Name: EnemyPrefabs_Normal_Melee_Student Girl
+  m_TagString: Enemy_Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9154128132452494248}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: be5eff3aa23dbb24fa15310e2f785a89, type: 2}
+  enemyData: {fileID: 11400000, guid: 1a7337c5b86dc7e47a10352e7f38d1d4, type: 2}
   _dropContext:
     position: {x: 0, y: 0, z: 0}
     dropTable: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9154128132452494248}
   - component: {fileID: 5787069603358710771}
-  - component: {fileID: 3454222051084003244}
+  - component: {fileID: 1512334058011839621}
   m_Layer: 10
   m_Name: MainSprite
   m_TagString: Untagged
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 613658156, guid: 1bc6097228993f045852159e71f81d5b, type: 3}
+  m_Sprite: {fileID: -2106396252, guid: 41cfc3db1c59a0d44a15b29d16c3bb73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -217,7 +217,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3454222051084003244
+--- !u!95 &1512334058011839621
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ Animator:
   m_GameObject: {fileID: 3790309057131494843}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9fadd7f498348824e92f49c9dedb69e0, type: 2}
+  m_Controller: {fileID: 9100000, guid: c8736f1704a5f134794c69c603775cf1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

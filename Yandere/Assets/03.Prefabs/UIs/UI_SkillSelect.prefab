@@ -276,8 +276,8 @@ MonoBehaviour:
   _skillSelectPanel: {fileID: 7947561609199500791}
   _skillButtons:
   - {fileID: 2187934444594152979}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5454096731678876153}
+  - {fileID: 2861895537837056625}
   _allSkills:
   - {fileID: 11400000, guid: ce7f0806dd8e74c4990b498cf5f39861, type: 2}
   - {fileID: 11400000, guid: 1d6205d73c1e00b468f4c13802126f67, type: 2}
@@ -2129,7 +2129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3615264847177092236
 RectTransform:
   m_ObjectHideFlags: 0
