@@ -4,16 +4,16 @@ public enum targetDirectType
     forward = 0,
     backward = 1,
     right = 2,
-    left = 3,    
+    left = 3,
 }
 
 public enum AniType
 {
-    idle = 0,
-    move = 1,
-    attack1 = 2,
-    attack2 = 3 ,
-    hurt = 4,
+    Idle = 0,
+    Move = 1,
+    //Attack1 = 2,
+    //Attack2 = 3,
+    //Hurt = 4,
 }
 
 public class PlayerAnim : MonoBehaviour
@@ -21,19 +21,26 @@ public class PlayerAnim : MonoBehaviour
     public targetDirectType targetType;
     public Animator[] targetAnimators; //0- forward 1- backward
 
+    public void SetDirection(targetDirectType dir)
+    {
+        targetType = dir;
+
+        for (int i = 0; i < targetAnimators.Length; i++)
+        {
+            targetAnimators[i].gameObject.SetActive(i == (int)dir);
+        }
+    }
+    
     public void SetAni(AniType aType)
     {
-        //change tatget direction
+        Animator currentAnimator = targetAnimators[(int)targetType];
 
-        if (!targetAnimators[(int)targetType].isActiveAndEnabled)
+        // 모든 트리거 초기화 (옵션)
+        foreach (AniType type in System.Enum.GetValues(typeof(AniType)))
         {
-            targetAnimators[(int)targetType].gameObject.SetActive(true);
-            if (targetType == targetDirectType.forward)
-                targetAnimators[(int)targetDirectType.backward].gameObject.SetActive(false);
-            else
-                targetAnimators[(int)targetDirectType.forward].gameObject.SetActive(false);
+            currentAnimator.ResetTrigger(type.ToString());
         }
-        targetAnimators[(int)targetType].SetInteger("aniInt", (int)aType);
-    }
 
+        currentAnimator.SetTrigger(aType.ToString());
+    }
 }

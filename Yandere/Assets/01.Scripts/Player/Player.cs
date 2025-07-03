@@ -5,28 +5,27 @@ public class Player : MonoBehaviour, IDamagable
 {
     private StageManager _stageManager;
     public PlayerStat stat = new();
+    private int _itemLayer;
 
 
     [Header("Player Controller")]
-    public FloatingJoystick floatingJoystick;    
+    public FloatingJoystick floatingJoystick;
     private Vector3 moveVec;
     private Vector3 lastMoveDir = Vector2.right;
-    //public PlayerAnim PlayerAnim { get; private set; }
-    [SerializeField] private const float _runSpeed = 10;
+    public PlayerAnim PlayerAnim { get; private set; }
 
 
     [Header("DOTween Setting")]
     [SerializeField] private float _pullDuration = 0.3f;
     [SerializeField] private float pullSpeed = 10f;
 
-    private int _itemLayer;
 
     public void Init(StageManager stageManager)
     {
         _stageManager = stageManager;
         stat.ResetStat();
 
-        //PlayerAnim = GetComponentInChildren<PlayerAnim>();
+        PlayerAnim = GetComponentInChildren<PlayerAnim>();
         _itemLayer = LayerMask.NameToLayer("Item");
     }
 
@@ -39,30 +38,38 @@ public class Player : MonoBehaviour, IDamagable
         float y = floatingJoystick.Vertical;
         moveVec = new Vector3(x, y).normalized;
 
-        //방향 저장 추가
+        // 🧭 방향 계산 및 애니메이션 적용
         if (moveVec.sqrMagnitude > 0)
         {
-            lastMoveDir = new Vector3(x, y).normalized;
-        }
+            lastMoveDir = moveVec;
 
-        //PlayerAnim.targetAnimators[(int)targetDirectType.forward].gameObject.SetActive(y > 0);
-        //PlayerAnim.targetAnimators[(int)targetDirectType.backward].gameObject.SetActive(y > 0);
-
-        /*PlayerAnim.targetType = y > 0 ? targetDirectType.backward : targetDirectType.forward;
-
-        if (x > 0 || y > 0)
-        {
-            PlayerAnim.SetAni(stat.moveSpeed >= _runSpeed ? AniType.run : AniType.walk);
+            var direction = GetDirectionFromVector(moveVec);
+            PlayerAnim.SetDirection(direction);
+            PlayerAnim.SetAni(AniType.Move);
         }
         else
         {
-            PlayerAnim.SetAni(AniType.idle);
-        }*/
+            PlayerAnim.SetAni(AniType.Idle);
+        }
+    }
+
+    private void FixedUpdate()
+    {
 
         // 이동 처리
-        transform.position += stat.moveSpeed * Time.deltaTime * moveVec;
+        transform.position += stat.moveSpeed * Time.fixedDeltaTime * moveVec;
+    }
 
-        // 회전 생략
+    private targetDirectType GetDirectionFromVector(Vector3 dir)
+    {
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+        {
+            return dir.x > 0 ? targetDirectType.right : targetDirectType.left;
+        }
+        else
+        {
+            return dir.y > 0 ? targetDirectType.backward : targetDirectType.forward;
+        }
     }
 
     // 경험치 획득 처리
@@ -87,9 +94,9 @@ public class Player : MonoBehaviour, IDamagable
     {
         Debug.Log($"[Player] 레벨 업! 현재 레벨: {stat.level}");
 
-        stat.level++;        
+        stat.level++;
         stat.requiredExp *= 1.1f;  // 경험치통 공식 추후 수정
-        
+
         _stageManager.LevelUpEvent();
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();

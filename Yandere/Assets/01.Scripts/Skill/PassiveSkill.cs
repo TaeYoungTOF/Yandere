@@ -1,29 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+public enum StatType
+{
+    MoveSpeed,
+    MaxHealth,
+    AttackPower,
+    Defense,
+    CriticalChance,
+    CriticalDamage,
+    HealthRegen,
+    PickupRange,
+    CooldownReduction,
+    SkillRange,
+    LifeSteal,
+    ExpGain,
+    MinHitInterval,
+    SkillDuration
+}
 
 [CreateAssetMenu(fileName = "NewPassiveSkill", menuName = "Skills/PassiveSkill")]
 public class PassiveSkill : BaseSkill
 {
-    public float bonusHealth;
-    public float bonusMoveSpeed;
+    public StatType statType;
+    public float value;
 
-    public override void OnEquip(Transform caster)
+    public void ApplyPassive(Player player, int skillLevel)
     {
-        Player player = caster.GetComponent<Player>();
-        if (player != null)
-        {
-            player.stat.maxHealth += bonusHealth;
-            player.stat.moveSpeed += bonusMoveSpeed;
-        }
+        value *= skillLevel;
+
+        player.stat.ChangeStat(statType, value);
     }
-    public override void OnUnequip(Transform caster)
+
+    public void RemovePassive(Player player, int skillLevel)
     {
-        Player player = caster.GetComponent<Player>();
-        if (player != null)
-        {
-            player.stat.maxHealth -= bonusHealth;
-            player.stat.moveSpeed -= bonusMoveSpeed;
-        }
+        value *= skillLevel;
+
+        player.stat.ChangeStat(statType, -value);
     }
 }

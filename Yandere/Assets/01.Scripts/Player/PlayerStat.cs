@@ -63,4 +63,56 @@ public class PlayerStat
         minHitInterval = 0.5f;
         skillDuration = 5f;
     }
+
+    public void ChangeStat(StatType statType, float value)
+    {
+        switch (statType)
+        {
+            case StatType.MoveSpeed:
+                moveSpeed += value;
+                break;
+            case StatType.MaxHealth:
+                maxHealth += value;
+                break;
+            case StatType.AttackPower:
+                attackPower += value;
+                break;
+            case StatType.Defense:
+                defense += value;
+                break;
+            case StatType.CriticalChance:
+                criticalChance += value;
+                break;
+            case StatType.CriticalDamage:
+                criticalDamage += value;
+                break;
+            case StatType.HealthRegen:
+                healthRegen += value;
+                break;
+            case StatType.PickupRange:
+                pickupRange += value;
+                break;
+            case StatType.CooldownReduction:
+                cooldownReduction += value;
+                break;
+            case StatType.SkillRange:
+                skillRange += value;
+                break;
+            case StatType.LifeSteal:
+                lifeSteal += value;
+                break;
+            case StatType.ExpGain:
+                expGain += value;
+                break;
+            case StatType.MinHitInterval:
+                minHitInterval += value;
+                break;
+            case StatType.SkillDuration:
+                skillDuration += value;
+                break;
+            default:
+                Debug.LogWarning($"[PlayerStat] Unknown StatType: {statType}");
+                break;
+        }
+    }
 }
