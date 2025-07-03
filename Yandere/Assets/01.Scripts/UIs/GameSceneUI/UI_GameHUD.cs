@@ -60,7 +60,7 @@ public class UI_GameHUD : MonoBehaviour
 
     public void UpdateLevel()
     {
-        _levelText.text = $"LV. {_stat.level}";
+        _levelText.text = $"{_stat.level}";
     }
 
     public void UpdateHealthImage()
