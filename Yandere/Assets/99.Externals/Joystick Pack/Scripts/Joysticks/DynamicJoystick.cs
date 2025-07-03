@@ -38,4 +38,14 @@ public class DynamicJoystick : Joystick
         }
         base.HandleInput(magnitude, normalised, radius, cam);
     }
+    
+    protected override void FocusInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
+    {
+        if (magnitude > moveThreshold)
+        {
+            Vector2 difference = normalised * (magnitude - moveThreshold) * radius;
+            background.anchoredPosition += difference;
+        }
+        base.FocusInput(magnitude, normalised, radius, cam);
+    }
 }
