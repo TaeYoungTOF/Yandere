@@ -1138,11 +1138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0d643fdc64ca44f962ebb32845e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 5526062265050845790}
-  skillButtons:
-  - {fileID: 37323059096645610}
-  - {fileID: 4336863609256930624}
-  - {fileID: 8527914833841658368}
+  _skillSelectPanel: {fileID: 0}
+  _skillButtons: []
+  _allSkills: []
 --- !u!1 &6000989728654049560
 GameObject:
   m_ObjectHideFlags: 0

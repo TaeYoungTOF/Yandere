@@ -5,9 +5,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public MoneyManager MoneyManager { get; private set; }
-    public SpawnManager SpawnManager { get; private set; }
-
     /** @todo SaveSystem 추후 조정
     private AutoSaveSystem _autoSaveSystem;
     [SerializeField] private float autoSaveInterval = 30f;
@@ -36,8 +33,6 @@ public class GameManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-        SpawnManager = GetComponentInChildren<SpawnManager>();
 
         // StageData 개수만큼 _maxStageIndex 자동 설정
         stageDatas = Resources.LoadAll<StageData>("Stage");

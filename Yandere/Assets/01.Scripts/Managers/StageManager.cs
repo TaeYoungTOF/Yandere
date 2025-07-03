@@ -10,7 +10,7 @@ public class StageManager : MonoBehaviour
     public SpawnManager SpawnManager { get; private set; }
     public ItemDropManager ItemDropManager { get; private set; }
     public StageData currentStageData;
-    public SpawnData currentSpawnData;
+    public WaveData currentSpawnData;
 
     public bool IsUIOpened = false;
 
@@ -33,18 +33,19 @@ public class StageManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        Player = FindObjectOfType<Player>();
+        Player.Init(this);
     }
 
     private void Start()
     {
-        Player = FindObjectOfType<Player>();
-        Player.Init(this);
 
         SpawnManager = GetComponentInChildren<SpawnManager>();
         ItemDropManager = GetComponentInChildren<ItemDropManager>();
 
         currentStageData = GameManager.Instance.currentStageData;
-        currentSpawnData = currentStageData.spwanDatas[0];
+        currentSpawnData = currentStageData.waveDatas[0];
 
         _maxTime = currentStageData.clearTime;
 
@@ -79,24 +80,26 @@ public class StageManager : MonoBehaviour
             UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
         }
 
+        if (currentSpawnData == null) return;
+
         if (currentSpawnData.endTime <= _elapsedTime)
         {
             SpawnManager.StopSpawn();
 
-            int nextIndex = currentStageData.spwanDatas.IndexOf(currentSpawnData) + 1;
-            if (nextIndex < currentStageData.spwanDatas.Count)
+            int nextIndex = currentStageData.waveDatas.IndexOf(currentSpawnData) + 1;
+            if (nextIndex < currentStageData.waveDatas.Count)
             {
-                currentSpawnData = currentStageData.spwanDatas[nextIndex];
+                currentSpawnData = currentStageData.waveDatas[nextIndex];
                 StartCoroutine(StartWaveRoutine(currentSpawnData));
             }
             else
             {
-                Debug.Log("[StageManager] All Spawn Event End");
+                //Debug.Log("[StageManager] All Spawn Event End");
             }
         }
     }
 
-    private IEnumerator StartWaveRoutine(SpawnData spawnData)
+    private IEnumerator StartWaveRoutine(WaveData spawnData)
     {
         yield return StartCoroutine(SpawnManager.HandleWave(spawnData));
     }
@@ -106,6 +109,8 @@ public class StageManager : MonoBehaviour
         Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
 
         UIManager.Instance.SetUIState(UIState.StageClear);
+
+        //Player.PlayerAnim.SetAni(AniType.win);
     }
 
     public void GameOver()
@@ -113,6 +118,8 @@ public class StageManager : MonoBehaviour
         Debug.Log("[StageManager] Game Over");
 
         UIManager.Instance.SetUIState(UIState.GameOver);
+
+        //Player.PlayerAnim.SetAni(AniType.lose);
     }
 
     public void LevelUpEvent()
