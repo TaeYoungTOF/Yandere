@@ -19,6 +19,8 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private float _pullDuration = 0.3f;
     [SerializeField] private float pullSpeed = 10f;
 
+    [SerializeField] private BaseSkill _baseSkill;
+
 
     public void Init(StageManager stageManager)
     {
@@ -27,6 +29,10 @@ public class Player : MonoBehaviour, IDamagable
 
         PlayerAnim = GetComponentInChildren<PlayerAnim>();
         _itemLayer = LayerMask.NameToLayer("Item");
+
+        // 기본 스킬 장착
+        SkillManager manager = FindObjectOfType<SkillManager>();
+        manager.EquipSkill(_baseSkill);
     }
 
     private void Update()

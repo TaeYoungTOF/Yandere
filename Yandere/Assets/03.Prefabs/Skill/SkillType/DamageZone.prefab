@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.2
-  tickDamage: 1
+  tickDamage: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024

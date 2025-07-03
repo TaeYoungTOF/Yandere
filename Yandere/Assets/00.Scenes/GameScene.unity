@@ -1277,6 +1277,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127703764163962185, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4803165409214660876, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958687628970228822, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958687628970228822, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958687628970228822, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958687628970228822, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958687628970228822, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425674812591492651, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080235941599037524, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080235941599037524, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080235941599037524, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080235941599037524, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080235941599037524, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1366,8 +1418,9 @@ MonoBehaviour:
     minHitInterval: 0.5
     skillDuration: 5
   floatingJoystick: {fileID: 190654502}
-  _pullDuration: 0.3
-  pullSpeed: 10
+  _pullDuration: 3
+  pullSpeed: 0.5
+  _baseSkill: {fileID: 11400000, guid: 1d6205d73c1e00b468f4c13802126f67, type: 2}
 --- !u!4 &1101165682
 Transform:
   m_ObjectHideFlags: 0
@@ -1378,7 +1431,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
+  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1604438193}
@@ -1759,7 +1812,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2046,14 +2099,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1725014473}
     m_Modifications:
+    - target: {fileID: 201952622786414040, guid: de9a8d653177f7742b03585746921b20, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3349083662290577332, guid: de9a8d653177f7742b03585746921b20, type: 3}
       propertyPath: _healthImage
       value: 
       objectReference: {fileID: 324537096}
-    - target: {fileID: 4772815924552494077, guid: de9a8d653177f7742b03585746921b20, type: 3}
-      propertyPath: m_Type
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8040483769581730732, guid: de9a8d653177f7742b03585746921b20, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
