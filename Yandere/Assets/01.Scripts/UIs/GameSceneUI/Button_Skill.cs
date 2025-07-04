@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillButton : MonoBehaviour
+public class Button_Skill : MonoBehaviour
 {
     public Image icon;
     public TMP_Text nameText;
@@ -19,11 +19,7 @@ public class SkillButton : MonoBehaviour
 
     public void OnClick()
     {
-        SkillManager manager = FindObjectOfType<SkillManager>();
-        if (!manager.equippedSkills.Contains(skill))
-            manager.EquipSkill(skill);
-        else
-            skill.LevelUp();
+        SkillManager.Instance.EquipSkill(skill);
 
         UIManager.Instance.SetUIState(UIState.None);
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateExpImage();
