@@ -157,10 +157,10 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
                     _enemyMeleeAttack.DoAttack(enemyData.monsterAttack);
                 break;
 
-            // case EnemyAttackType.Ranged:
-            //     if (_enemyRangedAttack != null)
-            //         _enemyRangedAttack.DoAttack(enemyData.monsterAttack);
-            //     break;
+            case EnemyAttackType.Ranged:
+                if (_enemyRangedAttack != null)
+                    _enemyRangedAttack.DoAttack(enemyData.monsterAttack);
+                break;
 
             default:
                 Debug.Log("어택 타입이 선택되지 않았어요");

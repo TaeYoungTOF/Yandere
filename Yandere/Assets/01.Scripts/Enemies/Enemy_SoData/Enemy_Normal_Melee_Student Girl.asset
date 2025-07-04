@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ece5762ae9a7f48a389f64f900ef03, type: 3}
   m_Name: Enemy_Normal_Melee_Student Girl
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
+  monsterPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
   enemyType: 0
-  enemyAttackType: 0
+  enemyAttackType: 1
   monsterName: "\uD559\uC0DD(\uC5EC)"
   monsterMaxHp: 100
-  monsterAttack: 10
-  attackCooldown: 0.5
+  monsterAttack: 1
+  attackCooldown: 3
   monsterMoveSpeed: 2
   monsterExp: 1
