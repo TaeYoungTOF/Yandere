@@ -58,4 +58,10 @@ public class SoundManager : MonoBehaviour
     {
         audioSfx.PlayOneShot(sfxs[(int)esfx]);
     }
+
+    public void OnClickBack()
+    {
+        SoundManager.Instance.PlayBGM(SoundManager.EBgm.BGM_MAIN);
+        
+    }
 }
