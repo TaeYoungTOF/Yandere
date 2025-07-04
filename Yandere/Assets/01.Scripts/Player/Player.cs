@@ -7,6 +7,9 @@ public class Player : MonoBehaviour, IDamagable
     public PlayerStat stat = new();
     private int _itemLayer;
 
+    // 기본 장착 스킬
+    [SerializeField] private BaseSkill _baseSkill;
+
 
     [Header("Player Controller")]
     public FloatingJoystick floatingJoystick;
@@ -16,10 +19,8 @@ public class Player : MonoBehaviour, IDamagable
 
 
     [Header("DOTween Setting")]
-    [SerializeField] private float _pullDuration = 0.3f;
-    [SerializeField] private float pullSpeed = 10f;
-
-    [SerializeField] private BaseSkill _baseSkill;
+    [SerializeField] private float _pullDuration = 1f;
+    [SerializeField] private float _pullSpeed = 1f;
 
 
     public void Init(StageManager stageManager)
@@ -141,7 +142,7 @@ public class Player : MonoBehaviour, IDamagable
             float distance = Vector3.Distance(itemTransform.position, destination);
 
             // 일정 거리 이상이면 더 빠르게 당김
-            float duration = Mathf.Clamp(distance / pullSpeed, 0.1f, _pullDuration);
+            float duration = Mathf.Clamp(distance / _pullSpeed, 0.1f, _pullDuration);
 
             itemTransform.DOMove(destination, duration)
                          .SetEase(Ease.InOutQuad)

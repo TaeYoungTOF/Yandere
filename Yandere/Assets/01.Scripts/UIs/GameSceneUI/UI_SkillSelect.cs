@@ -4,7 +4,7 @@ using UnityEngine;
 public class UI_SkillSelect : ToggleableUI
 {
     [SerializeField] private GameObject _skillSelectPanel;
-    [SerializeField] private List<SkillButton> _skillButtons;
+    [SerializeField] private List<Button_Skill> _skillButtons;
     [SerializeField] private List<BaseSkill> _allSkills;
 
 

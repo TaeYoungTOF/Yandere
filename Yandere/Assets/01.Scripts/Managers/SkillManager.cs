@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    public static SkillManager Instance { get; private set; }
+
     public Player player;
     public List<BaseSkill> equippedSkills = new List<BaseSkill>();
     private Dictionary<BaseSkill, float> cooldownTimers = new Dictionary<BaseSkill, float>();
@@ -12,6 +14,11 @@ public class SkillManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         if (allSkillsToReset == null || allSkillsToReset.Count == 0)
         {
             return;
@@ -57,5 +64,7 @@ public class SkillManager : MonoBehaviour
             equippedSkills.Add(skill);
             cooldownTimers[skill] = 0f; // 즉시 사용 가능
         }
+        else
+            skill.LevelUp();
     }
 }
