@@ -80,8 +80,8 @@ MonoBehaviour:
   _dropContext:
     position: {x: 0, y: 0, z: 0}
     dropTable: {fileID: 0}
-  separationRadius: 0.5
-  pushForce: 0.8
+  separationRadius: 0.3
+  pushForce: 0.1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -119,7 +119,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!114 &4844741395259935571
 MonoBehaviour:
   m_ObjectHideFlags: 0
