@@ -10,6 +10,7 @@ public enum UIState
     SkillSelect,
     StageClear,
     GameOver,
+    Achievement,
 }
 
 public class UIManager : MonoBehaviour
