@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 231809317980687346}
   - component: {fileID: 8065796078529405819}
   - component: {fileID: 5569739380141773139}
-  - component: {fileID: 4844741395259935571}
+  - component: {fileID: -1758442804084754945}
   m_Layer: 10
   m_Name: EnemyPrefabs_Normal_Melee_Student Girl
   m_TagString: Enemy_Normal
@@ -120,7 +120,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &4844741395259935571
+--- !u!114 &-1758442804084754945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,9 +129,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1439856908508736086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2bc21a1a72f904b97850f6cb6b62eb, type: 3}
+  m_Script: {fileID: 11500000, guid: c126c903681059c4981bcf1f10548e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 0}
 --- !u!1 &3790309057131494843
 GameObject:
   m_ObjectHideFlags: 0

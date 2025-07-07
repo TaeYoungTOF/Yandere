@@ -11,6 +11,8 @@ public enum EnemyType
 }
 public enum EnemyAttackType
 {
-   Melee,
-   Ranged
+   AttackType_A,
+   AttackType_B,
+   AttackType_C,
+   AttackType_D
 }

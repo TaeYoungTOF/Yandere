@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: WaveData0
   m_EditorClassIdentifier: 
   eventType: 0
-  endTime: 60
-  spawnInterval: 5
-  spawnAmount: 3
+  endTime: 99999
+  spawnInterval: 99999
+  spawnAmount: 1
   enemyList:
   - enemyPrefab: {fileID: 1439856908508736086, guid: 426c24634e7bb0744a023822e5f27f2a, type: 3}
     spawnWeight: 3
