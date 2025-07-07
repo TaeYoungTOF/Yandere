@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttackHandler : MonoBehaviour
@@ -70,7 +69,7 @@ public class EnemyAttackHandler : MonoBehaviour
 
     private void DoTypeA_Attack(float damage)
     {
-        if (playerTransform == null)
+        if (_playerTransform == null)
         {
             Debug.Log("EnemyAttackHandler A타입 : 플레이어가 없음!");
             return;
@@ -91,7 +90,7 @@ public class EnemyAttackHandler : MonoBehaviour
 
     private void DoTypeC_Attack(float damage)
     {
-        if (playerTransform == null)
+        if (_playerTransform == null)
         {
             Debug.Log("EnemyAttackHandler C타입 : 플레이어가 없음!");
             return;
