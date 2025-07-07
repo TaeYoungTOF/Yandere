@@ -485,7 +485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &510134084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,7 +641,6 @@ Transform:
   m_Children:
   - {fileID: 208524083}
   - {fileID: 391570518}
-  - {fileID: 2869872445666669753}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &895308578
@@ -851,17 +850,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1532490499528544466, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
   m_PrefabInstance: {fileID: 1093137528}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1101165681 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9070254115709829569, guid: 20172ad11e5e0f542a3e0d09491fd495, type: 3}
-  m_PrefabInstance: {fileID: 1130333583736080437}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c9d5f6fbe222bd45a37a562f6da8ccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1212898035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,7 +1488,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 190654502}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3541562126209312702, guid: 20172ad11e5e0f542a3e0d09491fd495, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20172ad11e5e0f542a3e0d09491fd495, type: 3}
@@ -1529,12 +1518,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502153378492808675}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 709524319}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4525051404582775854
 PrefabInstance:
@@ -1610,13 +1599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc3e132da3ac0e4e8d6604125f8ef8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1101165681}
-  equippedSkills: []
-  allSkillsToReset:
-  - {fileID: 11400000, guid: 1d6205d73c1e00b468f4c13802126f67, type: 2}
-  - {fileID: 11400000, guid: ce7f0806dd8e74c4990b498cf5f39861, type: 2}
-  - {fileID: 11400000, guid: 4fd95a3eb70905f40a72092446408d60, type: 2}
-  - {fileID: 11400000, guid: 51a30ab90727262478462a04b3c6f52f, type: 2}
+  _availableSkills:
+  - {fileID: 3909922128931143309, guid: 54060312278f82d44999dd3f6784f5a5, type: 3}
+  - {fileID: 7289575498661522164, guid: a676f66c1205faf4aaf9b9a6a1950021, type: 3}
+  equipedActiveSkills: []
+  equipedPassiveskills: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1628,6 +1615,7 @@ SceneRoots:
   - {fileID: 1725014473}
   - {fileID: 1863622890}
   - {fileID: 709524319}
+  - {fileID: 2869872445666669753}
   - {fileID: 1130333583736080437}
   - {fileID: 1248482716}
   - {fileID: 1212898037}
