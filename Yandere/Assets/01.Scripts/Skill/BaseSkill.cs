@@ -1,6 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+public enum SkillType
+{
+    Active,
+    Passive
+}
 
 public class BaseSkill : ScriptableObject
 {
