@@ -316,9 +316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee449a82a7048344b96bb98861cd5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 6821448957324080492}
-  nameText: {fileID: 849148057630516377}
-  descText: {fileID: 3694221662254822464}
+  _icon: {fileID: 6821448957324080492}
+  _nameText: {fileID: 849148057630516377}
+  _descText: {fileID: 3694221662254822464}
+  _skill: {fileID: 0}
 --- !u!1 &981726706300929201
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,11 +370,6 @@ MonoBehaviour:
   - {fileID: 2187934444594152979}
   - {fileID: 5454096731678876153}
   - {fileID: 2861895537837056625}
-  _allSkills:
-  - {fileID: 11400000, guid: ce7f0806dd8e74c4990b498cf5f39861, type: 2}
-  - {fileID: 11400000, guid: 1d6205d73c1e00b468f4c13802126f67, type: 2}
-  - {fileID: 11400000, guid: 51a30ab90727262478462a04b3c6f52f, type: 2}
-  - {fileID: 11400000, guid: 4fd95a3eb70905f40a72092446408d60, type: 2}
 --- !u!1 &1106272615531544757
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,9 +3218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee449a82a7048344b96bb98861cd5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 1634497269179107611}
-  nameText: {fileID: 1316452256234414011}
-  descText: {fileID: 6198362893721518198}
+  _icon: {fileID: 1634497269179107611}
+  _nameText: {fileID: 1316452256234414011}
+  _descText: {fileID: 6198362893721518198}
+  _skill: {fileID: 0}
 --- !u!1 &5987858701463613742
 GameObject:
   m_ObjectHideFlags: 0
@@ -4378,9 +4375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee449a82a7048344b96bb98861cd5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 1530295944251546696}
-  nameText: {fileID: 586106521389832732}
-  descText: {fileID: 5754481196473006535}
+  _icon: {fileID: 1530295944251546696}
+  _nameText: {fileID: 586106521389832732}
+  _descText: {fileID: 5754481196473006535}
+  _skill: {fileID: 0}
 --- !u!1 &7263485768698478356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4646,7 +4644,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7947561609199500791

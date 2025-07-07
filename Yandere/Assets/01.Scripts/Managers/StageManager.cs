@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -50,6 +49,8 @@ public class StageManager : MonoBehaviour
         _maxTime = currentStageData.clearTime;
 
         StartCoroutine(StartWaveRoutine(currentSpawnData));
+
+        Player.GainExp(100);
     }
 
     private void Update()
@@ -115,8 +116,6 @@ public class StageManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("[StageManager] Game Over");
-
         UIManager.Instance.SetUIState(UIState.GameOver);
 
         //Player.PlayerAnim.SetAni(AniType.lose);
@@ -124,8 +123,6 @@ public class StageManager : MonoBehaviour
 
     public void LevelUpEvent()
     {
-        Debug.Log("[StageManager] Call Level Up Event");
-
         UIManager.Instance.SetUIState(UIState.SkillSelect);
     }
 }

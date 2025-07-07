@@ -4,22 +4,23 @@ using UnityEngine.UI;
 
 public class Button_Skill : MonoBehaviour
 {
-    public Image icon;
-    public TMP_Text nameText;
-    public TMP_Text descText;
-    private BaseSkill skill;
+    [SerializeField] private Image _icon;
+    [SerializeField] private TMP_Text _nameText;
+    [SerializeField] private TMP_Text _descText;
+    [SerializeField] private BaseSkill _skill;
 
-    public void Setup(BaseSkill skillData)
+    public void Setup(BaseSkill skill)
     {
-        skill = skillData;
-        icon.sprite = skillData.skillIcon;
-        nameText.text = skillData.skillName;
-        descText.text = skillData.description;
+        _skill = skill;
+
+        _icon.sprite = _skill.nextLevelData.skillIcon;
+        _nameText.text = _skill.nextLevelData.skillName;
+        _descText.text = _skill.nextLevelData.levelupTooltip;
     }
 
     public void OnClick()
     {
-        SkillManager.Instance.EquipSkill(skill);
+        _skill.LevelUp();
 
         UIManager.Instance.SetUIState(UIState.None);
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateExpImage();

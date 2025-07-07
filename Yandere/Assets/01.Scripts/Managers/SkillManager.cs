@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance { get; private set; }
 
-    public Player player;
-    public List<BaseSkill> equippedSkills = new List<BaseSkill>();
-    private Dictionary<BaseSkill, float> cooldownTimers = new Dictionary<BaseSkill, float>();
-    public List<BaseSkill> allSkillsToReset;
+    public const int maxLevel = 5;
 
+    public List<BaseSkill> availableSkills;
+
+    public List<ActiveSkill> equipedActiveSkills;
+    public List<PassiveSkill> equipedPassiveskills;
 
     private void Awake()
     {
@@ -19,52 +19,41 @@ public class SkillManager : MonoBehaviour
             Instance = this;
         }
 
-        if (allSkillsToReset == null || allSkillsToReset.Count == 0)
-        {
-            return;
-        }
+        Init();
+    }
 
-        foreach (var skill in allSkillsToReset)
+    /**@todo GameManager 혹은 StageData에서 사용가능한 스킬목록 가져와서 시작될 때 _availableSkils 갱신*/
+    private void Init()
+    {
+        foreach (var skill in availableSkills)
         {
-            skill.level = 1;
+            skill.Init();
         }
     }
 
-    void Update()
+    public List<BaseSkill> GetSkillDatas(int count)
     {
-        foreach (var skill in equippedSkills)
+        if (count > availableSkills.Count)
+            count = availableSkills.Count;
+
+        List<BaseSkill> shuffledList = new List<BaseSkill>(availableSkills);
+
+        for (int i = 0; i < shuffledList.Count; i++)
         {
-            if (skill.skillType != SkillType.Active) continue;
-
-            if (!cooldownTimers.ContainsKey(skill))
-                cooldownTimers[skill] = 0f;
-
-            cooldownTimers[skill] -= Time.deltaTime;
-
-            ActiveSkill activeSkill = skill as ActiveSkill;
-            if (activeSkill == null) continue;
-
-            // 안전하게 인덱스 확보
-            int levelIndex = Mathf.Clamp(activeSkill.level - 1, 0, activeSkill.levelStats.Count - 1);
-
-            if (cooldownTimers[skill] <= 0f)
-            {
-                skill.Activate(player.transform);
-
-                // 쿨다운 갱신
-                cooldownTimers[skill] = activeSkill.levelStats[levelIndex].cooldown;
-            }
+            int randIndex = Random.Range(i, shuffledList.Count);
+            (shuffledList[i], shuffledList[randIndex]) = (shuffledList[randIndex], shuffledList[i]);
         }
+
+        List<BaseSkill> levelupDatas = shuffledList.GetRange(0, count);
+        return levelupDatas;
     }
 
-    public void EquipSkill(BaseSkill skill)
+    private void Update()
     {
-        if (!equippedSkills.Contains(skill))
+        foreach (var skill in equipedActiveSkills)
         {
-            equippedSkills.Add(skill);
-            cooldownTimers[skill] = 0f; // 즉시 사용 가능
+            skill.UpdateCooldown();
+            skill.TryActivate();
         }
-        else
-            skill.LevelUp();
     }
 }

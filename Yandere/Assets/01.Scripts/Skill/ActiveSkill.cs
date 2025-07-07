@@ -1,68 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewActiveSkill", menuName = "Skills/ActiveSkill")]
 public class ActiveSkill : BaseSkill
 {
-    public List<SkillStatData> levelStats;
-    public GameObject projectilePrefab;
-    public LayerMask enemyLayer;
+    protected SkillData_Active ActiveData => currentLevelData as SkillData_Active;
 
-    public override void Activate(Transform caster)
+    private float _coolDownTimer;
+
+    public virtual void UpdateCooldown()
     {
-        if (projectilePrefab == null || caster == null || levelStats == null || levelStats.Count == 0)
-            return;
-
-        SkillStatData stat = levelStats[Mathf.Clamp(level - 1, 0, levelStats.Count - 1)];
-
-        // 자동 분기: 스킬 타입에 따라 처리
-        if (projectilePrefab.GetComponent<WoundofParting>() != null)
+        if (_coolDownTimer > 0f)
         {
-            GameObject obj = Instantiate(projectilePrefab, caster.position, Quaternion.identity);
-            var skill = obj.GetComponent<WoundofParting>();
-            if (skill != null)
-                skill.Initialize(stat, enemyLayer);
-        }
-        else if (projectilePrefab.GetComponent<Tornado>() != null)
-        {
-            GameObject obj = Instantiate(projectilePrefab, caster.position, Quaternion.identity);
-            var skill = obj.GetComponent<Tornado>();
-            if (skill != null)
-                skill.Initialize(stat, enemyLayer);
-        }
-        else
-        {
-            if (caster.TryGetComponent(out MonoBehaviour mb))
-            {
-                mb.StartCoroutine(FireSequentially(stat, caster));
-            }
-            else
-            {
-                Debug.LogWarning("caster에 MonoBehaviour가 없어 Coroutine 실행 불가");
-            }
+            _coolDownTimer -= Time.deltaTime;
         }
     }
 
-    private IEnumerator FireSequentially(SkillStatData stat, Transform caster)
+    public virtual void TryActivate()
     {
-        int count = stat.projectileCount;
-        float delay = 0.1f; // 발사 간격
-
-        for (int i = 0; i < count; i++)
+        if (_coolDownTimer <= 0f)
         {
-            Vector2 direction = caster.up;
-            Vector3 spawnPos = caster.position + (Vector3)(direction * 1f);
-
-            GameObject proj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-            var fireball = proj.GetComponent<Fireball>();
-            if (fireball != null)
-            {
-                fireball.Initialize(stat, enemyLayer, direction);
-            }
-
-            yield return new WaitForSeconds(delay);
+            Activate();
+            _coolDownTimer = ActiveData.coolDown;
         }
+    }
+
+    protected virtual void Activate()
+    {
+        Debug.Log($"[ActiveSkill] {name} Activated.");
+    }
+
+    public override void LevelUp()
+    {
+        Debug.Log("[Active Skill] Level up");
+
+        if (!SkillManager.Instance.equipedActiveSkills.Contains(this))
+            SkillManager.Instance.equipedActiveSkills.Add(this);
+
+        base.LevelUp();
     }
 }
