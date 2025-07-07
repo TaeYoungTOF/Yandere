@@ -41,6 +41,7 @@ public class BaseSkill : MonoBehaviour
         else
         {
             nextLevelData = null;
+            SkillManager.Instance.availableSkills.Remove(this);
         }
     }
 }

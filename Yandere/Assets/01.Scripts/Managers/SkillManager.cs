@@ -7,8 +7,7 @@ public class SkillManager : MonoBehaviour
 
     public const int maxLevel = 5;
 
-    [SerializeField] private List<BaseSkill> _availableSkills;
-    public List<BaseSkill> AvailablueSkills => _availableSkills;
+    public List<BaseSkill> availableSkills;
 
     public List<ActiveSkill> equipedActiveSkills;
     public List<PassiveSkill> equipedPassiveskills;
@@ -26,7 +25,7 @@ public class SkillManager : MonoBehaviour
     /**@todo GameManager 혹은 StageData에서 사용가능한 스킬목록 가져와서 시작될 때 _availableSkils 갱신*/
     private void Init()
     {
-        foreach (var skill in _availableSkills)
+        foreach (var skill in availableSkills)
         {
             skill.Init();
         }
@@ -34,10 +33,10 @@ public class SkillManager : MonoBehaviour
 
     public List<BaseSkill> GetSkillDatas(int count)
     {
-        if (count > _availableSkills.Count)
-            count = _availableSkills.Count;
+        if (count > availableSkills.Count)
+            count = availableSkills.Count;
 
-        List<BaseSkill> shuffledList = new List<BaseSkill>(_availableSkills);
+        List<BaseSkill> shuffledList = new List<BaseSkill>(availableSkills);
 
         for (int i = 0; i < shuffledList.Count; i++)
         {
