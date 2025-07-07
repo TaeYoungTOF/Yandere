@@ -10,6 +10,7 @@ public class UI_GameHUD : MonoBehaviour
     [SerializeField] private Image _expImage;
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private Button _pauseButton;
+    [SerializeField] private Button _achievementButton;
 
     [SerializeField] private Image _healthImage;
 
@@ -31,6 +32,9 @@ public class UI_GameHUD : MonoBehaviour
 
         _pauseButton.onClick.RemoveAllListeners();
         _pauseButton.onClick.AddListener(OnClickPauseBUtton);
+        
+        _achievementButton.onClick.RemoveAllListeners();
+        //_achievementButton.onClick.AddListener();
     }
 
     public void UpdateGold(int amount)
