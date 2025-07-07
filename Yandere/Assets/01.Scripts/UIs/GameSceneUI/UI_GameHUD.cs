@@ -34,7 +34,7 @@ public class UI_GameHUD : MonoBehaviour
         _pauseButton.onClick.AddListener(OnClickPauseBUtton);
         
         _achievementButton.onClick.RemoveAllListeners();
-        //_achievementButton.onClick.AddListener();
+        _achievementButton.onClick.AddListener(OnClickachivementBUtton);
     }
 
     public void UpdateGold(int amount)
@@ -76,5 +76,10 @@ public class UI_GameHUD : MonoBehaviour
     public void OnClickPauseBUtton()
     {
         UIManager.Instance.SetUIState(UIState.Pause);
+    }
+
+    public void OnClickachivementBUtton()
+    {
+        UIManager.Instance.SetUIState(UIState.Achievement);   
     }
 }
