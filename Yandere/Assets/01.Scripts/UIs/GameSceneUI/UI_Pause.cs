@@ -20,8 +20,6 @@ public class UI_Pause : ToggleableUI
         Init(_pausePanel);
         _pausePanel.SetActive(false);
         _ReturnHomePanel.SetActive(false);
-        
-
 
         _settingButton.onClick.RemoveAllListeners();
         _settingButton.onClick.AddListener(OnClickSettingButton);
