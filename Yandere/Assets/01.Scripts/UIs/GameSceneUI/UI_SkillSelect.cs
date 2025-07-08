@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class UI_SkillSelect : ToggleableUI
 {
     [SerializeField] private GameObject _skillSelectPanel;
-    [SerializeField] private List<Button_Skill> _skillButtons;
+    [SerializeField] private GameObject _skillSelectButton;
+    [SerializeField] private Transform _contentParent;
 
     private void Start()
     {
@@ -22,21 +22,24 @@ public class UI_SkillSelect : ToggleableUI
     {
         List<BaseSkill> options = SkillManager.Instance.GetSkillDatas(3);
         
-        SetButtons(options);
+        InstantiateSkillButtons(options);
     }
     
-    public void SetButtons(List<BaseSkill> options)
+    public void InstantiateSkillButtons(List<BaseSkill> options)
     {
-        for (int i = 0; i < _skillButtons.Count; i++)
+        for (int i = 0; i < options.Count; i++)
         {
-            if (i < options.Count)
-            {
-                 _skillButtons[i].Setup(options[i]);
-            }
-            else
-            {
-                _skillButtons[i].gameObject.SetActive(false);
-            }
+            GameObject buttonObj = Instantiate(_skillSelectButton, _contentParent);
+            Button_Skill skillButton = buttonObj.GetComponent<Button_Skill>();
+            skillButton.Setup(options[i]);
+        }
+    }
+
+    public void DestroyButtons()
+    {
+        for (int i = _contentParent.childCount - 1; i >= 0; i--)
+        {
+            Destroy(_contentParent.GetChild(i).gameObject);
         }
     }
 }

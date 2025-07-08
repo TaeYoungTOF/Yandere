@@ -8,7 +8,7 @@ public class UI_Pause : ToggleableUI
     [SerializeField] private GameObject _AchievementPanel;
     
     [Header("Achivement Panel")]
-    [SerializeField] private Button _achievementButton;
+    //[SerializeField] private Button _achievementButton;
 
     [Header("Pause Panel")]
     [SerializeField] private Button _settingButton;

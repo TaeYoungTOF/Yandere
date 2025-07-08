@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fb9df6a174e2954bacffcd9ef4837c0, type: 3}
-  m_Name: ProjectileCount_4
+  m_Name: SkillDamage_4
   m_EditorClassIdentifier: 
-  level: 2
-  skillName: Fractured Self
+  level: 4
+  skillName: "\uD655\uB300\uB418\uB294 \uC18C\uC720\uC695"
   skillIcon: {fileID: 21300000, guid: d62b4c40f462bd74486830b34e044849, type: 3}
-  levelupTooltip: "\uBAA8\uB4E0 \uC2A4\uD0AC\uC758 \uD22C\uC0AC\uCCB4 \uAC1C\uC218\uAC00
-    2\uAC1C \uC99D\uAC00\uD569\uB2C8\uB2E4"
-  value: 2
-  dialogue: "\uC580\uB370\uB808 \uB300\uC0AC 2"
+  levelupTooltip: "\uBAA8\uB4E0 \uACF5\uACA9\uC758 \uD53C\uD574\uB7C9\uC774 40% \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  value: 40
+  dialogue: "\uC580\uB370\uB808 \uB300\uC0AC 4"
