@@ -77,7 +77,6 @@ public class EnemyAttackHandler : MonoBehaviour
 
         // 플레이어한테 데미지 주기
         StageManager.Instance.Player.TakeDamage(damage);
-        
         Debug.Log($"공격타입A 성공! {damage} 데미지를 플레이어에게 줌");
         // 예: 근접 타격
     }

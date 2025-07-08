@@ -30,10 +30,6 @@ public class Player : MonoBehaviour, IDamagable
 
         PlayerAnim = GetComponentInChildren<PlayerAnim>();
         _itemLayer = LayerMask.NameToLayer("Item");
-
-        // 기본 스킬 장착
-        SkillManager manager = FindObjectOfType<SkillManager>();
-        manager.EquipSkill(_baseSkill);
     }
 
     private void Update()
@@ -45,7 +41,7 @@ public class Player : MonoBehaviour, IDamagable
         float y = floatingJoystick.Vertical;
         moveVec = new Vector3(x, y).normalized;
 
-        // 🧭 방향 계산 및 애니메이션 적용
+        // 방향 계산 및 애니메이션 적용
         if (moveVec.sqrMagnitude > 0)
         {
             lastMoveDir = moveVec;
@@ -62,7 +58,6 @@ public class Player : MonoBehaviour, IDamagable
 
     private void FixedUpdate()
     {
-
         // 이동 처리
         transform.position += stat.moveSpeed * Time.fixedDeltaTime * moveVec;
     }
@@ -112,6 +107,8 @@ public class Player : MonoBehaviour, IDamagable
     public void Heal(float amount)
     {
         stat.currentHealth = Mathf.Min(stat.currentHealth + amount, stat.maxHealth);
+
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
     }
 
     public void TakeDamage(float amount)

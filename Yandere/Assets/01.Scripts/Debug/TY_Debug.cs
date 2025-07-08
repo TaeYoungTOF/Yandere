@@ -27,4 +27,18 @@ public class TY_Debug : MonoBehaviour
         StageManager.Instance.Player.Heal(100);
     }
 
+    [Button]
+    public void AddTimeScale()
+    {
+        StageManager.Instance.timeScale += 1;
+    }
+
+    [Button]
+    public void ReduceTimeScale()
+    {
+        StageManager.Instance.timeScale -= 1;
+    }
+
+
+
 }

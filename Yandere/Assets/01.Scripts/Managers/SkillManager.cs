@@ -1,16 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance { get; private set; }
 
-    public Player player;
-    public List<BaseSkill> equippedSkills = new List<BaseSkill>();
-    private Dictionary<BaseSkill, float> cooldownTimers = new Dictionary<BaseSkill, float>();
-    public List<BaseSkill> allSkillsToReset;
+    public const int maxLevel = 5;
 
+    public List<BaseSkill> availableSkills;
+
+    public List<ActiveSkill> equipedActiveSkills;
+    public List<PassiveSkill> equipedPassiveskills;
+
+    private bool _isFirstDraw;
+
+    [Header("Passive Skill Stats")]
+    [SerializeField] private int _projectileCount = 0;
+    public int ProjectileCount => _projectileCount;
+    [SerializeField] private float _skillDamage = 0;
+    public float SkillDamage => _skillDamage;
+    [SerializeField] private float _skillDuration = 0;
+    public float skillDuration => _skillDuration;
+    [SerializeField] private float _coolDown = 0;
+    public float CoolDown => _coolDown;
+    [SerializeField] private float _skillRange = 0;
+    public float SkillRange => _skillRange;
+    [SerializeField] private float _crit = 0;
+    public float Crit => _crit;
 
     private void Awake()
     {
@@ -19,52 +36,88 @@ public class SkillManager : MonoBehaviour
             Instance = this;
         }
 
-        if (allSkillsToReset == null || allSkillsToReset.Count == 0)
+        Init();
+    }
+
+    private void Init()
+    {
+        availableSkills = new List<BaseSkill>();
+
+        BaseSkill[] skills = GetComponentsInChildren<BaseSkill>();
+
+        foreach (BaseSkill skill in skills)
         {
-            return;
+            if (skill != null)
+            {
+                availableSkills.Add(skill);
+            }
         }
 
-        foreach (var skill in allSkillsToReset)
+        _isFirstDraw = true;
+    }
+
+    private void Update()
+    {
+        foreach (var skill in equipedActiveSkills)
         {
-            skill.level = 1;
+            skill.UpdateCooldown();
+            skill.TryActivate();
         }
     }
 
-    void Update()
+    public void UpdatePassiveStat()
     {
-        foreach (var skill in equippedSkills)
+        foreach (var passiveSkill in equipedPassiveskills)
         {
-            if (skill.skillType != SkillType.Active) continue;
+            SkillId id = passiveSkill.skillId;
+            float value = passiveSkill.PassiveData.value;
 
-            if (!cooldownTimers.ContainsKey(skill))
-                cooldownTimers[skill] = 0f;
-
-            cooldownTimers[skill] -= Time.deltaTime;
-
-            ActiveSkill activeSkill = skill as ActiveSkill;
-            if (activeSkill == null) continue;
-
-            // 안전하게 인덱스 확보
-            int levelIndex = Mathf.Clamp(activeSkill.level - 1, 0, activeSkill.levelStats.Count - 1);
-
-            if (cooldownTimers[skill] <= 0f)
+            switch ((int)id)
             {
-                skill.Activate(player.transform);
-
-                // 쿨다운 갱신
-                cooldownTimers[skill] = activeSkill.levelStats[levelIndex].cooldown;
+                case 101:
+                    _projectileCount = (int)value;
+                    break;
+                case 102:
+                    _skillDamage = value;
+                    break;
+                case 103:
+                    _skillDuration = value;
+                    break;
+                case 104:
+                    _coolDown = value;
+                    break;
+                case 105:
+                    _skillRange = value;
+                    break;
+                case 106:
+                    _crit = value;
+                    break;
+                default:
+                    Debug.Log("[SkillManager] Unknown Passive Type");
+                    break;
             }
         }
     }
 
-    public void EquipSkill(BaseSkill skill)
+    public List<BaseSkill> GetSkillDatas(int count)
     {
-        if (!equippedSkills.Contains(skill))
+        List<BaseSkill> shuffledList = new List<BaseSkill>(availableSkills);
+
+        if (_isFirstDraw)
         {
-            equippedSkills.Add(skill);
-            cooldownTimers[skill] = 0f; // 즉시 사용 가능
+            shuffledList.RemoveAll(skill => skill is PassiveSkill);
+            _isFirstDraw = false;
         }
-        else
-            skill.LevelUp();
+
+        if (count > shuffledList.Count)
+            count = shuffledList.Count;
+
+        for (int i = shuffledList.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (shuffledList[i], shuffledList[j]) = (shuffledList[j], shuffledList[i]);
+        }
+
+        return shuffledList.GetRange(0, count);
     }
 }

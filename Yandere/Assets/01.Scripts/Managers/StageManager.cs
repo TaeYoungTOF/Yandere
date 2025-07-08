@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +12,8 @@ public class StageManager : MonoBehaviour
     public WaveData currentSpawnData;
 
     public bool IsUIOpened = false;
+
+    public float timeScale = 1f;
 
 
     [Header("Timer")]
@@ -50,6 +51,8 @@ public class StageManager : MonoBehaviour
         _maxTime = currentStageData.clearTime;
 
         StartCoroutine(StartWaveRoutine(currentSpawnData));
+
+        Player.GainExp(100);
     }
 
     private void Update()
@@ -68,19 +71,24 @@ public class StageManager : MonoBehaviour
             return;
         }
 
-        Time.timeScale = 1f;
+        Time.timeScale = timeScale;
 
         if (_elapsedTime < _maxTime)
         {
-            _elapsedTime += Time.deltaTime;
-            if (_elapsedTime > _maxTime)
-                _elapsedTime = _maxTime;
-
-
-            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
+            Debug.Log("[StageManager] Time Over");
+            GameOver();
+            return;
         }
 
-        if (currentSpawnData == null) return;
+        _elapsedTime += Time.deltaTime;
+
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
+
+        if (currentSpawnData == null)
+        {
+            Debug.Log("[StageManager] currnet Spawn Data is null");
+            return;
+        }
 
         if (currentSpawnData.endTime <= _elapsedTime)
         {
@@ -91,10 +99,6 @@ public class StageManager : MonoBehaviour
             {
                 currentSpawnData = currentStageData.waveDatas[nextIndex];
                 StartCoroutine(StartWaveRoutine(currentSpawnData));
-            }
-            else
-            {
-                //Debug.Log("[StageManager] All Spawn Event End");
             }
         }
     }
@@ -109,23 +113,15 @@ public class StageManager : MonoBehaviour
         Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
 
         UIManager.Instance.SetUIState(UIState.StageClear);
-
-        //Player.PlayerAnim.SetAni(AniType.win);
     }
 
     public void GameOver()
     {
-        Debug.Log("[StageManager] Game Over");
-
         UIManager.Instance.SetUIState(UIState.GameOver);
-
-        //Player.PlayerAnim.SetAni(AniType.lose);
     }
 
     public void LevelUpEvent()
     {
-        Debug.Log("[StageManager] Call Level Up Event");
-
         UIManager.Instance.SetUIState(UIState.SkillSelect);
     }
 }

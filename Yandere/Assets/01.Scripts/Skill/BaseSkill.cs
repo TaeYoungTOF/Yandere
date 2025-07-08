@@ -1,25 +1,47 @@
 ﻿using UnityEngine;
 
-public enum SkillType
+public enum SkillId
 {
-    Active,
-    Passive
+    // 액티브 스킬
+    Fireball = 1,
+    
+    // 패시브 스킬
+    ProjectileCount = 101,
+    SkillDamage,
+    SkillDuration,
+    CoolDown,
+    SkillRange,
+    Crit,
 }
 
-public class BaseSkill : ScriptableObject
+
+public class BaseSkill : MonoBehaviour
 {
-    public string skillName;
-    public Sprite skillIcon;
-    public string description;
-    public SkillType skillType;
-    public int level = 1;
+    public SkillId skillId;
+    public int level = 0;
 
-    public float levelDamageBonus;
-    public float levelCooldownReduction;
+    public SkillData[] skillDatas = new SkillData[SkillManager.maxLevel];
+    public SkillData currentLevelData;
+    public SkillData nextLevelData;
 
-    public virtual void LevelUp() { level++; }
-    public virtual void Activate(Transform caster) { }
-    public virtual void OnEquip(Transform caster) { }
-    public virtual void OnUnequip(Transform caster) { }
+    public void Init()
+    {
+        nextLevelData = skillDatas[0];
+    }
 
+    public virtual void LevelUp()
+    {
+        level ++;
+        currentLevelData = nextLevelData;
+
+        if (level < SkillManager.maxLevel)
+        {
+            nextLevelData = skillDatas[level];
+        }
+        else
+        {
+            nextLevelData = null;
+            SkillManager.Instance.availableSkills.Remove(this);
+        }
+    }
 }

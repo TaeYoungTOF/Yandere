@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
             
             _attackHandler.UpdateDashTimer();
 
-            if (_attackHandler.CanDash())
+            if (_attackHandler.CanDash() && enemyData.enemyAttackType == EnemyAttackType.AttackType_C)
             {
                 Debug.Log("EnemyController: 돌진 스킬 발동!");
                 _attackHandler.EnemyDashSkill();

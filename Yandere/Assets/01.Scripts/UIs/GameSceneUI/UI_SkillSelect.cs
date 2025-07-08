@@ -1,17 +1,24 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_SkillSelect : ToggleableUI
 {
     [SerializeField] private GameObject _skillSelectPanel;
-    [SerializeField] private List<Button_Skill> _skillButtons;
-    [SerializeField] private List<BaseSkill> _allSkills;
+    [SerializeField] private GameObject _skillSelectButton;
+    [SerializeField] private Transform _contentParent;
 
+    // 임시
+    [SerializeField] private Button _goldButton;
 
     private void Start()
     {
         Init(_skillSelectPanel);
         _skillSelectPanel.SetActive(false);
+
+        _goldButton.onClick.RemoveAllListeners();
+        _goldButton.onClick.AddListener(OnClickGoldButton);
+        _goldButton.gameObject.SetActive(false);
     }
 
     public override UIState GetUIState()
@@ -20,39 +27,42 @@ public class UI_SkillSelect : ToggleableUI
     }
 
     public override void UIAction()
-    {        
-        var options = GetRandomSkillOptions(3);
-        Show(options);
+    {
+        List<BaseSkill> options = SkillManager.Instance.GetSkillDatas(3);
+
+        if (options.Count > 0)
+        {
+            InstantiateSkillButtons(options);
+        }
+        else
+        {
+            _goldButton.gameObject.SetActive(true);
+        }        
+    }
+    
+    public void InstantiateSkillButtons(List<BaseSkill> options)
+    {
+        for (int i = 0; i < options.Count; i++)
+        {
+            GameObject buttonObj = Instantiate(_skillSelectButton, _contentParent);
+            Button_Skill skillButton = buttonObj.GetComponent<Button_Skill>();
+            skillButton.Setup(options[i]);
+        }
     }
 
-    private List<BaseSkill> GetRandomSkillOptions(int count)
+    public void DestroyButtons()
     {
-        List<BaseSkill> available = new List<BaseSkill>();
-        foreach (var skill in _allSkills)
+        for (int i = _contentParent.childCount - 1; i >= 0; i--)
         {
-            if (!FindObjectOfType<SkillManager>().equippedSkills.Contains(skill) || skill.level < 5)
-                available.Add(skill);
+            Destroy(_contentParent.GetChild(i).gameObject);
         }
-
-        List<BaseSkill> result = new List<BaseSkill>();
-        for (int i = 0; i < count; i++)
-        {
-            if (available.Count == 0) break;
-            int rand = Random.Range(0, available.Count);
-            result.Add(available[rand]);
-            available.RemoveAt(rand);
-        }
-        return result;
     }
 
-    public void Show(List<BaseSkill> options)
+    private void OnClickGoldButton()
     {
-        for (int i = 0; i < _skillButtons.Count; i++)
-        {
-            if (i < options.Count)
-                _skillButtons[i].Setup(options[i]);
-            else
-                _skillButtons[i].gameObject.SetActive(false);
-        }
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateGold(10);
+        UIManager.Instance.SetUIState(UIState.None);
+
+        _goldButton.gameObject.SetActive(false);
     }
 }

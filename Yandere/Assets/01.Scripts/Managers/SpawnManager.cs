@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     private Coroutine _spawnRoutine;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float _spawnRadius = 3f;
+    [SerializeField] private float _spawnRadius = 10f;
     [SerializeField] private List<EnemySpawnWeigth> _spawnWeights;
     [SerializeField] private float _spawnInterval;
     [SerializeField] private int _spawnAmount;
@@ -86,7 +86,7 @@ public class SpawnManager : MonoBehaviour
     private void InstantiateEnemy(EnemySpawnWeigth entry)
     {
         var position = GetRandomSpawnPosition();
-        var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity);
+        var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
 
         if (instance.TryGetComponent<EnemyController>(out var controller))
         {
