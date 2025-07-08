@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: be5eff3aa23dbb24fa15310e2f785a89, type: 2}
+  isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
     dropTable: {fileID: 0}
@@ -132,7 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c126c903681059c4981bcf1f10548e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
+  enemyDashCooldown: 5
+  enemyDashTimer: 0
 --- !u!1 &3790309057131494843
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +252,7 @@ GameObject:
   - component: {fileID: 4258931613091233356}
   - component: {fileID: 4811801399035838859}
   - component: {fileID: 5711978838889047932}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
