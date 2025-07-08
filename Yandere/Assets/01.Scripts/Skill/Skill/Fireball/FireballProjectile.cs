@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class FireballProjectile : MonoBehaviour
 {
@@ -23,18 +24,6 @@ public class FireballProjectile : MonoBehaviour
 
         _direction = direction;
 
-        // Collider 설정
-        var collider = GetComponent<CircleCollider2D>();
-        if (collider != null)
-        {
-            collider.radius = 0.2f;
-        }
-        else
-        {
-            Debug.LogWarning("[FireballProjectile] CircleCollider is null");
-        }
-
-        // DOTween으로 이동
         Vector3 targetPos = transform.position + (Vector3)(_direction * _distance);
         transform.DOMove(targetPos, _distance / _speed)
                  .SetEase(Ease.Linear)
@@ -43,22 +32,38 @@ public class FireballProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (((1 << other.gameObject.layer) & _enemyLayer) == 0) return;
-
-        // 충돌 시 즉시 폭발
-        Explode();
+        if (((1 << other.gameObject.layer) & _enemyLayer) != 0)
+        {
+            Debug.Log($"[Fireball Projectile] {other.gameObject.name} Collision!");
+            Explode();
+        }
     }
 
     private void Explode()
     {
-        // 폭발 오브젝트 생성
-        if (explosionPrefab != null)
+        if (explosionPrefab == null)
         {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity)
-                .GetComponent<FireballExplosion>()
-                .Initialize(_damage, _explosionRadius, _enemyLayer);
+            Debug.Log("[Fireball Projectile] Fireball Explosion Prefab is null!");
+            return;
+
         }
 
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity)
+            .GetComponent<FireballExplosion>()
+            .Initialize(_damage, _explosionRadius, _enemyLayer);
+
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+
+        Vector3 start = transform.position;
+        Vector3 end = start + (Vector3)(_direction.normalized * _distance);
+
+        Gizmos.DrawLine(start, end);
+
+        Gizmos.DrawWireSphere(end, 0.3f);
     }
 }

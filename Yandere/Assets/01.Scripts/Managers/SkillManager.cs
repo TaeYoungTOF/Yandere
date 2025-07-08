@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class SkillManager : MonoBehaviour
 {
@@ -12,6 +13,22 @@ public class SkillManager : MonoBehaviour
     public List<ActiveSkill> equipedActiveSkills;
     public List<PassiveSkill> equipedPassiveskills;
 
+    private bool _isFirstDraw;
+
+    [Header("Passive Skill Stats")]
+    [SerializeField] private int _projectileCount = 0;
+    public int ProjectileCount => _projectileCount;
+    [SerializeField] private float _skillDamage = 0;
+    public float SkillDamage => _skillDamage;
+    [SerializeField] private float _skillDuration = 0;
+    public float skillDuration => _skillDuration;
+    [SerializeField] private float _coolDown = 0;
+    public float CoolDown => _coolDown;
+    [SerializeField] private float _skillRange = 0;
+    public float SkillRange => _skillRange;
+    [SerializeField] private float _crit = 0;
+    public float Crit => _crit;
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,30 +39,21 @@ public class SkillManager : MonoBehaviour
         Init();
     }
 
-    /**@todo GameManager 혹은 StageData에서 사용가능한 스킬목록 가져와서 시작될 때 _availableSkils 갱신*/
     private void Init()
     {
-        foreach (var skill in availableSkills)
+        availableSkills = new List<BaseSkill>();
+
+        BaseSkill[] skills = GetComponentsInChildren<BaseSkill>();
+
+        foreach (BaseSkill skill in skills)
         {
-            skill.Init();
-        }
-    }
-
-    public List<BaseSkill> GetSkillDatas(int count)
-    {
-        if (count > availableSkills.Count)
-            count = availableSkills.Count;
-
-        List<BaseSkill> shuffledList = new List<BaseSkill>(availableSkills);
-
-        for (int i = 0; i < shuffledList.Count; i++)
-        {
-            int randIndex = Random.Range(i, shuffledList.Count);
-            (shuffledList[i], shuffledList[randIndex]) = (shuffledList[randIndex], shuffledList[i]);
+            if (skill != null)
+            {
+                availableSkills.Add(skill);
+            }
         }
 
-        List<BaseSkill> levelupDatas = shuffledList.GetRange(0, count);
-        return levelupDatas;
+        _isFirstDraw = true;
     }
 
     private void Update()
@@ -55,5 +63,61 @@ public class SkillManager : MonoBehaviour
             skill.UpdateCooldown();
             skill.TryActivate();
         }
+    }
+
+    public void UpdatePassiveStat()
+    {
+        foreach (var passiveSkill in equipedPassiveskills)
+        {
+            SkillId id = passiveSkill.skillId;
+            float value = passiveSkill.PassiveData.value;
+
+            switch ((int)id)
+            {
+                case 101:
+                    _projectileCount = (int)value;
+                    break;
+                case 102:
+                    _skillDamage = value;
+                    break;
+                case 103:
+                    _skillDuration = value;
+                    break;
+                case 104:
+                    _coolDown = value;
+                    break;
+                case 105:
+                    _skillRange = value;
+                    break;
+                case 106:
+                    _crit = value;
+                    break;
+                default:
+                    Debug.Log("[SkillManager] Unknown Passive Type");
+                    break;
+            }
+        }
+    }
+
+    public List<BaseSkill> GetSkillDatas(int count)
+    {
+        List<BaseSkill> shuffledList = new List<BaseSkill>(availableSkills);
+
+        if (_isFirstDraw)
+        {
+            shuffledList.RemoveAll(skill => skill is PassiveSkill);
+            _isFirstDraw = false;
+        }
+
+        if (count > shuffledList.Count)
+            count = shuffledList.Count;
+
+        for (int i = shuffledList.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (shuffledList[i], shuffledList[j]) = (shuffledList[j], shuffledList[i]);
+        }
+
+        return shuffledList.GetRange(0, count);
     }
 }

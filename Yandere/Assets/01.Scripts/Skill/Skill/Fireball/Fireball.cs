@@ -21,13 +21,12 @@ public class Fireball : ActiveSkill
 
         Vector2 origin = transform.position;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, 50f, _enemyLayer); // 충분히 넓게 탐색
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, 20f, _enemyLayer);
         var sortedTargets = hits.OrderBy(h => Vector2.Distance(origin, h.transform.position))
                                 .Take(_currentData.projectileCount);
 
         foreach (var target in sortedTargets)
         {
-            // FireballProjectile 생성
             GameObject projGO = Instantiate(_fireballProjectilePrefab, origin, Quaternion.identity);
             var proj = projGO.GetComponent<FireballProjectile>();
 
@@ -40,5 +39,12 @@ public class Fireball : ActiveSkill
             // 투사체 크기 조절
             projGO.transform.localScale = Vector3.one * _currentData.projectileSize;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+
+        Gizmos.DrawWireSphere(transform.position, 20f);
     }
 }

@@ -26,6 +26,7 @@ public class ActiveSkill : BaseSkill
     protected virtual void Activate()
     {
         Debug.Log($"[ActiveSkill] {name} Activated.");
+        UpdateAcitveData();
     }
 
     public override void LevelUp()
@@ -36,5 +37,15 @@ public class ActiveSkill : BaseSkill
             SkillManager.Instance.equipedActiveSkills.Add(this);
 
         base.LevelUp();
+    }
+
+    private void UpdateAcitveData()
+    {
+        ActiveData.projectileCount += SkillManager.Instance.ProjectileCount;
+        ActiveData.skillDamage *= 1 + (SkillManager.Instance.SkillDamage / 100);
+        ActiveData.skillDuration *= 1 + (SkillManager.Instance.SkillDamage / 100);
+        ActiveData.coolDown *= 1 - (SkillManager.Instance.CoolDown / 100);
+        ActiveData.skillRange *= 1 + (SkillManager.Instance.SkillDamage / 100);
+        ActiveData.crit += StageManager.Instance.Player.stat.criticalChance + SkillManager.Instance.Crit / 100;
     }
 }

@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42eecd7764c550b4e8b9443f4071e68a, type: 3}
   m_Name: Fireball_1
   m_EditorClassIdentifier: 
-  skillId: 1
+  level: 1
   skillName: Burning Jealousy
   skillIcon: {fileID: 21300000, guid: a5edbb1acb3234a5db0f0daa141eb77b, type: 3}
-  level: 1
   levelupTooltip: "\uAC00\uC7A5 \uAC00\uAE4C\uC6B4 \uC801\uC5D0\uAC8C \uD3ED\uBC1C\uD558\uB294
     \uD654\uC5FC\uAD6C\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4"
   projectileCount: 1
   skillDamage: 100
+  skillDuration: 0
   coolDown: 5
+  skillRange: 0
+  crit: 0
   projectileSize: 0.5
   explosionRadius: 1
-  projectileSpeed: 15
-  projectileDistance: 30
+  projectileSpeed: 10
+  projectileDistance: 8
