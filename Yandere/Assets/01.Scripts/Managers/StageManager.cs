@@ -75,15 +75,20 @@ public class StageManager : MonoBehaviour
 
         if (_elapsedTime < _maxTime)
         {
-            _elapsedTime += Time.deltaTime;
-            if (_elapsedTime > _maxTime)
-                _elapsedTime = _maxTime;
-
-
-            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
+            Debug.Log("[StageManager] Time Over");
+            GameOver();
+            return;
         }
 
-        if (currentSpawnData == null) return;
+        _elapsedTime += Time.deltaTime;
+
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
+
+        if (currentSpawnData == null)
+        {
+            Debug.Log("[StageManager] currnet Spawn Data is null");
+            return;
+        }
 
         if (currentSpawnData.endTime <= _elapsedTime)
         {
@@ -94,10 +99,6 @@ public class StageManager : MonoBehaviour
             {
                 currentSpawnData = currentStageData.waveDatas[nextIndex];
                 StartCoroutine(StartWaveRoutine(currentSpawnData));
-            }
-            else
-            {
-                Debug.Log("[StageManager] All Spawn Event End");
             }
         }
     }

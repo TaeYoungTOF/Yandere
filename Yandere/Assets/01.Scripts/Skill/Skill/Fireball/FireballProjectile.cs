@@ -14,7 +14,7 @@ public class FireballProjectile : MonoBehaviour
 
     [SerializeField] private GameObject explosionPrefab;
 
-    public void Initialize(LevelupData_Fireball data, Vector2 direction)
+    public void Initialize(FireballDataWrapper data, Vector2 direction)
     {
         _speed = data.projectileSpeed;
         _distance = data.projectileDistance;
