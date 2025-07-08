@@ -5,11 +5,7 @@ public class UI_Pause : ToggleableUI
 {
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _ReturnHomePanel;
-   // [SerializeField] private GameObject _AchievementPanel;
     
-    [Header("Achivement Panel")]
-    //[SerializeField] private Button _achievementButton;
-
     [Header("Pause Panel")]
     [SerializeField] private Button _settingButton;
     [SerializeField] private Button _homeButton;
@@ -24,11 +20,6 @@ public class UI_Pause : ToggleableUI
         Init(_pausePanel);
         _pausePanel.SetActive(false);
         _ReturnHomePanel.SetActive(false);
-        
-        //Init(_AchievementPanel);
-        //_AchievementPanel.SetActive(false);
-        _ReturnHomePanel.SetActive(false);
-
 
         _settingButton.onClick.RemoveAllListeners();
         _settingButton.onClick.AddListener(OnClickSettingButton);
