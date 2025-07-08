@@ -13,6 +13,8 @@ public class StageManager : MonoBehaviour
 
     public bool IsUIOpened = false;
 
+    public float timeScale = 1f;
+
 
     [Header("Timer")]
     [SerializeField] private float _maxTime;
@@ -69,7 +71,7 @@ public class StageManager : MonoBehaviour
             return;
         }
 
-        Time.timeScale = 1f;
+        Time.timeScale = timeScale;
 
         if (_elapsedTime < _maxTime)
         {
@@ -95,7 +97,7 @@ public class StageManager : MonoBehaviour
             }
             else
             {
-                //Debug.Log("[StageManager] All Spawn Event End");
+                Debug.Log("[StageManager] All Spawn Event End");
             }
         }
     }
@@ -110,15 +112,11 @@ public class StageManager : MonoBehaviour
         Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
 
         UIManager.Instance.SetUIState(UIState.StageClear);
-
-        //Player.PlayerAnim.SetAni(AniType.win);
     }
 
     public void GameOver()
     {
         UIManager.Instance.SetUIState(UIState.GameOver);
-
-        //Player.PlayerAnim.SetAni(AniType.lose);
     }
 
     public void LevelUpEvent()

@@ -2707,6 +2707,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Achievement
       objectReference: {fileID: 0}
+    - target: {fileID: 7336123316370935381, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853268788110455518, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8350073401559089482, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2769,7 +2777,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc3e132da3ac0e4e8d6604125f8ef8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableSkills: []
+  availableSkills:
+  - {fileID: 2009497984}
+  - {fileID: 4165110187263146541}
+  - {fileID: 541264003}
+  - {fileID: 1970665951}
+  - {fileID: 159630834}
+  - {fileID: 614680093}
+  - {fileID: 1988390128}
   equipedActiveSkills: []
   equipedPassiveskills: []
   _projectileCount: 0
@@ -3171,8 +3186,8 @@ MonoBehaviour:
     skillDuration: 5
   _baseSkill: {fileID: 11400000, guid: 1d6205d73c1e00b468f4c13802126f67, type: 2}
   floatingJoystick: {fileID: 190654502}
-  _pullDuration: 1
-  _pullSpeed: 3
+  _pullDuration: 0.5
+  _pullSpeed: 10
 --- !u!20 &8779370069059192143
 Camera:
   m_ObjectHideFlags: 0

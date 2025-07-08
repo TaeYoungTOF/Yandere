@@ -107,6 +107,8 @@ public class Player : MonoBehaviour, IDamagable
     public void Heal(float amount)
     {
         stat.currentHealth = Mathf.Min(stat.currentHealth + amount, stat.maxHealth);
+
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
     }
 
     public void TakeDamage(float amount)

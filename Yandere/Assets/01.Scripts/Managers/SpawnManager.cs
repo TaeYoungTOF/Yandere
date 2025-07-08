@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     private Coroutine _spawnRoutine;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float _spawnRadius = 3f;
+    [SerializeField] private float _spawnRadius = 10f;
     [SerializeField] private List<EnemySpawnWeigth> _spawnWeights;
     [SerializeField] private float _spawnInterval;
     [SerializeField] private int _spawnAmount;

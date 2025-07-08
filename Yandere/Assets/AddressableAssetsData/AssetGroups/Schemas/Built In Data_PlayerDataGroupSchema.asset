@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a12647b9b0e9ee745a317739e3669e0a, type: 3}
-  m_Name: DropTable_enemy
+  m_Script: {fileID: 11500000, guid: b1487f5d688e4f94f828f879d599dbdc, type: 3}
+  m_Name: Built In Data_PlayerDataGroupSchema
   m_EditorClassIdentifier: 
-  entries:
-  - itemPrefab: {fileID: 48673281385559624, guid: 80155a67610115f4a86bfceba4406098, type: 3}
-    probability: 10
+  m_Group: {fileID: 11400000, guid: fd861485d13998f47bef4ae5f7a2efe5, type: 2}
+  m_IncludeResourcesFolders: 1
+  m_IncludeBuildSettingsScenes: 1

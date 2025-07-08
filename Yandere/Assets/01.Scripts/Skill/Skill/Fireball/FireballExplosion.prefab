@@ -93,6 +93,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Explosion_Bomb_V5
       objectReference: {fileID: 0}
+    - target: {fileID: 7584972273357522792, guid: cc71ff284b2b6134ca0b2dbffa088e69, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7584972273357522793, guid: cc71ff284b2b6134ca0b2dbffa088e69, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
