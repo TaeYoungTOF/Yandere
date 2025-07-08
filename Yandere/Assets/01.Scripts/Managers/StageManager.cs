@@ -73,7 +73,7 @@ public class StageManager : MonoBehaviour
 
         Time.timeScale = timeScale;
 
-        if (_elapsedTime < _maxTime)
+        if (_elapsedTime >= _maxTime)
         {
             Debug.Log("[StageManager] Time Over");
             GameOver();

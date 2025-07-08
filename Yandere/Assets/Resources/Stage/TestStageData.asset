@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0fc12a5ddc600c4fb424dea7a689d55, type: 3}
-  m_Name: Stage2
+  m_Name: TestStageData
   m_EditorClassIdentifier: 
-  stageIndex: 2
-  maxWave: 6
-  monsterPrefabs: []
-  stageAchievement: 0
+  stageIndex: 0
+  clearTime: 0
+  achievements: []
+  waveDatas: []

@@ -16,7 +16,6 @@ public class EnemyHitBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("HitBox Trigger Enter");
             enemyController.SetAttackRange(true);
         }
     }
@@ -26,7 +25,6 @@ public class EnemyHitBox : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             enemyController.SetAttackRange(false);
-            Debug.Log("HitBox Trigger Exit");
         }
     }
 }
