@@ -10,14 +10,12 @@ public class SoundManager : MonoBehaviour
     // 사운드의 타입
     public enum EBgm
     {
-        BGM_TITLE,
         BGM_MAIN,
     }
     
     public enum ESfx
     {
-        SFX_BUTTON,
-        SFX_ENDING,
+        SFX_LEVELUP,
         SFX_CLCIK,
     }
     
