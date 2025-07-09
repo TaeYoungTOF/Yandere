@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: TestStageData
   m_EditorClassIdentifier: 
   stageIndex: 0
-  clearTime: 0
+  clearTime: 300
   achievements: []
-  waveDatas: []
+  waveDatas:
+  - {fileID: 11400000, guid: ae73ac77371be9c45bed443b3e3b6998, type: 2}
+  - {fileID: 11400000, guid: 268b952097bcb4342840aacceecda93d, type: 2}
+  - {fileID: 11400000, guid: c6c41b163d81db840b50a43e1c0c5048, type: 2}
