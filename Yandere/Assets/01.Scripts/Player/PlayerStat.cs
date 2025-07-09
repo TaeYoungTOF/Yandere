@@ -42,11 +42,11 @@ public class PlayerStat
         defense = 5f;
 
         // 치명타
-        criticalChance = 0.1f;
-        criticalDamage = 1.5f;
+        criticalChance = 0.05f;
+        criticalDamage = 1f;
 
         // 보조 능력치
-        healthRegen = 0f;
+        healthRegen = 0.5f;
         pickupRange = 2f;
         cooldownReduction = 0f;
         skillRange = 1f;
@@ -57,7 +57,7 @@ public class PlayerStat
         // 경험치 관련
         level = 0;
         currentExp = 0f;
-        requiredExp = 100f;
+        requiredExp = 10f;
 
         // 특수 조건
         minHitInterval = 0.5f;

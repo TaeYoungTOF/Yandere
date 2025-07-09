@@ -97,7 +97,7 @@ public class Player : MonoBehaviour, IDamagable
         Debug.Log($"[Player] 레벨 업! 현재 레벨: {stat.level}");
 
         stat.level++;
-        stat.requiredExp *= 1.1f;  // 경험치통 공식 추후 수정
+        stat.requiredExp += 2f;  // 경험치통 공식 추후 수정
 
         _stageManager.LevelUpEvent();
 
@@ -113,8 +113,7 @@ public class Player : MonoBehaviour, IDamagable
 
     public void TakeDamage(float amount)
     {
-        //방어력 계산 공식 추후 수정
-        float actualDamage = Mathf.Max(amount - stat.defense, 1f);
+        float actualDamage = amount * (1 - (stat.defense / (stat.defense + 500)));
 
         stat.currentHealth = Mathf.Max(stat.currentHealth - actualDamage, 0f);
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
