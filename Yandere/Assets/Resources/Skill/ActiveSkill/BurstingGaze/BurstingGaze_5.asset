@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545ff54597200734890d03de71eb8137, type: 3}
+  m_Name: BurstingGaze_5
+  m_EditorClassIdentifier: 
+  level: 5
+  skillName: "\uD30C\uC5F4\uD558\uB294 \uC2DC\uC120"
+  skillIcon: {fileID: 21300000, guid: 1a1aebd5126074248b9d1b0062cc4ba6, type: 3}
+  levelupTooltip: "\uD30C\uC5F4\uD558\uB294 \uC2DC\uC120 5"
+  projectileCount: 10
+  skillDamage: 120
+  coolTime: 4
+  angle: 75

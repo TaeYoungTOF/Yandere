@@ -22,7 +22,7 @@ public class FireballExplosion : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 
     private void OnDrawGizmos()

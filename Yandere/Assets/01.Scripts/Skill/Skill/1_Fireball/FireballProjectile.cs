@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
 
 public class FireballProjectile : MonoBehaviour
 {
@@ -14,12 +13,12 @@ public class FireballProjectile : MonoBehaviour
 
     [SerializeField] private GameObject explosionPrefab;
 
-    public void Initialize(FireballDataWrapper data, Vector2 direction)
+    public void Initialize(Vector2 direction, float projectileSpeed, float projectileDistance, float skillDamage, float explosionRadius)
     {
-        _speed = data.projectileSpeed;
-        _distance = data.projectileDistance;
-        _damage = data.skillDamage;
-        _explosionRadius = data.explosionRadius;
+        _speed = projectileSpeed;
+        _distance = projectileDistance;
+        _damage = skillDamage;
+        _explosionRadius = explosionRadius;
         _enemyLayer = LayerMask.GetMask("Enemy");
 
         _direction = direction;
@@ -45,7 +44,6 @@ public class FireballProjectile : MonoBehaviour
         {
             Debug.Log("[Fireball Projectile] Fireball Explosion Prefab is null!");
             return;
-
         }
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity)
