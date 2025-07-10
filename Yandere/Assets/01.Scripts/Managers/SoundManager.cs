@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,14 +11,12 @@ public class SoundManager : MonoBehaviour
     // 사운드의 타입
     public enum EBgm
     {
-        BGM_TITLE,
         BGM_MAIN,
     }
     
     public enum ESfx
     {
-        SFX_BUTTON,
-        SFX_ENDING,
+        SFX_LEVELUP,
         SFX_CLCIK,
     }
     
@@ -28,6 +27,9 @@ public class SoundManager : MonoBehaviour
     // 플레이 하는 audiosource
     [SerializeField] AudioSource audioBgm;
     [SerializeField] AudioSource audioSfx;
+    
+    // 오디오 믹서, 오디오 타입 별로 사운드를 조정한다.
+    [SerializeField] AudioMixer audioMixer;
 
     private void Awake()
     {
@@ -64,4 +66,10 @@ public class SoundManager : MonoBehaviour
         SoundManager.Instance.PlayBGM(SoundManager.EBgm.BGM_MAIN);
         
     }
+    
+    public void SetVolume(Enum bgm, float volume)
+    {
+        audioMixer.SetFloat("BGM_" + bgm.ToString(), volume);
+    }
 }
+

@@ -86,14 +86,14 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
                 attackTimer = enemyData.attackCooldown; // 어택타이머를 다시 값을 넣어줌 (쿨타임 리셋!)
             }
             
-            _attackHandler.UpdateDashTimer();
-
-            if (_attackHandler.CanDash() && enemyData.enemyAttackType == EnemyAttackType.AttackType_C)
-            {
-                Debug.Log("EnemyController: 돌진 스킬 발동!");
-                _attackHandler.EnemyDashSkill();
-                _attackHandler.ResetDashTimer();
-            }
+            // _attackHandler.UpdateDashTimer();
+            //
+            // if (_attackHandler.CanDash() && enemyData.enemyAttackType == EnemyAttackType.AttackType_C)
+            // {
+            //     Debug.Log("EnemyController: 돌진 스킬 발동!");
+            //     _attackHandler.EnemyDashSkill();
+            //     _attackHandler.ResetDashTimer();
+            // }
         }
         else
         {
@@ -126,24 +126,24 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         {
             Vector2 direction = (_playerTransform.position - transform.position).normalized;      // 플레이어의 위치 - 몬스터의 위치의 값을 direction에 넣어줌.
 
-            _rigidbody2D.velocity = direction * enemyData.monsterMoveSpeed; // direction(벡터값) * 몬스터 스피드를 넣어 줌
+            _rigidbody2D.velocity = direction * enemyData.monsterMoveSpeed;                          // direction(벡터값) * 몬스터 스피드를 넣어 줌
 
-            if (_rigidbody2D.velocity.magnitude > 0.1f)                     // 몬스터의 _rigidbody2D.velocity의 값이 0.1 보다 크면
+            if (_rigidbody2D.velocity.magnitude > 0.1f)                                              // 몬스터의 _rigidbody2D.velocity의 값이 0.1 보다 크면
             {
-                _animator.SetBool("Run", true);                        // 몬스터의 애니메이션을 Run 상태로 변경
+                _animator.SetBool("Run", true);                                                 // 몬스터의 애니메이션을 Run 상태로 변경
             }
-            else                                                            // 몬스터의 _rigidbody2D.velocity의 값이 0.1 보다 작으면
+            else                                                                                     // 몬스터의 _rigidbody2D.velocity의 값이 0.1 보다 작으면
             {
-                _animator.SetBool("Run", false);                       // 몬스터의 애니메이션을 Idle로 변경
+                _animator.SetBool("Run", false);                                                // 몬스터의 애니메이션을 Idle로 변경
             }
             
             if (direction.x < 0)
             {
-                _spriteRenderer.flipX = true;                               // x의 값이 0보다 크면 flipX를 true로 
+                _spriteRenderer.flipX = true;                                                        // x의 값이 0보다 크면 flipX를 true로 
             }
             else
             {
-                _spriteRenderer.flipX = false;                              // x의 값이 0보다 작으면 flipX를 false로 변경 (스프라이트 방향 전환) 
+                _spriteRenderer.flipX = false;                                                       // x의 값이 0보다 작으면 flipX를 false로 변경 (스프라이트 방향 전환) 
             }
             
             
@@ -167,6 +167,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     public void TakeDamage(float damage)
     {
         if (isDead) return;                                                 // 죽은 상태이면 이코드를 빠져나가게 함
+
+        damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
         
         _monsterCurrentHealth -= damage;
         Debug.Log($"[EnemyController] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");

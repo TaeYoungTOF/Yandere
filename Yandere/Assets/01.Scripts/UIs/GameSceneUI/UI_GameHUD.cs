@@ -69,7 +69,7 @@ public class UI_GameHUD : MonoBehaviour
 
     public void UpdateHealthImage()
     {
-        float ratio = _stat.currentHealth / _stat.maxHealth;
+        float ratio = _stat.CurrentHp / _stat.FinalHp;
         _healthImage.fillAmount = Mathf.Clamp01(ratio);
     }
 

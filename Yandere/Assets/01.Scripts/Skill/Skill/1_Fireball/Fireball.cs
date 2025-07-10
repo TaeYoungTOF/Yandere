@@ -2,67 +2,51 @@
 using UnityEngine;
 
 [System.Serializable]
-public class FireballDataWrapper
+public class FireballDataWrapper : AcviteDataWapper
 {
-    public int projectileCount;
-    public float skillDamage;
-    public float skillDuration;
-    public float coolDown;
-    public float skillRange;
-    public float crit;
-
     public float projectileSize;
     public float explosionRadius;
-
-    public float projectileSpeed;
-    public float projectileDistance;
 }
 
 public class Fireball : ActiveSkill
 {
-    private LevelupData_Fireball _currentData => ActiveData as LevelupData_Fireball;
+    private LevelupData_Fireball CurrentData => ActiveData as LevelupData_Fireball;
 
     [SerializeField] private FireballDataWrapper _data;
     [SerializeField] private GameObject _fireballProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
-    private float _coolDownTimer;
 
-    private void Start()
-    {
-        _data = new FireballDataWrapper();
-    }
+    [Header("Unupgradable Data")]
+    [SerializeField] private float _projectileSpeed = 15f;
+    [SerializeField] private float _projectileDistance = 30f;
+    [SerializeField] private float _enemySearchRange = 5f;
 
     public override void UpdateCooldown()
     {
-        if (_coolDownTimer > 0f)
+        if (coolDownTimer > 0f)
         {
-            _coolDownTimer -= Time.deltaTime;
+            coolDownTimer -= Time.deltaTime;
         }
     }
     
     public override void TryActivate()
     {
-        if (_coolDownTimer <= 0f)
+        if (coolDownTimer <= 0f)
         {
             UpdateActiveData();
             Activate();
-            _coolDownTimer = _data.coolDown;
+            coolDownTimer = _data.coolTime;
         }
     }
 
     public override void UpdateActiveData()
     {
-        _data.projectileCount = _currentData.projectileCount + SkillManager.Instance.ProjectileCount;
-        _data.skillDamage = _currentData.skillDamage * (1 + (SkillManager.Instance.SkillDamage / 100));
-        _data.skillDuration = _currentData.skillDuration * (1 + (SkillManager.Instance.SkillDamage / 100));
-        _data.coolDown = _currentData.coolDown * (1 - (SkillManager.Instance.CoolDown / 100));
-        _data.skillRange = _currentData.skillRange * (1 + (SkillManager.Instance.SkillDamage / 100));
-        _data.crit = _currentData.crit + StageManager.Instance.Player.stat.criticalChance + SkillManager.Instance.Crit / 100;
+        _data.projectileCount = CurrentData.projectileCount + player.stat.ProjectileCount;
+        _data.skillDamage = CurrentData.skillDamage;
+        _data.coolTime = CurrentData.coolTime * (1 - player.stat.CoolDown / 100f);
 
-        _data.projectileSize = _currentData.projectileSize;
-        _data.explosionRadius = _currentData.explosionRadius;
-        _data.projectileSpeed = _currentData.projectileSpeed;
-        _data.projectileDistance = _currentData.projectileDistance;
+        _data.projectileSize = CurrentData.projectileSize;
+        _data.explosionRadius = CurrentData.explosionRadius;
     }
 
     protected override void Activate()
@@ -75,7 +59,7 @@ public class Fireball : ActiveSkill
 
         Vector2 origin = transform.position;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, 20f, _enemyLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, _enemySearchRange, _enemyLayer);
         var sortedTargets = hits.OrderBy(h => Vector2.Distance(origin, h.transform.position))
                                 .Take(_data.projectileCount);
 
@@ -87,7 +71,8 @@ public class Fireball : ActiveSkill
             if (proj != null)
             {
                 Vector2 dir = ((Vector2)target.transform.position - origin).normalized;
-                proj.Initialize(_data, dir);
+
+                proj.Initialize(dir, _projectileSpeed, _projectileDistance, CalculateDamage(_data.skillDamage), _data.explosionRadius);
             }
 
             // 투사체 크기 조절

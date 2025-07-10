@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Enemy/EnemyData", order = 1)]
 public class EnemyData : ScriptableObject
 {
@@ -35,6 +34,11 @@ public class EnemyData : ScriptableObject
     [Tooltip("몬스터의 공격력을 설정합니다.")] 
     public int monsterAttack;
 
+    //몬스터 방어력
+    [Header("몬스터 방어력")]
+    [Tooltip("몬스터의 방어력을 설정합니다.")]
+    public float monsterDef;
+
     [Header("몬스터 공격속도")]
     [Tooltip("몬스터의 공격속도를 설정합니다.")]
     public float attackCooldown;
@@ -43,9 +47,4 @@ public class EnemyData : ScriptableObject
     [Header("몬스터 이동속도")] 
     [Tooltip("몬스터의 이동속도를 설정합니다.")] 
     public int monsterMoveSpeed;
-    
-    //몬스터가 죽을 때 떨어트리는 경험치
-    [Header("몬스터가 드랍하는 경험치")]
-    [Tooltip("몬스터가 쓰러질 때 얻는 경험치를 설정합니다")]
-    public float monsterExp;
 }

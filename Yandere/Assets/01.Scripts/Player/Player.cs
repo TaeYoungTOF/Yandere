@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamagable
@@ -7,15 +9,16 @@ public class Player : MonoBehaviour, IDamagable
     public PlayerStat stat = new();
     private int _itemLayer;
 
-    // 기본 장착 스킬
-    [SerializeField] private BaseSkill _baseSkill;
-
 
     [Header("Player Controller")]
     public FloatingJoystick floatingJoystick;
     private Vector3 moveVec;
-    private Vector3 lastMoveDir = Vector2.right;
+    private Vector3 lastMoveVec = Vector2.right;
     public PlayerAnim PlayerAnim { get; private set; }
+
+    [Header("Level up")]
+    private bool _isLeveling = false;
+    private Queue<int> _levelUpQueue = new();
 
 
     [Header("DOTween Setting")]
@@ -26,7 +29,7 @@ public class Player : MonoBehaviour, IDamagable
     public void Init(StageManager stageManager)
     {
         _stageManager = stageManager;
-        stat.ResetStat();
+        stat.ResetStats();
 
         PlayerAnim = GetComponentInChildren<PlayerAnim>();
         _itemLayer = LayerMask.NameToLayer("Item");
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour, IDamagable
         // 방향 계산 및 애니메이션 적용
         if (moveVec.sqrMagnitude > 0)
         {
-            lastMoveDir = moveVec;
+            lastMoveVec = moveVec;
 
             var direction = GetDirectionFromVector(moveVec);
             PlayerAnim.SetDirection(direction);
@@ -59,7 +62,7 @@ public class Player : MonoBehaviour, IDamagable
     private void FixedUpdate()
     {
         // 이동 처리
-        transform.position += stat.moveSpeed * Time.fixedDeltaTime * moveVec;
+        transform.position += stat.FinalMoveSpeed * Time.fixedDeltaTime * moveVec;
     }
 
     private targetDirectType GetDirectionFromVector(Vector3 dir)
@@ -74,6 +77,11 @@ public class Player : MonoBehaviour, IDamagable
         }
     }
 
+    public Vector3 GetLastMoveDirection()
+    {
+        return lastMoveVec != Vector3.zero ? lastMoveVec : Vector3.forward;
+    }
+
     // 경험치 획득 처리
     public void GainExp(float amount)
     {
@@ -83,47 +91,53 @@ public class Player : MonoBehaviour, IDamagable
         while (stat.currentExp >= stat.requiredExp)
         {
             stat.currentExp -= stat.requiredExp;
-            LevelUp();
+            _levelUpQueue.Enqueue(1);
         }
+
+        if (!_isLeveling)
+            StartCoroutine(LevelUp());
     }
 
-    public Vector3 GetLastMoveDirection()
+    private IEnumerator LevelUp()
     {
-        return lastMoveDir != Vector3.zero ? lastMoveDir : Vector3.right;
-    }
+        _isLeveling = true;
 
-    public void LevelUp()
-    {
-        Debug.Log($"[Player] 레벨 업! 현재 레벨: {stat.level}");
+        while (_levelUpQueue.Count > 0)
+        {
+            _levelUpQueue.Dequeue();
 
-        stat.level++;
-        stat.requiredExp += 2f;  // 경험치통 공식 추후 수정
+            stat.level++;
+            stat.requiredExp += 2f;
 
-        _stageManager.LevelUpEvent();
+            Debug.Log($"[Player] 레벨 업! 현재 레벨: {stat.level}");
 
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
+            _stageManager.LevelUpEvent();
+            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        _isLeveling = false;
     }
 
     public void Heal(float amount)
     {
-        stat.currentHealth = Mathf.Min(stat.currentHealth + amount, stat.maxHealth);
+        stat.ChangeCurrentHp(amount);
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
     }
 
     public void TakeDamage(float amount)
     {
-        float actualDamage = amount * (1 - (stat.defense / (stat.defense + 500)));
+        float actualDamage = amount * (1 - (stat.FinalDef / (stat.FinalDef + 500)));
+        stat.ChangeCurrentHp(actualDamage);
 
-        stat.currentHealth = Mathf.Max(stat.currentHealth - actualDamage, 0f);
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
-
-        Debug.Log($"[Player] 체력: {stat.currentHealth}/{stat.maxHealth}");
     }
 
     private void PullItemsInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stat.pickupRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stat.FinalPickupRadius);
         foreach (var hit in hits)
         {
             if (hit.gameObject.layer != _itemLayer) continue;
@@ -149,7 +163,7 @@ public class Player : MonoBehaviour, IDamagable
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, stat.pickupRange);
+        Gizmos.DrawWireSphere(transform.position, stat.FinalPickupRadius);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

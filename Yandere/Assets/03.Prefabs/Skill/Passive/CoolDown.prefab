@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1843844481795508903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3505727862957809335}
+  - component: {fileID: 7081428044097982164}
+  m_Layer: 0
+  m_Name: CoolDown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3505727862957809335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843844481795508903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7081428044097982164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843844481795508903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f61dc41af2ddcc468c0e7eb854127b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 104
+  level: 0
+  skillDatas:
+  - {fileID: 11400000, guid: 215e9d954e7139549b4c461f8d825d74, type: 2}
+  - {fileID: 11400000, guid: 136d72c2599b6f44ebb4dd405b971ed2, type: 2}
+  - {fileID: 11400000, guid: 0d1b3f14b43a0e14fa299cb1ac1efce0, type: 2}
+  - {fileID: 11400000, guid: 04bf2f7ba8cd0b84b853bbc0331e359c, type: 2}
+  - {fileID: 11400000, guid: 3e1849cb6446fe2479d71fefa2874d88, type: 2}
+  currentLevelData: {fileID: 0}
+  nextLevelData: {fileID: 0}

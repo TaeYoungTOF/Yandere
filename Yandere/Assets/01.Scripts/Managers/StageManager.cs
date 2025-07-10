@@ -21,6 +21,10 @@ public class StageManager : MonoBehaviour
     private float _elapsedTime = 0f;
     public float ElapsedTime => _elapsedTime;
 
+    [Header("Global")]
+    [SerializeField] private float _globalPlayerDamageMultiplier = 1;
+    public float GlobalPlayerDamageMultiplier => _globalPlayerDamageMultiplier;
+
     private void Awake()
     {
         if (Instance == null)
@@ -52,7 +56,7 @@ public class StageManager : MonoBehaviour
 
         StartCoroutine(StartWaveRoutine(currentSpawnData));
 
-        Player.GainExp(100);
+        Player.GainExp(10);
     }
 
     private void Update()
@@ -64,7 +68,7 @@ public class StageManager : MonoBehaviour
             return;
         }
 
-        if (Player.stat.currentHealth <= 0)
+        if (Player.stat.CurrentHp <= 0)
         {
             Time.timeScale = 0f;
             GameOver();
