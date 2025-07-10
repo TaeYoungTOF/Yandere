@@ -61,18 +61,31 @@ public class BurstingGaze : ActiveSkill
         for (int i = 0; i < _data.projectileCount; i++)
         {
             origin = transform.position;
-            dir = player.MoveVec;
-            if (dir == Vector2.zero)
-                dir = Vector2.right;
+            dir = player.GetLastMoveDirection();
+
+            float randomAngle = GetRandomAngle(-_data.angle / 2f, _data.angle / 2f, 0);
+
+            Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * dir;
 
             GameObject projGO = Instantiate(_burstingGazeProjectilePrefab, origin, Quaternion.identity);
             var proj = projGO.GetComponent<BurstingGazeProjectile>();
 
             proj.transform.localScale = Vector3.one * _projectileSize;
 
-            proj.Initialize(dir, _projectileSpeed, _projectileDistance, CalculateDamage(_data.skillDamage));
+            proj.Initialize(finalDir, _projectileSpeed, _projectileDistance, CalculateDamage(_data.skillDamage));
 
             yield return new WaitForSeconds(_shootDelay);
         }
+    }
+
+    private float GetRandomAngle(float min, float max, float mode)
+    {
+        float u = Random.value;
+        float d = max - min;
+        float f = (mode - min) / d;
+
+        return u < f
+            ? min + Mathf.Sqrt(u * d * (mode - min))
+            : max - Mathf.Sqrt((1 - u) * d * (max - mode));
     }
 }
