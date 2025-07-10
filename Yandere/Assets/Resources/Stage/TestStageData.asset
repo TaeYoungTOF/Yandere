@@ -12,13 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fc12a5ddc600c4fb424dea7a689d55, type: 3}
   m_Name: TestStageData
   m_EditorClassIdentifier: 
-  stageIndex: 1
-  clearTime: 180
+  stageIndex: 0
+  clearTime: 0
   achievements: []
-  waveDatas:
-  - {fileID: 11400000, guid: ff92b365cf274e94ea0176b3a97e760a, type: 2}
-  - {fileID: 11400000, guid: bdf140c8f6305c24badb9af631fa651d, type: 2}
-  - {fileID: 11400000, guid: c8bf611879f7ba04dab17a55b11f0c9b, type: 2}
-  - {fileID: 11400000, guid: dc90d467c34a14042a1223098f47c44b, type: 2}
-  - {fileID: 11400000, guid: c0bd76b3aeee49e45ab405131701e2a3, type: 2}
-  - {fileID: 11400000, guid: ab2d5f64353de404f92b44df9672cae6, type: 2}
+  waveDatas: []

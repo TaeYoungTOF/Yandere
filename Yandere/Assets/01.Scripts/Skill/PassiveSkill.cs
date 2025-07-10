@@ -13,36 +13,6 @@ public class PassiveSkill : BaseSkill
             SkillManager.Instance.equipedPassiveskills.Add(this);
         
         base.LevelUp();
-        UpdatePassiveStat(skillId, _passiveData.value);
-    }
-
-    private void UpdatePassiveStat(SkillId id, float value)
-    {
-        switch ((int)id)
-        {
-            case 101:
-                player.stat.GetBonusProjectileCount((int)value);
-                break;
-            case 102:
-                player.stat.GetBonusAtkPer(value);
-                break;
-            case 103:
-                player.stat.GetBonusSkillDuration(value);
-                break;
-            case 104:
-                player.stat.GetBonusCoolDown(value);
-                break;
-            case 105:
-                player.stat.GetBonusSkillRange(value);
-                break;
-            case 106:
-                player.stat.GetBonusCrit(value);
-                break;
-            default:
-                Debug.Log("[SkillManager] Unknown Passive Type");
-                break;
-        }
-
-        player.stat.UpdateStats();
+        SkillManager.Instance.UpdatePassiveStat();
     }
 }

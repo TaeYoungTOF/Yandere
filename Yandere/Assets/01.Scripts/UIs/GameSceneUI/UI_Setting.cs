@@ -1,14 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
 public class UI_Setting : ToggleableUI
 {
     [SerializeField] private GameObject _settingPanel;
     [SerializeField] private Button _backButton;
-    [SerializeField] private AudioMixer _bgmMixer;
-    [SerializeField] private Slider _bgmSlider;
-    [SerializeField] private Slider _sfxSlider;
 
     void Start()
     {
@@ -28,14 +24,4 @@ public class UI_Setting : ToggleableUI
     {
         UIManager.Instance.SetUIState(UIState.Pause);
     }
-    
-    
-    public void AudioControl()
-    {
-        float sound = _bgmSlider.value;
-        
-        if (sound == -40f) _bgmMixer.SetFloat("BGM", -80f);
-        else _bgmMixer.SetFloat("BGM", sound);
-    }
-    
 }

@@ -883,7 +883,6 @@ MonoBehaviour:
   currentStageData: {fileID: 0}
   currentSpawnData: {fileID: 0}
   IsUIOpened: 0
-  timeScale: 1
   _maxTime: 0
 --- !u!4 &709524319
 Transform:
@@ -1004,7 +1003,7 @@ PrefabInstance:
     - target: {fileID: 8904473488548904607, guid: 7fb63188cba6ecf46adebce9e0dcdc01, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[11].m_Data
       value: 
-      objectReference: {fileID: 21300000, guid: ea41a74ed6e74aa4ab2564ee72d2bff8, type: 3}
+      objectReference: {fileID: 426212540}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1084,10 +1083,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_SkillSelect
       objectReference: {fileID: 0}
-    - target: {fileID: 981726706300929201, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1532490499528544466, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1131,14 +1126,6 @@ PrefabInstance:
     - target: {fileID: 4127703764163962185, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153461429862536878, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 3.9476929
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153461430607073385, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.00024414062
       objectReference: {fileID: 0}
     - target: {fileID: 4803165409214660876, guid: 7cdb388f80317694d9dffd3f2df70ced, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -2028,12 +2015,6 @@ MonoBehaviour:
   availableSkills: []
   equipedActiveSkills: []
   equipedPassiveskills: []
-  _projectileCount: 0
-  _skillDamage: 0
-  _skillDuration: 0
-  _coolDown: 0
-  _skillRange: 0
-  _crit: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
