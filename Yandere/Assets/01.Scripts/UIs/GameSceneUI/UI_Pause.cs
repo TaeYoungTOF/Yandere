@@ -48,5 +48,9 @@ public class UI_Pause : ToggleableUI
     {
         UIManager.Instance.SetUIState(UIState.None);
     }
-    
+
+    public void OnClickCancelButton()
+    {
+        _pausePanel.SetActive(true);
+    }
 }
