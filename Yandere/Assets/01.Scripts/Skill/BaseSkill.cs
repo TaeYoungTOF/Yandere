@@ -5,6 +5,7 @@ public enum SkillId
     // 액티브 스킬
     Fireball = 1,
     BurstingGaze,
+    ParchedLonging,
     
     // 패시브 스킬
     ProjectileCount = 101,

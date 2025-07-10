@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &68943322109248749
+--- !u!1 &319065191007278601
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5077329817788088347}
+  - component: {fileID: 2446524746484836536}
   m_Layer: 10
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
@@ -16,13 +16,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5077329817788088347
+--- !u!4 &2446524746484836536
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68943322109248749}
+  m_GameObject: {fileID: 319065191007278601}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.25, y: -0.15, z: 0}
@@ -67,6 +67,7 @@ Transform:
   - {fileID: 5077329817788088347}
   - {fileID: 9154128132452494248}
   - {fileID: 4258931613091233356}
+  - {fileID: 2446524746484836536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &231809317980687346
@@ -172,7 +173,7 @@ MonoBehaviour:
   enemyBoomTimer: 0
   smokeBulletPrefab: {fileID: 3946452558934508694, guid: 9c565b4670e42f24fb3fc1091dd808ff, type: 3}
   boomSpreadAngle: 15
-  bulletSpawnPoint: {fileID: 5077329817788088347}
+  bulletSpawnPoint: {fileID: 2446524746484836536}
 --- !u!1 &3790309057131494843
 GameObject:
   m_ObjectHideFlags: 0
