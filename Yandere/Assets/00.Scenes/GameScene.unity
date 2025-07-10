@@ -1046,7 +1046,7 @@ MonoBehaviour:
   IsUIOpened: 0
   timeScale: 1
   _maxTime: 0
-  _globalPlayerDamageMultiplier: 0
+  _globalPlayerDamageMultiplier: 1
 --- !u!4 &709524319
 Transform:
   m_ObjectHideFlags: 0
