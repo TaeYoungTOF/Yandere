@@ -1,6 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 
 public class UI_Setting : ToggleableUI
 {
@@ -17,6 +19,23 @@ public class UI_Setting : ToggleableUI
         
         _backButton.onClick.RemoveAllListeners();
         _backButton.onClick.AddListener(OnClickReturnButton);
+        
+        _bgmSlider.onValueChanged.AddListener(delegate { AudioControl(); });
+    }
+    
+    public void OnSliderValueChanged()
+    {
+        AudioControl();
+    }
+
+    public void onPointerUp(PointerEventData eventData)
+    {
+        OnSliderValueChanged();
+    }
+
+    public void onPointerDown(PointerEventData eventData)
+    {
+        _bgmSlider = eventData.selectedObject.GetComponent<Slider>();
     }
 
     public override UIState GetUIState()
@@ -28,7 +47,6 @@ public class UI_Setting : ToggleableUI
     {
         UIManager.Instance.SetUIState(UIState.Pause);
     }
-    
     
     public void AudioControl()
     {
