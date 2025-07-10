@@ -167,6 +167,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     public void TakeDamage(float damage)
     {
         if (isDead) return;                                                 // 죽은 상태이면 이코드를 빠져나가게 함
+
+        damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
         
         _monsterCurrentHealth -= damage;
         Debug.Log($"[EnemyController] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");

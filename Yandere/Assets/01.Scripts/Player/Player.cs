@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamagable
@@ -11,9 +13,12 @@ public class Player : MonoBehaviour, IDamagable
     [Header("Player Controller")]
     public FloatingJoystick floatingJoystick;
     private Vector3 moveVec;
-    public Vector3 MoveVec { get; private set; }
-    private Vector3 lastMoveDir = Vector2.right;
+    private Vector3 lastMoveVec = Vector2.right;
     public PlayerAnim PlayerAnim { get; private set; }
+
+    [Header("Level up")]
+    private bool _isLeveling = false;
+    private Queue<int> _levelUpQueue = new();
 
 
     [Header("DOTween Setting")]
@@ -42,7 +47,7 @@ public class Player : MonoBehaviour, IDamagable
         // 방향 계산 및 애니메이션 적용
         if (moveVec.sqrMagnitude > 0)
         {
-            lastMoveDir = moveVec;
+            lastMoveVec = moveVec;
 
             var direction = GetDirectionFromVector(moveVec);
             PlayerAnim.SetDirection(direction);
@@ -74,7 +79,7 @@ public class Player : MonoBehaviour, IDamagable
 
     public Vector3 GetLastMoveDirection()
     {
-        return lastMoveDir != Vector3.zero ? lastMoveDir : Vector3.right;
+        return lastMoveVec != Vector3.zero ? lastMoveVec : Vector3.forward;
     }
 
     // 경험치 획득 처리
@@ -86,20 +91,33 @@ public class Player : MonoBehaviour, IDamagable
         while (stat.currentExp >= stat.requiredExp)
         {
             stat.currentExp -= stat.requiredExp;
-            LevelUp();
+            _levelUpQueue.Enqueue(1);
         }
+
+        if (!_isLeveling)
+            StartCoroutine(LevelUp());
     }
 
-    public void LevelUp()
+    private IEnumerator LevelUp()
     {
-        Debug.Log($"[Player] 레벨 업! 현재 레벨: {stat.level}");
+        _isLeveling = true;
 
-        stat.level++;
-        stat.requiredExp += 2f;
+        while (_levelUpQueue.Count > 0)
+        {
+            _levelUpQueue.Dequeue();
 
-        _stageManager.LevelUpEvent();
+            stat.level++;
+            stat.requiredExp += 2f;
 
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
+            Debug.Log($"[Player] 레벨 업! 현재 레벨: {stat.level}");
+
+            _stageManager.LevelUpEvent();
+            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        _isLeveling = false;
     }
 
     public void Heal(float amount)

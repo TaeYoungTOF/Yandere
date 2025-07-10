@@ -9,7 +9,7 @@ public class BurstingGazeDataWrapper : AcviteDataWapper
 
 public class BurstingGaze : ActiveSkill
 {
-    private LevelupData_BurstingGaze _currentData => ActiveData as LevelupData_BurstingGaze;
+    private LevelupData_BurstingGaze CurrentData => ActiveData as LevelupData_BurstingGaze;
 
     [SerializeField] private BurstingGazeDataWrapper _data;
     [SerializeField] private GameObject _burstingGazeProjectilePrefab;
@@ -41,11 +41,11 @@ public class BurstingGaze : ActiveSkill
 
     public override void UpdateActiveData()
     {
-        _data.projectileCount = _currentData.projectileCount + player.stat.ProjectileCount;
-        _data.skillDamage = _currentData.skillDamage;
-        _data.coolTime = _currentData.coolTime * (1 - player.stat.CoolDown / 100f);
+        _data.projectileCount = CurrentData.projectileCount + player.stat.ProjectileCount;
+        _data.skillDamage = CurrentData.skillDamage;
+        _data.coolTime = CurrentData.coolTime * (1 - player.stat.CoolDown / 100f);
 
-        _data.angle = _currentData.angle;
+        _data.angle = CurrentData.angle;
     }
 
     protected override void Activate()
@@ -61,18 +61,31 @@ public class BurstingGaze : ActiveSkill
         for (int i = 0; i < _data.projectileCount; i++)
         {
             origin = transform.position;
-            dir = player.MoveVec;
-            if (dir == Vector2.zero)
-                dir = Vector2.right;
+            dir = player.GetLastMoveDirection();
+
+            float randomAngle = GetRandomAngle(-_data.angle / 2f, _data.angle / 2f, 0);
+
+            Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * dir;
 
             GameObject projGO = Instantiate(_burstingGazeProjectilePrefab, origin, Quaternion.identity);
             var proj = projGO.GetComponent<BurstingGazeProjectile>();
 
             proj.transform.localScale = Vector3.one * _projectileSize;
 
-            proj.Initialize(dir, _projectileSpeed, _projectileDistance, CalculateDamage(_data.skillDamage));
+            proj.Initialize(finalDir, _projectileSpeed, _projectileDistance, CalculateDamage(_data.skillDamage));
 
             yield return new WaitForSeconds(_shootDelay);
         }
+    }
+
+    private float GetRandomAngle(float min, float max, float mode)
+    {
+        float u = Random.value;
+        float d = max - min;
+        float f = (mode - min) / d;
+
+        return u < f
+            ? min + Mathf.Sqrt(u * d * (mode - min))
+            : max - Mathf.Sqrt((1 - u) * d * (max - mode));
     }
 }
