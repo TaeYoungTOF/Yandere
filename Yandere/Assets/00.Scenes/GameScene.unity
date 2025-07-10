@@ -773,9 +773,129 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 787201122768720027, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787201122768720027, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787201124351996702, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787201124351996702, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787201124351996702, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3562698635736945151, guid: a1bca91746b5334439a9be3040022d97, type: 3}
       propertyPath: m_Name
       value: UI_Setting
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402616617219, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402616617219, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402616617219, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402616617219, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402619903922, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402619903922, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402619903922, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402636371595, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402636371595, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402636371595, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402636371595, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402707856286, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402707856286, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402707856286, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402707856286, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402797726190, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402797726190, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402797726190, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483402797726190, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483404073319479, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483404073319479, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483404476284187, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483404476284187, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483404476284187, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035483404476284187, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1433,6 +1553,7 @@ MonoBehaviour:
   sfxs: []
   audioBgm: {fileID: 1798214304}
   audioSfx: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 39acb69cfb74d684b9200d0003d0d273, type: 2}
 --- !u!4 &1212898037
 Transform:
   m_ObjectHideFlags: 0
@@ -1737,7 +1858,7 @@ AudioSource:
   m_GameObject: {fileID: 1798214303}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5533102271099065707, guid: 39acb69cfb74d684b9200d0003d0d273, type: 2}
   m_audioClip: {fileID: 8300000, guid: e426a8d4c81d1ff4a9d907c1b880e96b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
