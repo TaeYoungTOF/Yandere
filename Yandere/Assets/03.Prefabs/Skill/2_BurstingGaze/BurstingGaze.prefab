@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1129275228729904735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6271678759412042880}
+  - component: {fileID: 414133680284577710}
+  m_Layer: 0
+  m_Name: BurstingGaze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6271678759412042880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129275228729904735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &414133680284577710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129275228729904735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b29ba99f8af78d429834cadb67e8c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 2
+  level: 0
+  skillDatas:
+  - {fileID: 11400000, guid: a7b45b331f65f984abc4075a17f39a42, type: 2}
+  - {fileID: 11400000, guid: 60152a52a002cf24984f03b671c1bff1, type: 2}
+  - {fileID: 11400000, guid: f39e079bc7996574f8a68c0bee83e586, type: 2}
+  - {fileID: 11400000, guid: 3765bf286ec5ea140869bbb0ed519ab9, type: 2}
+  - {fileID: 11400000, guid: 9e341b57b1c7b5b4f8dc6ed8b73b6c09, type: 2}
+  currentLevelData: {fileID: 0}
+  nextLevelData: {fileID: 0}
+  _data:
+    projectileCount: 0
+    skillDamage: 0
+    coolTime: 0
+    angle: 0
+  _burstingGazeProjectilePrefab: {fileID: 738299376915222676, guid: 5668a1ba8f32c884e884f3f199a3e950, type: 3}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _projectileSize: 0.5
+  _projectileSpeed: 25
+  _projectileDistance: 25
+  _shootDelay: 0.1

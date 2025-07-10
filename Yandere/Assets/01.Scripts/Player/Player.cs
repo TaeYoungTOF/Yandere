@@ -7,13 +7,11 @@ public class Player : MonoBehaviour, IDamagable
     public PlayerStat stat = new();
     private int _itemLayer;
 
-    // 기본 장착 스킬
-    [SerializeField] private BaseSkill _baseSkill;
-
 
     [Header("Player Controller")]
     public FloatingJoystick floatingJoystick;
     private Vector3 moveVec;
+    public Vector3 MoveVec { get; private set; }
     private Vector3 lastMoveDir = Vector2.right;
     public PlayerAnim PlayerAnim { get; private set; }
 
@@ -26,7 +24,7 @@ public class Player : MonoBehaviour, IDamagable
     public void Init(StageManager stageManager)
     {
         _stageManager = stageManager;
-        stat.ResetStat();
+        stat.ResetStats();
 
         PlayerAnim = GetComponentInChildren<PlayerAnim>();
         _itemLayer = LayerMask.NameToLayer("Item");
@@ -59,7 +57,7 @@ public class Player : MonoBehaviour, IDamagable
     private void FixedUpdate()
     {
         // 이동 처리
-        transform.position += stat.moveSpeed * Time.fixedDeltaTime * moveVec;
+        transform.position += stat.FinalMoveSpeed * Time.fixedDeltaTime * moveVec;
     }
 
     private targetDirectType GetDirectionFromVector(Vector3 dir)
@@ -72,6 +70,11 @@ public class Player : MonoBehaviour, IDamagable
         {
             return dir.y > 0 ? targetDirectType.backward : targetDirectType.forward;
         }
+    }
+
+    public Vector3 GetLastMoveDirection()
+    {
+        return lastMoveDir != Vector3.zero ? lastMoveDir : Vector3.right;
     }
 
     // 경험치 획득 처리
@@ -87,17 +90,12 @@ public class Player : MonoBehaviour, IDamagable
         }
     }
 
-    public Vector3 GetLastMoveDirection()
-    {
-        return lastMoveDir != Vector3.zero ? lastMoveDir : Vector3.right;
-    }
-
     public void LevelUp()
     {
         Debug.Log($"[Player] 레벨 업! 현재 레벨: {stat.level}");
 
         stat.level++;
-        stat.requiredExp += 2f;  // 경험치통 공식 추후 수정
+        stat.requiredExp += 2f;
 
         _stageManager.LevelUpEvent();
 
@@ -106,24 +104,22 @@ public class Player : MonoBehaviour, IDamagable
 
     public void Heal(float amount)
     {
-        stat.currentHealth = Mathf.Min(stat.currentHealth + amount, stat.maxHealth);
+        stat.ChangeCurrentHp(amount);
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
     }
 
     public void TakeDamage(float amount)
     {
-        float actualDamage = amount * (1 - (stat.defense / (stat.defense + 500)));
+        float actualDamage = amount * (1 - (stat.FinalDef / (stat.FinalDef + 500)));
+        stat.ChangeCurrentHp(actualDamage);
 
-        stat.currentHealth = Mathf.Max(stat.currentHealth - actualDamage, 0f);
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
-
-        Debug.Log($"[Player] 체력: {stat.currentHealth}/{stat.maxHealth}");
     }
 
     private void PullItemsInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stat.pickupRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stat.FinalPickupRadius);
         foreach (var hit in hits)
         {
             if (hit.gameObject.layer != _itemLayer) continue;
@@ -149,7 +145,7 @@ public class Player : MonoBehaviour, IDamagable
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, stat.pickupRange);
+        Gizmos.DrawWireSphere(transform.position, stat.FinalPickupRadius);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

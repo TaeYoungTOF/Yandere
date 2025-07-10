@@ -6,9 +6,9 @@ public class TY_Debug : MonoBehaviour
     [Button]
     public void DebugLevelUp()
     {
-        Debug.Log("[Debug] Gain 50 Exp");
+        Debug.Log("[Debug] Level Up");
 
-        StageManager.Instance.Player.GainExp(50);
+        StageManager.Instance.Player.LevelUp();
     }
 
     [Button]
