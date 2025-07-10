@@ -9,7 +9,7 @@ public class BurstingGazeDataWrapper : AcviteDataWapper
 
 public class BurstingGaze : ActiveSkill
 {
-    private LevelupData_BurstingGaze _currentData => ActiveData as LevelupData_BurstingGaze;
+    private LevelupData_BurstingGaze CurrentData => ActiveData as LevelupData_BurstingGaze;
 
     [SerializeField] private BurstingGazeDataWrapper _data;
     [SerializeField] private GameObject _burstingGazeProjectilePrefab;
@@ -41,11 +41,11 @@ public class BurstingGaze : ActiveSkill
 
     public override void UpdateActiveData()
     {
-        _data.projectileCount = _currentData.projectileCount + player.stat.ProjectileCount;
-        _data.skillDamage = _currentData.skillDamage;
-        _data.coolTime = _currentData.coolTime * (1 - player.stat.CoolDown / 100f);
+        _data.projectileCount = CurrentData.projectileCount + player.stat.ProjectileCount;
+        _data.skillDamage = CurrentData.skillDamage;
+        _data.coolTime = CurrentData.coolTime * (1 - player.stat.CoolDown / 100f);
 
-        _data.angle = _currentData.angle;
+        _data.angle = CurrentData.angle;
     }
 
     protected override void Activate()
