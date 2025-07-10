@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: TestWaveData0
   m_EditorClassIdentifier: 
   eventType: 0
-  endTime: 30
-  spawnInterval: 3
+  endTime: 20
+  spawnInterval: 5
   spawnAmount: 3
-  enemyList: []
+  enemyList:
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 100dc319802287c40a6d664536d4045f, type: 3}
+    spawnWeight: 3
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
