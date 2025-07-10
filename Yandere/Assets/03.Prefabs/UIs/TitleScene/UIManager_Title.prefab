@@ -2620,7 +2620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9999
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f211043b972fe4f98b5c94e67819fdf3, type: 2}
   m_sharedMaterial: {fileID: -3783615141150169689, guid: f211043b972fe4f98b5c94e67819fdf3, type: 2}
@@ -9010,7 +9010,7 @@ GameObject:
   - component: {fileID: 5355295144052296503}
   - component: {fileID: 7112372412373101660}
   m_Layer: 0
-  m_Name: ResourceBar_01-Group
+  m_Name: TOP_ResourceBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9967,7 +9967,7 @@ GameObject:
   - component: {fileID: 25692499488613818}
   - component: {fileID: 6543061436312923904}
   m_Layer: 0
-  m_Name: Button_Convex_Rectangle_01_s_Gray
+  m_Name: Button_Convex_Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12639,7 +12639,7 @@ GameObject:
   - component: {fileID: 5536957085273574310}
   - component: {fileID: 7785761878345364177}
   m_Layer: 0
-  m_Name: TabMenu_BottomFlush_01
+  m_Name: TabMenu_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14515,7 +14515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999999
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f211043b972fe4f98b5c94e67819fdf3, type: 2}
   m_sharedMaterial: {fileID: -3783615141150169689, guid: f211043b972fe4f98b5c94e67819fdf3, type: 2}
