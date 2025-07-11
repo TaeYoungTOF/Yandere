@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1ece5762ae9a7f48a389f64f900ef03, type: 3}
-  m_Name: Enemy_Normal_Melee_Student Council
+  m_Name: Enemy_Normal_Melee_Swimming
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 1439856908508736086, guid: 6dd2c38995b65e14aad32b1f048fcc62, type: 3}
+  monsterPrefab: {fileID: 1439856908508736086, guid: 426c24634e7bb0744a023822e5f27f2a, type: 3}
   enemyType: 0
-  enemyAttackType: 0
-  monsterName: "\uC2DC\uBBFC"
-  monsterMaxHp: 300
+  enemyAttackType: 1
+  monsterName: "\uD559\uC0DD(\uB0A8)"
+  monsterMaxHp: 120
   monsterAttack: 1
   monsterDef: 0
   attackCooldown: 1
-  monsterMoveSpeed: 2
+  monsterMoveSpeed: 1
