@@ -90,7 +90,7 @@ public class StageManager : MonoBehaviour
 
         if (currentSpawnData == null)
         {
-            Debug.Log("[StageManager] currnet Spawn Data is null");
+            Debug.Log("[StageManager] current Spawn Data is null");
             return;
         }
 
