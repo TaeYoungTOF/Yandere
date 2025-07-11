@@ -10,7 +10,7 @@ public class FireballDataWrapper : AcviteDataWapper
 
 public class Fireball : ActiveSkill
 {
-    private LevelupData_Fireball _currentData => ActiveData as LevelupData_Fireball;
+    private LevelupData_Fireball CurrentData => ActiveData as LevelupData_Fireball;
 
     [SerializeField] private FireballDataWrapper _data;
     [SerializeField] private GameObject _fireballProjectilePrefab;
@@ -41,12 +41,12 @@ public class Fireball : ActiveSkill
 
     public override void UpdateActiveData()
     {
-        _data.projectileCount = _currentData.projectileCount + player.stat.ProjectileCount;
-        _data.skillDamage = _currentData.skillDamage;
-        _data.coolTime = _currentData.coolTime * (1 - player.stat.CoolDown / 100f);
+        _data.projectileCount = CurrentData.projectileCount + player.stat.ProjectileCount;
+        _data.skillDamage = CurrentData.skillDamage;
+        _data.coolTime = CurrentData.coolTime * (1 - player.stat.CoolDown / 100f);
 
-        _data.projectileSize = _currentData.projectileSize;
-        _data.explosionRadius = _currentData.explosionRadius;
+        _data.projectileSize = CurrentData.projectileSize;
+        _data.explosionRadius = CurrentData.explosionRadius;
     }
 
     protected override void Activate()
