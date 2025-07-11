@@ -16,6 +16,11 @@ public class SoundManager : MonoBehaviour
     
     public enum ESfx
     {
+        SFX_SELECT,
+        SFX_UIOPEN,
+        SFX_UICLOSE,
+        SFX_SWITCHON,
+        SFX_SWITCHOFF,
         SFX_LEVELUP,
         SFX_CLCIK,
     }
