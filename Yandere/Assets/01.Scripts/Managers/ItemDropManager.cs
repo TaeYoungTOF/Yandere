@@ -10,9 +10,6 @@ public class DropContext
 
 public class ItemDropManager : MonoBehaviour
 {
-    // 임시 디버깅 코드
-    [SerializeField] private GameObject _defaultDropItemPrefab;
-
     public void HandleDrop(DropContext context)
     {
         if (context == null || context.dropTable == null)
@@ -26,12 +23,12 @@ public class ItemDropManager : MonoBehaviour
             float roll = Random.Range(0f, 100f);
             if (roll <= entry.probability)
             {
-                Instantiate(entry.itemPrefab, context.position, Quaternion.identity);
+                var ItemGO = Instantiate(entry.itemPrefab, context.position, Quaternion.identity);
+                if (ItemGO.TryGetComponent<Item>(out var item))
+                        item.SetPickupDelay(entry.pickupDelay);
+                
                 Debug.Log($"[ItemDropManager] {entry.itemPrefab.name} 드롭됨 (확률 {entry.probability}%)");
             }
         }
-
-        // 임시 디버깅 코드
-        Instantiate(_defaultDropItemPrefab, context.position, Quaternion.identity);
     }
 }

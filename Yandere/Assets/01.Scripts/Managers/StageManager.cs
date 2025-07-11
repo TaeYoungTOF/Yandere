@@ -88,7 +88,7 @@ public class StageManager : MonoBehaviour
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
 
-        if (currentSpawnData == null)
+        if (!currentSpawnData)
         {
             Debug.Log("[StageManager] current Spawn Data is null");
             return;
@@ -119,7 +119,7 @@ public class StageManager : MonoBehaviour
         UIManager.Instance.SetUIState(UIState.StageClear);
     }
 
-    public void GameOver()
+    private void GameOver()
     {
         UIManager.Instance.SetUIState(UIState.GameOver);
     }

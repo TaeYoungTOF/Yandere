@@ -16,8 +16,8 @@ public class ParchedLonging : ActiveSkill
     [SerializeField] private GameObject _parchedLongingProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
-    [Header("Unupgradable Data")]
-    [SerializeField] private float _damageDoT = 10f;
+    //[Header("Unupgradable Data")]
+    //[SerializeField] private float _damageDoT = 10f;
 
     public override void UpdateCooldown()
     {

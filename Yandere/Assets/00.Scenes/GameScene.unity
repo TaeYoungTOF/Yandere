@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b067bdfa09d7b44f973b69de6e4638a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnRadius: 3
+  _spawnRadius: 8
   _spawnWeights: []
   _spawnInterval: 0
   _spawnAmount: 0
@@ -433,7 +433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c870e0089e6602c40ac4f21adc52a22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultDropItemPrefab: {fileID: 322854507372925075, guid: 715af36ac7120b045bf882a9ac06fdf2, type: 3}
 --- !u!4 &391570518
 Transform:
   m_ObjectHideFlags: 0
