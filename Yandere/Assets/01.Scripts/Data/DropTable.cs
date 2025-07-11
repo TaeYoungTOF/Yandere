@@ -7,6 +7,8 @@ public class DropEntry
     public GameObject itemPrefab;
 
     [Range(0, 100)] public int probability;
+
+    public float pickupDelay = 5f;
 }
 
 [CreateAssetMenu(fileName = "DropTable", menuName = "Stage/DropTable", order = 2)]
