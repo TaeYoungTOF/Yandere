@@ -885,6 +885,7 @@ MonoBehaviour:
   IsUIOpened: 0
   timeScale: 1
   _maxTime: 0
+  _globalPlayerDamageMultiplier: 1
 --- !u!4 &709524319
 Transform:
   m_ObjectHideFlags: 0
@@ -1232,6 +1233,7 @@ MonoBehaviour:
   sfxs: []
   audioBgm: {fileID: 1798214304}
   audioSfx: {fileID: 0}
+  audioMixer: {fileID: 0}
 --- !u!4 &1212898037
 Transform:
   m_ObjectHideFlags: 0
@@ -2028,12 +2030,6 @@ MonoBehaviour:
   availableSkills: []
   equipedActiveSkills: []
   equipedPassiveskills: []
-  _projectileCount: 0
-  _skillDamage: 0
-  _skillDuration: 0
-  _coolDown: 0
-  _skillRange: 0
-  _crit: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

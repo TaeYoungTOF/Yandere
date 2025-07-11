@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class Item_SmallExp : Item
+public class Item_Exp : Item
 {
-    [SerializeField] private float _expAmount = 10;
+    [SerializeField] private float _expAmount = 1;
 
     public override void Use(Player player)
     {
