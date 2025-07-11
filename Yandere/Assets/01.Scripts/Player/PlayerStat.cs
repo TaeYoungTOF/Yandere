@@ -108,7 +108,7 @@ public class PlayerStat
     #endregion=================================================
 
     #region Utility Stats with base============================
-    private const float baseMoveSpeed = 5;
+    private const float baseMoveSpeed = 4;
     private float _bonusMoveSpeed;
     [SerializeField] private float _finalMoveSpeed;
     public float FinalMoveSpeed => _finalMoveSpeed;

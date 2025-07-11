@@ -517,6 +517,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3561394671928849198, guid: a1bca91746b5334439a9be3040022d97, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3562698635736945151, guid: a1bca91746b5334439a9be3040022d97, type: 3}
       propertyPath: m_Name
       value: UI_Setting
@@ -1152,7 +1156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgms:
-  - {fileID: 8300000, guid: e426a8d4c81d1ff4a9d907c1b880e96b, type: 3}
+  - {fileID: 8300000, guid: 4ac6fa83440429948b9c150548755530, type: 3}
   sfxs: []
   audioBgm: {fileID: 1798214304}
   audioSfx: {fileID: 0}
@@ -1462,9 +1466,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5533102271099065707, guid: 39acb69cfb74d684b9200d0003d0d273, type: 2}
-  m_audioClip: {fileID: 8300000, guid: e426a8d4c81d1ff4a9d907c1b880e96b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4ac6fa83440429948b9c150548755530, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0

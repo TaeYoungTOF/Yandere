@@ -62,6 +62,8 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnRoutine(float spawnInterval, int spawnAmount)
     {
+        int count = 0;
+        
         while (true)
         {
             int totalWeight = 0;
@@ -71,7 +73,7 @@ public class SpawnManager : MonoBehaviour
             foreach (var entry in _spawnWeights)
             {
                 float ratio = (float)entry.spawnWeight / totalWeight;
-                int count = Mathf.RoundToInt(spawnAmount * ratio);
+                count = Mathf.Clamp(count,1, Mathf.RoundToInt(spawnAmount * ratio));
 
                 for (int i = 0; i < count; i++)
                 {
