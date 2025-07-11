@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Item_SmallHeal : Item
+public class Item_Heal : Item
 {
     [SerializeField] private float _healAmount;
 
