@@ -128,7 +128,7 @@ public class Player : MonoBehaviour, IDamagable
     public void TakeDamage(float amount)
     {
         float actualDamage = amount * (1 - (stat.FinalDef / (stat.FinalDef + 500)));
-        stat.ChangeCurrentHp(actualDamage);
+        stat.ChangeCurrentHp(-actualDamage);
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
     }

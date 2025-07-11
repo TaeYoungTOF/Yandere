@@ -46,7 +46,7 @@ public class PlayerStat
         _bonusSkillRange = 0;
 
         UpdateStats();
-        CurrentHp = FinalHp;
+        _currentHp = FinalHp;
     }
 
     #region Attack Stats================================
@@ -75,15 +75,16 @@ public class PlayerStat
     private float _bonusHp;
     [SerializeField] private float _finalHp;
     public float FinalHp => _finalHp;
-    public float CurrentHp { get; private set; }
+    [SerializeField] private float _currentHp;
+    public float CurrentHp => _currentHp;
     public void GetBonusHp(float amount)
     {
         _bonusHp += amount;
-        CurrentHp += amount;
+        _currentHp += amount;
     }
     public void ChangeCurrentHp(float amount)
     {
-        CurrentHp = Mathf.Clamp(CurrentHp + amount, 0, _finalHp);
+        _currentHp = Mathf.Clamp(_currentHp + amount, 0, _finalHp);
     }
     //=====================================================
     private const float baseDef = 5;
