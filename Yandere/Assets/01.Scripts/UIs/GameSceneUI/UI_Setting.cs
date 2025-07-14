@@ -20,6 +20,7 @@ public class UI_Setting : ToggleableUI
         _backButton.onClick.RemoveAllListeners();
         _backButton.onClick.AddListener(OnClickReturnButton);
         
+        _bgmSlider = _bgmSlider.GetComponent<Slider>();
         _bgmSlider.onValueChanged.AddListener(delegate { AudioControl(); });
     }
     

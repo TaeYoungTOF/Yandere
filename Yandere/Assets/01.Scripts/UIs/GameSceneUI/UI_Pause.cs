@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI_Pause : ToggleableUI
 {
@@ -41,7 +42,9 @@ public class UI_Pause : ToggleableUI
 
     public void OnClickHomeButton()
     {
-        _pausePanel.SetActive(false);
+        SceneManager.LoadScene("TitleScene");
+        UIManager.Instance.SetUIState(UIState.Lobby);
+        
     }
 
     public void OnClickBackButton()
