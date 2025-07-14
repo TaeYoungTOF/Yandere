@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4007976523879676762}
   - component: {fileID: 5653883596813940850}
   - component: {fileID: 5210484556373385320}
+  - component: {fileID: 2317254327798125408}
   m_Layer: 9
   m_Name: Item_Large_Heal
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +159,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -174,3 +175,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.31, y: 2.37}
   m_EdgeRadius: 0
+--- !u!114 &2317254327798125408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48673281385559624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8c8bf21b9a2cb4399f0dee3a42ae94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
