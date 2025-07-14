@@ -1074,6 +1074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba9182676aee9e4d90e858d558dcf55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalEnemyPrefab: {fileID: 1439856908508736086, guid: 426c24634e7bb0744a023822e5f27f2a, type: 3}
+  eliteEnemyPrefab: {fileID: 1439856908508736086, guid: d91ea8ff02e7b2744bf35232a1b35654, type: 3}
+  bossEnemyPrefab: {fileID: 1439856908508736086, guid: 58d0570b78bc20f459caa017bcd9b537, type: 3}
+  itemObjectPrefab: {fileID: 8906970490064105965, guid: e7fc76a3b76053947a1a2daa49bfa77f, type: 3}
 --- !u!4 &1248482716
 Transform:
   m_ObjectHideFlags: 0
