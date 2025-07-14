@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9070254115709829569}
   - component: {fileID: 7368230366864363018}
   - component: {fileID: 1553723725448368838}
+  - component: {fileID: 6286191672103667132}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -29,11 +30,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8199356929436380978}
-  - {fileID: 6343806385536508258}
   - {fileID: 8436181465388982441}
   - {fileID: 2386147764479643563}
   m_Father: {fileID: 0}
@@ -51,29 +51,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat:
-    moveSpeed: 5
-    maxHealth: 10000
-    currentHealth: 100
-    attackPower: 10
-    defense: 5
-    criticalChance: 0.1
-    criticalDamage: 1.5
-    healthRegen: 0
-    pickupRange: 2
-    cooldownReduction: 0
-    skillRange: 1
-    lifeSteal: 0
-    expGain: 1
-    obsessionGauge: 0
+    _finalAtk: 0
+    _finalCrit: 0
+    _finalCritDmg: 0
+    _finalHp: 0
+    _finalDef: 0
+    _finalHpRegen: 0
     level: 1
     currentExp: 0
     requiredExp: 100
-    minHitInterval: 0.5
-    skillDuration: 5
+    expGain: 1
+    _finalMoveSpeed: 0
+    _finalPickupRadius: 0
+    _finalSkillRange: 0
+    _finalSkillDuration: 0
+    _coolDown: 0
+    _projectileCount: 0
   floatingJoystick: {fileID: 0}
   _pullDuration: 3
-  pullSpeed: 0.5
-  _baseSkill: {fileID: 11400000, guid: 1d6205d73c1e00b468f4c13802126f67, type: 2}
+  _pullSpeed: 1
 --- !u!50 &7368230366864363018
 Rigidbody2D:
   serializedVersion: 4
@@ -133,40 +129,22 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 5, y: 5}
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 0.55, y: 0.9}
   m_Direction: 0
---- !u!1 &3541562126209312702
-GameObject:
+--- !u!114 &6286191672103667132
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6343806385536508258}
-  m_Layer: 0
-  m_Name: SkillHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6343806385536508258
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3541562126209312702}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3630251391822594353}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 52494702032478864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd176396a523e5e4cae9f23fcb1892a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnetSpeed: 15
 --- !u!1 &3876529196246893534
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +364,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 13}
-  m_SizeDelta: {x: 112.02, y: 102.2}
+  m_SizeDelta: {x: 100, y: 100.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6831457014345873225
 Canvas:
@@ -962,8 +940,8 @@ Transform:
   m_GameObject: {fileID: 8492638708743107578}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.32, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 295283552040276351}
