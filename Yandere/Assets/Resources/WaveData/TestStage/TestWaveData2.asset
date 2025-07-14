@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TestWaveData2
   m_EditorClassIdentifier: 
   eventType: 2
-  endTime: 90
-  spawnInterval: 1
-  spawnAmount: 1
+  endTime: 120
+  spawnInterval: 4
+  spawnAmount: 4
   enemyList:
   - enemyPrefab: {fileID: 1439856908508736086, guid: 100dc319802287c40a6d664536d4045f, type: 3}
     spawnWeight: 1

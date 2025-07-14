@@ -12,23 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefb1a1cba1d98c4998bb893a742c625, type: 3}
   m_Name: TestWaveData4
   m_EditorClassIdentifier: 
-  eventType: 3
-  endTime: 150
-  spawnInterval: 0.5
+  eventType: 4
+  endTime: 180
+  spawnInterval: 180
   spawnAmount: 1
   enemyList:
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 100dc319802287c40a6d664536d4045f, type: 3}
-    spawnWeight: 7
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 426c24634e7bb0744a023822e5f27f2a, type: 3}
-    spawnWeight: 4
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 4
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: d91ea8ff02e7b2744bf35232a1b35654, type: 3}
-    spawnWeight: 3
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 96e88b59bd0db5f4aa9d63e4e95f2594, type: 3}
-    spawnWeight: 2
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 58d0570b78bc20f459caa017bcd9b537, type: 3}
+    spawnWeight: 0
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
