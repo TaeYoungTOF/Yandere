@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public enum UIState
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Panels")]
     [SerializeField] private GameObject _joyStick;
-    private Dictionary<System.Type, Component> _typedPanels = new();
+    private SerializedDictionary<System.Type, Component> _typedPanels = new();
 
     [SerializeField] private UIState _currentState;
 
@@ -68,7 +68,6 @@ public class UIManager : MonoBehaviour
         if (!_typedPanels.ContainsKey(type))
         {
             _typedPanels.Add(type, panel);
-            //Debug.Log($"[UIManager] Register success {typedPanels[type].name}");
         }
         else
         {
