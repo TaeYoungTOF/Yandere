@@ -6,7 +6,7 @@ public abstract class Item : MonoBehaviour
     [Header("Item Data")]
     //public int itemId;
     public string itemName;
-    public string description;
+    [Multiline (3)] public string description;
 
     private float _pickupDelay;
     private float _spawnTime;
