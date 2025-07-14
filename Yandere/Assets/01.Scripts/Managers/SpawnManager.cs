@@ -101,18 +101,19 @@ public class SpawnManager : MonoBehaviour
     {
         Transform playerTransform = StageManager.Instance.Player.transform;
 
-        if (playerTransform == null)
+        if (!playerTransform)
         {
             Debug.LogWarning("[SpawnManager] Player Transform is null.");
             return Vector3.zero;
         }
 
         Vector2 center = playerTransform.position;
-        float x = Random.Range(-_spawnRadius, _spawnRadius) + center.x;
-        float yOffset = Mathf.Sqrt(_spawnRadius * _spawnRadius - Mathf.Pow(x - center.x, 2));
-        yOffset *= Random.Range(0, 2) == 0 ? -1 : 1;
-
-        return new Vector3(x, center.y + yOffset, 0);
+        Vector2 direction = Random.insideUnitCircle.normalized;
+        float distance = _spawnRadius + Random.Range(0f, 5f);
+        
+        Vector2 spawnPos = center + direction * distance;
+        
+        return new Vector3(spawnPos.x, spawnPos.y, 0);
     }
 
     public void StopSpawn()

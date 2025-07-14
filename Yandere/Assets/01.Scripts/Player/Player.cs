@@ -109,8 +109,6 @@ public class Player : MonoBehaviour, IDamagable
             stat.level++;
             stat.requiredExp += 2f;
 
-            Debug.Log($"[Player] 레벨 업! 현재 레벨: {stat.level}");
-
             _stageManager.LevelUpEvent();
             UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
 
@@ -130,7 +128,7 @@ public class Player : MonoBehaviour, IDamagable
     public void TakeDamage(float amount)
     {
         float actualDamage = amount * (1 - (stat.FinalDef / (stat.FinalDef + 500)));
-        stat.ChangeCurrentHp(actualDamage);
+        stat.ChangeCurrentHp(-actualDamage);
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
     }
@@ -143,6 +141,11 @@ public class Player : MonoBehaviour, IDamagable
             if (hit.gameObject.layer != _itemLayer) continue;
 
             Transform itemTransform = hit.transform;
+
+            if (hit.TryGetComponent<Item>(out var item))
+            {
+                if (!item.CanPickup()) return;
+            }
 
             // 이미 DOTween으로 이동 중이면 중복 이동 방지
             if (DOTween.IsTweening(itemTransform)) continue;
@@ -172,6 +175,8 @@ public class Player : MonoBehaviour, IDamagable
         {
             if (collision.TryGetComponent<Item>(out var item))
             {
+                if (!item.CanPickup()) return;
+                
                 item.Use(this);
             }
         }
