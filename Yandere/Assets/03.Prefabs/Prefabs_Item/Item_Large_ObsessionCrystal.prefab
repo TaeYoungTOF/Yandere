@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6880178273165343670}
   - component: {fileID: 298983115695976882}
   - component: {fileID: 5978720382202872625}
+  - component: {fileID: -1697808406865021087}
   m_Layer: 9
   m_Name: Item_Large_ObsessionCrystal
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,9 +143,21 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.105
+--- !u!114 &-1697808406865021087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322854507372925075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8c8bf21b9a2cb4399f0dee3a42ae94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

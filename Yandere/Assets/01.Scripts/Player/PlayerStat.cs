@@ -39,7 +39,7 @@ public class PlayerStat
 
         level = 0;
         currentExp = 0f;
-        requiredExp = 10f;
+        requiredExp = 5f;
 
         _bonusMoveSpeed = 0;
         _bonusPickupRadius = 0;

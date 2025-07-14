@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 327645640435789932}
   m_Layer: 0
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   _fireballProjectilePrefab: {fileID: 9026727680048791279, guid: 0672cb011b6eb0343a1fdab569916307, type: 3}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 5120
   _projectileSpeed: 15
   _projectileDistance: 30
   _enemySearchRange: 5

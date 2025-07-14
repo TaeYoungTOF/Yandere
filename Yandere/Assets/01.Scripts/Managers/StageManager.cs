@@ -56,7 +56,7 @@ public class StageManager : MonoBehaviour
 
         StartCoroutine(StartWaveRoutine(currentSpawnData));
 
-        Player.GainExp(10);
+        Player.GainExp(5);
     }
 
     private void Update()

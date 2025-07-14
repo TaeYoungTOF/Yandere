@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a12647b9b0e9ee745a317739e3669e0a, type: 3}
-  m_Name: DropTable_Stage1
+  m_Name: DropTable_Object
   m_EditorClassIdentifier: 
   entries:
-  - itemPrefab: {fileID: 322854507372925075, guid: 715af36ac7120b045bf882a9ac06fdf2, type: 3}
-    probability: 100
-    pickupDelay: 1
+  - itemPrefab: {fileID: 6212166153554166915, guid: 386c6f753567b254091cd891e0ba9990, type: 3}
+    probability: 20
   - itemPrefab: {fileID: 48673281385559624, guid: 80155a67610115f4a86bfceba4406098, type: 3}
-    probability: 0
-    pickupDelay: 1
+    probability: 20
+  - itemPrefab: {fileID: 322854507372925075, guid: 715af36ac7120b045bf882a9ac06fdf2, type: 3}
+    probability: 20
+  - itemPrefab: {fileID: 322854507372925075, guid: 3cc66d9a357fb0f4a85978c44fe4cc85, type: 3}
+    probability: 20
