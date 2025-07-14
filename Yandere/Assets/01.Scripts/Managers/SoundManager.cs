@@ -44,6 +44,25 @@ public class SoundManager : MonoBehaviour
             return;
         }
         Instance = this;
+        Init();
+    }
+
+    
+    // 초기화 시켜주는 함수
+    void Init()
+    {
+        // 배경음 플레이어를 초기화 시켜주기
+        GameObject bgmPlayer = new GameObject("BGM Player");
+        bgmPlayer.transform.SetParent(transform);
+        audioBgm = bgmPlayer.AddComponent<AudioSource>();
+        audioBgm.playOnAwake = false;
+        audioBgm.loop = true;
+        // audioBgm.volume = bgmVolume;
+        // audioBgm.clip = bgmClip;
+        
+        // 효과음 플레이어를 초기화 시켜주기
+        GameObject SfxPlayer = new GameObject("SFX Player");
+        
     }
     
     // EBgm 열거형을 매개변수로 받아 해당되는 배경음악 클립을 재생
