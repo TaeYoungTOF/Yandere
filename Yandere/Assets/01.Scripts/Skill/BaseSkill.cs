@@ -6,6 +6,7 @@ public enum SkillId
     Fireball = 1,
     BurstingGaze,
     ParchedLonging,
+    RagingEmotions,
     
     // 패시브 스킬
     ProjectileCount = 101,
@@ -19,10 +20,12 @@ public enum SkillId
 
 public class BaseSkill : MonoBehaviour
 {
-    public const int maxLevel = 5;
+    private static int maxLevel;
 
     public SkillId skillId;
     public int level = 0;
+    
+    public Sprite skillIcon { get; private set; }
 
     public SkillData[] skillDatas = new SkillData[maxLevel];
     public SkillData currentLevelData;
@@ -33,8 +36,11 @@ public class BaseSkill : MonoBehaviour
     public void Init()
     {
         player = StageManager.Instance.Player;
+        maxLevel = SkillManager.Instance.MaxLevel;
         
         nextLevelData = skillDatas[0];
+        
+        skillIcon = skillDatas[0].skillIcon;
     }
 
     public virtual void LevelUp()

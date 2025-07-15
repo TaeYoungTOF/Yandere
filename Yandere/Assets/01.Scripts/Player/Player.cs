@@ -158,8 +158,7 @@ public class Player : MonoBehaviour, IDamagable
             float duration = Mathf.Clamp(distance / _pullSpeed, 0.1f, _pullDuration);
 
             itemTransform.DOMove(destination, duration)
-                         .SetEase(Ease.InOutQuad)
-                         .SetUpdate(true); // TimeScale 영향을 받지 않도록
+                .SetEase(Ease.InOutQuad);
         }
     }
 
@@ -178,6 +177,7 @@ public class Player : MonoBehaviour, IDamagable
                 if (!item.CanPickup()) return;
                 
                 item.Use(this);
+                DOTween.Kill(item);
             }
         }
     }
