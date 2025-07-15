@@ -34,19 +34,6 @@ public class UI_Setting : ToggleableUI
         
         _bgmSlider = _bgmSlider.GetComponent<Slider>();
         
-        // PlayerPrefs에 Volume 값이 저장되어 있을 경우,
-        if (PlayerPrefs.HasKey("Volume"))
-        {
-            // Slider의 값을 저장해 놓은 값으로 변경.
-            _bgmSlider.value = PlayerPrefs.GetFloat("Volume");
-        }
-        else
-            _bgmSlider.value = 0.5f;		// PlayerPrefs에 Volume이 없을 경우
-
-        // audioMixer.SetFloat("audioMixer에 설정해놓은 Parameter", float 값)
-        // audioMixer에 미리 설정해놓은 parameter 값을 변경하는 코드.
-        // Mathf.Log10(BGMSlider.value) * 20 : 데시벨이 비선형적이기 때문에 해당 방식으로 값을 계산.
-        _bgmMixer.SetFloat("BGM", Mathf.Log10(_bgmSlider.value) * 20);
     }
     
     // 아이콘 클릭시 음소거 버튼 구현

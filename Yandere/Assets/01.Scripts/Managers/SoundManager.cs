@@ -40,11 +40,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float soundEffectPitchVariance;
     [SerializeField][Range(0f, 1f)] private float musicVolume;
     
-    // 오브젝트 내 사운드 생성 
-    // private ObjectPool objectpool;
-    
-    private AudioSource musicAudioSource;
-    public AudioClip musicClip;
 
     private void Awake()
     {
@@ -54,16 +49,8 @@ public class SoundManager : MonoBehaviour
             return;
         }
         Instance = this;
-       
-        musicAudioSource = GetComponent<AudioSource>();
-        musicAudioSource.volume = musicVolume;
-        musicAudioSource.loop = true;
     }
-
-    private void Start()
-    {
-        ChangeBackGroundMusic(musicClip);       // 음악 재생
-    }
+    
     
     
     // EBgm 열거형을 매개변수로 받아 해당되는 배경음악 클립을 재생
@@ -80,22 +67,13 @@ public class SoundManager : MonoBehaviour
         audioBgm.Stop();
     }
     
-    public static void ChangeBackGroundMusic(AudioClip music)
+    // ESfx를 열거형을 매개변수로 받아 해당되는 효과음을 재생
+    public void PlaySFX(ESfx esfx)
     {
-        // ChangeBackGroundMusic가 static으로 선언(static method)되어 있기 때문에 static 변수만 사용할 수 있다.
-        // 정적 변수 instance를 통해서만 변수를 가져올 수 있기 때문에 instance. 을 사용했다.
-        Instance.musicAudioSource.Stop();
-        Instance.musicAudioSource.clip = music;
-        Instance.musicAudioSource.Play();
+        audioSfx.PlayOneShot(sfxs[(int)esfx]);
     }
-
-   /* public static void PlayClip(AudioClip clip)
-    {
-        GameObject obj = instance.objectPool.SpawnFromPool("SoundSource");
-        obj.SetActive(true);
-        SoundSource soundSource = obj.GetComponent<SoundSource>();
-        soundSource.Play(clip, instance.soundEffectVolume, instance.soundEffectPitchVariance);
-    } */
+    
+    
 }
 
 
