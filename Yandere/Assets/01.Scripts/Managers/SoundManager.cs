@@ -36,10 +36,6 @@ public class SoundManager : MonoBehaviour
     // 오디오 믹서, 오디오 타입 별로 사운드를 조정한다.
     [SerializeField] AudioMixer audioMixer;
     
-    [SerializeField][Range(0f, 1f)] private float soundEffectVolume;
-    [SerializeField][Range(0f, 1f)] private float soundEffectPitchVariance;
-    [SerializeField][Range(0f, 1f)] private float musicVolume;
-    
 
     private void Awake()
     {
@@ -51,9 +47,7 @@ public class SoundManager : MonoBehaviour
         Instance = this;
     }
     
-    
-    
-    // EBgm 열거형을 매개변수로 받아 해당되는 배경음악 클립을 재생
+     // EBgm 열거형을 매개변수로 받아 해당되는 배경음악 클립을 재생
     public void PlayBGM(EBgm bgmidx)
     {
         //enum int형으로 형변환

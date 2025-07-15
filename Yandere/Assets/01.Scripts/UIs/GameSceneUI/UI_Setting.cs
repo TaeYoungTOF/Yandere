@@ -2,7 +2,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-using UnityEngine.EventSystems;
 
 public class UI_Setting : ToggleableUI
 {
@@ -13,6 +12,10 @@ public class UI_Setting : ToggleableUI
     [SerializeField] private Slider _sfxSlider;
     [SerializeField] private Toggle _bgmMute;
     [SerializeField] private Toggle _sfxMute;
+    
+    private bool[] isMute = new bool[3];
+    private float[] audioVolumes = new float[3];
+    [SerializeField] private int AudioMixer;
     
     // 이전 음량값 저장
     private float _prebgmValue;
@@ -54,16 +57,6 @@ public class UI_Setting : ToggleableUI
         }
     }
     
-    public override UIState GetUIState()
-    {
-        return UIState.Setting;
-    }
-
-    public void OnClickReturnButton()
-    {
-        UIManager.Instance.SetUIState(UIState.Pause);
-    }
-    
     // Slider를 통해 걸어놓은 이벤트
     public void SetBGMVolume(float volume)
     {
@@ -78,5 +71,46 @@ public class UI_Setting : ToggleableUI
         // AudioListener : Audio를 듣는 객체. 보통 카메라에 달려있다.
         AudioListener.volume = (mute ? 0 : 1);
     }
+    
+    
+    
+    public override UIState GetUIState()
+    {
+        return UIState.Setting;
+    }
+
+    public void OnClickReturnButton()
+    {
+        UIManager.Instance.SetUIState(UIState.Pause);
+    }
+    
+    public void SetAudioVolume(AudioMixer audioMixer,float volume)
+    {
+        // 오디오 믹서의 값은 -80 ~ 0까지이기 때문에 0.0001 ~ 1의 Log10 * 20을 한다.
+        audioMixer.SetFloat(audioMixer.ToString(), Mathf.Log10(volume) * 20);
+    }
+
+    public void SetAudioMute(AudioMixer audioMixer)
+    {
+        int type = (int)AudioMixer;
+        if (!isMute[type]) // 뮤트 
+        {
+            isMute[type] = true;
+            audioMixer.GetFloat(audioMixer.ToString(), out float curVolume);
+            audioVolumes[type] = curVolume;
+            SetAudioVolume(audioMixer, 0.001f);
+        }
+        else
+        {
+            isMute[type] = false;
+            SetAudioVolume(audioMixer, audioVolumes[type]);
+        }
+    }
+
+    private void ChangeVolume(float volume)
+    {
+        SetBGMVolume(AudioMixer. ,volume);
+    }
+    
     
 }
