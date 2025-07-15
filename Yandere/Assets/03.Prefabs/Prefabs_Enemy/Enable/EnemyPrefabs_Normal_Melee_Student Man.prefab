@@ -135,7 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeBulletPrefab: {fileID: 5967160219861529165, guid: fa0666a809288744893ef9761f96a150, type: 3}
-  rangeBulletSpread: 5
   enemyDashCooldown: 5
   enemyDashTimer: 0
   enemyBoomCooldown: 10
@@ -347,7 +346,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2
 --- !u!114 &5711978838889047932
 MonoBehaviour:
   m_ObjectHideFlags: 0
