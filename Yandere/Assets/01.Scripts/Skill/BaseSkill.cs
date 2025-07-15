@@ -6,6 +6,7 @@ public enum SkillId
     Fireball = 1,
     BurstingGaze,
     ParchedLonging,
+    RagingEmotions,
     
     // 패시브 스킬
     ProjectileCount = 101,

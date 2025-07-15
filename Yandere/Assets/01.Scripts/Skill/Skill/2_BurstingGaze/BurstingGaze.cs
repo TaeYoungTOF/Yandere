@@ -4,7 +4,12 @@ using UnityEngine;
 [System.Serializable]
 public class BurstingGazeDataWrapper : AcviteDataWapper
 {
+    [Header("Leveling Data")]
     public float angle;
+
+    [Header("UnLeveling Data")]
+    public float projectileSize;
+    public float projectileDistance;
 }
 
 public class BurstingGaze : ActiveSkill
@@ -15,10 +20,12 @@ public class BurstingGaze : ActiveSkill
     [SerializeField] private GameObject _burstingGazeProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
-    [Header("Unupgradable Data")]
+    [Header("UnLeveling Data")]
     [SerializeField] private float _projectileSize = 0.5f;
-    [SerializeField] private float _projectileSpeed = 25f;
     [SerializeField] private float _projectileDistance = 25f;
+    
+    [Header("Const Data")]
+    [SerializeField] private float _projectileSpeed = 25f;
     [SerializeField] private float _shootDelay = 0.1f;
 
     public override void UpdateCooldown()
@@ -41,11 +48,17 @@ public class BurstingGaze : ActiveSkill
 
     public override void UpdateActiveData()
     {
+        // Active Skill Data
         _data.projectileCount = CurrentData.projectileCount + player.stat.ProjectileCount;
         _data.skillDamage = CurrentData.skillDamage;
         _data.coolTime = CurrentData.coolTime * (1 - player.stat.CoolDown / 100f);
 
+        // Leveling Data
         _data.angle = CurrentData.angle;
+        
+        // UnLeveling Data
+        _data.projectileSize = _projectileSize * player.stat.FinalSkillRange;
+        _data.projectileDistance = _projectileDistance * player.stat.FinalSkillRange;
     }
 
     protected override void Activate()
