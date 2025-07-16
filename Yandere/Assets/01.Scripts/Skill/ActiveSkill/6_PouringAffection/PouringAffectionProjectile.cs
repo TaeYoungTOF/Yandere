@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class ParchedLongingProjectile : MonoBehaviour
+public class PouringAffectionProjectile : MonoBehaviour
 {
     private float _speed;
     private float _distance;

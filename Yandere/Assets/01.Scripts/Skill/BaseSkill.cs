@@ -58,12 +58,4 @@ public class BaseSkill : MonoBehaviour
             SkillManager.Instance.availableSkills.Remove(this);
         }
     }
-
-    protected float CalculateDamage(float damage)
-    {
-        bool isCrit = Random.Range(0, 100) < player.stat.FinalCrit;    
-        damage *= isCrit ? (1 + player.stat.FinalAtk / 100f) * (player.stat.FinalCritDmg / 100f) : 1 + player.stat.FinalAtk / 100f;
-
-        return damage * StageManager.Instance.GlobalPlayerDamageMultiplier;
-    }
 }

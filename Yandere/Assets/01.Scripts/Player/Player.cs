@@ -25,6 +25,8 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private float _pullDuration = 1f;
     [SerializeField] private float _pullSpeed = 1f;
 
+    [Header("Debug")]
+    [SerializeField] private bool _GodMod = false;
 
     public void Init(StageManager stageManager)
     {
@@ -127,6 +129,8 @@ public class Player : MonoBehaviour, IDamagable
 
     public void TakeDamage(float amount)
     {
+        if (_GodMod) return;
+        
         float actualDamage = amount * (1 - (stat.FinalDef / (stat.FinalDef + 500)));
         stat.ChangeCurrentHp(-actualDamage);
 
@@ -158,14 +162,9 @@ public class Player : MonoBehaviour, IDamagable
             float duration = Mathf.Clamp(distance / _pullSpeed, 0.1f, _pullDuration);
 
             itemTransform.DOMove(destination, duration)
-                .SetEase(Ease.InOutQuad);
+                .SetEase(Ease.InOutQuad)
+                .SetLink(itemTransform.gameObject);
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, stat.FinalPickupRadius);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelupData_RagingEmotions", menuName = "Skill/SkillData/RagingEmotions", order = 4)]
+[CreateAssetMenu(fileName = "RagingEmotions_", menuName = "Skill/SkillData/RagingEmotions", order = 4)]
 public class LevelupData_RagingEmotions : SkillData_Active
 {
     [Header("Upgradable")]
