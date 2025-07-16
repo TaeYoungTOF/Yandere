@@ -17,6 +17,8 @@ public class ParchedLongingProjectile : BaseProjectile
         blackholePrefab.SetActive(true);
         explosionPrefab.SetActive(false);
         
+        _lastHitTimes.Clear();
+        
         _data = data;
         this.enemyLayer = enemyLayer;
 
