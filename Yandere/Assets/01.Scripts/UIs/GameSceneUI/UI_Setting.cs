@@ -109,7 +109,7 @@ public class UI_Setting : ToggleableUI
 
     private void ChangeVolume(float volume)
     {
-        SetBGMVolume(AudioMixer. ,volume);
+        //SetBGMVolume(AudioMixer. ,volume);
     }
     
     
