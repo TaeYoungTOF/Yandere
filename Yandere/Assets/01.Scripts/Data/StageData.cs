@@ -5,8 +5,8 @@ using UnityEngine;
 public struct Achievement
 {
     [Range(0, 2)] public int rank;
-    public bool isCleared;
-    [Multiline(3)] public string description;
+    public bool isCleared; // 클리어 유무 
+    [Multiline(3)] public string description; 
 }
 
 [CreateAssetMenu(fileName = "StageData", menuName = "Stage/StageData", order = 0)]
@@ -16,7 +16,7 @@ public class StageData : ScriptableObject {
     [Tooltip("초 단위로 작성")]
     public float clearTime;
 
-    public List<Achievement> achievements;
+    public List<Achievement> achieveDatas;
 
     public List<WaveData> waveDatas;
     
