@@ -68,6 +68,8 @@ public class RagingEmotionsProjectile : BaseProjectile
     {
         if (((1 << other.gameObject.layer) & enemyLayer) == 0) return;
         if (!other.TryGetComponent(out IDamagable target)) return;
+        
+        if (target == null) return;
 
         float lastTime = _lastHitTimes.ContainsKey(other) ? _lastHitTimes[other] : -999f;
         if (Time.time - lastTime >= _data.damageInterval)

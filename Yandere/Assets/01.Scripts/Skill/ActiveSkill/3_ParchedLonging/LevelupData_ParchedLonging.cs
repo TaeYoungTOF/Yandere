@@ -4,7 +4,5 @@ using UnityEngine;
 public class LevelupData_ParchedLonging : SkillData_Active
 {
     [Header("Upgradable")]
-    public float pullRange;
-    public float duration;
-    public float explosionRange;
+    public float projectileRadius;
 }

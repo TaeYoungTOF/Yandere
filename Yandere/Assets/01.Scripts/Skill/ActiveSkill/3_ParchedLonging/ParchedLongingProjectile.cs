@@ -1,68 +1,74 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
 public class ParchedLongingProjectile : BaseProjectile
 {
-    private float _speed;
-    private float _distance;
-    private float _damage;
-    private float _explosionRadius;
-
-    private Vector2 _direction;
-
+    [SerializeField] private GameObject blackholePrefab;
     [SerializeField] private GameObject explosionPrefab;
+    
+    private ParchedLongingDataWrapper _data;
+    private Dictionary<Collider2D, float> _lastHitTimes = new();
 
     public override void Initialize() { }
-
-    public void Initialize(Vector2 direction, float projectileSpeed, float projectileDistance, float skillDamage, float explosionRadius)
+    public void Initialize(ParchedLongingDataWrapper data, LayerMask enemyLayer)
     {
-        _speed = projectileSpeed;
-        _distance = projectileDistance;
-        _damage = skillDamage;
-        _explosionRadius = explosionRadius;
-        enemyLayer = LayerMask.GetMask("Enemy");
+        blackholePrefab.SetActive(true);
+        explosionPrefab.SetActive(false);
+        
+        _data = data;
+        this.enemyLayer = enemyLayer;
 
-        _direction = direction;
-
-        Vector3 targetPos = transform.position + (Vector3)(_direction * _distance);
-        transform.DOMove(targetPos, _distance / _speed)
-                 .SetEase(Ease.Linear)
-                 .OnComplete(Explode);
+        StartCoroutine(Explode());
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (((1 << other.gameObject.layer) & enemyLayer) != 0)
+        if (((1 << other.gameObject.layer) & enemyLayer) == 0) return;
+        if (!other.TryGetComponent(out IDamagable target)) return;
+        
+        if (target == null) return;
+
+        float lastTime = _lastHitTimes.ContainsKey(other) ? _lastHitTimes[other] : -999f;
+        if (Time.time - lastTime >= _data.damageInterval)
         {
-            Debug.Log($"[Fireball Projectile] {other.gameObject.name} Collision!");
-            Explode();
+            pullEnemy(other);
+            target.TakeDamage(_data.damageDoT);
+            _lastHitTimes[other] = Time.time;
         }
     }
-
-    private void Explode()
+    
+    private void pullEnemy(Collider2D enemy)
     {
-        if (explosionPrefab == null)
-        {
-            Debug.Log("[Fireball Projectile] Fireball Explosion Prefab is null!");
-            return;
-        }
+        if (!enemy.CompareTag("Enemy_Normal")) return;
+        if (enemy.attachedRigidbody is null) return;
 
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity)
-            .GetComponent<FireballExplosion>()
-            .Initialize(_damage, _explosionRadius, enemyLayer);
+        Vector2 knockbackDir = (transform.position - enemy.transform.position).normalized;
+        Vector2 targetPos = (Vector2)enemy.transform.position + knockbackDir;
 
-        Destroy(gameObject);
+        enemy.attachedRigidbody.DOMove(targetPos, 0.2f)
+            .SetEase(Ease.OutQuad)
+            .SetLink(enemy.gameObject);
     }
 
-    private void OnDrawGizmosSelected()
+    private IEnumerator Explode()
     {
-        Gizmos.color = Color.yellow;
+        yield return new WaitForSeconds(_data.duration);
+        
+        blackholePrefab.SetActive(false);
+        explosionPrefab.SetActive(true);
 
-        Vector3 start = transform.position;
-        Vector3 end = start + (Vector3)(_direction.normalized * _distance);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, _data.projectileRadius, enemyLayer);
 
-        Gizmos.DrawLine(start, end);
+        foreach (var e in enemies)
+        {
+            if (e.TryGetComponent(out IDamagable target))
+            {
+                target.TakeDamage(_data.skillDamage);
+            }
+        }
 
-        Gizmos.DrawWireSphere(end, 0.3f);
+        Destroy(gameObject, 0.5f);
     }
 }

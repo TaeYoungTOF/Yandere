@@ -33,7 +33,6 @@ public class FireballProjectile : BaseProjectile
     {
         if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            Debug.Log($"[Fireball Projectile] {other.gameObject.name} Collision!");
             Explode();
         }
     }

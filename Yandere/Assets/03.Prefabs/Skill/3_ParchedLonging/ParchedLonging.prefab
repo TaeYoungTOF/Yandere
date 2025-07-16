@@ -47,11 +47,11 @@ MonoBehaviour:
   skillId: 3
   level: 0
   skillDatas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c89d4abc9d6b987429420b27e4128062, type: 2}
+  - {fileID: 11400000, guid: 2791ed07dee2d6f428eafdefd2110d84, type: 2}
+  - {fileID: 11400000, guid: 6958bbbef7a857349a9bb3d425adf93e, type: 2}
+  - {fileID: 11400000, guid: 7e4184abe7e08e645b8257684be480ee, type: 2}
+  - {fileID: 11400000, guid: 2235908984d140e4bb02acbf1a1e9182, type: 2}
   currentLevelData: {fileID: 0}
   nextLevelData: {fileID: 0}
   coolDownTimer: 0
@@ -59,9 +59,12 @@ MonoBehaviour:
     projectileCount: 0
     skillDamage: 0
     coolTime: 0
+    projectileRadius: 0
     duration: 0
-    explosionRange: 0
+    damageDoT: 0
+  _duration: 3
+  _damageDoT: 10
   _parchedLongingProjectilePrefab: {fileID: 5310618298424018448, guid: 7409a9a584fc8844088dbf5c3c2a3865, type: 3}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 5120
