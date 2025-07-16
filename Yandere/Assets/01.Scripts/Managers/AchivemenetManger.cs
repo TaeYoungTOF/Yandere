@@ -26,7 +26,7 @@ public class AchivemenetManger : MonoBehaviour
     private void FirstStarAchievement(Achievement achievement)
     {
         // 스테이지 클리어
-        if (!achievement.isCleared && stageManager.IsStageCleared)
+        if (!achievement.isCleared && stageManager.StageClear)
         {
             achievement.isCleared = true;
             ShowAchievementPopup(achievement);
@@ -36,7 +36,7 @@ public class AchivemenetManger : MonoBehaviour
     private void SeconedStarAchievement(Achievement achievement)
     {
         // 시간 제한 내 클리어
-        float clearTime = stageManager.CurrentClearTime;
+        float clearTime = stageManager._maxTime;
         if (!achievement.isCleared && clearTime <= stageManager.currentStageData.clearTime)
         {
             achievement.isCleared = true;
@@ -47,7 +47,7 @@ public class AchivemenetManger : MonoBehaviour
     private void ThirdStarAchievement(Achievement achievement)
     {
         // 피격 없이 클리어
-        if (!achievement.isCleared && stageManager.IsStageCleared && !stageManager.HasPlayerBeenHit)
+        if (!achievement.isCleared && stageManager.StageClear && !stageManager.HasPlayerBeenHit)
         {
             achievement.isCleared = true;
             ShowAchievementPopup(achievement);
