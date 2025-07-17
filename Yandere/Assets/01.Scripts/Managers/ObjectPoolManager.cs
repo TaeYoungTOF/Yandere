@@ -3,69 +3,101 @@ using UnityEngine;
 
 public enum PoolType
 {
-    ProjectTile = 0,
-    DefaultEnemy,
-    BossEnemy,    
+   EnemyBullet,
+   PlayerBullet,
+   Enemy,
+   Item,
+   FieldObject
+}
+
+[System.Serializable]
+public class PoolPrefabsEntry
+{
+    public PoolType PoolType;
+    public GameObject Prefab;
+    public int initialSize;
 }
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static ObjectPoolManager Instance { get; private set; }
+    public static ObjectPoolManager Instance { get; private set; }  
+    
+    [SerializeField] private List<PoolPrefabsEntry> poolPrefabs;
+    private Dictionary<PoolType, Queue<GameObject>> poolDictionary;
 
-    private Dictionary<int, Queue<GameObject>> _pools = new();
-
-    private void Awake()
+    void Awake()
     {
-        if (Instance == null)
+        Instance = this;
+        poolDictionary = new();
+
+        foreach (var entry in poolPrefabs)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            if (Instance != this)
+            Queue<GameObject> queue = new();
+            for (int i = 0; i < entry.initialSize; i++)
             {
-                Destroy(gameObject);
+                GameObject obj = Instantiate(entry.Prefab);
+                obj.SetActive(false);
+                obj.transform.SetParent(GetParentTransform(entry.PoolType));
+                queue.Enqueue(obj);
             }
+            
+            poolDictionary[entry.PoolType] = queue;
         }
     }
 
-    public void CreatePool(int key, GameObject prefab, int count)
+    public GameObject GetFromPool(PoolType type, Vector3 position, Quaternion rotation)
     {
-        if (_pools.ContainsKey(key)) return;
-
-        Queue<GameObject> queue = new Queue<GameObject>();
-        for (int i = 0; i < count; i++)
+        if (poolDictionary.TryGetValue(type, out var queue) && queue.Count > 0)
         {
-            GameObject obj = Instantiate(prefab);
-            obj.SetActive(false);
-            queue.Enqueue(obj);
+            var obj = queue.Dequeue();
+            obj.transform.SetPositionAndRotation(position, rotation);
+            obj.SetActive(true);
+            
+            obj.transform.SetParent(GetParentTransform(type));
+            
+            return obj;
         }
-
-        _pools[key] = queue;
-    }
-
-    public GameObject GetFromPool(int key)
-    {
-        if (_pools.TryGetValue(key, out var queue))
+        
+        var entry = poolPrefabs.Find(e => e.PoolType == type);
+        if (entry != null)
         {
-            if (queue.Count > 0)
-            {
-                GameObject obj = queue.Dequeue();
-                return obj;
-            }
+            var newObj = Instantiate(entry.Prefab, position, rotation);
+            return newObj;
         }
-
-        Debug.LogWarning($"[ObjectPoolManager] No object available for key: {key}");
+        
+        Debug.LogWarning($"[pool] No prefab found for {type}");
         return null;
+            
     }
 
-    public void ReturnToPool(int key, GameObject obj)
+    public void ReturnToPool(PoolType type, GameObject obj)
     {
         obj.SetActive(false);
-        if (!_pools.ContainsKey(key))
-            _pools[key] = new Queue<GameObject>();
+        if(!poolDictionary.ContainsKey(type))
+            poolDictionary[type] = new Queue<GameObject>();
+        
+        poolDictionary[type].Enqueue(obj);
+    }
+   
+    private Transform GetParentTransform(PoolType type)
+    {
+        string parentName = type switch
+        {
+            PoolType.Item => "ObjectPool_Items",
+            PoolType.FieldObject => "ObjectPool_FieldObjects",
+            PoolType.Enemy => "ObjectPool_Enemy",
+            PoolType.PlayerBullet => "ObjectPool_PlayerBullets",
+            PoolType.EnemyBullet => "ObjectPool_EnemyBullets",
+            _ => "PooledObjects"
+        };
 
-        _pools[key].Enqueue(obj);
+        GameObject parent = GameObject.Find(parentName);
+        if (parent == null)
+        {
+            parent = new GameObject(parentName);
+            parent.transform.position = Vector3.zero;
+        }
+
+        return parent.transform;
     }
 }

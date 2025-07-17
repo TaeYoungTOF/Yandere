@@ -22,12 +22,25 @@ public class ItemDropManager : MonoBehaviour
             float roll = Random.Range(0f, 100f);
             if (roll <= entry.probability)
             {
-                var ItemGO = Instantiate(entry.itemPrefab, context.position, Quaternion.identity);
-                if (ItemGO.TryGetComponent<Item>(out var item))
-                        item.SetPickupDelay(entry.pickupDelay);
                 
-                Debug.Log($"[ItemDropManager] {entry.itemPrefab.name} 드롭됨 (확률 {entry.probability}%)");
+                var ItemGO =
+                    ObjectPoolManager.Instance.GetFromPool(PoolType.Item, context.position, Quaternion.identity);
+                if (ItemGO.TryGetComponent<Item>(out var item))
+                {
+                    if (entry.itemData == null)
+                    {
+                        Debug.LogError("[ItemDropManager] DropTable의 itemData가 null입니다.");
+                        return;
+                    }
+
+                    item.Initialize(entry.itemData);
+                    item.SetPickupDelay(entry.pickupDelay);
+                }
+                else
+                {
+                    Debug.LogError("[ItemDropManager] ObjectPool에서 꺼낸 프리팹에 'Item' 컴포넌트가 없습니다.");
+                }     
             }
         }
-    }
+    }   
 }
