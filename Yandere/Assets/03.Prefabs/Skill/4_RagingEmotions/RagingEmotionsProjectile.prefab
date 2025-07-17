@@ -43598,7 +43598,7 @@ GameObject:
   - component: {fileID: 1908697899051320594}
   m_Layer: 7
   m_Name: RagingEmotionsProjectile
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43632,9 +43632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdae3e21904edd6448f48331d4904964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 5120
   _projectilePrefabs:
   - {fileID: 6280722384331014005}
   - {fileID: 3366886830745093721}

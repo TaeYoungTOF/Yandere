@@ -13,13 +13,13 @@ public class FireballProjectile : BaseProjectile
     [SerializeField] private GameObject explosionPrefab;
 
     public override void Initialize() { }
-    public void Initialize(Vector2 direction, float projectileSpeed, float projectileDistance, float skillDamage, float explosionRadius)
+    public void Initialize(Vector2 direction, float projectileSpeed, float projectileDistance, float skillDamage, float explosionRadius, LayerMask enemyLayer)
     {
         _speed = projectileSpeed;
         _distance = projectileDistance;
         _damage = skillDamage;
         _explosionRadius = explosionRadius;
-        enemyLayer = LayerMask.GetMask("Enemy");
+        this.enemyLayer = enemyLayer;
 
         _direction = direction;
 

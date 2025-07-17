@@ -62,7 +62,7 @@ public class Fireball : ActiveSkill<FireballDataWrapper>
             {
                 Vector2 dir = ((Vector2)target.transform.position - origin).normalized;
 
-                proj.Initialize(dir, data.projectileSpeed, data.projectileDistance, data.skillDamage, data.explosionRadius);
+                proj.Initialize(dir, data.projectileSpeed, data.projectileDistance, data.skillDamage, data.explosionRadius, _enemyLayer);
             }
 
             // 투사체 크기 조절

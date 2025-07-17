@@ -6,18 +6,17 @@ public class BurstingGazeProjectile : BaseProjectile
     private float _speed;
     private float _distance;
     private float _damage;
-    //private LayerMask enemyLayer;
 
     private Vector2 _direction;
 
     public override void Initialize() { }
 
-    public void Initialize(Vector2 direction, float projectileSpeed, float projectileDistance, float skillDamage)
+    public void Initialize(Vector2 direction, float projectileSpeed, float projectileDistance, float skillDamage, LayerMask enemyLayer)
     {
         _speed = projectileSpeed;
         _distance = projectileDistance;
         _damage = skillDamage;
-        enemyLayer = LayerMask.GetMask("Enemy");
+        this.enemyLayer = enemyLayer;
 
         _direction = direction.normalized;
 
