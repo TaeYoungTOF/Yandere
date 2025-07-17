@@ -24,12 +24,4 @@ public class FireballExplosion : MonoBehaviour
 
         Destroy(gameObject, 2f);
     }
-
-    private void OnDrawGizmos()
-    {
-        if (!_initialized) return;
-
-        Gizmos.color = new Color(1f, 0.5f, 0f, 0.4f);
-        Gizmos.DrawWireSphere(_debugPosition, _debugRadius);
-    }
 }
