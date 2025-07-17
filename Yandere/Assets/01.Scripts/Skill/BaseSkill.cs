@@ -7,6 +7,8 @@ public enum SkillId
     BurstingGaze,
     ParchedLonging,
     RagingEmotions,
+    EtchedHatred,
+    PouringAffection,
     
     // 패시브 스킬
     ProjectileCount = 101,
@@ -17,17 +19,16 @@ public enum SkillId
     Crit,
 }
 
-
-public class BaseSkill : MonoBehaviour
+public abstract class BaseSkill : MonoBehaviour
 {
-    private static int maxLevel;
+    private static int _maxLevel;
 
     public SkillId skillId;
     public int level = 0;
     
-    public Sprite skillIcon { get; private set; }
+    public Sprite SkillIcon { get; private set; }
 
-    public SkillData[] skillDatas = new SkillData[maxLevel];
+    public SkillData[] skillDatas = new SkillData[_maxLevel];
     public SkillData currentLevelData;
     public SkillData nextLevelData;
     
@@ -36,11 +37,11 @@ public class BaseSkill : MonoBehaviour
     public void Init()
     {
         player = StageManager.Instance.Player;
-        maxLevel = SkillManager.Instance.MaxLevel;
+        _maxLevel = SkillManager.Instance.MaxLevel;
         
         nextLevelData = skillDatas[0];
         
-        skillIcon = skillDatas[0].skillIcon;
+        SkillIcon = skillDatas[0].skillIcon;
     }
 
     public virtual void LevelUp()
@@ -48,7 +49,7 @@ public class BaseSkill : MonoBehaviour
         level ++;
         currentLevelData = nextLevelData;
 
-        if (level < maxLevel)
+        if (level < _maxLevel)
         {
             nextLevelData = skillDatas[level];
         }
@@ -57,13 +58,5 @@ public class BaseSkill : MonoBehaviour
             nextLevelData = null;
             SkillManager.Instance.availableSkills.Remove(this);
         }
-    }
-
-    protected float CalculateDamage(float damage)
-    {
-        bool isCrit = Random.Range(0, 100) < player.stat.FinalCrit;    
-        damage *= isCrit ? (1 + player.stat.FinalAtk / 100f) * (player.stat.FinalCritDmg / 100f) : 1 + player.stat.FinalAtk / 100f;
-
-        return damage * StageManager.Instance.GlobalPlayerDamageMultiplier;
     }
 }
