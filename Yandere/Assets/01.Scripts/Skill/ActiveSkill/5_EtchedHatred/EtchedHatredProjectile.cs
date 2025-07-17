@@ -51,10 +51,10 @@ public class EtchedHatredProjectile : BaseProjectile
 
     private void Explode()
     {
+        transform.localScale = Vector3.one * _data.explosionRadius;
+        
         _debuffPrefab.SetActive(false);
         _explosionPrefab.SetActive(true);
-        
-        transform.localScale = Vector3.one * _data.explosionRadius;
 
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, _data.explosionRadius, enemyLayer);
 
