@@ -8,7 +8,7 @@ public class Item_MagnetEffect : MonoBehaviour
 
     public void AttractAllItems()
     {
-        GameObject[] dropItems = GameObject.FindGameObjectsWithTag("Item");
+        GameObject[] dropItems = GameObject.FindGameObjectsWithTag("Item_ExpOrb");
 
         foreach (GameObject item in dropItems)
         {

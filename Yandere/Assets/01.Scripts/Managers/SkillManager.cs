@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SkillManager : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class SkillManager : MonoBehaviour
     public List<BaseSkill> availableSkills;
 
     public List<ActiveSkill> equipedActiveSkills;
-    public List<PassiveSkill> equipedPassiveskills;
+    public List<PassiveSkill> equipedPassiveSkills;
 
+    public readonly int MaxLevel = 5;
     private bool _isFirstDraw;
 
     private void Awake()
@@ -42,7 +44,7 @@ public class SkillManager : MonoBehaviour
 
     private void Update()
     {
-        foreach (var skill in equipedActiveSkills)
+        foreach (ActiveSkill skill in equipedActiveSkills)
         {
             skill.UpdateCooldown();
             skill.TryActivate();

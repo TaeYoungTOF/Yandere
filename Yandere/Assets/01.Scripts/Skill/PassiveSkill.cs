@@ -9,8 +9,8 @@ public class PassiveSkill : BaseSkill
     {
         Debug.Log("[Passive Skill] Level up");
 
-        if (!SkillManager.Instance.equipedPassiveskills.Contains(this))
-            SkillManager.Instance.equipedPassiveskills.Add(this);
+        if (!SkillManager.Instance.equipedPassiveSkills.Contains(this))
+            SkillManager.Instance.equipedPassiveSkills.Add(this);
         
         base.LevelUp();
         UpdatePassiveStat(skillId, _passiveData.value);
