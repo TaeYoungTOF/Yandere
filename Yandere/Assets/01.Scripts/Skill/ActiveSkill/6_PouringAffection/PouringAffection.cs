@@ -5,56 +5,29 @@ using UnityEngine;
 public class PouringAffectionDataWrapper : AcviteDataWapper
 {
     [Header("Leveling Data")]
-    public float projectileSize;
     public float explosionRadius;
     
-    [Header("UnLeveling Data")]
-    public float projectileDistance;
-    public float enemySearchRange;
+    //[Header("UnLeveling Data")]
     
-    [Header("Const Data")]
-    public readonly float projectileSpeed = 15f;
+    //[Header("Const Data")]
 }
 
 public class PouringAffection : ActiveSkill<PouringAffectionDataWrapper>
 {
     private LevelupData_PouringAffection CurrentData => ActiveData as LevelupData_PouringAffection;
-    [SerializeField] private float _projectileDistance = 30f;
-    [SerializeField] private float _enemySearchRange = 5f;
 
     [Header("References")]
-    [SerializeField] private GameObject _fireballProjectilePrefab;
+    [SerializeField] private GameObject _pouringAffectionProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
-
-    public override void UpdateCooldown()
-    {
-        if (coolDownTimer > 0f)
-        {
-            coolDownTimer -= Time.deltaTime;
-        }
-    }
-    
-    public override void TryActivate()
-    {
-        if (coolDownTimer <= 0f)
-        {
-            UpdateActiveData();
-            Activate();
-            coolDownTimer = data.coolTime;
-        }
-    }
 
     public override void UpdateActiveData()
     {
         base.UpdateActiveData();
 
         // Leveling Data
-        data.projectileSize = CurrentData.projectileSize * player.stat.FinalSkillRange;
         data.explosionRadius = CurrentData.explosionRadius * player.stat.FinalSkillRange;
 
         // UnLeveling Data
-        data.projectileDistance = _projectileDistance * player.stat.FinalSkillRange;
-        data.enemySearchRange = _enemySearchRange * player.stat.FinalSkillRange;
     }
 
     protected override void Activate()

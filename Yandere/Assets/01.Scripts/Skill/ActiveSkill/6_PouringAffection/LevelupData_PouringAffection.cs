@@ -4,6 +4,5 @@ using UnityEngine;
 public class LevelupData_PouringAffection : SkillData_Active
 {
     [Header("Upgradable")]
-    public float projectileSize;
     public float explosionRadius;
 }

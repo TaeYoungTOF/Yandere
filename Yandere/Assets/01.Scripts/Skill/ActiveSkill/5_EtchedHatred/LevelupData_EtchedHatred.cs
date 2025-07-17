@@ -4,6 +4,5 @@ using UnityEngine;
 public class LevelupData_EtchedHatred : SkillData_Active
 {
     [Header("Upgradable")]
-    public float projectileSize;
-    public float explosionRadius;
+    public float searchRadius;
 }

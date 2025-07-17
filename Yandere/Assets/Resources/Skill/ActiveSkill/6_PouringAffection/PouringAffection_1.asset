@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a8eac15f71d7946893a7c3a77bfd11, type: 3}
-  m_Name: ParchedLonging_1
+  m_Script: {fileID: 11500000, guid: 7885a900afe78d246a8723364ce94e55, type: 3}
+  m_Name: PouringAffection_1
   m_EditorClassIdentifier: 
   level: 1
-  skillName: "\uBA54\uB9C8\uB978 \uAC08\uB9DD"
-  skillIcon: {fileID: 21300000, guid: 629d04ec46559e44c92d2ae9009b0457, type: 3}
-  levelupTooltip: "\uBA54\uB9C8\uB978 \uAC08\uB9DD 1"
+  skillName: "\uC3DF\uC544\uC9C0\uB294 \uC560\uC815"
+  skillIcon: {fileID: 21300000, guid: 037e7376e7d674344b52c20c93f9b228, type: 3}
+  levelupTooltip: "\uC3DF\uC544\uC9C0\uB294 \uC560\uC815 1"
   projectileCount: 1
   skillDamage: 150
-  coolTime: 9
-  projectileRadius: 3
+  coolTime: 4
+  explosionRadius: 3
