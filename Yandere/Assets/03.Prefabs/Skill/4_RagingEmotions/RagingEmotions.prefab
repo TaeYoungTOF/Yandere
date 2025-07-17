@@ -54,7 +54,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 696d17e11d6023c45ac80c7ba4b4a2f2, type: 2}
   currentLevelData: {fileID: 0}
   nextLevelData: {fileID: 0}
-  _data:
+  coolDownTimer: 0
+  Data:
     projectileCount: 0
     skillDamage: 0
     coolTime: 0
@@ -62,11 +63,11 @@ MonoBehaviour:
     knockbackDistance: 0
     playerDistance: 0
     projectileRadius: 0
-  _RagingEmotionsProjectilePrefab: {fileID: 0}
+    damageInterval: 0.3
+    rotationSpeed: 120
+  _playerDistance: 2.5
+  _projectileRadius: 1
+  _RagingEmotionsProjectilePrefab: {fileID: 8273631399777830139, guid: 7a5972a35fa57de4cb80168f889ad18c, type: 3}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 5120
-  _playerDistance: 2.5
-  _projectileRadius: 1
-  _damageInterval: 0.3
-  _rotationSpeed: 120

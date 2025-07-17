@@ -71,7 +71,7 @@ public class UI_Pause : ToggleableUI
         {
             GameObject slotGo = Instantiate(_skillSlot,  _activeSkillParent);
             Button_SkillSlot slot = slotGo.GetComponent<Button_SkillSlot>();
-            slot.SetSkillSlot(activeSkill.skillIcon, activeSkill.level);
+            slot.SetSkillSlot(activeSkill.SkillIcon, activeSkill.level);
         }
     }
 
@@ -83,7 +83,7 @@ public class UI_Pause : ToggleableUI
         {
             GameObject slotGo = Instantiate(_skillSlot,  _passiveSkillParent);
             Button_SkillSlot slot = slotGo.GetComponent<Button_SkillSlot>();
-            slot.SetSkillSlot(passiveSkill.skillIcon, passiveSkill.level);
+            slot.SetSkillSlot(passiveSkill.SkillIcon, passiveSkill.level);
         }
     }
 

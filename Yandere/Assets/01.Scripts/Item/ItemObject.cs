@@ -19,6 +19,7 @@ public class ItemObject : MonoBehaviour, IDamagable
         _animator = GetComponent<Animator>();
     }
 
+    /**
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -27,14 +28,13 @@ public class ItemObject : MonoBehaviour, IDamagable
             TakeDamage(10f);
         }
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("PlayerSkill"))
         {
             TakeDamage(10f);
         }
-    }
+    }*/
     
     public void TakeDamage(float damage)
     {
