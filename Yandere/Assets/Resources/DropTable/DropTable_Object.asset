@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: DropTable_Object
   m_EditorClassIdentifier: 
   entries:
-  - itemPrefab: {fileID: 6212166153554166915, guid: 386c6f753567b254091cd891e0ba9990, type: 3}
+  - itemData: {fileID: 11400000, guid: 00f5c6d4e604b4a6fb57d8bd88b2f5b7, type: 2}
     probability: 20
-  - itemPrefab: {fileID: 48673281385559624, guid: 80155a67610115f4a86bfceba4406098, type: 3}
+    pickupDelay: 5
+  - itemData: {fileID: 11400000, guid: 750d9f1dd0e984318b30a1caddf5e1c4, type: 2}
     probability: 20
-  - itemPrefab: {fileID: 322854507372925075, guid: 715af36ac7120b045bf882a9ac06fdf2, type: 3}
-    probability: 20
-  - itemPrefab: {fileID: 322854507372925075, guid: 3cc66d9a357fb0f4a85978c44fe4cc85, type: 3}
-    probability: 20
+    pickupDelay: 5
