@@ -17,6 +17,14 @@ public enum SkillId
     CoolDown,
     SkillRange,
     Crit,
+    
+    // 업그레이드 스킬
+    BurningJeolousy2 = 201,
+    BurstingGaze2,
+    ParchedLonging2,
+    RagingEmotions2,
+    EtchedHatred2,
+    PouringAffection2,
 }
 
 public abstract class BaseSkill : MonoBehaviour
