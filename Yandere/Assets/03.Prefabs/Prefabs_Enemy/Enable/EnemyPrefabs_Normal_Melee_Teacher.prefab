@@ -64,7 +64,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5077329817788088347}
   - {fileID: 9154128132452494248}
   - {fileID: 4258931613091233356}
   - {fileID: 2446524746484836536}
@@ -113,7 +112,7 @@ MonoBehaviour:
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
-    dropTable: {fileID: 0}
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
   separationRadius: 0.3
   pushForce: 0.1
   enemyLayer:

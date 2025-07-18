@@ -81,7 +81,7 @@ MonoBehaviour:
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
-    dropTable: {fileID: 0}
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
   separationRadius: 0.5
   pushForce: 0.8
   enemyLayer:

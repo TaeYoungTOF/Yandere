@@ -61,7 +61,7 @@ public class ItemObject : MonoBehaviour, IDamagable
     
     public void ObjectBreakAnimationEnd()
     {
-        Destroy(gameObject);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.FieldObject, gameObject);
     }
 
 }

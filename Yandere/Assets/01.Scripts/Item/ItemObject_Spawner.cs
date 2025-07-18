@@ -42,7 +42,7 @@ public class ItemObject_Spawner : MonoBehaviour
     private void SpawnItemObjectPrefab()
     {
         Vector3 spawnPos = GetRandomPosition();
-        GameObject ItemObjectPrefab = Instantiate(Field_ItemObjectPrefab, spawnPos, Quaternion.identity);
+        GameObject ItemObjectPrefab = ObjectPoolManager.Instance.GetFromPool(PoolType.FieldObject, spawnPos, Quaternion.identity);
         ItemObjectPrefab.transform.SetParent(transform);
         spawnedItemObjectPrefab.Add(ItemObjectPrefab);
     }
