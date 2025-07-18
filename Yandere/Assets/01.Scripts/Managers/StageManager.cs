@@ -11,6 +11,16 @@ public class StageManager : MonoBehaviour
     public StageData currentStageData;
     public WaveData currentSpawnData;
 
+    private bool isStageCleared;
+    public bool IsStageCleared => isStageCleared;
+    
+    private bool hasPlayerBeenHit;
+    public bool HasPlayerBeenHit => hasPlayerBeenHit;
+    
+    private int killCount = 0;
+    public int KillCount => killCount; 
+
+    
     public bool IsUIOpened = false;
 
     public float timeScale = 1f;
@@ -61,12 +71,13 @@ public class StageManager : MonoBehaviour
 
     private void Update()
     {
-        if (IsUIOpened)
-        {
-            Time.timeScale = 0f;
+        // Achievement UI는 게임을 멈추지 않도록 예외 처리
+        if (IsUIOpened && UIManager.Instance._currentState != UIState.Achievement)
+            {
+                Time.timeScale = 0f;
+                return;
+            }
 
-            return;
-        }
 
         if (Player.stat.CurrentHp <= 0)
         {
@@ -114,7 +125,9 @@ public class StageManager : MonoBehaviour
 
     public void StageClear()
     {
+        isStageCleared = true;
         Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
+        
 
         UIManager.Instance.SetUIState(UIState.StageClear);
     }
@@ -127,5 +140,16 @@ public class StageManager : MonoBehaviour
     public void LevelUpEvent()
     {
         UIManager.Instance.SetUIState(UIState.SkillSelect);
+    }
+
+    public void OnPlayerHit()
+    {
+        hasPlayerBeenHit = true;
+    }
+
+    public void TargetKillCount()
+    {
+        killCount++;
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateKillCount(killCount);
     }
 }

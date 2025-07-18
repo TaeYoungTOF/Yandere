@@ -19,7 +19,7 @@ public abstract class ToggleableUI : MonoBehaviour
 
     public virtual void UIAction()
     {
-
+        
     }
 
     public void SetActive(UIState state)

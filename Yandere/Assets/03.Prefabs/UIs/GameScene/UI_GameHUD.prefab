@@ -500,7 +500,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6811693720768312014}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4082405194455424514, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+        m_TargetAssemblyTypeName: UI_Achievement, Assembly-CSharp
+        m_MethodName: OpenAchievementUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2504708593205776745
 GameObject:
   m_ObjectHideFlags: 0

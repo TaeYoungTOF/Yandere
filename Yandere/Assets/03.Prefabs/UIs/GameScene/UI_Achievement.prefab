@@ -255,7 +255,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8405935871908980226}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4082405194455424514}
+        m_TargetAssemblyTypeName: UI_Achievement, Assembly-CSharp
+        m_MethodName: CloseAchievementUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &644156982081421914
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,8 +3493,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa345601cbb4bd44a7deaeff98ddcc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _achievementPanel: {fileID: 7853268788110455518}
-  _backButton: {fileID: 4911625663573070939}
+  _achievementPanel: {fileID: 7336123316370935381}
+  achievementImages:
+  - {fileID: 2433067881536742714}
+  - {fileID: 3190883816997672353}
+  - {fileID: 2556650520515896372}
+  achievementSliders:
+  - {fileID: 6447034989721487890}
+  - {fileID: 5844330628010001391}
+  - {fileID: 2119166260935408523}
+  unlockedSprite: {fileID: 21300000, guid: 6c2494592b98e45529dfaeeaabd3d515, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 98c91c5910df74141b5705509ff3ce44, type: 3}
 --- !u!1 &7603049612157259785
 GameObject:
   m_ObjectHideFlags: 0

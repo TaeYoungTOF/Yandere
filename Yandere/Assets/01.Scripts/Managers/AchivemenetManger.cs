@@ -1,42 +1,70 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
-    private StageManager stageManager;
-    private UI_Achievement uiAchievement;
+    [SerializeField] private StageManager stageManager;
+    [SerializeField] private UI_Achievement ui_Achievement;
+
+    public enum AchievementRank
+    {
+        First = 0,
+        Second = 1,
+        Third = 2,
+        Fourth = 3
+    }
 
     private void Awake()
     {
-        stageManager = StageManager.Instance;
-        uiAchievement = FindObjectOfType<UI_Achievement>();
+        if (stageManager == null) stageManager = StageManager.Instance;
+        if (ui_Achievement == null) ui_Achievement = Instantiate(ui_Achievement);
+        
+        ValidateComponents();
+    }
+
+    private void ValidateComponents()
+    {
+        if (stageManager == null)
+            Debug.LogError("StageManager is missing!");
+        if (ui_Achievement == null)
+            Debug.LogError("UI_Achievement is missing!");
     }
 
     public void CheckAchievements(StageData stageData)
     {
         if (stageManager == null || stageData == null)
+        {
+            Debug.LogWarning("Cannot check achievements: Required components are missing");
             return;
+        }
 
         foreach (var achievement in stageData.achieveDatas)
         {
-            switch (achievement.rank)
+            switch ((AchievementRank)achievement.rank)
             {
-                case 0:
+                case AchievementRank.First:
                     FirstStarAchievement(achievement);
                     break;
-                case 1:
+                case AchievementRank.Second:
                     SecondStarAchievement(achievement);
                     break;
-                case 2:
+                case AchievementRank.Third:
                     ThirdStarAchievement(achievement);
+                    break;
+                case AchievementRank.Fourth:
+                    //FourthStarAchievement(achievement);
+                    break;
+                default:
+                    Debug.LogError($"Unknown achievement rank: {achievement.rank}");
                     break;
             }
         }
     }
-    
+
     private void FirstStarAchievement(Achievement achievement)
     {
         // 스테이지 클리어
-        if (!achievement.isCleared && stageManager.StageClear)
+        if (!achievement.isCleared && stageManager.IsStageCleared)
         {
             achievement.isCleared = true;
             ShowAchievementPopup(achievement);
@@ -57,20 +85,33 @@ public class AchievementManager : MonoBehaviour
     private void ThirdStarAchievement(Achievement achievement)
     {
         // 피격 없이 클리어
-        if (!achievement.isCleared && stageManager.StageClear && !stageManager.HasPlayerBeenHit)
+        if (!achievement.isCleared && stageManager.IsStageCleared && !stageManager.HasPlayerBeenHit)
         {
             achievement.isCleared = true;
             ShowAchievementPopup(achievement);
         }
     }
 
+   /* private void FourthStarAchievement(Achievement achievement)
+    {
+        // 목표 킬 수 달성
+        if (!achievement.isCleared && stageManager.KillCount >= achievement.targetKillCount)
+        {
+            achievement.isCleared = true;
+            ShowAchievementPopup(achievement);
+        }
+    } */
     
-
     private void ShowAchievementPopup(Achievement achievement)
     {
-        if (uiAchievement != null)
+        if (ui_Achievement != null)
         {
-            uiAchievement.ShowAchievement(achievement);
+            ui_Achievement.ShowAchievement(achievement);
+        }
+        else
+        {
+            Debug.LogWarning("Cannot show achievement popup: UI_Achievement is missing");
         }
     }
+    
 }
