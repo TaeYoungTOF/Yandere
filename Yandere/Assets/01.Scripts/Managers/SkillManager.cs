@@ -8,6 +8,8 @@ public class SkillManager : MonoBehaviour
 
     public List<BaseSkill> availableSkills;
 
+    [SerializeField] private List<BaseSkill> _firstDrawPool;
+
     public List<ActiveSkill> equipedActiveSkills;
     public List<PassiveSkill> equipedPassiveSkills;
 
@@ -53,13 +55,28 @@ public class SkillManager : MonoBehaviour
 
     public List<BaseSkill> GetSkillDatas(int count)
     {
-        List<BaseSkill> shuffledList = new List<BaseSkill>(availableSkills);
-
+        List<BaseSkill> shuffledList;
+        
         if (_isFirstDraw)
         {
-            shuffledList.RemoveAll(skill => skill is PassiveSkill);
+            //shuffledList.RemoveAll(skill => skill is PassiveSkill);
+            
+            shuffledList = _firstDrawPool;
+            if (count > shuffledList.Count)
+                count = shuffledList.Count;
+
+            for (int i = shuffledList.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (shuffledList[i], shuffledList[j]) = (shuffledList[j], shuffledList[i]);
+            }
+            
             _isFirstDraw = false;
+
+            return shuffledList;
         }
+        
+        shuffledList = availableSkills;
 
         if (count > shuffledList.Count)
             count = shuffledList.Count;

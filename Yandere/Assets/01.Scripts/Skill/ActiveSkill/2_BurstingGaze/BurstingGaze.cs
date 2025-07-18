@@ -60,6 +60,8 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
             GameObject projGO = Instantiate(_burstingGazeProjectilePrefab, origin, Quaternion.identity);
             var proj = projGO.GetComponent<BurstingGazeProjectile>();
 
+            //GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.Projectile, origin, Quaternion.identity, _burstingGazeProjectilePrefab);
+
             proj.transform.localScale = Vector3.one * data.projectileSize;
 
             proj.Initialize(finalDir, data.projectileSpeed, data.projectileDistance, data.skillDamage, _enemyLayer);

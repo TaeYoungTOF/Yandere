@@ -109,7 +109,7 @@ public class Player : MonoBehaviour, IDamagable
             _levelUpQueue.Dequeue();
 
             stat.level++;
-            stat.requiredExp += 2f;
+            stat.requiredExp += 1f;
 
             _stageManager.LevelUpEvent();
             UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
