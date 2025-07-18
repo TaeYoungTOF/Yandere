@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager] Call Game Scene");
 
-        SceneManager.LoadScene("Jubin_EnemyTest2");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void LoadTitleScene()
