@@ -7,8 +7,6 @@ public class PassiveSkill : BaseSkill
 
     public override void LevelUp()
     {
-        Debug.Log("[Passive Skill] Level up");
-
         if (!SkillManager.Instance.equipedPassiveSkills.Contains(this))
             SkillManager.Instance.equipedPassiveSkills.Add(this);
         

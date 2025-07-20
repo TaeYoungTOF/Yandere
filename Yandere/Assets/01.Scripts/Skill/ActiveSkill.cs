@@ -18,8 +18,6 @@ public abstract class ActiveSkill : BaseSkill
 
     public override void LevelUp()
     {
-        Debug.Log("[Active Skill] Level up");
-
         if (!SkillManager.Instance.equipedActiveSkills.Contains(this))
             SkillManager.Instance.equipedActiveSkills.Add(this);
 

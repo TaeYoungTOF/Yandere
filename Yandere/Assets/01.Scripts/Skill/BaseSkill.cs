@@ -19,7 +19,7 @@ public enum SkillId
     Crit,
     
     // 업그레이드 스킬
-    BurningJeolousy2 = 201,
+    BurningJealousy2 = 201,
     BurstingGaze2,
     ParchedLonging2,
     RagingEmotions2,
@@ -64,7 +64,9 @@ public abstract class BaseSkill : MonoBehaviour
         else
         {
             nextLevelData = null;
-            SkillManager.Instance.availableSkills.Remove(this);
+            
+            if (SkillManager.Instance.availableSkills.Contains(this))
+                SkillManager.Instance.availableSkills.Remove(this);
         }
     }
 }

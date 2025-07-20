@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class UpgradeSkillWrapper
 {
@@ -11,15 +13,49 @@ public class UpgradeSkillWrapper
 
 public abstract class UpgradeSkill : BaseSkill
 {
-    [SerializeField] protected int projectileCount;
-    [SerializeField] protected float skillDamage;
-    [SerializeField] protected float coolTime;
+    [SerializeField] private GameObject basicActSkillGo;
+    [SerializeField] private GameObject basicPasSkillGo;
     
+    private ActiveSkill basicActSkill;
+    private PassiveSkill basicPasSkill;
+
+    private void Start()
+    {
+        basicActSkill = basicActSkillGo.GetComponent<ActiveSkill>();
+        basicPasSkill = basicPasSkillGo.GetComponent<PassiveSkill>();
+
+        Init();
+
+        SkillManager.Instance.availableUpgradeSkills.Add(this);
+    }
+
+    public bool IsUpgradable()
+    {
+        if (basicActSkill == null || basicPasSkill == null)
+            return false;
+
+        bool actCondition = basicActSkill.level == SkillManager.Instance.MaxLevel;
+        bool pasCondition = SkillManager.Instance.equipedPassiveSkills.Contains(basicPasSkill);
+
+        return actCondition && pasCondition;
+    }
+    
+    protected SkillData_Upgrade UpgradeData => currentLevelData as SkillData_Upgrade;
     [SerializeField] protected float coolDownTimer;
 
     public abstract void UpdateCooldown();
     public abstract void TryActivate();
     protected abstract void Activate();
+
+    public override void LevelUp()
+    {
+        level ++;
+        currentLevelData = nextLevelData;
+        
+        SkillManager.Instance.equipedUpgradeSkills.Add(this);
+        SkillManager.Instance.availableUpgradeSkills.Remove(this);
+        SkillManager.Instance.equipedActiveSkills.Remove(basicActSkill);
+    }
 }
 
 public abstract class UpgradeSkill<T> : UpgradeSkill where T : UpgradeSkillWrapper, new()
@@ -46,9 +82,9 @@ public abstract class UpgradeSkill<T> : UpgradeSkill where T : UpgradeSkillWrapp
     
     public virtual void UpdateActiveData()
     {
-        data.projectileCount = projectileCount + player.stat.ProjectileCount;;
-        data.skillDamage = CalculateDamage(skillDamage);
-        data.coolTime = coolTime * (1 - player.stat.CoolDown / 100f);
+        data.projectileCount = UpgradeData.projectileCount + player.stat.ProjectileCount;;
+        data.skillDamage = CalculateDamage(UpgradeData.skillDamage);
+        data.coolTime = UpgradeData.coolTime * (1 - player.stat.CoolDown / 100f);
     }
 
     protected float CalculateDamage(float damage)
