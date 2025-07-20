@@ -1347,11 +1347,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1164874648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1383112963 stripped
+--- !u!4 &1383112963
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-  m_PrefabInstance: {fileID: 6239461127251296312}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924991797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1423666835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423666834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,10 +1530,6 @@ PrefabInstance:
     - target: {fileID: 70760856004919325, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
       propertyPath: m_Name
       value: EtchedHatred
-      objectReference: {fileID: 0}
-    - target: {fileID: 70760856004919325, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4414399228436851081, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1810,10 +1816,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParchedLonging
       objectReference: {fileID: 0}
-    - target: {fileID: 8771203914740520520, guid: 60a7593b13d7a9942821266cfa5e85e0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1929,6 +1931,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8040483769581730732, guid: de9a8d653177f7742b03585746921b20, type: 3}
   m_PrefabInstance: {fileID: 1904772975}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1924991797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1383112963}
+  - component: {fileID: 1924991798}
+  m_Layer: 0
+  m_Name: BurningJealousy2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1924991798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924991797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6047734cd82e8a848b88913aab89322c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 201
+  level: 0
+  skillDatas:
+  - {fileID: 11400000, guid: 9be76c8a649d35c469c5226086e5a631, type: 2}
+  currentLevelData: {fileID: 0}
+  nextLevelData: {fileID: 0}
+  basicActSkillGo: {fileID: 9157583874258857700}
+  basicPasSkillGo: {fileID: 2836357587239983682}
+  coolDownTimer: 0
+  _enemySearchRange: 5
+  _pjtDistance: 30
+  _explodeRadius: 4
+  _pjtSize: 0.8
+  _secondDmg: 25
+  _secondExplodeRadius: 3
+  _fireballProjectilePrefab: {fileID: 2074056189656437895, guid: c9692adaac3e0cd4b85a652a7e85c42b, type: 3}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 5120
 --- !u!1 &1941334098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,10 +2167,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillRange
       objectReference: {fileID: 0}
-    - target: {fileID: 1944565222102627894, guid: 97b842e4975ca7b4f8809f35fad40015, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2759696497487557223, guid: 97b842e4975ca7b4f8809f35fad40015, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2274,10 +2320,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PouringAffection
       objectReference: {fileID: 0}
-    - target: {fileID: 6138521301437056373, guid: a97b07ef925a0b948b2bd3bc534ba516, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2299,10 +2341,6 @@ PrefabInstance:
     - target: {fileID: 1129275228729904735, guid: d63de3545eb7f854eb5dee80f71853aa, type: 3}
       propertyPath: m_Name
       value: BurstingGaze
-      objectReference: {fileID: 0}
-    - target: {fileID: 1129275228729904735, guid: d63de3545eb7f854eb5dee80f71853aa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6271678759412042880, guid: d63de3545eb7f854eb5dee80f71853aa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2359,17 +2397,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1129275228729904735, guid: d63de3545eb7f854eb5dee80f71853aa, type: 3}
   m_PrefabInstance: {fileID: 1325025181738769567}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1325025181738769570 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 414133680284577710, guid: d63de3545eb7f854eb5dee80f71853aa, type: 3}
-  m_PrefabInstance: {fileID: 1325025181738769567}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325025181738769569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b29ba99f8af78d429834cadb67e8c28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1465094213037461652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2607,10 +2634,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileCount
       objectReference: {fileID: 0}
-    - target: {fileID: 26775335006442358, guid: 53459274bbda6e845b542fe62803a5b7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4211205853585788468, guid: 53459274bbda6e845b542fe62803a5b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2705,10 +2728,6 @@ PrefabInstance:
     - target: {fileID: 1843844481795508903, guid: 429623318b4df294782b7c4d1811d4c0, type: 3}
       propertyPath: m_Name
       value: CoolDown
-      objectReference: {fileID: 0}
-    - target: {fileID: 1843844481795508903, guid: 429623318b4df294782b7c4d1811d4c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3505727862957809335, guid: 429623318b4df294782b7c4d1811d4c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2807,10 +2826,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillDamage
       objectReference: {fileID: 0}
-    - target: {fileID: 7055464729839624135, guid: b82572d1b951e6b4db11d367e530d48a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2871,10 +2886,6 @@ PrefabInstance:
     - target: {fileID: 1419341051706618453, guid: 8b8dc2851a5715d428a7f8b89b1c97a9, type: 3}
       propertyPath: m_Name
       value: Crit
-      objectReference: {fileID: 0}
-    - target: {fileID: 1419341051706618453, guid: 8b8dc2851a5715d428a7f8b89b1c97a9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5215994553739256915, guid: 8b8dc2851a5715d428a7f8b89b1c97a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3111,7 +3122,7 @@ MonoBehaviour:
   equipedPassiveSkills: []
   equipedUpgradeSkills: []
   _firstDrawPool:
-  - {fileID: 1325025181738769570}
+  - {fileID: 9157583874258857701}
   availableUpgradeSkills: []
 --- !u!4 &5692136351063789486
 Transform:
@@ -3234,75 +3245,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &6239461127251296312
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1423666835}
-    m_Modifications:
-    - target: {fileID: 2440751656819006932, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_Name
-      value: BurningJealousy2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3457516029112608901, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6604705787913161847, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: basicActSkillGo
-      value: 
-      objectReference: {fileID: 9157583874258857700}
-    - target: {fileID: 6604705787913161847, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: basicPasSkillGo
-      value: 
-      objectReference: {fileID: 2836357587239983682}
-    - target: {fileID: 6604705787913161847, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
-      propertyPath: _fireballProjectilePrefab
-      value: 
-      objectReference: {fileID: 2074056189656437895, guid: c9692adaac3e0cd4b85a652a7e85c42b, type: 3}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ff50c6e240c02c64fa67329bb4e81290, type: 3}
 --- !u!95 &6420322258991715988
 Animator:
   serializedVersion: 5
@@ -3613,10 +3555,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RagingEmotions
       objectReference: {fileID: 0}
-    - target: {fileID: 9037137005491934119, guid: 336c8aca4470b34449916adcf752ac27, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3678,10 +3616,6 @@ PrefabInstance:
     - target: {fileID: 3920787981283775058, guid: eaf3b87c657d101489e39d09ff79dd9b, type: 3}
       propertyPath: m_Name
       value: SkillDuration
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920787981283775058, guid: eaf3b87c657d101489e39d09ff79dd9b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3898,10 +3832,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fireball
       objectReference: {fileID: 0}
-    - target: {fileID: 4667993539245888592, guid: 5ef4f56470141b0419da3c895e73ae4a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3912,6 +3842,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4667993539245888592, guid: 5ef4f56470141b0419da3c895e73ae4a, type: 3}
   m_PrefabInstance: {fileID: 9157583874258857699}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9157583874258857701 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 327645640435789932, guid: 5ef4f56470141b0419da3c895e73ae4a, type: 3}
+  m_PrefabInstance: {fileID: 9157583874258857699}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157583874258857700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fddeb7d3847b51044a390bce7d2cc205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
