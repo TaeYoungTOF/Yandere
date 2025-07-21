@@ -10,7 +10,12 @@ public enum PoolType
    FieldObject,
    
    //스킬
-   PouringAffectionProjectile
+   FireballProj,
+   BurstingGazeProj,
+   ParchedLongingProj,
+   RagingEmotionsProj,
+   EtchedHatredProj,
+   PouringAffectionProj,
 }
 
 [System.Serializable]
@@ -91,6 +96,12 @@ public class ObjectPoolManager : MonoBehaviour
             PoolType.Enemy => "ObjectPool_Enemy",
             PoolType.PlayerBullet => "ObjectPool_PlayerBullets",
             PoolType.EnemyBullet => "ObjectPool_EnemyBullets",
+            PoolType.FireballProj => "FireballProj",
+            PoolType.BurstingGazeProj => "BurstingGazeProj",
+            PoolType.ParchedLongingProj => "ParchedLongingProj",
+            PoolType.RagingEmotionsProj => "RagingEmotionsProj",
+            PoolType.EtchedHatredProj => "EtchedHatredProj",
+            PoolType.PouringAffectionProj => "PouringAffectionProj",
             _ => "PooledObjects"
         };
 

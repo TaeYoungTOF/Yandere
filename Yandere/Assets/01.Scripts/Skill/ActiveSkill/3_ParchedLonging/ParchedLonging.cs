@@ -23,7 +23,7 @@ public class ParchedLonging : ActiveSkill<ParchedLongingDataWrapper>
     [SerializeField] private float _damageDoT = 10f;
 
     [Header("References")]
-    [SerializeField] private GameObject _parchedLongingProjectilePrefab;
+    //[SerializeField] private GameObject _parchedLongingProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     public override void UpdateActiveData()
@@ -46,7 +46,8 @@ public class ParchedLonging : ActiveSkill<ParchedLongingDataWrapper>
             Vector3 spawnDir = Quaternion.Euler(0f, 0f, angle) * Vector3.up;
             Vector3 spawnPos = player.transform.position + spawnDir * data.playerDistance;
 
-            GameObject go = Instantiate(_parchedLongingProjectilePrefab, spawnPos, Quaternion.identity);
+            //GameObject go = Instantiate(_parchedLongingProjectilePrefab, spawnPos, Quaternion.identity);
+            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.ParchedLongingProj, spawnPos, Quaternion.identity);
             ParchedLongingProjectile projectile = go.GetComponent<ParchedLongingProjectile>();
             projectile.Initialize(data, _enemyLayer);
             

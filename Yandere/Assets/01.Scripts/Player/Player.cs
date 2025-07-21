@@ -118,6 +118,7 @@ public class Player : MonoBehaviour, IDamagable
         }
 
         _isLeveling = false;
+        SkillManager.Instance.isLevelUp = true;
     }
 
     public void Heal(float amount)

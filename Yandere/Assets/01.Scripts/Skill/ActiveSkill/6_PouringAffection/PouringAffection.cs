@@ -44,7 +44,7 @@ public class PouringAffection : ActiveSkill<PouringAffectionDataWrapper>
             Quaternion spawnRotation = Quaternion.Euler(0f, offset.x > 0 ? 180 : 0, -45);
             
             //GameObject go = Instantiate(_pouringAffectionProjectilePrefab, spawnPosition, spawnRotation);
-            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.PouringAffectionProjectile, spawnPosition, spawnRotation);
+            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.PouringAffectionProj, spawnPosition, spawnRotation);
             PouringAffectionProjectile projectile = go.GetComponent<PouringAffectionProjectile>();
             projectile.Initialize(data, _enemyLayer, offset.x > 0);
         }

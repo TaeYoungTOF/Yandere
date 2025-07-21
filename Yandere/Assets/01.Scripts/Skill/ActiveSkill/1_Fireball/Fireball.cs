@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.Pool;
 
 [System.Serializable]
 public class FireballDataWrapper : AcviteDataWapper
@@ -23,7 +24,7 @@ public class Fireball : ActiveSkill<FireballDataWrapper>
     [SerializeField] private float _enemySearchRange = 5f;
 
     [Header("References")]
-    [SerializeField] private GameObject _fireballProjectilePrefab;
+    //[SerializeField] private GameObject _fireballProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     public override void UpdateActiveData()
@@ -41,12 +42,6 @@ public class Fireball : ActiveSkill<FireballDataWrapper>
 
     protected override void Activate()
     {
-        if (data == null || _fireballProjectilePrefab == null)
-        {
-            Debug.LogWarning("[Fireball] Data or Projectile Prefab is null");
-            return;
-        }
-
         Vector2 origin = transform.position;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(origin, data.enemySearchRange, _enemyLayer);
@@ -55,18 +50,15 @@ public class Fireball : ActiveSkill<FireballDataWrapper>
 
         foreach (var target in sortedTargets)
         {
-            GameObject projGO = Instantiate(_fireballProjectilePrefab, origin, Quaternion.identity);
-            var proj = projGO.GetComponent<FireballProjectile>();
-
-            if (proj != null)
-            {
-                Vector2 dir = ((Vector2)target.transform.position - origin).normalized;
-
-                proj.Initialize(dir, data.projectileSpeed, data.projectileDistance, data.skillDamage, data.explosionRadius, _enemyLayer);
-            }
+            Vector2 dir = ((Vector2)target.transform.position - origin).normalized;
+            
+            //GameObject projGO = Instantiate(_fireballProjectilePrefab, origin, Quaternion.identity);
+            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.FireballProj, origin, Quaternion.identity);
+            var proj = go.GetComponent<FireballProjectile>();
+            proj.Initialize(dir, data, _enemyLayer);
 
             // 투사체 크기 조절
-            projGO.transform.localScale = Vector3.one * data.projectileSize;
+            go.transform.localScale = Vector3.one * data.projectileSize;
         }
     }
 }

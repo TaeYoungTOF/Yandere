@@ -22,7 +22,7 @@ public class EtchedHatred : ActiveSkill<EtchedHatredDataWrapper>
 
     [Header("References")]
     [SerializeField] private GameObject _wavePrefab;
-    [SerializeField] private GameObject _etchedHatredProjectilePrefab;
+    //[SerializeField] private GameObject _etchedHatredProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
     
     private readonly HashSet<Transform> _attachedEnemies = new();
@@ -40,6 +40,7 @@ public class EtchedHatred : ActiveSkill<EtchedHatredDataWrapper>
 
     protected override void Activate()
     {
+        _attachedEnemies.Clear();
         _wavePrefab.transform.localScale = Vector3.one * data.searchRadius;
         _wavePrefab.SetActive(true);
 
@@ -61,7 +62,8 @@ public class EtchedHatred : ActiveSkill<EtchedHatredDataWrapper>
                 {
                     Vector3 spawnPos = e.transform.position;
 
-                    GameObject go = Instantiate(_etchedHatredProjectilePrefab, spawnPos, Quaternion.identity);
+                    //GameObject go = Instantiate(_etchedHatredProjectilePrefab, spawnPos, Quaternion.identity);
+                    GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.EtchedHatredProj, spawnPos, Quaternion.identity);
                     EtchedHatredProjectile projectile = go.GetComponent<EtchedHatredProjectile>();
                     projectile.Initialize(data, _enemyLayer, e.transform);
 

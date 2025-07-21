@@ -2,16 +2,6 @@ using UnityEngine;
 using System;
 using System.IO;
 
-[System.Serializable]
-public class SaveData
-{
-    public string lastPlayTime;
-    public float gold = 0f;
-    public int stage = 1;
-
-    // IUpgradble[] 정보 저장
-}
-
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance { get; private set; }
