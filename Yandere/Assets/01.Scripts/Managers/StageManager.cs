@@ -72,11 +72,11 @@ public class StageManager : MonoBehaviour
     private void Update()
     {
         // Achievement UI는 게임을 멈추지 않도록 예외 처리
-        if (IsUIOpened && UIManager.Instance._currentState != UIState.Achievement)
-            {
-                Time.timeScale = 0f;
-                return;
-            }
+        if (IsUIOpened/** && UIManager.Instance._currentState != UIState.Achievement*/)
+        {
+            Time.timeScale = 0f;
+            return;
+        }
 
 
         if (Player.stat.CurrentHp <= 0)

@@ -294,6 +294,94 @@ MonoBehaviour:
   _spawnWeights: []
   _spawnInterval: 0
   _spawnAmount: 0
+--- !u!1 &219609298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 219609301}
+  - component: {fileID: 219609300}
+  - component: {fileID: 219609299}
+  m_Layer: 0
+  m_Name: '[ AchivementManager ] '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &219609299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219609298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402c5ec302bfdde44812cc69e3743035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allAchievements:
+  - rank: 0
+    isCleared: 0
+    description: 
+    currentProgress: 0
+    targetProgress: 0
+    category: 0
+    conditionType: 1
+    conditionValue: 120
+    title: "\uD53C\uD574\uB97C \uC785\uC9C0 \uC54A\uACE0 120\uCD08 \uC0DD"
+  - rank: 1
+    isCleared: 0
+    description: 
+    currentProgress: 0
+    targetProgress: 0
+    category: 0
+    conditionType: 2
+    conditionValue: 1000
+    title: "\uCD1D 1,000\u314F\uB9AC \uBAAC\uC2A4\uD130 \uCC98"
+  - rank: 2
+    isCleared: 0
+    description: 
+    currentProgress: 0
+    targetProgress: 0
+    category: 0
+    conditionType: 6
+    conditionValue: 6
+    title: "\uC561\uD2F0\uBE0C \uC2A4\uD0AC 6\uAC1C \uBAA8\uB450 \uD68D"
+  currentRandomAchievements: []
+--- !u!114 &219609300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219609298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e80676cb63f07043afa94cdffe6023c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageManager: {fileID: 709524318}
+  ui_Achievement: {fileID: 4525051404582775856}
+--- !u!4 &219609301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219609298}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224099165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,8 +1266,8 @@ MonoBehaviour:
     Prefab: {fileID: 9025320943301313202, guid: f111e282255bf4f92b975d357cbac617, type: 3}
     initialSize: 50
   - PoolType: 5
-    Prefab: {fileID: 9025320943301313202, guid: f111e282255bf4f92b975d357cbac617, type: 3}
-    initialSize: 50
+    Prefab: {fileID: 4596775477161923934, guid: b969e772a6d742f43aded224e3059944, type: 3}
+    initialSize: 30
 --- !u!1 &1212898035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1212898036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3175,6 +3263,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8350073401559089482, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
   m_PrefabInstance: {fileID: 4525051404582775854}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4525051404582775856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7336123316370935381, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+  m_PrefabInstance: {fileID: 4525051404582775854}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5155326999703240116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3938,6 +4031,7 @@ SceneRoots:
   - {fileID: 709524319}
   - {fileID: 931304780}
   - {fileID: 1212898037}
+  - {fileID: 219609301}
   - {fileID: 1999354856}
   - {fileID: 1725014473}
   - {fileID: 1863622890}

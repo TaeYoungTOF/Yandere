@@ -114,10 +114,10 @@ public class GameManager : MonoBehaviour
 
         switch (scene.name)
         {
-            case "Jubin_EnemyTest1":
+            case "TitleScene":
                 SoundManagerTest.Instance.Play("Title_BGM");
                 break;
-            case "Jubin_EnemyTest2":
+            case "GameScene":
                 SoundManagerTest.Instance.Play("Stage1_BGM");
                 break;
         }
