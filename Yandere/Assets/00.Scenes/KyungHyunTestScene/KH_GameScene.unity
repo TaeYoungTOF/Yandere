@@ -1326,6 +1326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338988577}
   - component: {fileID: 1338988576}
+  - component: {fileID: 1338988578}
   m_Layer: 0
   m_Name: '[ AchivementManager ] '
   m_TagString: Untagged
@@ -1362,6 +1363,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1338988578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338988575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402c5ec302bfdde44812cc69e3743035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allAchievements:
+  - rank: 0
+    isCleared: 0
+    description: 
+    currentProgress: 0
+    targetProgress: 0
+    category: 0
+    conditionType: 1
+    conditionValue: 120
+    title: "\uD53C\uD574\uB97C \uC785\uC9C0 \uC54A\uACE0 120\uCD08 \uC0DD"
+  - rank: 1
+    isCleared: 0
+    description: 
+    currentProgress: 0
+    targetProgress: 0
+    category: 0
+    conditionType: 2
+    conditionValue: 1000
+    title: "\uCD1D 1,000\u314F\uB9AC \uBAAC\uC2A4\uD130 \uCC98"
+  - rank: 2
+    isCleared: 0
+    description: 
+    currentProgress: 0
+    targetProgress: 0
+    category: 0
+    conditionType: 6
+    conditionValue: 6
+    title: "\uC561\uD2F0\uBE0C \uC2A4\uD0AC 6\uAC1C \uBAA8\uB450 \uD68D"
+  currentRandomAchievements: []
 --- !u!1 &1348722146
 GameObject:
   m_ObjectHideFlags: 0
