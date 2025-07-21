@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //_timer = 0f;
+        //SoundManagerTest.Instance.Play("Title_BGM");
     }
 
     private void Update()
@@ -95,6 +96,31 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[GameManager] Load Next Stage: {currentStageData.stageIndex}");
 
         LoadGameScene();
+    }
+    
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("씬 로드됨: " + scene.name);
+
+        switch (scene.name)
+        {
+            case "Jubin_EnemyTest1":
+                SoundManagerTest.Instance.Play("Title_BGM");
+                break;
+            case "Jubin_EnemyTest2":
+                SoundManagerTest.Instance.Play("Stage1_BGM");
+                break;
+        }
     }
 
     /** @todo SaveSystem 추후 조정

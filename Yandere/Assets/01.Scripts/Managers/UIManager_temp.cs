@@ -1,4 +1,4 @@
-using TMPro;
+ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,11 +40,13 @@ public class UIManager_temp : MonoBehaviour
 
     public void OnClickStartButton()
     {
+        SoundManagerTest.Instance.Play("LobbyClick01_SFX");
         _stageSelectPanel.SetActive(true);
     }
 
     public void OnClickSettingButton()
     {
+        SoundManagerTest.Instance.Play("LobbyClick01_SFX");
         _settingPanel.SetActive(true);
     }
 }

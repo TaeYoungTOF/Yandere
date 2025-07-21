@@ -7,7 +7,10 @@ public enum PoolType
    PlayerBullet,
    Enemy,
    Item,
-   FieldObject
+   FieldObject,
+   
+   //스킬
+   PouringAffectionProjectile
 }
 
 [System.Serializable]

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37539841065ecc04abf91ea63dbd6b84, type: 3}
-  m_Name: GameScenesBGM
+  m_Name: GameScene_BGM
   m_EditorClassIdentifier: 
   soundType: 0
-  soundName: 
-  soundClip: {fileID: 0}
-  volume: 1
-  loop: 0
+  soundName: Stage1_BGM
+  soundClip: {fileID: 8300000, guid: 4ac6fa83440429948b9c150548755530, type: 3}
+  volume: 0.4
+  loop: 1

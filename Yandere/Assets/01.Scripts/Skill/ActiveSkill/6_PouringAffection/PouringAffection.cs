@@ -21,7 +21,7 @@ public class PouringAffection : ActiveSkill<PouringAffectionDataWrapper>
     private LevelupData_PouringAffection CurrentData => ActiveData as LevelupData_PouringAffection;
 
     [Header("References")]
-    [SerializeField] private GameObject _pouringAffectionProjectilePrefab;
+    //[SerializeField] private GameObject _pouringAffectionProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     public override void UpdateActiveData()
@@ -43,7 +43,8 @@ public class PouringAffection : ActiveSkill<PouringAffectionDataWrapper>
             Vector2 spawnPosition = center + offset;
             Quaternion spawnRotation = Quaternion.Euler(0f, offset.x > 0 ? 180 : 0, -45);
             
-            GameObject go = Instantiate(_pouringAffectionProjectilePrefab, spawnPosition, spawnRotation);
+            //GameObject go = Instantiate(_pouringAffectionProjectilePrefab, spawnPosition, spawnRotation);
+            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.PouringAffectionProjectile, spawnPosition, spawnRotation);
             PouringAffectionProjectile projectile = go.GetComponent<PouringAffectionProjectile>();
             projectile.Initialize(data, _enemyLayer, offset.x > 0);
         }
