@@ -8,11 +8,10 @@ public class DataManager : MonoBehaviour
     [Header("Player Info")]
     public string playerId;
     public int accountLevel;
-    public double totalPlayTime; // 누적 접속 시간 (초)
 
     [Header("Currencies")]
-    public int obsessionCrystals; // 집착의 결정 (기본 재화)
-    public int premiumCurrency;   // 유료 재화 (ex. 다이아몬드)
+    public int obsessionCrystals;
+    public int premiumCurrency;
 
     [Header("Facility Upgrade State")]
     public FacilitySaveData facilitySaveData;
@@ -32,7 +31,6 @@ public class DataManager : MonoBehaviour
     {
         playerId = Guid.NewGuid().ToString();
         accountLevel = 1;
-        totalPlayTime = 0;
 
         obsessionCrystals = 0;
         premiumCurrency = 0;
@@ -47,7 +45,6 @@ public class DataManager : MonoBehaviour
         {
             playerId = this.playerId,
             accountLevel = this.accountLevel,
-            totalPlayTime = this.totalPlayTime,
             obsessionCrystals = this.obsessionCrystals,
             premiumCurrency = this.premiumCurrency,
             facilitySaveData = this.facilitySaveData,
@@ -59,7 +56,6 @@ public class DataManager : MonoBehaviour
     {
         this.playerId = save.playerId;
         this.accountLevel = save.accountLevel;
-        this.totalPlayTime = save.totalPlayTime;
         this.obsessionCrystals = save.obsessionCrystals;
         this.premiumCurrency = save.premiumCurrency;
         this.facilitySaveData = save.facilitySaveData ?? new FacilitySaveData();

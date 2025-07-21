@@ -19,7 +19,7 @@ public class AccountSaveData
 [System.Serializable]
 public class FacilitySaveData
 {
-    public int[] facilityLevels = new int[5]; // 예시: 5개의 강화 가능한 시설
+    public int[] facilityLevels = new int[5];
 }
 
 [System.Serializable]
@@ -30,13 +30,10 @@ public class SettingData
     public bool isVibrationOn = true;
 }
 
-
 [System.Serializable]
 public class SaveData
 {
     public string lastPlayTime;
     public float gold = 0f;
     public int stage = 1;
-
-    // IUpgradble[] 정보 저장
 }
