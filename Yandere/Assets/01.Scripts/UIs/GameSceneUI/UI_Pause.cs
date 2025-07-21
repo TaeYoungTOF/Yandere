@@ -45,7 +45,17 @@ public class UI_Pause : ToggleableUI
         _confirmCancelButton.onClick.RemoveAllListeners();
         _confirmCancelButton.onClick.AddListener(OnClickconfirmCancelButton);
     }
-    
+
+    public override void Show()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Hide()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override UIState GetUIState()
     {
         return UIState.Pause;

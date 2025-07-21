@@ -21,6 +21,16 @@ public class UI_SkillSelect : ToggleableUI
         _goldButton.gameObject.SetActive(false);
     }
 
+    public override void Show()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Hide()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override UIState GetUIState()
     {
         return UIState.SkillSelect;
