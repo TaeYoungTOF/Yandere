@@ -4,7 +4,7 @@ using UnityEngine;
 public class AchievementManager : MonoBehaviour
 {
     [SerializeField] private StageManager stageManager;
-    [SerializeField] private UI_Achievement ui_Achievement;
+    [SerializeField] private GameObject ui_Achievement;
 
     public enum AchievementRank
     {
@@ -13,6 +13,7 @@ public class AchievementManager : MonoBehaviour
         Third = 2,
         Fourth = 3
     }
+    
 
     private void Awake()
     {
@@ -106,7 +107,7 @@ public class AchievementManager : MonoBehaviour
     {
         if (ui_Achievement != null)
         {
-            ui_Achievement.ShowAchievement(achievement);
+            
         }
         else
         {
