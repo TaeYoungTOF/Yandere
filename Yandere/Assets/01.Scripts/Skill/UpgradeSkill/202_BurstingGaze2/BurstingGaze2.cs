@@ -12,7 +12,7 @@ public class BurstingGaze2Wrapper : UpgradeSkillWrapper
     public float projectileSpeed = 25f;
     public float shootDelay = 0.1f;
 
-    //[Header("Second Data")]
+    [Header("Second Data")]
     public float secondSkillDmg;
     public float secondPjtSize;
     public float secondPjtDuration;
