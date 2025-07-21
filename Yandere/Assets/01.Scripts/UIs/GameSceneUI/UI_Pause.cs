@@ -21,11 +21,14 @@ public class UI_Pause : ToggleableUI
     [SerializeField] private Transform _passiveSkillParent;
     [SerializeField] private GameObject _skillSlot;
     
+    private SkillManager _skillManager;
+    
     private void Start()
     {
         Init(_pausePanel);
         _pausePanel.SetActive(false);
         
+        _skillManager = SkillManager.Instance;
 
         _settingButton.onClick.RemoveAllListeners();
         _settingButton.onClick.AddListener(OnClickSettingButton);
@@ -53,6 +56,7 @@ public class UI_Pause : ToggleableUI
         ClearSkillSlots();
         InstantiateActiveSkillSlots();
         InstantiatePassiveSkillSlots();
+        InstantiateUpgradeSkillSlots();
     }
     
     private void ClearSkillSlots()
@@ -65,7 +69,7 @@ public class UI_Pause : ToggleableUI
 
     private void InstantiateActiveSkillSlots()
     {
-        List<ActiveSkill> skills = SkillManager.Instance.equipedActiveSkills;
+        List<ActiveSkill> skills = _skillManager.equipedActiveSkills;
 
         foreach (ActiveSkill activeSkill in skills)
         {
@@ -77,13 +81,28 @@ public class UI_Pause : ToggleableUI
 
     private void InstantiatePassiveSkillSlots()
     {
-        List<PassiveSkill> skills = SkillManager.Instance.equipedPassiveSkills;
+        List<PassiveSkill> skills = _skillManager.equipedPassiveSkills;
 
         foreach (PassiveSkill passiveSkill in skills)
         {
             GameObject slotGo = Instantiate(_skillSlot,  _passiveSkillParent);
             Button_SkillSlot slot = slotGo.GetComponent<Button_SkillSlot>();
             slot.SetSkillSlot(passiveSkill.SkillIcon, passiveSkill.level);
+        }
+    }
+
+    private void InstantiateUpgradeSkillSlots()
+    {
+        if (_skillManager.equipedUpgradeSkills.Count > 0)
+        {
+            List<UpgradeSkill> upgrades = _skillManager.equipedUpgradeSkills;
+
+            foreach (UpgradeSkill upgrade in upgrades)
+            {
+                GameObject slotGo = Instantiate(_skillSlot,  _activeSkillParent);
+                Button_SkillSlot slot = slotGo.GetComponent<Button_SkillSlot>();
+                slot.SetSkillSlot(upgrade.SkillIcon, _skillManager.MaxLevel);
+            }
         }
     }
 

@@ -16,24 +16,18 @@ public class TY_Debug : MonoBehaviour
     [Button]
     public void DebugLevelUp()
     {
-        Debug.Log("[Debug] Level Up");
-
         StageManager.Instance.Player.GainExp(10);
     }
 
     [Button]
     public void DebugStageClear()
     {
-        Debug.Log("[Debug] Stag Clear");
-
         StageManager.Instance.StageClear();
     }
 
     [Button]
     public void DebugHealHealth()
     {
-        Debug.Log("[Debug] Heal 100 Health");
-        
         StageManager.Instance.Player.Heal(100);
     }
 
