@@ -20,6 +20,16 @@ public class UI_StageClear : ToggleableUI
         _nextButton.onClick.AddListener(GameManager.Instance.LoadNextStage);
     }
 
+    public override void Show()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Hide()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override UIState GetUIState()
     {
         return UIState.StageClear;

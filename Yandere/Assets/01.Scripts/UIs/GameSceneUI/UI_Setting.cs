@@ -71,9 +71,18 @@ public class UI_Setting : ToggleableUI
         // AudioListener : Audio를 듣는 객체. 보통 카메라에 달려있다.
         AudioListener.volume = (mute ? 0 : 1);
     }
-    
-    
-    
+
+
+    public override void Show()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Hide()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override UIState GetUIState()
     {
         return UIState.Setting;

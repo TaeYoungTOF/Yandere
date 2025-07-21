@@ -14,6 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 1
   clearTime: 180
-  achievements: []
+  achieveDatas:
+  - rank: 0
+    isCleared: 0
+    description: 
+  - rank: 1
+    isCleared: 0
+    description: 
+  - rank: 2
+    isCleared: 0
+    description: 
   waveDatas:
   - {fileID: 11400000, guid: 35d5397e3827d154492b0a313ddd7b4c, type: 2}
