@@ -20,6 +20,7 @@ public class Button_Stage : MonoBehaviour
 
     public void LoadStage()
     {
+        SoundManagerTest.Instance.Play("LobbyClick01_SFX");
         GameManager.Instance.SetStage(stageData);
         GameManager.Instance.LoadGameScene();
     }
