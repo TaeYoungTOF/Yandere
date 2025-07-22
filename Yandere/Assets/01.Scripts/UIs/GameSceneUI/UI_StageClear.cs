@@ -5,19 +5,26 @@ using UnityEngine.UI;
 public class UI_StageClear : ToggleableUI
 {
     [SerializeField] private GameObject _stageClearPanel;
+    [SerializeField] private GameObject _stageSelcetPanel;
     [SerializeField] private Button _homeButton;
     [SerializeField] private Button _nextButton;
+    [SerializeField] private Button _backButton;
     [SerializeField] private TMP_Text _clearText;
 
     private void Start()
     {
         Init(_stageClearPanel);
         _stageClearPanel.SetActive(false);
+        Init(_stageSelcetPanel);
+        _stageSelcetPanel.SetActive(false);
 
         _homeButton.onClick.RemoveAllListeners();
         _nextButton.onClick.RemoveAllListeners();
+        _backButton.onClick.RemoveAllListeners();
+        
         _homeButton.onClick.AddListener(GameManager.Instance.LoadTitleScene);
         _nextButton.onClick.AddListener(GameManager.Instance.LoadNextStage);
+        _backButton.onClick.AddListener(OnClickBackButton);
     }
 
     public override void Show()
@@ -34,7 +41,7 @@ public class UI_StageClear : ToggleableUI
     {
         return UIState.StageClear;
     }
-
+    
     public override void UIAction()
     {
         _clearText.text = $"Stage {StageManager.Instance.currentStageData.stageIndex} Clear !!";
@@ -47,5 +54,10 @@ public class UI_StageClear : ToggleableUI
         {
             _nextButton.gameObject.SetActive(true);
         }
+    }
+
+    public void OnClickBackButton()
+    {
+        _stageSelcetPanel.SetActive(true);
     }
 }
