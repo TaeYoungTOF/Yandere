@@ -20,6 +20,8 @@ public class SkillManager : MonoBehaviour
     public List<UpgradeSkill> availableUpgradeSkills;
     private List<UpgradeSkill> _upgradableSkills;
 
+    public bool isLevelUp;
+
     private void Awake()
     {
         if (Instance == null)

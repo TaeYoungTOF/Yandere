@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbc41500c33f54740938319181b52b22, type: 3}
-  m_Name: ParchedLonging2
+  m_Name: 201_BurningJeolousy2
   m_EditorClassIdentifier: 
   level: 1
-  skillName: "\uC2EC\uC5F0 : \uBA54\uB9C8\uB978 \uAC08\uB9DD"
-  skillIcon: {fileID: 21300000, guid: 629d04ec46559e44c92d2ae9009b0457, type: 3}
-  levelupTooltip: "\uC2EC\uC5F0 : \uBA54\uB9C8\uB978 \uAC08\uB9DD"
+  skillName: "\uB9CC\uAC1C : \uD0C0\uC624\uB974\uB294 \uC9C8\uD22C"
+  skillIcon: {fileID: 21300000, guid: 1725fb6d36c6a764cb97b60012fc6ef7, type: 3}
+  levelupTooltip: "\uB9CC\uAC1C : \uD0C0\uC624\uB974\uB294 \uC9C8\uD22C"
   projectileCount: 3
-  skillDamage: 220
-  coolTime: 6
+  skillDamage: 200
+  coolTime: 3

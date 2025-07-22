@@ -46,13 +46,12 @@ public class BurningJealousy2Projectile : BaseProjectile
         
         for (int i = 0; i < _data.secondPjtCount; i++)
         {
-            GameObject projGO = Instantiate(_fireballProjectilePrefab, transform.position, Quaternion.identity);
-            var proj = projGO.GetComponent<FireballProjectile>();
-            
             float angle = (360f / _data.secondPjtCount) * i;
             Vector3 dir = Quaternion.Euler(0f, 0f, angle) * Vector3.right;
-
-            proj.Initialize(dir, _data.pjtSpeed, _data.pjtDistance, _data.secondDmg, _data.secondExplodeRadius, enemyLayer);
+            
+            GameObject projGO = Instantiate(_fireballProjectilePrefab, transform.position, Quaternion.identity);
+            var proj = projGO.GetComponent<BurnignJealousy2Proj2>();
+            proj.Initialize(dir, _data, enemyLayer);
 
             proj.transform.localScale = Vector3.one * _data.secondPjtSize;
         }

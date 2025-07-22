@@ -130,11 +130,11 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
             if (_rigidbody2D.velocity.magnitude > 0.1f)                                              // 몬스터의 _rigidbody2D.velocity의 값이 0.1 보다 크면
             {
-                _animator.SetBool("Run", true);                                                 // 몬스터의 애니메이션을 Run 상태로 변경
+                //_animator.SetBool("Run", true);                                                 // 몬스터의 애니메이션을 Run 상태로 변경
             }
             else                                                                                     // 몬스터의 _rigidbody2D.velocity의 값이 0.1 보다 작으면
             {
-                _animator.SetBool("Run", false);                                                // 몬스터의 애니메이션을 Idle로 변경
+                //_animator.SetBool("Run", false);                                                // 몬스터의 애니메이션을 Idle로 변경
             }
             
             if (direction.x < 0)

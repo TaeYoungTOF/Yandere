@@ -3,28 +3,24 @@ using DG.Tweening;
 
 public class FireballProjectile : BaseProjectile
 {
-    private float _speed;
-    private float _distance;
-    private float _damage;
-    private float _explosionRadius;
-
-    private Vector2 _direction;
-
+    [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private GameObject explosionPrefab;
+    
+    private Vector2 _direction;
+    private FireballDataWrapper _data;
 
     public override void Initialize() { }
-    public void Initialize(Vector2 direction, float projectileSpeed, float projectileDistance, float skillDamage, float explosionRadius, LayerMask enemyLayer)
+    public void Initialize(Vector2 direction, FireballDataWrapper data, LayerMask enemyLayer)
     {
-        _speed = projectileSpeed;
-        _distance = projectileDistance;
-        _damage = skillDamage;
-        _explosionRadius = explosionRadius;
+        fireballPrefab.SetActive(true);
+        explosionPrefab.SetActive(false);
+        
+        _direction = direction;
+        _data = data;
         this.enemyLayer = enemyLayer;
 
-        _direction = direction;
-
-        Vector3 targetPos = transform.position + (Vector3)(_direction * _distance);
-        transform.DOMove(targetPos, _distance / _speed)
+        Vector3 targetPos = transform.position + (Vector3)(_direction * _data.projectileDistance);
+        transform.DOMove(targetPos, _data.projectileDistance / _data.projectileSpeed)
                  .SetEase(Ease.Linear)
                  .OnComplete(Explode);
     }
@@ -39,28 +35,20 @@ public class FireballProjectile : BaseProjectile
 
     private void Explode()
     {
-        if (!explosionPrefab)
+        fireballPrefab.SetActive(false);
+        explosionPrefab.SetActive(true);
+
+        
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, _data.explosionRadius, enemyLayer);
+
+        foreach (var e in enemies)
         {
-            Debug.Log("[Fireball Projectile] Fireball Explosion Prefab is null!");
-            return;
+            if (e.TryGetComponent(out IDamagable target))
+            {
+                target.TakeDamage(_data.skillDamage);
+            }
         }
 
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity)
-            .GetComponent<FireballExplosion>()
-            .Initialize(_damage, _explosionRadius, enemyLayer);
-
-        Destroy(gameObject);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-
-        Vector3 start = transform.position;
-        Vector3 end = start + (Vector3)(_direction.normalized * _distance);
-
-        Gizmos.DrawLine(start, end);
-
-        Gizmos.DrawWireSphere(end, 0.3f);
+        Destroy(gameObject, 2f);
     }
 }
