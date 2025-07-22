@@ -25,7 +25,7 @@ public class RagingEmotions : ActiveSkill<RagingEmotionsDataWrapper>
     [SerializeField] private float _projectileRadius = 1f;
     
     [Header("References")]
-    [SerializeField] private GameObject _RagingEmotionsProjectilePrefab;
+    //[SerializeField] private GameObject _RagingEmotionsProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     private bool _isSkillOver = true;
@@ -66,7 +66,8 @@ public class RagingEmotions : ActiveSkill<RagingEmotionsDataWrapper>
             Vector3 spawnDir = Quaternion.Euler(0f, 0f, angle) * Vector3.right;
             Vector3 spawnPos = player.transform.position + spawnDir * data.playerDistance;
 
-            GameObject go = Instantiate(_RagingEmotionsProjectilePrefab, spawnPos, Quaternion.identity);
+            //GameObject go = Instantiate(_RagingEmotionsProjectilePrefab, spawnPos, Quaternion.identity);
+            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.RagingEmotionsProj, spawnPos, Quaternion.identity);
             RagingEmotionsProjectile projectile = go.GetComponent<RagingEmotionsProjectile>();
             projectile.Initialize(player.transform, angle, data, _enemyLayer);
             

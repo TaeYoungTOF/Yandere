@@ -23,7 +23,7 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
     [SerializeField] private float _projectileDistance = 25f;
     
     [Header("References")]
-    [SerializeField] private GameObject _burstingGazeProjectilePrefab;
+    //[SerializeField] private GameObject _burstingGazeProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     public override void UpdateActiveData()
@@ -57,7 +57,8 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
 
             Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * dir;
 
-            GameObject projGO = Instantiate(_burstingGazeProjectilePrefab, origin, Quaternion.identity);
+            //GameObject projGO = Instantiate(_burstingGazeProjectilePrefab, origin, Quaternion.identity);
+            GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGazeProj, origin, Quaternion.identity);
             var proj = projGO.GetComponent<BurstingGazeProjectile>();
 
             //GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.Projectile, origin, Quaternion.identity, _burstingGazeProjectilePrefab);
