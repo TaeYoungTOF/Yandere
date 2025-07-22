@@ -94,14 +94,14 @@ public class ObjectPoolManager : MonoBehaviour
             PoolType.Item => "ObjectPool_Items",
             PoolType.FieldObject => "ObjectPool_FieldObjects",
             PoolType.Enemy => "ObjectPool_Enemy",
-            PoolType.PlayerBullet => "ObjectPool_PlayerBullets",
             PoolType.EnemyBullet => "ObjectPool_EnemyBullets",
-            PoolType.FireballProj => "FireballProj",
-            PoolType.BurstingGazeProj => "BurstingGazeProj",
-            PoolType.ParchedLongingProj => "ParchedLongingProj",
-            PoolType.RagingEmotionsProj => "RagingEmotionsProj",
-            PoolType.EtchedHatredProj => "EtchedHatredProj",
-            PoolType.PouringAffectionProj => "PouringAffectionProj",
+            //PlayerSkill
+            PoolType.FireballProj => "ObjectPool_PlayerSkill/FireballProj",
+            PoolType.BurstingGazeProj => "ObjectPool_PlayerSkill/BurstingGazeProj",
+            PoolType.ParchedLongingProj => "ObjectPool_PlayerSkill/ParchedLongingProj",
+            PoolType.RagingEmotionsProj => "ObjectPool_PlayerSkill/RagingEmotionsProj",
+            PoolType.EtchedHatredProj => "ObjectPool_PlayerSkill/EtchedHatredProj",
+            PoolType.PouringAffectionProj => "ObjectPool_PlayerSkill/PouringAffectionProj",
             _ => "PooledObjects"
         };
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 
@@ -88,6 +89,12 @@ public class ResourceManager : MonoBehaviour
       TimeSpan remainingTime = TimeSpan.FromSeconds(remain);
       timeUntilNextStack = remainingTime.ToString(@"hh\:mm\:ss");
    }
+
+   [Button]
+   private void DebugTimer()
+   {
+      AddTestTime(3000);
+   }
    
    // 디버그용 코드
    public void AddTestTime(float time)
@@ -95,6 +102,4 @@ public class ResourceManager : MonoBehaviour
       timer += time;
       Debug.Log($"[디버그]{time}초 추가 됨. 현재 타이머: {timer}초");
    }
-   
- 
 }
