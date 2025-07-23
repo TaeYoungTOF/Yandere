@@ -4456,7 +4456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 486.63174, y: -28}
+  m_AnchoredPosition: {x: 486.6315, y: -28}
   m_SizeDelta: {x: 231.055, y: 55.636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1444069805711296444
@@ -7150,6 +7150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6393164056744068553}
+  - component: {fileID: 58127475118368144}
   m_Layer: 0
   m_Name: List (2)
   m_TagString: Untagged
@@ -7184,6 +7185,25 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -701}
   m_SizeDelta: {x: 1030, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &58127475118368144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164280127031610472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d79736349acaab4aabf593a7da73bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facilityData: {fileID: 11400000, guid: f8fddbf24fca11746ae935024693162a, type: 2}
+  currentLevel: 0
+  currentCost: 0
+  testPlayerResourceGold: 0
+  facilityNameText: {fileID: 885575325909722011}
+  levelText: {fileID: 7992474589138166674}
+  levelDescriptionText: {fileID: 7867515567138798098}
 --- !u!1 &2168255893890099281
 GameObject:
   m_ObjectHideFlags: 0
@@ -11378,6 +11398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6175720011168034241}
+  - component: {fileID: 2912137360745186482}
   m_Layer: 0
   m_Name: List (1)
   m_TagString: Untagged
@@ -11411,6 +11432,25 @@ RectTransform:
   m_AnchoredPosition: {x: 50.731964, y: -384}
   m_SizeDelta: {x: 1030, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2912137360745186482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365876173795676069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66def5122ed3f3a408f06ec3abe2d481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facilityData: {fileID: 11400000, guid: c5c77c09b8c10464784f2a9271d5e24d, type: 2}
+  currentLevel: 0
+  currentCost: 0
+  testPlayerResourceGold: 0
+  facilityNameText: {fileID: 2266851335857795341}
+  levelText: {fileID: 533258149620171746}
+  levelDescriptionText: {fileID: 5436609652535528484}
 --- !u!1 &3408040845918062199
 GameObject:
   m_ObjectHideFlags: 0
@@ -16979,7 +17019,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5246717967690454970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
+        m_MethodName: PrivateRoomUpgradeButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4547180665175865932
 GameObject:
   m_ObjectHideFlags: 0
@@ -17150,7 +17202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 757.0189, y: -28}
+  m_AnchoredPosition: {x: 757.019, y: -28}
   m_SizeDelta: {x: 249.72, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4585349323336222716
@@ -32865,6 +32917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2995025593578979128}
+  - component: {fileID: 1338797269228806366}
   m_Layer: 0
   m_Name: List (3)
   m_TagString: Untagged
@@ -32899,6 +32952,25 @@ RectTransform:
   m_AnchoredPosition: {x: 50.731995, y: -1009}
   m_SizeDelta: {x: 1030, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1338797269228806366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457536242242310275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed7e1afb3e80a104fa4dc11b33482481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facilityData: {fileID: 11400000, guid: 5e2866f3a47bf2c47a748390b46cf25c, type: 2}
+  currentLevel: 0
+  currentCost: 0
+  testPlayerResourceGold: 0
+  facilityNameText: {fileID: 3424464613574130617}
+  levelText: {fileID: 813114414855023157}
+  levelDescriptionText: {fileID: 2925051768194318265}
 --- !u!1 &8491834837602789345
 GameObject:
   m_ObjectHideFlags: 0
@@ -36156,7 +36228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8910814609959694772, guid: f12026c7fc5a144a7b2c9f1c1abb0cd3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 170.55188
+      value: 170.552
       objectReference: {fileID: 0}
     - target: {fileID: 8910814609959694772, guid: f12026c7fc5a144a7b2c9f1c1abb0cd3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -37495,7 +37567,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 735996651718405004}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2912137360745186482}
+        m_TargetAssemblyTypeName: RecordRoom, Assembly-CSharp
+        m_MethodName: RecordRoomButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &8491796851602941767
 PrefabInstance:
   m_ObjectHideFlags: 0
