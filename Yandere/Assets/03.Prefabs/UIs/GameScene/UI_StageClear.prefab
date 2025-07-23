@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageClearPanel: {fileID: 1910111048537596764}
   _stageSelcetPanel: {fileID: 4119108766916884146}
-  _homeButton: {fileID: 0}
+  _homeButton: {fileID: 5439704633142146625}
   _nextButton: {fileID: 8145150343654865614}
   _backButton: {fileID: 7649070580902548504}
   _clearText: {fileID: 2900616303591266040}
@@ -1743,7 +1743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6940548732316811056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9990,8 +9990,71 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4982014788377573031, guid: 0b9319d3eb8784cc9a84d8e6db5cfc88, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7435760627779352037}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6489282374113060914, guid: 0b9319d3eb8784cc9a84d8e6db5cfc88, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5439704633142146625}
   m_SourcePrefab: {fileID: 100100000, guid: 0b9319d3eb8784cc9a84d8e6db5cfc88, type: 3}
+--- !u!114 &3993182145055986207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3001778802319170026, guid: 0b9319d3eb8784cc9a84d8e6db5cfc88, type: 3}
+  m_PrefabInstance: {fileID: 2216571373788498933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957434165730534343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4957434165730534343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6489282374113060914, guid: 0b9319d3eb8784cc9a84d8e6db5cfc88, type: 3}
+  m_PrefabInstance: {fileID: 2216571373788498933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5439704633142146625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957434165730534343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3993182145055986207}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!224 &6620709156981210450 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4982014788377573031, guid: 0b9319d3eb8784cc9a84d8e6db5cfc88, type: 3}
@@ -10251,7 +10314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3976298107384826055, guid: b3f433ba075554d86a43c4193c639467, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4116552384552536618, guid: b3f433ba075554d86a43c4193c639467, type: 3}
       propertyPath: m_Pivot.x
@@ -10369,7 +10432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3976298107384826055, guid: b3f433ba075554d86a43c4193c639467, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4116552384552536618, guid: b3f433ba075554d86a43c4193c639467, type: 3}
       propertyPath: m_Pivot.x
@@ -10487,7 +10550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3976298107384826055, guid: b3f433ba075554d86a43c4193c639467, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4116552384552536618, guid: b3f433ba075554d86a43c4193c639467, type: 3}
       propertyPath: m_Pivot.x
