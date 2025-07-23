@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e5908be71b13054fb940b849ccaaa39, type: 3}
-  m_Name: Facility_ReplayRoom
+  m_Name: 03_AudioRoom
   m_EditorClassIdentifier: 
-  facilityName: "\uC7AC\uD604\uC2E4"
-  requiredAccountLevel: 5
+  facilityName: "\uC74C\uD5A5\uC2E4"
+  requiredAccountLevel: 1
   statTarget: 
   maxLevel: 10
   valuePerLevel: 0
-  baseCost: 300
+  baseCost: 100
   costMultiplier: 0
   description: 

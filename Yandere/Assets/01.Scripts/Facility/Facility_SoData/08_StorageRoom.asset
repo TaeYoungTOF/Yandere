@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e5908be71b13054fb940b849ccaaa39, type: 3}
-  m_Name: Facility_IncinerationRoom
+  m_Name: 08_StorageRoom
   m_EditorClassIdentifier: 
-  facilityName: "\uC18C\uAC01\uC2E4"
-  requiredAccountLevel: 3
+  facilityName: "\uBCF4\uAD00\uC2E4"
+  requiredAccountLevel: 5
   statTarget: 
   maxLevel: 10
   valuePerLevel: 0
-  baseCost: 200
+  baseCost: 300
   costMultiplier: 0
   description: 

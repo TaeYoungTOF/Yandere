@@ -9,8 +9,8 @@ public class AccountSaveData
     public int accountLevel;
     public double totalPlayTime;
 
-    public int obsessionCrystals;
-    public int premiumCurrency;
+    public float obsessionCrystals;
+    public float premiumCurrency;
 
     public FacilitySaveData facilitySaveData;
     public SettingData settingData;

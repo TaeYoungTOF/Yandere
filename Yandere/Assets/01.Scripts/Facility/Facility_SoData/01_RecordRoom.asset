@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e5908be71b13054fb940b849ccaaa39, type: 3}
-  m_Name: Facility_TerminalRoom
+  m_Name: 01_RecordRoom
   m_EditorClassIdentifier: 
-  facilityName: "\uD14C\uC774\uD130\uC2E4"
-  requiredAccountLevel: 7
-  statTarget: 
-  maxLevel: 3
+  facilityName: "\uAE30\uB85D\uC2E4"
+  requiredAccountLevel: 1
+  _FacilityStatType: 0
+  statTargetText: "\uACF5\uACA9\uB825"
+  maxLevel: 10
+  basevalue: 0
   valuePerLevel: 0
-  baseCost: 500
-  costMultiplier: 0
+  baseCost: 100
+  costMultiplier: 1.1
   description: 
