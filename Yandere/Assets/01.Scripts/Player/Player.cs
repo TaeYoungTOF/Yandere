@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamagable
 {
+    private Rigidbody2D _rigidbody2D;
     private StageManager _stageManager;
     public PlayerStat stat = new();
     private int _itemLayer;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour, IDamagable
 
     public void Init(StageManager stageManager)
     {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _stageManager = stageManager;
         stat.ResetStats();
 
@@ -64,7 +66,9 @@ public class Player : MonoBehaviour, IDamagable
     private void FixedUpdate()
     {
         // 이동 처리
-        transform.position += stat.FinalMoveSpeed * Time.fixedDeltaTime * moveVec;
+        //transform.position += stat.FinalMoveSpeed * Time.fixedDeltaTime * moveVec;
+        Vector2 targetPos = transform.position + (stat.FinalMoveSpeed * Time.fixedDeltaTime * moveVec);
+        _rigidbody2D.MovePosition(targetPos);
     }
 
     private targetDirectType GetDirectionFromVector(Vector3 dir)
@@ -168,7 +172,7 @@ public class Player : MonoBehaviour, IDamagable
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == _itemLayer)
         {

@@ -35,7 +35,10 @@ public class ParchedLongingProjectile : BaseProjectile
         float lastTime = _lastHitTimes.ContainsKey(other) ? _lastHitTimes[other] : -999f;
         if (Time.time - lastTime >= _data.damageInterval)
         {
-            pullEnemy(other);
+            if (other.CompareTag("Enemy_Normal"))
+            {
+                pullEnemy(other);
+            }
             target.TakeDamage(_data.damageDoT);
             _lastHitTimes[other] = Time.time;
         }

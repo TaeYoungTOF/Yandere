@@ -77,7 +77,10 @@ public class RagingEmotionsProjectile : BaseProjectile
             target.TakeDamage(_data.skillDamage);
             _lastHitTimes[other] = Time.time;
 
-            ApplyKnockback(other);
+            if (other.CompareTag("Enemy_Normal"))
+            {
+                ApplyKnockback(other);
+            }
         }
     }
     
