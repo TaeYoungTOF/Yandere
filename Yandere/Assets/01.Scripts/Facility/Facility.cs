@@ -1,63 +1,87 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class Facility : MonoBehaviour
 {
-
-    [SerializeField] private FacilityData _facilityData;
+    [SerializeField] protected FacilityData facilityData;
     
     [Header("시설 인포")]
-    [SerializeField] private int currentLevel;
-    [SerializeField] private float currentCost;
-    
-    [Header("⏱ 디버그용")]
-    [SerializeField] private float testPlayerResourceGold;
+    [SerializeField] protected int currentLevel;
+    [SerializeField] protected float currentCost;
     
     [Header("UI 표시")]
-    [SerializeField] private TextMeshProUGUI facilityNameText;
-    [SerializeField] private TextMeshProUGUI levelText;
-    [SerializeField] private TextMeshProUGUI levelDescriptionText;
+    [SerializeField] protected TextMeshProUGUI facilityNameText;
+    [SerializeField] protected TextMeshProUGUI levelText;
+    [SerializeField] protected TextMeshProUGUI levelDescriptionText;
+
+    [Header("Private Data")]
+    [SerializeField] private GameObject _lockGO;
+    [SerializeField] private TMP_Text _requireLevel;
+    
+    protected float amount;
     
     void Start()
     {
         Init();
-        RefreshUI();
+        UpdateUI();
     }
     
-    void Init()
+    protected virtual void Init()
     {
         currentLevel = 0;
-        currentCost = _facilityData.baseCost;
-        facilityNameText.text = _facilityData.facilityName;
-        testPlayerResourceGold = 10000;
-    }
+        currentCost = facilityData.baseCost;
+        facilityNameText.text = facilityData.facilityName;
+        amount = facilityData.basevalue * (1 + facilityData.valuePerLevel / 100 * (currentLevel - 1));
 
+        if (_lockGO != null)
+        {
+            _lockGO.SetActive(true);
+            _requireLevel.text = facilityData.requiredAccountLevel.ToString();
+        }
+    }
     
     public void UpgradeButtonClick()
     {
-        if (testPlayerResourceGold >= currentCost && currentLevel < _facilityData.maxLevel)
+        if (currentLevel >= facilityData.maxLevel)
         {
-            SoundManagerTest.Instance.Play("LobbyClick01_SFX");
-            testPlayerResourceGold -= currentCost;
-            currentLevel++;
-            currentCost = Mathf.FloorToInt(currentCost * _facilityData.costMultiplier);
-            RefreshUI();
-            
-            // TODO : 플레이어 능력치 올려주는 기능 등 추가
+            SoundManagerTest.Instance.Play("LobbyClick02_SFX");
+            Debug.Log("[시설] 업그레이드 불가! 시설이 최대 레벨입니다!");
+            return;
+        }
+
+        if (DataManager.Instance.obsessionCrystals < currentCost)
+        {
+            SoundManagerTest.Instance.Play("LobbyClick02_SFX");
+            Debug.Log("[시설] 업그레이드 불가! 재화가 부족합니다!");
+            return;
+        }
+        
+        SoundManagerTest.Instance.Play("LobbyClick01_SFX");
+        DataManager.Instance.obsessionCrystals -= currentCost;
+        currentLevel++;
+        currentCost = Mathf.FloorToInt(currentCost * facilityData.costMultiplier);
+        amount = facilityData.basevalue * (1 + facilityData.valuePerLevel / 100 * (currentLevel - 1));
+        UpdateUI();
+        UIManager_Title.Instance.UpdateUI();
+    }
+
+    protected virtual void UpdateUI()
+    {
+        levelText.text = $"Lv.{currentLevel.ToString()}";
+        levelDescriptionText.text = $"{facilityData.statTargetText} + {10 + currentLevel}%";
+    }
+
+    public void OnClickUnLockButton()
+    {
+        if (facilityData.requiredAccountLevel > DataManager.Instance.accountLevel)
+        {
+            Debug.Log("[시설] 레벨이 부족합니다");
+            _lockGO.SetActive(true);
         }
         else
         {
-            SoundManagerTest.Instance.Play("LobbyClick02_SFX");
-            Debug.Log("[기록실] 업그레이드 불가 (재화 또는 최대레벨 입니다)");
-        } 
+            _lockGO.SetActive(false);
+        }
     }
-
-    void RefreshUI()
-    {
-        levelText.text = $"Lv.{currentLevel.ToString()}";
-        levelDescriptionText.text = $"{_facilityData.statTargetText} + {10 + currentLevel}%";
-    }
-    
 }

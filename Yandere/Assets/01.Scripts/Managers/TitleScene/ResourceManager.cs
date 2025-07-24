@@ -1,101 +1,78 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : Facility
 {
-   [SerializeField] FacilityData facilityData;
-
    [Header("개인실 인포")]
-   [SerializeField] private int currentLevel;                                                          // 개인실 현재 레벨
    [SerializeField] private int currentStack = 0;                                                      // 방치형 현재 스택
    [SerializeField] private int maxStack = 12;                                                         // 방치형 최대 스택
    [SerializeField] private float stackIntervalMinutes = 60f;                                          // 스택 보상 시간 (60초)
-   [SerializeField] private float currentCost;
-
-   private float timer = 0f;                                                                           //타이머
-
-   [Header("⏱ 디버그용 리소스 재화")]
-   [SerializeField] private float resourceGold;                                                        // 집착의 결정?
-   [SerializeField] private float resourceCash;                                                        // 유료 재화?
    
    [Header("⏱ 디버그용")]
    [SerializeField] private string currentTimeFormatted;
    [SerializeField] private string timeUntilNextStack;
-   [SerializeField] private float testPlayerResourceGold;
 
    [Header("UI 표시")]
-   [SerializeField] private TextMeshProUGUI facilityNameText;                                          // UI쪽에서 시설 이름 텍스트표시
    [SerializeField] private TextMeshProUGUI stackCountText;                                            // UI쪽에서 현재 카운트 스택 텍스트표시
    [SerializeField] private TextMeshProUGUI timerText;                                                 // UI쪽에서 현재 남은 시간 텍스트표시
-   [SerializeField] private TextMeshProUGUI levelText;                                                 // UI쪽에서 현재 레벨 텍스트표시
-   [SerializeField] private TextMeshProUGUI levelDescriptionText;                                      // UI쪽에서 현재 보상정보 텍스트표시
 
-   private void Start()
-   {
-      
-      Init();
-      RefreshUI();
-
-      //stackCountText.text = $"{currentStack.ToString()} / {maxStack.ToString()}";
-   }
+   [SerializeField] private GameObject[] _photos = new GameObject[12];
+   
+   private float _timer = 0f;                                                                           //타이머
 
    private void Update()
    {
-      timer += Time.deltaTime;                                                      // timer를 델타타임 값을 계속 더해줌
+      _timer += Time.deltaTime;                                                      // timer를 델타타임 값을 계속 더해줌
       UpdateDebugInfo();
       
-      float remain = Mathf.Max(0f, (stackIntervalMinutes * 60f) - timer);
+      float remain = Mathf.Max(0f, (stackIntervalMinutes * 60f) - _timer);
       TimeSpan remainingTime = TimeSpan.FromSeconds(remain);
       string formatted = string.Format("{0:D2}:{1:D2}", remainingTime.Minutes, remainingTime.Seconds);
 
       if (timerText != null)
          timerText.text = formatted;
 
-      if (timer >= stackIntervalMinutes * 60f)                                      // timer(0초)가 stackIntervalMinutes(즉 3600초)보다 크거나 같으면
+      if (_timer >= stackIntervalMinutes * 60f)                                      // timer(0초)가 stackIntervalMinutes(즉 3600초)보다 크거나 같으면
       {
-         if (currentStack < maxStack)                                               // currentStack이 maxStack보다 작을 경우
+         SetPhoto();
+
+         _timer = 0f;
+      }
+   }
+
+   protected override void Init()
+   {
+      base.Init();
+      
+      currentLevel++;
+      
+      for (int i = 0; i < _photos.Length; i++)
+      {
+         _photos[i].SetActive(false);
+      }
+   }
+
+   private void SetPhoto()
+   {
+      if (currentStack >= maxStack) return;
+      
+      currentStack++;                                                         // currentStack 값을 증가 시킴
+      Debug.Log($"[테스트] 스택 증가! 현재 스택: {currentStack}");
+      
+      while (true)
+      {
+         int randomIndex = UnityEngine.Random.Range(0, _photos.Length);
+         
+         if (!_photos[randomIndex].activeSelf)
          {
-            currentStack++;                                                         // currentStack 값을 증가 시킴
-            RefreshUI();
-            Debug.Log($"[테스트] 스택 증가! 현재 스택: {currentStack}");
-            
-            // TODO: 랜덤 사진 생성 & 보상 표시 등
+            _photos[randomIndex].SetActive(true);
+            break;
          }
-
-         timer = 0f;
       }
-   }
-
-   public void Init()
-   {
-      currentCost = facilityData.baseCost;
-      currentLevel = 1;
-      testPlayerResourceGold = 10000;
-      facilityNameText.text = facilityData.facilityName;
       
-      
-   }
-
-   public void PrivateRoomUpgradeButtonClick()
-   {
-      
-      if (testPlayerResourceGold >= currentCost && currentLevel < facilityData.maxLevel)
-      {
-         SoundManagerTest.Instance.Play("LobbyClick01_SFX");
-         testPlayerResourceGold -= currentCost;
-         currentLevel++;
-         currentCost = Mathf.FloorToInt(currentCost * facilityData.costMultiplier);
-         RefreshUI();
-      }
-      else
-      {
-         SoundManagerTest.Instance.Play("LobbyClick02_SFX");
-         Debug.Log("[개인실] 업그레이드 불가 (재화 또는 최대레벨 입니다)");
-      }
+      UpdateUI();
    }
    
    public void ConsumePhoto()
@@ -104,21 +81,21 @@ public class ResourceManager : MonoBehaviour
       {
          currentStack--;
 
-         resourceGold += 100;
-         RefreshUI();
-         Debug.Log($"[테스트] 스택 소모! 남은 스택: {currentStack}");
-         
-         // TODO: 보상 지급
+         DataManager.Instance.AddObsessionCrystals(amount);
+         UpdateUI();
+         Debug.Log($"[테스트] 스택 소모! 획득 재화: {amount}, 남은 스택: {currentStack}");
       }
-      
-      Debug.Log($"[테스트] 스택이 없습니다. 현재 스택: {currentStack}");
+      else
+      {
+         Debug.Log($"[테스트] 스택이 없습니다. 현재 스택: {currentStack}");
+      }
    }
    
-   void RefreshUI()
+   protected override void UpdateUI()
    {
-      stackCountText.text = $"{currentStack.ToString()} / {maxStack.ToString()}";
       levelText.text = $"Lv.{currentLevel.ToString()}";
-      levelDescriptionText.text = $"1시간마다 + {100 + currentLevel * 10}";
+      stackCountText.text = $"{currentStack.ToString()} / {maxStack.ToString()}";
+      levelDescriptionText.text = $"1시간마다 + {amount}";
    }
    
    
@@ -129,7 +106,7 @@ public class ResourceManager : MonoBehaviour
       DateTime now = DateTime.Now;
       currentTimeFormatted = now.ToString("yyyy-MM-dd HH:mm:ss");
 
-      float remain = Mathf.Max(0f, (stackIntervalMinutes * 60f) - timer);
+      float remain = Mathf.Max(0f, (stackIntervalMinutes * 60f) - _timer);
       TimeSpan remainingTime = TimeSpan.FromSeconds(remain);
       timeUntilNextStack = remainingTime.ToString(@"hh\:mm\:ss");
    }
@@ -143,7 +120,7 @@ public class ResourceManager : MonoBehaviour
    // 디버그용 코드
    public void AddTestTime(float time)
    {
-      timer += time;
-      Debug.Log($"[디버그]{time}초 추가 됨. 현재 타이머: {timer}초");
+      _timer += time;
+      Debug.Log($"[디버그]{time}초 추가 됨. 현재 타이머: {_timer}초");
    }
 }
