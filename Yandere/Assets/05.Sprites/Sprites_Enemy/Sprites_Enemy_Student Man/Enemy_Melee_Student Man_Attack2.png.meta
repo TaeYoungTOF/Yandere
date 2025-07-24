@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9878ee6fba2c1d74ab41940e25a82542
+guid: 30a692956e2ab57428071159ecef2e12
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_0
+      name: Enemy_Melee_Student Man_Attack2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9071bb3bdf77fc540a2591d8fc424f39
-      internalID: 1463569383
+      spriteID: 58e1557879c6ff84ba842f9e31dd9065
+      internalID: -100501150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_1
+      name: Enemy_Melee_Student Man_Attack2_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 758f3c038f063c64c991591eb51ea890
-      internalID: -173940940
+      spriteID: e4440013cda250d498efd1873f6d5d42
+      internalID: 1372082396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_2
+      name: Enemy_Melee_Student Man_Attack2_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66e2cf17997ff5644a13ce2b6ee85123
-      internalID: 481758661
+      spriteID: 2b70d4557fcca3846ae80ae4fe9670c3
+      internalID: 436744604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_3
+      name: Enemy_Melee_Student Man_Attack2_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a1c6e401a2844f43a5516c09eff3689
-      internalID: -418388134
+      spriteID: f3622b3d75c5a0d4c8b3327d081a5d9c
+      internalID: 338660792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_4
+      name: Enemy_Melee_Student Man_Attack2_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd56db58ed8660a4e8150afdebebb412
-      internalID: -140978870
+      spriteID: b7433b4a4a0ebad4ba82bc4d44456d74
+      internalID: -805669216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_5
+      name: Enemy_Melee_Student Man_Attack2_5
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 720b3840273d91f4d878a5c1b5e471a0
-      internalID: -2020418749
+      spriteID: ccb4032e0fd623e44a5802f7eae8aa84
+      internalID: 522465430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_6
+      name: Enemy_Melee_Student Man_Attack2_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,20 +289,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7b7984a6e0f5ea43813360e17539357
-      internalID: -533656982
+      spriteID: a84ba58d34f1c734d8fb9b179162c08b
+      internalID: -2020641959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_7
+      name: Enemy_Melee_Student Man_Attack2_7
       rect:
         serializedVersion: 2
         x: 224
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,20 +310,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6838df2abe6725d4389a4db857dfd515
-      internalID: 397923087
+      spriteID: 25337c09cc8bfa1409f921318bed65eb
+      internalID: -1106370658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_8
+      name: Enemy_Melee_Student Man_Attack2_8
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,20 +331,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c756a12cb8db5c40aa2c0876dcbab90
-      internalID: -1058171094
+      spriteID: 9e30a4f51994f5949917c736922b3a37
+      internalID: -1458694112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_9
+      name: Enemy_Melee_Student Man_Attack2_9
       rect:
         serializedVersion: 2
         x: 288
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,20 +352,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 261bfdba9ce834d47b914ba825f0b2e8
-      internalID: -1891573902
+      spriteID: e829e378c967bd841af86bdcd7610332
+      internalID: 1582795482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_10
+      name: Enemy_Melee_Student Man_Attack2_10
       rect:
         serializedVersion: 2
         x: 320
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,20 +373,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd1bc32cef14a8b49bfd57cd4553e410
-      internalID: 1204359459
+      spriteID: 6313cf0fecac5df48816fa3c32c91f8b
+      internalID: -246923013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_11
+      name: Enemy_Melee_Student Man_Attack2_11
       rect:
         serializedVersion: 2
         x: 352
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -394,20 +394,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 814e73f79573a1049b60c24c28218297
-      internalID: 1641060422
+      spriteID: 43e8d334a114fc84c98b2ab368876e61
+      internalID: 312116852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_12
+      name: Enemy_Melee_Student Man_Attack2_12
       rect:
         serializedVersion: 2
         x: 384
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -415,20 +415,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6449f2de9c9262458e319837ee6c742
-      internalID: -1483286005
+      spriteID: f2c33f6cb860616409e4c7f728d9c80c
+      internalID: 73142906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_13
+      name: Enemy_Melee_Student Man_Attack2_13
       rect:
         serializedVersion: 2
         x: 416
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -436,20 +436,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6dc63e1bd6c08c488f1d3a4421e5f9a
-      internalID: -572217655
+      spriteID: f3e30c06a5381da4bb4fef2a48e24bf3
+      internalID: 975333522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_14
+      name: Enemy_Melee_Student Man_Attack2_14
       rect:
         serializedVersion: 2
         x: 448
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -457,20 +457,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1535de5ead169e459648823f3a481f6
-      internalID: 1014264646
+      spriteID: e5f51501da2ec3742b777410960d7fc8
+      internalID: 565220432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_15
+      name: Enemy_Melee_Student Man_Attack2_15
       rect:
         serializedVersion: 2
         x: 480
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,20 +478,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c877772b9146de4aa38ba934390df22
-      internalID: 1791485432
+      spriteID: ae4f5d48bdf2b2e4886f696b452f8120
+      internalID: 1121318109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_16
+      name: Enemy_Melee_Student Man_Attack2_16
       rect:
         serializedVersion: 2
         x: 512
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -499,20 +499,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d89dd403f0eb17546b1aefb0e51011fc
-      internalID: -1288384346
+      spriteID: 1b656568574813c40b68cbec55e95a62
+      internalID: 749490861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_17
+      name: Enemy_Melee_Student Man_Attack2_17
       rect:
         serializedVersion: 2
         x: 544
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -520,20 +520,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6af3d25702a5b364c8f3b613744a11f5
-      internalID: -1356554635
+      spriteID: d0120d3de10eff94492b332f8775b634
+      internalID: 472391339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_18
+      name: Enemy_Melee_Student Man_Attack2_18
       rect:
         serializedVersion: 2
         x: 576
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -541,20 +541,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8e752439ecd7c147abe30dc5bf0402d
-      internalID: 777894848
+      spriteID: c2b04e9fa6205dc4f9734ad7becc4bac
+      internalID: -1248366426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_19
+      name: Enemy_Melee_Student Man_Attack2_19
       rect:
         serializedVersion: 2
         x: 608
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -562,20 +562,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22faba84690020d478b68244f7632f49
-      internalID: 1220502400
+      spriteID: 5a798337411504845a7ea3439f627861
+      internalID: -677962307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_20
+      name: Enemy_Melee_Student Man_Attack2_20
       rect:
         serializedVersion: 2
         x: 640
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -583,20 +583,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 802afe0a14c7fa0439d92ba735deb458
-      internalID: 207628317
+      spriteID: 6e7c731fc6ffc0743a739672555719e7
+      internalID: -660606992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_21
+      name: Enemy_Melee_Student Man_Attack2_21
       rect:
         serializedVersion: 2
         x: 672
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -604,20 +604,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47a8c6c74411bcc49bd7385946ffd152
-      internalID: 1325012257
+      spriteID: 1764a65c34a901c4dac659a37aeac063
+      internalID: -870233496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_22
+      name: Enemy_Melee_Student Man_Attack2_22
       rect:
         serializedVersion: 2
         x: 704
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -625,20 +625,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03ceed6a479168c46970d9b73ab29cc1
-      internalID: 702278297
+      spriteID: 4e50ecc10d5eaa54bb0c5bad3e6c825c
+      internalID: -1973357600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Melee_Student Man_Run_23
+      name: Enemy_Melee_Student Man_Attack2_23
       rect:
         serializedVersion: 2
         x: 736
         y: 0
         width: 32
-        height: 46
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -646,8 +646,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d47831203bbadb24c952c0b7aaf44cdf
-      internalID: -1237857892
+      spriteID: 935bec270e0e4b049a9fed53e76fb3b9
+      internalID: -1633316938
       vertices: []
       indices: 
       edges: []
@@ -663,30 +663,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy_Melee_Student Man_Run_0: 1463569383
-      Enemy_Melee_Student Man_Run_1: -173940940
-      Enemy_Melee_Student Man_Run_10: 1204359459
-      Enemy_Melee_Student Man_Run_11: 1641060422
-      Enemy_Melee_Student Man_Run_12: -1483286005
-      Enemy_Melee_Student Man_Run_13: -572217655
-      Enemy_Melee_Student Man_Run_14: 1014264646
-      Enemy_Melee_Student Man_Run_15: 1791485432
-      Enemy_Melee_Student Man_Run_16: -1288384346
-      Enemy_Melee_Student Man_Run_17: -1356554635
-      Enemy_Melee_Student Man_Run_18: 777894848
-      Enemy_Melee_Student Man_Run_19: 1220502400
-      Enemy_Melee_Student Man_Run_2: 481758661
-      Enemy_Melee_Student Man_Run_20: 207628317
-      Enemy_Melee_Student Man_Run_21: 1325012257
-      Enemy_Melee_Student Man_Run_22: 702278297
-      Enemy_Melee_Student Man_Run_23: -1237857892
-      Enemy_Melee_Student Man_Run_3: -418388134
-      Enemy_Melee_Student Man_Run_4: -140978870
-      Enemy_Melee_Student Man_Run_5: -2020418749
-      Enemy_Melee_Student Man_Run_6: -533656982
-      Enemy_Melee_Student Man_Run_7: 397923087
-      Enemy_Melee_Student Man_Run_8: -1058171094
-      Enemy_Melee_Student Man_Run_9: -1891573902
+      Enemy_Melee_Student Man_Attack2_0: -100501150
+      Enemy_Melee_Student Man_Attack2_1: 1372082396
+      Enemy_Melee_Student Man_Attack2_10: -246923013
+      Enemy_Melee_Student Man_Attack2_11: 312116852
+      Enemy_Melee_Student Man_Attack2_12: 73142906
+      Enemy_Melee_Student Man_Attack2_13: 975333522
+      Enemy_Melee_Student Man_Attack2_14: 565220432
+      Enemy_Melee_Student Man_Attack2_15: 1121318109
+      Enemy_Melee_Student Man_Attack2_16: 749490861
+      Enemy_Melee_Student Man_Attack2_17: 472391339
+      Enemy_Melee_Student Man_Attack2_18: -1248366426
+      Enemy_Melee_Student Man_Attack2_19: -677962307
+      Enemy_Melee_Student Man_Attack2_2: 436744604
+      Enemy_Melee_Student Man_Attack2_20: -660606992
+      Enemy_Melee_Student Man_Attack2_21: -870233496
+      Enemy_Melee_Student Man_Attack2_22: -1973357600
+      Enemy_Melee_Student Man_Attack2_23: -1633316938
+      Enemy_Melee_Student Man_Attack2_3: 338660792
+      Enemy_Melee_Student Man_Attack2_4: -805669216
+      Enemy_Melee_Student Man_Attack2_5: 522465430
+      Enemy_Melee_Student Man_Attack2_6: -2020641959
+      Enemy_Melee_Student Man_Attack2_7: -1106370658
+      Enemy_Melee_Student Man_Attack2_8: -1458694112
+      Enemy_Melee_Student Man_Attack2_9: 1582795482
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -17,16 +17,14 @@ public class EnemyRangeProjectile  : MonoBehaviour
         this.moveDir = dir.normalized;
         this.damage = damage;
 
-        // ⏫ 회전 보정!
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle + 270f, Vector3.forward);
 
         Vector3 targetPos = transform.position + (Vector3)(moveDir * distance);
 
-        transform.DOMove(targetPos, distance / speed)
-            .SetEase(Ease.Linear)
-            .OnComplete(() => Destroy(gameObject));
-
+        // 💡 일정 시간 후에 움직임 시작 (0.05초 후 움직이게)
+        StartCoroutine(DelayedMove(targetPos));
+    
         Destroy(gameObject, lifetime);
     }
 
@@ -38,5 +36,14 @@ public class EnemyRangeProjectile  : MonoBehaviour
             StageManager.Instance.Player.TakeDamage(damage);
             Destroy(gameObject);
         }
+    }
+    
+    private IEnumerator DelayedMove(Vector3 targetPos)
+    {
+        yield return null; // or WaitForSeconds(0.05f);
+    
+        transform.DOMove(targetPos, distance / speed)
+            .SetEase(Ease.Linear)
+            .OnComplete(() => Destroy(gameObject));
     }
 }
