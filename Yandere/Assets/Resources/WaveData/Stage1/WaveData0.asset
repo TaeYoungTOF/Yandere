@@ -14,34 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 0
   endTime: 300
-  spawnInterval: 5
-  spawnAmount: 1
+  spawnInterval: 3
+  spawnAmount: 10
   enemyList:
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 20
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 20
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 20
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 20
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 20
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 20
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 20
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 20
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 56559ce58056a0242a30614906838f53, type: 3}
     spawnWeight: 20
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
   - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}

@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageDatas: []
   _maxStageIndex: 0
-  currentStageData: {fileID: 0}
+  currentStageData: {fileID: 11400000, guid: 29d76cadd13816645bb0732df2489154, type: 2}
 --- !u!1 &100789925
 GameObject:
   m_ObjectHideFlags: 0
@@ -34312,7 +34312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageButton: {fileID: 4855697137448864315}
   _stageIndexText: {fileID: 3048326026376561185}
-  stageData: {fileID: 11400000, guid: 1bc290bfe3964064aa08df54e56d290f, type: 2}
+  stageData: {fileID: 11400000, guid: 29d76cadd13816645bb0732df2489154, type: 2}
 --- !u!222 &9151388417581968593
 CanvasRenderer:
   m_ObjectHideFlags: 0
