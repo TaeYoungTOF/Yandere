@@ -9,6 +9,8 @@ public class EnemyAttackHandler : MonoBehaviour
     
     [Header("에너미 원거리 공격 관련")]
     [SerializeField] private GameObject rangeBulletPrefab;                          // 에너미 원거리 불렛 프리팹
+    [SerializeField] private int bulletCount = 3;              // 몇 발 발사할지
+    [SerializeField] private float bulletDelay = 0.2f;         // 발사 간격 (초)
     
     [Header("에너미 대쉬 스킬 관련")]
     [SerializeField] private float enemyDashCooldown = 5f;                          // 에너미 대쉬 스킬 쿨다운
@@ -124,14 +126,9 @@ public class EnemyAttackHandler : MonoBehaviour
         if (_playerTransform == null) return;
 
         Vector2 dirToPlayer = (_playerTransform.position - transform.position).normalized;
-        
-        Vector2 shootDir = dirToPlayer;
-
-        GameObject bullet = Instantiate(rangeBulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-        bullet.GetComponent<EnemyRangeProjectile>().Init(shootDir, damage);
-
-        Debug.Log("[Range] 원거리 발사체 한 발 쏨!");
-        // 예: 발사체 쏘기
+    
+        Debug.Log("[Check] 연발 시작"); // 추가
+        StartCoroutine(FireBulletsSequentially(dirToPlayer, damage));
     }
 
     private void DoTypeC_Attack(float damage)
@@ -225,5 +222,18 @@ public class EnemyAttackHandler : MonoBehaviour
         float newY = v.x * sin + v.y * cos;
 
         return new Vector2(newX, newY).normalized;
+    }
+    
+    private IEnumerator FireBulletsSequentially(Vector2 direction, float damage)
+    {
+        for (int i = 0; i < bulletCount; i++)
+        {
+            GameObject bullet = Instantiate(rangeBulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+            bullet.GetComponent<EnemyRangeProjectile>().Init(direction, damage); // ✅ direction 고정되어야 함
+
+            yield return new WaitForSeconds(bulletDelay);
+        }
+
+        Debug.Log($"[Range] 연발 완료: {bulletCount}발, delay: {bulletDelay}");
     }
 }

@@ -13,16 +13,18 @@ public class EnemyBoomProjectile : MonoBehaviour
 
     public void Init(Vector2 dir)
     {
-        moveDir = dir.normalized;
+        // 1. 이동 방향 지정
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.velocity = dir * speed;
 
-        Vector3 targetPos = transform.position + (Vector3)(moveDir * distance);
+        // 2. 회전 방향 설정 (총알이 보는 방향 맞추기)
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        // ✅ DOTween으로 직선 이동
-        transform.DOMove(targetPos, distance / speed)
-            .SetEase(Ease.Linear)
-            .OnComplete(() => Destroy(gameObject));
+        // 총알 스프라이트가 "오른쪽"을 기본 방향으로 그려졌을 경우
+        //transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        Destroy(gameObject, lifetime); // 혹시 모르게 안전망
+        // 만약 스프라이트가 "위쪽"이 기본 방향이라면?
+        transform.rotation = Quaternion.Euler(0, 0, angle - 45f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
