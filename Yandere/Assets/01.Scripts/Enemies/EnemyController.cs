@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private EnemyAttackHandler _attackHandler;
+    private IEnemyAttack _attackModule;
+
     
     // 에너미 상태 체크
     private bool isInAttackRange = false;
@@ -44,17 +46,13 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     
     void Start()
     {
-        _monsterCurrentHealth = enemyData.monsterMaxHp;                      // 최대체력을 현재체력에 넣어줌
-        
-        GameObject player = GameObject.FindGameObjectWithTag("Player");     //씬에 존재하는 "player"태그를 가진 오브젝트를 player 변수에 넣어줌
+        _monsterCurrentHealth = enemyData.monsterMaxHp;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
-        {
-            _playerTransform = player.transform;                             // 찾은 플레이어의 트랜스폼을 playerTransform 변수에 값을 넣어줌
-        }
-        else
-        {
-            Debug.Log("EnemyController : 플레이어가 지금 Null 상태 입니다.");
-        }
+            _playerTransform = player.transform;
+
+        _attackModule = GetComponent<IEnemyAttack>();
     }
     void FixedUpdate()
     {
@@ -86,19 +84,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
                 attackTimer = enemyData.attackCooldown; // 어택타이머를 다시 값을 넣어줌 (쿨타임 리셋!)
             }
             
-            // _attackHandler.UpdateDashTimer();
-            //
-            // if (_attackHandler.CanDash() && enemyData.enemyAttackType == EnemyAttackType.AttackType_C)
-            // {
-            //     Debug.Log("EnemyController: 돌진 스킬 발동!");
-            //     _attackHandler.EnemyDashSkill();
-            //     _attackHandler.ResetDashTimer();
-            // }
         }
-        else
-        {
-            // attackTimer = 0; ❌ 이거 절대 리셋하지 말기!
-        }
+        
     }
 
     // DropContext를 세팅하는 메서드입니다
@@ -111,43 +98,22 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     public void MonsterMove()
     {
        
-        if (isDead) return;                                                 // 죽은 상태이면 이 코드를 빠져 나가게 함
-        if (isDashing) return;                                              // 돌진 중이면 기본 이동 금지
-        if (_playerTransform == null) return;                               // 플레이어트랜스폼이 Null이면 리턴
-        
+        if (isDead || isDashing || _playerTransform == null) return;
+
+        Vector2 direction = (_playerTransform.position - transform.position).normalized;
 
         if (isInAttackRange)
         {
             _rigidbody2D.velocity = Vector2.zero;
             _animator.SetBool("Run", false);
         }
-
         else
         {
-            Vector2 direction = (_playerTransform.position - transform.position).normalized;      // 플레이어의 위치 - 몬스터의 위치의 값을 direction에 넣어줌.
-
-            _rigidbody2D.velocity = direction * enemyData.monsterMoveSpeed;                          // direction(벡터값) * 몬스터 스피드를 넣어 줌
-
-            if (_rigidbody2D.velocity.magnitude > 0.1f)                                              // 몬스터의 _rigidbody2D.velocity의 값이 0.1 보다 크면
-            {
-                _animator.SetBool("Run", true);                                                 // 몬스터의 애니메이션을 Run 상태로 변경
-            }
-            else                                                                                     // 몬스터의 _rigidbody2D.velocity의 값이 0.1 보다 작으면
-            {
-                _animator.SetBool("Run", false);                                                // 몬스터의 애니메이션을 Idle로 변경
-            }
-            
-            if (direction.x < 0)
-            {
-                _spriteRenderer.flipX = true;                                                        // x의 값이 0보다 크면 flipX를 true로 
-            }
-            else
-            {
-                _spriteRenderer.flipX = false;                                                       // x의 값이 0보다 작으면 flipX를 false로 변경 (스프라이트 방향 전환) 
-            }
-            
-            
+            _rigidbody2D.velocity = direction * enemyData.monsterMoveSpeed;
+            _animator.SetBool("Run", _rigidbody2D.velocity.magnitude > 0.1f);
         }
+
+        UpdateSpriteDirection(direction);   // ✅ 방향만 갱신
         AvoidOtherEnemies();
         
     }
@@ -157,15 +123,14 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         _animator.SetTrigger("Attack");
         if (isDead) return;
         
-        EnemyAttackType attackType = enemyData.enemyAttackType;
         float damage = enemyData.monsterAttack;
-        
-        _attackHandler.MonsterAttack(attackType, damage);
+        _attackModule?.Attack(damage); // null 체크
 
     }
     
     public void TakeDamage(float damage)
     {
+        SoundManagerTest.Instance.Play("InGame_Enemy_HitSFX01");
         if (isDead) return;                                                 // 죽은 상태이면 이코드를 빠져나가게 함
 
         damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
@@ -217,5 +182,10 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, separationRadius);
+    }
+    
+    private void UpdateSpriteDirection(Vector2 direction)
+    {
+        _spriteRenderer.flipX = direction.x < 0;
     }
 }
