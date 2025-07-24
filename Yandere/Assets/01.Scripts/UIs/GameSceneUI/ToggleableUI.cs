@@ -5,9 +5,6 @@ public abstract class ToggleableUI : MonoBehaviour
 {
     protected UIManager uiManager;
     protected GameObject panel;
-    public abstract void Show();
-    
-    public abstract void Hide();
 
     public virtual void Init(GameObject panel)
     {
