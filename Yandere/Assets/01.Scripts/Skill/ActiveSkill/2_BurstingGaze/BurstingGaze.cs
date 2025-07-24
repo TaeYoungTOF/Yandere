@@ -12,8 +12,8 @@ public class BurstingGazeDataWrapper : AcviteDataWapper
     public float projectileDistance;
     
     [Header("Const Data")]
-    public readonly float projectileSpeed = 25f;
-    public readonly float shootDelay = 0.1f;
+    public readonly float projectileSpeed = 15f;
+    public readonly float shootDelay = 0.3f;
 }
 
 public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
