@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e5908be71b13054fb940b849ccaaa39, type: 3}
-  m_Name: Facility_WorkshopRoom
+  m_Name: 09_ReplayRoom
   m_EditorClassIdentifier: 
-  facilityName: "\uACF5\uC791\uC2E4"
-  requiredAccountLevel: 1
+  facilityName: "\uC7AC\uD604\uC2E4"
+  requiredAccountLevel: 5
   statTarget: 
   maxLevel: 10
   valuePerLevel: 0
-  baseCost: 100
+  baseCost: 300
   costMultiplier: 0
   description: 

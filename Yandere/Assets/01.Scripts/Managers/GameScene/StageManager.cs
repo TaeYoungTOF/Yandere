@@ -147,9 +147,9 @@ public class StageManager : MonoBehaviour
         hasPlayerBeenHit = true;
     }
 
-    public void TargetKillCount()
+    /*public void TargetKillCount()
     {
         killCount++;
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateKillCount(killCount);
-    }
+    }*/
 }

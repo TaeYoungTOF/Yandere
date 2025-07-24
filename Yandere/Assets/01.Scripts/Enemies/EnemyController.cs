@@ -152,7 +152,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
         _dropContext.position = transform.position;
         StageManager.Instance.ItemDropManager.HandleDrop(_dropContext);
-        StageManager.Instance.TargetKillCount();
+        //StageManager.Instance.TargetKillCount();
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateKillCount(1);
         Destroy(gameObject, 1.0f);

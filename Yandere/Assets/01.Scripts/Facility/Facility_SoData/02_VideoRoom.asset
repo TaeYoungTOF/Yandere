@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e5908be71b13054fb940b849ccaaa39, type: 3}
-  m_Name: Facility_TortureRoom
+  m_Name: 02_VideoRoom
   m_EditorClassIdentifier: 
-  facilityName: "\uACE0\uBB38\uC2E4"
-  requiredAccountLevel: 3
+  facilityName: "\uC601\uC0C1\uC2E4"
+  requiredAccountLevel: 1
   statTarget: 
   maxLevel: 10
   valuePerLevel: 0
-  baseCost: 200
+  baseCost: 100
   costMultiplier: 0
   description: 

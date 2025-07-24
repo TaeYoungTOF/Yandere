@@ -20,16 +20,6 @@ public class UI_GameOver : ToggleableUI
         _restartButton.onClick.AddListener(GameManager.Instance.LoadGameScene);
     }
 
-    public override void Show()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Hide()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override UIState GetUIState()
     {
         return UIState.GameOver;

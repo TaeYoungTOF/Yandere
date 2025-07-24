@@ -28,7 +28,7 @@ public class UI_Achievement : ToggleableUI
         _backButton.onClick.AddListener(OnClickbackButton);
     }
     
-    public override void Show()
+    /*public override void Show()
     {
         _achievementPanel.SetActive(true);
         // 여기에 게임 매니저 등에서 실제 업적 데이터를 가져와 UI를 업데이트하는 로직을 호출합니다.
@@ -38,7 +38,7 @@ public class UI_Achievement : ToggleableUI
     public override void Hide()
     {
         _achievementPanel.SetActive(false);
-    }
+    }*/
     
     /// <summary>
     /// 실제 게임 데이터로 모든 업적 UI를 업데이트합니다.

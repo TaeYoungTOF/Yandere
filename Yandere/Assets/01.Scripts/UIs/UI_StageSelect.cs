@@ -1,18 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_StageSelect : MonoBehaviour
 {
-    [SerializeField] private GameObject _stageButtonPrefab;
-    [SerializeField] private Transform _contentParent;
-    
+    //[SerializeField] private GameObject _stageButtonPrefab;
+    //[SerializeField] private Transform _contentParent;
 
     private void Start()
     {
-        StageData[] sortedStageDatas = GetSortedStageDatas();
-        InstantiateStageButtons(sortedStageDatas);
+        //StageData[] sortedStageDatas = GetSortedStageDatas();
+        //InstantiateStageButtons(sortedStageDatas);
     }
 
-    private StageData[] GetSortedStageDatas()
+    /*private StageData[] GetSortedStageDatas()
     {
         StageData[] loadedDatas = GameManager.Instance.stageDatas;
         System.Array.Sort(loadedDatas, (a, b) => a.stageIndex.CompareTo(b.stageIndex));
@@ -31,5 +31,5 @@ public class UI_StageSelect : MonoBehaviour
             stageButton.stageData = stageDatas[i];
             stageButton.SetIndexText(i + 1);
         }
-    }
+    }*/
 }
