@@ -30,9 +30,11 @@ public class Item : MonoBehaviour
         {
             case ItemType.ExpItem:
                 player.GainExp(itemData.amount);
+                SoundManagerTest.Instance.Play("InGame_Player_ExpItemPickUpSFX");
                 break;
             case ItemType.HealItem:
                 player.Heal(itemData.amount);
+                SoundManagerTest.Instance.Play("InGame_Player_HealItemPickUpSFX");
                 break;
             // case ItemType.GoldItem:
             //     player.GainGold((int)itemData.amount);

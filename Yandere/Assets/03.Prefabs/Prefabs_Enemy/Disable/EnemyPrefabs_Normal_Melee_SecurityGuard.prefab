@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5580790371508943010}
   - component: {fileID: 231809317980687346}
-  - component: {fileID: 8065796078529405819}
   - component: {fileID: 5569739380141773139}
-  - component: {fileID: 4844741395259935571}
+  - component: {fileID: 8065796078529405819}
   m_Layer: 10
   m_Name: EnemyPrefabs_Normal_Melee_SecurityGuard
   m_TagString: Enemy_Normal
@@ -64,27 +63,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8065796078529405819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439856908508736086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: be5eff3aa23dbb24fa15310e2f785a89, type: 2}
-  _dropContext:
-    position: {x: 0, y: 0, z: 0}
-    dropTable: {fileID: 0}
-  separationRadius: 0.5
-  pushForce: 0.8
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!58 &5569739380141773139
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -120,7 +98,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &4844741395259935571
+--- !u!114 &8065796078529405819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,9 +107,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1439856908508736086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2bc21a1a72f904b97850f6cb6b62eb, type: 3}
+  m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: be5eff3aa23dbb24fa15310e2f785a89, type: 2}
+  isDashing: 0
+  _dropContext:
+    position: {x: 0, y: 0, z: 0}
+    dropTable: {fileID: 0}
+  separationRadius: 0.5
+  pushForce: 0.8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &3790309057131494843
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 613658156, guid: 1bc6097228993f045852159e71f81d5b, type: 3}
+  m_Sprite: {fileID: -1193660637, guid: b7e916a8661b55f438f7bdbb19a3c40c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -227,7 +215,7 @@ Animator:
   m_GameObject: {fileID: 3790309057131494843}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9fadd7f498348824e92f49c9dedb69e0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1f8db4fc2f9613e4b8ee67e219eceffc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

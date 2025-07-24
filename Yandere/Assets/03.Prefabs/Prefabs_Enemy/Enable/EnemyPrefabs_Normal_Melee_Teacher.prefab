@@ -41,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5580790371508943010}
   - component: {fileID: 231809317980687346}
-  - component: {fileID: 8065796078529405819}
   - component: {fileID: 5569739380141773139}
+  - component: {fileID: 8065796078529405819}
   - component: {fileID: 1728553686401440145}
   m_Layer: 10
   m_Name: EnemyPrefabs_Normal_Melee_Teacher
@@ -96,28 +96,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8065796078529405819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439856908508736086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: be5eff3aa23dbb24fa15310e2f785a89, type: 2}
-  isDashing: 0
-  _dropContext:
-    position: {x: 0, y: 0, z: 0}
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  separationRadius: 0.3
-  pushForce: 0.1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!58 &5569739380141773139
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -153,6 +131,28 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8065796078529405819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439856908508736086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: be5eff3aa23dbb24fa15310e2f785a89, type: 2}
+  isDashing: 0
+  _dropContext:
+    position: {x: 0, y: 0, z: 0}
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
+  separationRadius: 0.3
+  pushForce: 0.1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &1728553686401440145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeBulletPrefab: {fileID: 5967160219861529165, guid: fa0666a809288744893ef9761f96a150, type: 3}
+  bulletCount: 3
+  bulletDelay: 1
   enemyDashCooldown: 5
   enemyDashTimer: 0
   enemyBoomCooldown: 10
@@ -247,7 +249,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 819614758, guid: bb82e7ab72338ec4485e257d0bf918f0, type: 3}
+  m_Sprite: {fileID: 1380581902, guid: 6f9ae9282d161004e8c98943eaa804ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -346,7 +348,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 5
 --- !u!114 &5711978838889047932
 MonoBehaviour:
   m_ObjectHideFlags: 0
