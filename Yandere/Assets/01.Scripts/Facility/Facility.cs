@@ -4,7 +4,9 @@ using TMPro;
 
 public class Facility : MonoBehaviour
 {
+    [SerializeField] private int _index;
     [SerializeField] protected FacilityData facilityData;
+    
     
     [Header("시설 인포")]
     [SerializeField] protected int currentLevel;
@@ -15,11 +17,11 @@ public class Facility : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI levelText;
     [SerializeField] protected TextMeshProUGUI levelDescriptionText;
 
-    [Header("Private Data")]
+    [Header("Lock")]
     [SerializeField] private GameObject _lockGO;
     [SerializeField] private TMP_Text _requireLevel;
     
-    protected float amount;
+    [SerializeField] protected float amount;
     
     void Start()
     {
@@ -32,9 +34,9 @@ public class Facility : MonoBehaviour
         currentLevel = 0;
         currentCost = facilityData.baseCost;
         facilityNameText.text = facilityData.facilityName;
-        amount = facilityData.basevalue * (1 + facilityData.valuePerLevel / 100 * (currentLevel - 1));
+        amount = facilityData.basevalue;
 
-        if (_lockGO != null)
+        if (_lockGO)
         {
             _lockGO.SetActive(true);
             _requireLevel.text = facilityData.requiredAccountLevel.ToString();
@@ -61,7 +63,8 @@ public class Facility : MonoBehaviour
         DataManager.Instance.obsessionCrystals -= currentCost;
         currentLevel++;
         currentCost = Mathf.FloorToInt(currentCost * facilityData.costMultiplier);
-        amount = facilityData.basevalue * (1 + facilityData.valuePerLevel / 100 * (currentLevel - 1));
+        amount += facilityData.valuePerLevel;
+        
         UpdateUI();
         UIManager_Title.Instance.UpdateUI();
     }
@@ -69,7 +72,9 @@ public class Facility : MonoBehaviour
     protected virtual void UpdateUI()
     {
         levelText.text = $"Lv.{currentLevel.ToString()}";
-        levelDescriptionText.text = $"{facilityData.statTargetText} + {10 + currentLevel}%";
+        levelDescriptionText.text = $"{facilityData.statTargetText} + {amount}%";
+        
+        DataManager.Instance.SetData(_index, currentLevel, amount);
     }
 
     public void OnClickUnLockButton()
@@ -77,7 +82,6 @@ public class Facility : MonoBehaviour
         if (facilityData.requiredAccountLevel > DataManager.Instance.accountLevel)
         {
             Debug.Log("[시설] 레벨이 부족합니다");
-            _lockGO.SetActive(true);
         }
         else
         {

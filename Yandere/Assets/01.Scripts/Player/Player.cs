@@ -34,6 +34,8 @@ public class Player : MonoBehaviour, IDamagable
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _stageManager = stageManager;
         stat.ResetStats();
+        GetDataFromGameManager();
+        stat.UpdateStats();
 
         PlayerAnim = GetComponentInChildren<PlayerAnim>();
         _itemLayer = LayerMask.NameToLayer("Item");
@@ -61,6 +63,20 @@ public class Player : MonoBehaviour, IDamagable
         {
             PlayerAnim.SetAni(AniType.Idle);
         }
+    }
+
+    private void GetDataFromGameManager()
+    {
+        float[] data = GameManager.Instance.InGameData;
+        stat.GetBonusAtkPer(data[1]);
+        stat.GetBonusHp(data[2]);
+        stat.GetBonusHpRegen(data[3]);
+        stat.GetBounusDef(data[4]);
+        stat.GetBonusCrit(data[5]);
+        stat.GetBonusCritDmg(data[6]);
+        stat.GetBonusMoveSpeed(data[7]);
+        stat.GetBonusPickupRadius(data[8]);
+        stat.GetBonusCoolDown(data[9]);
     }
 
     private void FixedUpdate()

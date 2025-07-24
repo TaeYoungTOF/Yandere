@@ -4,14 +4,16 @@ using UnityEngine;
 
 public enum FacilityStatType
 {
+    None,
     Attack,
-    Defense,
-    Speed,
     HpMax,
     HpRegen,
-    critChance,
-    critDamage,
-    SkillCooldown,
+    Defense,
+    CritChance,
+    CritDamage,
+    Speed,
+    ItemRange,
+    Cooldown,
     SkillReroll
 }
 

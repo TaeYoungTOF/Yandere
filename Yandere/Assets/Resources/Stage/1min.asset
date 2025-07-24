@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fc12a5ddc600c4fb424dea7a689d55, type: 3}
   m_Name: 1min
   m_EditorClassIdentifier: 
-  stageIndex: 1
+  stageIndex: 0
+  stageName: tutorial
+  stageDesc: "\uD29C\uD1A0\uB9AC\uC5BC\uC785\uB2C8\uB2E4"
+  stageImage: {fileID: 21300000, guid: 414463c7e177e3c46861870dc16eef38, type: 3}
   clearTime: 180
   achieveDatas:
   - rank: 0

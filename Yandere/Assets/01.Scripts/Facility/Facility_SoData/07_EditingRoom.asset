@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facilityName: "\uD3B8\uC9D1\uC2E4"
   requiredAccountLevel: 5
-  statTarget: 
+  _FacilityStatType: 7
+  statTargetText: "\uC774\uB3D9 \uC18D\uB3C4"
   maxLevel: 10
-  valuePerLevel: 0
+  basevalue: 0
+  valuePerLevel: 1
   baseCost: 300
-  costMultiplier: 0
+  costMultiplier: 1.1
   description: 

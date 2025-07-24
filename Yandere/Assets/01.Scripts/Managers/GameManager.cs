@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float autoSaveInterval = 30f;
     private float _timer;*/
 
+    public float[] InGameData { get; private set; }
+
     [Header("Stage Data")]
     public StageData[] stageDatas;
     [SerializeField] private int _maxStageIndex;
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         // StageData 개수만큼 _maxStageIndex 자동 설정
         stageDatas = Resources.LoadAll<StageData>("Stage");
         _maxStageIndex = stageDatas.Length;
+        currentStageData = stageDatas[0];
         Debug.Log($"[GameManager] Loaded {_maxStageIndex} stages from Stages folder");
     }
 
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager] Call Game Scene");
 
+        InGameData = DataManager.Instance.inGameDatas;
         SceneManager.LoadScene("GameScene");
     }
 

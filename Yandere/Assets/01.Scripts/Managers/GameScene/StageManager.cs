@@ -4,6 +4,8 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
+    
+    [SerializeField] GameObject[] mapPrefabs;
 
     public Player Player { get; private set; }
     public SpawnManager SpawnManager { get; private set; }
@@ -55,12 +57,19 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-
         SpawnManager = GetComponentInChildren<SpawnManager>();
         ItemDropManager = GetComponentInChildren<ItemDropManager>();
 
         currentStageData = GameManager.Instance.currentStageData;
         currentSpawnData = currentStageData.waveDatas[0];
+
+        if (mapPrefabs[currentStageData.stageIndex] == null)
+        {
+            Debug.LogError("[StageManager] Map Prefab is Null!");
+            return;
+        }
+
+        Instantiate(mapPrefabs[currentStageData.stageIndex], Vector3.zero, Quaternion.identity);
 
         _maxTime = currentStageData.clearTime;
 
