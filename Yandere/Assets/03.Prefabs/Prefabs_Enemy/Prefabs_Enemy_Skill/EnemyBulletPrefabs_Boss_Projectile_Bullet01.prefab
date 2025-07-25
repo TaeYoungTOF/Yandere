@@ -10,14 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7160713118510500197}
   - component: {fileID: 7160713118510500194}
+  - component: {fileID: 908411352590903239}
   - component: {fileID: 7160713118510500193}
   - component: {fileID: 7160713118510500192}
-  - component: {fileID: 1175924496337166563}
   - component: {fileID: 7160713118510500199}
   - component: {fileID: 7160713118510500198}
-  - component: {fileID: 8867270042142702861}
-  m_Layer: 0
-  m_Name: Projectile_Bullet
+  m_Layer: 11
+  m_Name: EnemyBulletPrefabs_Boss_Projectile_Bullet01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +57,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -4774,6 +4773,38 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &908411352590903239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7160713118510500196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8f728b76b023e438db5143dd28e1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactObject: {fileID: 7495853581713593668, guid: 8316cbf2b44a4fa46b1fabcd4c2f1428, type: 3}
+  muzzleFlashObject: {fileID: 1856835495579851328, guid: 0878c99493450524f8bd94c47aafed87, type: 3}
+  chargingObject: {fileID: 0}
+  isChargeable: 0
+  rotateSprite: 1
+  muzzleFlash: 1
+  muzzleFlashColor: {r: 1, g: 0.70980394, b: 0, a: 1}
+  chargeColor: {r: 1, g: 1, b: 1, a: 1}
+  explodeAtScreenEdge: 1
+  moveAngle: 0
+  spriteAngle: 0
+  moveSpeed: 5
+  angleRandomness: 0
+  damage: 10
+  targetTag: Player
+  bulletOriginPoint: {x: 0.5, y: 0}
+  muzzleFlashOriginPoint: {x: 0.5, y: 0.1}
+  chargeOriginPoint: {x: 1, y: 0.1}
+  rotationSpeed: 0
+  rotationRange: 0
 --- !u!199 &7160713118510500193
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4855,7 +4886,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7160713118510500196}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bad435a8abb860943ab067f0db0c9068, type: 3}
   m_Name: 
@@ -4878,21 +4909,6 @@ MonoBehaviour:
   chargeOriginPoint: {x: 1, y: 0.1}
   rotationSpeed: 0
   rotationRange: 0
---- !u!114 &1175924496337166563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7160713118510500196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 349ed8400a49f2748970d9b72c4b1386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  distance: 15
-  lifetime: 5
 --- !u!50 &7160713118510500199
 Rigidbody2D:
   serializedVersion: 4
@@ -4949,26 +4965,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8867270042142702861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7160713118510500196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b520fe848a040014bb9d76387b183c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  lifeTime: 5
 --- !u!1001 &7160713117062800300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4984,6 +4986,10 @@ PrefabInstance:
     - target: {fileID: 4617303447827056098, guid: e1ef8845b77a2a842bc6767ff8634884, type: 3}
       propertyPath: m_Name
       value: Projectile_Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617303447827056098, guid: e1ef8845b77a2a842bc6767ff8634884, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4617303447827056125, guid: e1ef8845b77a2a842bc6767ff8634884, type: 3}
       propertyPath: m_Materials.Array.size
@@ -5032,6 +5038,14 @@ PrefabInstance:
     - target: {fileID: 4617303447827056127, guid: e1ef8845b77a2a842bc6767ff8634884, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882416095354674204, guid: e1ef8845b77a2a842bc6767ff8634884, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075514112886650912, guid: e1ef8845b77a2a842bc6767ff8634884, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9075514112886650914, guid: e1ef8845b77a2a842bc6767ff8634884, type: 3}
       propertyPath: m_Materials.Array.size

@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 61856163}
   - component: {fileID: 61856164}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RagingEmotions2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 591128927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PassiveSkills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,7 +1091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1068138886}
   - component: {fileID: 1068138887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ParchedLonging2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1342,7 +1342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1223300037}
   - component: {fileID: 1223300039}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EtchedHatred2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1665,7 +1665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423666835}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpgradeSkills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1802,6 +1802,18 @@ PrefabInstance:
     - target: {fileID: 70760856004919325, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
       propertyPath: m_Name
       value: EtchedHatred
+      objectReference: {fileID: 0}
+    - target: {fileID: 70760856004919325, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668165522901210198, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668165523308479279, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4414399228436851081, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2093,6 +2105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParchedLonging
       objectReference: {fileID: 0}
+    - target: {fileID: 8771203914740520520, guid: 60a7593b13d7a9942821266cfa5e85e0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2223,7 +2239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1383112963}
   - component: {fileID: 1924991798}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BurningJealousy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2271,7 +2287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941334099}
   - component: {fileID: 1941334100}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BurstingGaze2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2344,7 +2360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1995558074}
   - component: {fileID: 1995558075}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PouringAffection2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2439,7 +2455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2078230022}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ActiveSkills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2508,6 +2524,10 @@ PrefabInstance:
     - target: {fileID: 1944565222102627894, guid: 97b842e4975ca7b4f8809f35fad40015, type: 3}
       propertyPath: m_Name
       value: SkillRange
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944565222102627894, guid: 97b842e4975ca7b4f8809f35fad40015, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2759696497487557223, guid: 97b842e4975ca7b4f8809f35fad40015, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2608,7 +2628,7 @@ GameObject:
   - component: {fileID: 8237018194525571573}
   - component: {fileID: 7633309023667406399}
   - component: {fileID: 1882556427960769267}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2667,6 +2687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PouringAffection
       objectReference: {fileID: 0}
+    - target: {fileID: 6138521301437056373, guid: a97b07ef925a0b948b2bd3bc534ba516, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2693,6 +2717,10 @@ PrefabInstance:
     - target: {fileID: 1129275228729904735, guid: d63de3545eb7f854eb5dee80f71853aa, type: 3}
       propertyPath: m_Name
       value: BurstingGaze
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129275228729904735, guid: d63de3545eb7f854eb5dee80f71853aa, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6271678759412042880, guid: d63de3545eb7f854eb5dee80f71853aa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2778,7 +2806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2869872445666669753}
   - component: {fileID: 5155326999703240116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SkillManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2873,7 +2901,7 @@ GameObject:
   - component: {fileID: 1998971515089099992}
   - component: {fileID: 1998971515089099995}
   - component: {fileID: 1998971515089099994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Aura_V44
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7716,7 +7744,7 @@ GameObject:
   - component: {fileID: 1998971515306295693}
   - component: {fileID: 1998971515306295699}
   - component: {fileID: 1998971515306295698}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12671,6 +12699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileCount
       objectReference: {fileID: 0}
+    - target: {fileID: 26775335006442358, guid: 53459274bbda6e845b542fe62803a5b7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4211205853585788468, guid: 53459274bbda6e845b542fe62803a5b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12765,6 +12797,10 @@ PrefabInstance:
     - target: {fileID: 1843844481795508903, guid: 429623318b4df294782b7c4d1811d4c0, type: 3}
       propertyPath: m_Name
       value: CoolDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843844481795508903, guid: 429623318b4df294782b7c4d1811d4c0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3505727862957809335, guid: 429623318b4df294782b7c4d1811d4c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12867,6 +12903,10 @@ PrefabInstance:
     - target: {fileID: 7055464729839624135, guid: b82572d1b951e6b4db11d367e530d48a, type: 3}
       propertyPath: m_Name
       value: SkillDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055464729839624135, guid: b82572d1b951e6b4db11d367e530d48a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12983,7 +13023,7 @@ GameObject:
   - component: {fileID: 5692136351063789486}
   - component: {fileID: 7130092573814229478}
   - component: {fileID: 6420322258991715988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13001,6 +13041,10 @@ PrefabInstance:
     - target: {fileID: 1419341051706618453, guid: 8b8dc2851a5715d428a7f8b89b1c97a9, type: 3}
       propertyPath: m_Name
       value: Crit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419341051706618453, guid: 8b8dc2851a5715d428a7f8b89b1c97a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5215994553739256915, guid: 8b8dc2851a5715d428a7f8b89b1c97a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13117,7 +13161,7 @@ GameObject:
   - component: {fileID: 1465094213037461652}
   - component: {fileID: 2413128357748751825}
   - component: {fileID: 6602667619038378197}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HUD_CurrentHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13256,7 +13300,7 @@ GameObject:
   - component: {fileID: 844089255405345098}
   - component: {fileID: 1542632978145386255}
   - component: {fileID: 2516441490924317976}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerForward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13384,7 +13428,7 @@ GameObject:
   - component: {fileID: 5864238198940974972}
   - component: {fileID: 8859615007636354605}
   - component: {fileID: 4056548104461788442}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Canvas_PlayerHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13519,7 +13563,7 @@ GameObject:
   - component: {fileID: 9141267081435912412}
   - component: {fileID: 1552064239763425674}
   - component: {fileID: 6177458592878595197}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13537,7 +13581,7 @@ GameObject:
   - component: {fileID: 3863653919914190251}
   - component: {fileID: 5928949764626686722}
   - component: {fileID: 284250322033028083}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HUD_MaxHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13555,7 +13599,7 @@ GameObject:
   - component: {fileID: 9108028631589447431}
   - component: {fileID: 8779370069059192143}
   - component: {fileID: 7265973657004711547}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -13661,6 +13705,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RagingEmotions
       objectReference: {fileID: 0}
+    - target: {fileID: 9037137005491934119, guid: 336c8aca4470b34449916adcf752ac27, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13727,6 +13775,10 @@ PrefabInstance:
     - target: {fileID: 3920787981283775058, guid: eaf3b87c657d101489e39d09ff79dd9b, type: 3}
       propertyPath: m_Name
       value: SkillDuration
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920787981283775058, guid: eaf3b87c657d101489e39d09ff79dd9b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13799,7 +13851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8844108966808397980}
   - component: {fileID: 3760311798595678675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13859,7 +13911,7 @@ GameObject:
   - component: {fileID: 2919773507829331934}
   - component: {fileID: 1013985424451427283}
   - component: {fileID: 2383243350756058618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerBackward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13947,6 +13999,10 @@ PrefabInstance:
     - target: {fileID: 4667993539245888592, guid: 5ef4f56470141b0419da3c895e73ae4a, type: 3}
       propertyPath: m_Name
       value: Fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667993539245888592, guid: 5ef4f56470141b0419da3c895e73ae4a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
