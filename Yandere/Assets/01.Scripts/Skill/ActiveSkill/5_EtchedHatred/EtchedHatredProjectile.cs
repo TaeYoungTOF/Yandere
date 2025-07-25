@@ -11,10 +11,7 @@ public class EtchedHatredProjectile : BaseProjectile
     private Transform _target;
     private bool _isExploding;
     
-    public override void Initialize()
-    {
-    }
-
+    public override void Initialize() { }
     public void Initialize(EtchedHatredDataWrapper data, LayerMask enemyLayer, Transform target)
     {
         _debuffPrefab.SetActive(true);
@@ -66,7 +63,12 @@ public class EtchedHatredProjectile : BaseProjectile
             }
         }
 
-        Destroy(gameObject, 0.5f);
+        Invoke(nameof(ReturnToPool), 0.5f);
+    }
+
+    private void ReturnToPool()
+    {
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.EtchedHatredProj, gameObject);
     }
     
     private void OnDrawGizmos()

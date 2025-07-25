@@ -21,6 +21,8 @@ public class ParchedLongingProjectile : BaseProjectile
         
         _data = data;
         this.enemyLayer = enemyLayer;
+            
+        transform.localScale = Vector3.one * _data.projectileRadius;
 
         StartCoroutine(Explode());
     }
@@ -74,6 +76,7 @@ public class ParchedLongingProjectile : BaseProjectile
             }
         }
 
-        Destroy(gameObject, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.ParchedLongingProj, gameObject);
     }
 }

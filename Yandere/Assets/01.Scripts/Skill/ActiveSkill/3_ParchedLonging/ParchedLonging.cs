@@ -50,8 +50,6 @@ public class ParchedLonging : ActiveSkill<ParchedLongingDataWrapper>
             GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.ParchedLongingProj, spawnPos, Quaternion.identity);
             ParchedLongingProjectile projectile = go.GetComponent<ParchedLongingProjectile>();
             projectile.Initialize(data, _enemyLayer);
-            
-            projectile.transform.localScale = Vector3.one * data.projectileRadius;
         }
         
     }
