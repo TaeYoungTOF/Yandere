@@ -62,8 +62,6 @@ public class GameManager : MonoBehaviour
     public void SetStage(StageData stageData)
     {
         currentStageData = stageData;
-
-        Debug.Log($"[GameManager] Set Stage {currentStageData.stageIndex}");
     }
 
     public void LoadGameScene()
