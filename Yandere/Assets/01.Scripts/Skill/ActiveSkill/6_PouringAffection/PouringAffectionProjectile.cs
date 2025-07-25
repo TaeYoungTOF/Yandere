@@ -56,6 +56,11 @@ public class PouringAffectionProjectile : BaseProjectile
             }
         }
         
-        Destroy(gameObject, 1f);
+        Invoke(nameof(ReturnToPool), 1f);
+    }
+
+    private void ReturnToPool()
+    {
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.PouringAffectionProj, gameObject);
     }
 }

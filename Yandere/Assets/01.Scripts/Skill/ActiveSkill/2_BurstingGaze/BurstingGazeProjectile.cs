@@ -33,7 +33,7 @@ public class BurstingGazeProjectile : BaseProjectile
             if (other.TryGetComponent(out IDamagable target))
             {
                 target.TakeDamage(_damage);
-                Destroy(gameObject);
+                ObjectPoolManager.Instance.ReturnToPool(PoolType.BurstingGazeProj, gameObject);
             }
         }
     }
