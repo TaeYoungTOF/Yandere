@@ -14,12 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 0
   endTime: 30
-  spawnInterval: 3
+  spawnInterval: 1
   spawnAmount: 2
   enemyList:
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 7
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 426c24634e7bb0744a023822e5f27f2a, type: 3}
-    spawnWeight: 3
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: e49a2269531406e418099b40b0699a94, type: 3}
+    spawnWeight: 100
+    dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
