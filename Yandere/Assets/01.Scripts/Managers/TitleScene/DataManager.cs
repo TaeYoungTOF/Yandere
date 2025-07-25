@@ -119,7 +119,7 @@ public class DataManager : MonoBehaviour
     [Button]
     private void Debug_GainExp()
     {
-        GainExp(10);
+        GainExp(50);
     }
 
     [Button]

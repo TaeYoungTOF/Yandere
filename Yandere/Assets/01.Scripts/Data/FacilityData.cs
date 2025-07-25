@@ -29,7 +29,8 @@ public class FacilityData : ScriptableObject
     public float valuePerLevel;                                     // 강화 레벨 당 스탯 증가량
     public int baseCost;                                            // 초기 기본 비용
     public float costMultiplier;                                    // 레벨업 시 비용 증가 비율
-    
+
+    public string[] levelUpTexts;
     
     [TextArea]
     public string description;
