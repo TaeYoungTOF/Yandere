@@ -16,6 +16,8 @@ public class UI_MainHUD : MonoBehaviour
     
     private DataManager _dataManager;
 
+    [SerializeField] private Button _settingButton;
+
     private void Start()
     {
         _dataManager = DataManager.Instance;
@@ -29,6 +31,8 @@ public class UI_MainHUD : MonoBehaviour
         }
         
         OnSelectButtonClicked(2);
+        
+        _settingButton.onClick.AddListener(()=> SoundManagerTest.Instance.OpenSettingPanel());
     }
 
     public void UpdateUI()

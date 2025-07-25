@@ -19,6 +19,9 @@ public class SoundManagerTest : MonoBehaviour
     
     private Dictionary<string, SoundData> soundDictionary;
 
+    [Header("UI")]
+    [SerializeField] private GameObject _settingPanel;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -35,7 +38,8 @@ public class SoundManagerTest : MonoBehaviour
             if (!soundDictionary.ContainsKey(sound.soundName))
                 soundDictionary.Add(sound.soundName, sound);
         }
-  
+        
+        _settingPanel.SetActive(false);
     }
 
     public void Play(string soundName)
@@ -96,5 +100,10 @@ public class SoundManagerTest : MonoBehaviour
     public void SetSFXVolume(float volume)
     {
         sfxVolume = volume;
+    }
+
+    public void OpenSettingPanel()
+    {
+        _settingPanel.SetActive(true);
     }
 }

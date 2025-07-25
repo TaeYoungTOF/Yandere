@@ -196,8 +196,8 @@ public class Player : MonoBehaviour, IDamagable
             {
                 if (!item.CanPickup()) return;
                 
-                item.Use(this);
                 DOTween.Kill(item);
+                item.Use(this);
             }
         }
     }

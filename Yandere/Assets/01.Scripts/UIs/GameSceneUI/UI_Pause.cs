@@ -108,7 +108,7 @@ public class UI_Pause : ToggleableUI
 
     private void OnClickSettingButton()
     {
-        UIManager.Instance.SetUIState(UIState.Setting);
+        SoundManagerTest.Instance.OpenSettingPanel();
     }
 
     private void OnClickHomeButton()
