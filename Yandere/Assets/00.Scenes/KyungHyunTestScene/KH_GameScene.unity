@@ -1518,6 +1518,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6895507974875776221, guid: 1e2ac4d381063fc4ca6ae9fd9031b1ac, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645003727885013477, guid: 1e2ac4d381063fc4ca6ae9fd9031b1ac, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9032151279102167275, guid: 1e2ac4d381063fc4ca6ae9fd9031b1ac, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3047,10 +3059,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableSkills: []
-  _firstDrawPool:
-  - {fileID: 1248468711898248767}
   equipedActiveSkills: []
   equipedPassiveSkills: []
+  equipedUpgradeSkills: []
+  _firstDrawPool:
+  - {fileID: 1248468711898248767}
+  availableUpgradeSkills: []
+  isLevelUp: 0
 --- !u!4 &5692136351063789486
 Transform:
   m_ObjectHideFlags: 0
