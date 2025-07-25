@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1ece5762ae9a7f48a389f64f900ef03, type: 3}
-  m_Name: 4Stage_Elite_Range_3shot_TypeA
+  m_Name: 0Stage_Normal_TypeB_Teacher
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 1439856908508736086, guid: 82d922bc7a5195a4898916ca64a853e4, type: 3}
+  monsterPrefab: {fileID: 1439856908508736086, guid: 0929312f3fd662e46a0e8d27e416d6a1, type: 3}
   enemyType: 0
   enemyAttackType: 0
-  monsterName: "4\uC2A4\uD14C\uC774\uC9C0_\uC5D8\uB9AC\uD2B8_3\uAC08\uB798\uC6D0\uAC70\uB9AC"
-  monsterMaxHp: 400
+  monsterName: "\uAD50\uC0AC_\uD29C\uD1A0\uB9AC\uC5BC"
+  monsterMaxHp: 100
   monsterAttack: 5
   monsterDef: 0
-  attackCooldown: 2
+  attackCooldown: 3
   monsterMoveSpeed: 2

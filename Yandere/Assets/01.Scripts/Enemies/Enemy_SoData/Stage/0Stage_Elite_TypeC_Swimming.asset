@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1ece5762ae9a7f48a389f64f900ef03, type: 3}
-  m_Name: 0Stage_Elite_Range_3shot
+  m_Name: 0Stage_Elite_TypeC_Swimming
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 1439856908508736086, guid: 3d42473cf94d92840b1b6c7af74f8166, type: 3}
+  monsterPrefab: {fileID: 1439856908508736086, guid: 3fdbcd0e9e9065a4d962b3c83744056b, type: 3}
   enemyType: 1
   enemyAttackType: 0
-  monsterName: "2\uC2A4\uD14C\uC774\uC9C0_\uC5D8\uB9AC\uD2B8_3\uAC08\uB798\uC6D0\uAC70\uB9AC"
+  monsterName: "\uC218\uC601\uBD80_\uD29C\uD1A0\uB9AC\uC5BC"
   monsterMaxHp: 300
   monsterAttack: 5
   monsterDef: 0

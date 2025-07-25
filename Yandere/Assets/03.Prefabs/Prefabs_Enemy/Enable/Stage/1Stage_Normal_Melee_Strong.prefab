@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8065796078529405819}
   - component: {fileID: -4306246567127708220}
   m_Layer: 10
-  m_Name: 0Stage_Normal_Melee_Weak
+  m_Name: 1Stage_Normal_Melee_Strong
   m_TagString: Enemy_Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: dd5527517ebe0a0449cfe61c7c03f263, type: 2}
+  enemyData: {fileID: 11400000, guid: ad7f2a89ea7f8bd41a0fa5dbe584c417, type: 2}
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
@@ -241,7 +241,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1331712059, guid: 537d166c80275ff409d6c2f5ba0d1e19, type: 3}
+  m_Sprite: {fileID: -692911593, guid: 4083ea7853c2c5c4ab3591f2cb74f573, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -262,7 +262,7 @@ Animator:
   m_GameObject: {fileID: 3790309057131494843}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c8736f1704a5f134794c69c603775cf1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1f8db4fc2f9613e4b8ee67e219eceffc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 4811801399035838859}
   - component: {fileID: 5711978838889047932}
   m_Layer: 0
-  m_Name: HitBox
+  m_Name: AttackBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

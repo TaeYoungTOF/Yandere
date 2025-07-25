@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8065796078529405819}
   - component: {fileID: -1593837707788249879}
   m_Layer: 10
-  m_Name: 0Stage_Normal_Range_shot
+  m_Name: 0Stage_Normal_TypeB_Teacher
   m_TagString: Enemy_Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1193660637, guid: b7e916a8661b55f438f7bdbb19a3c40c, type: 3}
+  m_Sprite: {fileID: 1380581902, guid: 6f9ae9282d161004e8c98943eaa804ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -266,7 +266,7 @@ Animator:
   m_GameObject: {fileID: 3790309057131494843}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 81446bd7f9bf2914e86947cb1da87dd3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 51fe7c08edce6534fb7f6bc24cde6261, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 4811801399035838859}
   - component: {fileID: 5711978838889047932}
   m_Layer: 0
-  m_Name: HitBox
+  m_Name: AttackBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

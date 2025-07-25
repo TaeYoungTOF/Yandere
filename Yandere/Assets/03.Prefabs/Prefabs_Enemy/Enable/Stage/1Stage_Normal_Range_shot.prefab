@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8065796078529405819}
   - component: {fileID: -1593837707788249879}
   m_Layer: 10
-  m_Name: 2Stage_Normal_Range_shot
+  m_Name: 1Stage_Normal_Range_shot
   m_TagString: Enemy_Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 636c9658806f5ad4fb596a88da0eab19, type: 2}
+  enemyData: {fileID: 11400000, guid: 72787e9a7dfd75c4e8a7863fa4a9ae71, type: 2}
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
