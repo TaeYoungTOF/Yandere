@@ -177,7 +177,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -196,6 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 40f7ad09833433645befb000c97f7355, type: 2}
+  isInAttackRange: 0
+  isDead: 0
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
