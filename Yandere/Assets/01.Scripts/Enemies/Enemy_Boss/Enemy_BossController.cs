@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Enemy_BossController : MonoBehaviour
 {
+    [SerializeField] private string debugCurrentPattern;
+    
     private IBossPattern currentPattern;
     private List<IBossPattern> patternPool;
     private IBossPattern lastUsedPattern;
@@ -17,6 +19,11 @@ public class Enemy_BossController : MonoBehaviour
     {
         patternPool = new List<IBossPattern>(GetComponents<IBossPattern>());
         StartCoroutine(NextPatternRoutine());
+    }
+    private void Update()
+    {
+        if (currentPattern != null)
+            debugCurrentPattern = currentPattern.GetType().Name;
     }
 
     private IEnumerator NextPatternRoutine()
