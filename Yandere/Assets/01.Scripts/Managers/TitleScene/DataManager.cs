@@ -16,8 +16,11 @@ public class DataManager : MonoBehaviour
     public float obsessionCrystals;
     public float premiumCurrency;
 
-    [Header("Facility Upgrade State")]
-    public FacilitySaveData facilitySaveData;
+    [Header("Facilities")]
+    //public FacilitySaveData facilitySaveData;
+    private int _facilityAmount = 11;
+    public int[] facilityLevels;
+    public float[] inGameDatas;
 
     [Header("Settings")]
     public SettingData settingData;
@@ -30,6 +33,14 @@ public class DataManager : MonoBehaviour
         }
         
         InitNewData();
+        
+        facilityLevels = new int[_facilityAmount];
+        inGameDatas = new float[_facilityAmount];
+        for (int i = 0; i < _facilityAmount; i++)
+        {
+            facilityLevels[i] = 0; // 시설 레벨 0으로 초기화 (필요시 1로)
+            inGameDatas[i] = 0;    // 인게임 데이터 0으로 초기화 (초기값 필요시 변경)
+        }
     }
     
     public void GainExp(float amount)
@@ -62,6 +73,12 @@ public class DataManager : MonoBehaviour
         UIManager_Title.Instance.UpdateUI();
     }
 
+    public void SetData(int index, int facilityLevel, float value)
+    {
+        facilityLevels[index] = facilityLevel;
+        inGameDatas[index] = value;
+    }
+
     public void InitNewData()
     {
         playerId = Guid.NewGuid().ToString();
@@ -72,7 +89,7 @@ public class DataManager : MonoBehaviour
         obsessionCrystals = 0;
         premiumCurrency = 0;
 
-        facilitySaveData = new FacilitySaveData();
+        //facilitySaveData = new FacilitySaveData();
         settingData = new SettingData();
     }
 
@@ -84,7 +101,7 @@ public class DataManager : MonoBehaviour
             accountLevel = this.accountLevel,
             obsessionCrystals = this.obsessionCrystals,
             premiumCurrency = this.premiumCurrency,
-            facilitySaveData = this.facilitySaveData,
+            //facilitySaveData = this.facilitySaveData,
             settingData = this.settingData
         };
     }
@@ -95,7 +112,7 @@ public class DataManager : MonoBehaviour
         this.accountLevel = save.accountLevel;
         this.obsessionCrystals = save.obsessionCrystals;
         this.premiumCurrency = save.premiumCurrency;
-        this.facilitySaveData = save.facilitySaveData ?? new FacilitySaveData();
+        //this.facilitySaveData = save.facilitySaveData ?? new FacilitySaveData();
         this.settingData = save.settingData ?? new SettingData();
     }
 

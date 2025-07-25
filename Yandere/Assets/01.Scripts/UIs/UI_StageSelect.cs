@@ -1,17 +1,69 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_StageSelect : MonoBehaviour
 {
-    //[SerializeField] private GameObject _stageButtonPrefab;
-    //[SerializeField] private Transform _contentParent;
+    [SerializeField] private TMP_Text _stageName;
+    [SerializeField] private TMP_Text _stageDesc;
+    [SerializeField] private Image _stageImage;
+    [SerializeField] private Button _startButton;
+    [SerializeField] private Button _prevButton;
+    [SerializeField] private Button _nextButton;
+    
+    private StageData _currentStageData;
 
     private void Start()
     {
-        //StageData[] sortedStageDatas = GetSortedStageDatas();
-        //InstantiateStageButtons(sortedStageDatas);
+        _startButton.onClick.AddListener(OnClickStartButton);
+        _prevButton.onClick.AddListener(OnClickPrevButton);
+        _nextButton.onClick.AddListener(OnClickNextButton);
+
+        UpdateUI();
     }
 
+    private void UpdateUI()
+    {
+        _currentStageData = GameManager.Instance.currentStageData;
+        
+        _prevButton.gameObject.SetActive(_currentStageData.stageIndex > 0);
+        _nextButton.gameObject.SetActive(_currentStageData.stageIndex < GameManager.Instance.MaxStageIndex - 1);
+
+        _stageName.text = $"스테이지 {_currentStageData.stageIndex} {_currentStageData.stageName}";
+        _stageDesc.text = _currentStageData.stageDesc;
+        _stageImage.sprite = _currentStageData.stageImage;
+    }
+
+    private void OnClickStartButton()
+    {
+        SoundManagerTest.Instance.Play("LobbyClick01_SFX");
+        GameManager.Instance.LoadGameScene();
+    }
+    
+    private void OnClickPrevButton()
+    {
+        if (_currentStageData.stageIndex < 1) return;
+            
+        GameManager.Instance.SetStage(GameManager.Instance.stageDatas[_currentStageData.stageIndex - 1]);
+        UpdateUI();
+    }
+
+    private void OnClickNextButton()
+    {
+        if (_currentStageData.stageIndex >= GameManager.Instance.MaxStageIndex) return;
+        
+        GameManager.Instance.SetStage(GameManager.Instance.stageDatas[_currentStageData.stageIndex + 1]);
+        UpdateUI();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    //==================================================================================
     /*private StageData[] GetSortedStageDatas()
     {
         StageData[] loadedDatas = GameManager.Instance.stageDatas;

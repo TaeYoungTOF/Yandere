@@ -62,6 +62,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnRoutine(float spawnInterval, int spawnAmount)
     {
+        /**
         int count = 0;
         
         while (true)
@@ -82,7 +83,38 @@ public class SpawnManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(spawnInterval);
+        }*/
+        
+        while (true)
+        {
+            for (int i = 0; i < spawnAmount; i++)
+            {
+                var entry = GetWeightedRandomEntry();
+                InstantiateEnemy(entry);
+            }
+
+            yield return new WaitForSeconds(spawnInterval);
         }
+    }
+    
+    private EnemySpawnWeigth GetWeightedRandomEntry()
+    {
+        int totalWeight = 0;
+        foreach (var entry in _spawnWeights)
+            totalWeight += entry.spawnWeight;
+
+        int rand = Random.Range(0, totalWeight);
+        int cumulative = 0;
+
+        foreach (var entry in _spawnWeights)
+        {
+            cumulative += entry.spawnWeight;
+            if (rand < cumulative)
+                return entry;
+        }
+
+        // fallback, theoretically unreachable
+        return _spawnWeights[0];
     }
 
     private void InstantiateEnemy(EnemySpawnWeigth entry)

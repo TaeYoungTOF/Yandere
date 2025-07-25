@@ -53,8 +53,8 @@ public class Enemy_BossPattern_Shoot : MonoBehaviour, IBossPattern
                 Vector2 dir = Quaternion.Euler(0, 0, angle) * direction;
 
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-
                 bullet.GetComponent<Enemy_BossBullet>().Init(dir);
+                SoundManagerTest.Instance.Play("InGame_EnemyBoss_ShootSkillSFX");
             }
 
             yield return new WaitForSeconds(0.5f);

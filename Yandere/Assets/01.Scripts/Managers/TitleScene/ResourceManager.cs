@@ -93,9 +93,9 @@ public class ResourceManager : Facility
    
    protected override void UpdateUI()
    {
-      levelText.text = $"Lv.{currentLevel.ToString()}";
+      base.UpdateUI();
+      
       stackCountText.text = $"{currentStack.ToString()} / {maxStack.ToString()}";
-      levelDescriptionText.text = $"1시간마다 + {amount}";
    }
    
    

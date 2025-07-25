@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fc12a5ddc600c4fb424dea7a689d55, type: 3}
   m_Name: TestStageData
   m_EditorClassIdentifier: 
-  stageIndex: 1
-  clearTime: 180
+  stageIndex: 5
+  stageName: testStage
+  stageDesc: "\uD14C\uC2A4\uD2B8 \uC911"
+  stageImage: {fileID: 21300000, guid: 414463c7e177e3c46861870dc16eef38, type: 3}
+  clearTime: 480
   achieveDatas: []
   waveDatas:
   - {fileID: 11400000, guid: 528b6381be847ef429d6abab547fd446, type: 2}

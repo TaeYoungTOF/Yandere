@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fc12a5ddc600c4fb424dea7a689d55, type: 3}
   m_Name: 1min
   m_EditorClassIdentifier: 
-  stageIndex: 1
+  stageIndex: 0
+  stageName: tutorial
+  stageDesc: "\uD29C\uD1A0\uB9AC\uC5BC\uC785\uB2C8\uB2E4"
+  stageImage: {fileID: 21300000, guid: 414463c7e177e3c46861870dc16eef38, type: 3}
   clearTime: 900
   achieveDatas:
   - rank: 0
@@ -43,9 +46,4 @@ MonoBehaviour:
     conditionValue: 0
     title: 
   waveDatas:
-  - {fileID: 11400000, guid: 89b6a6cff79e9844f90934879a242e71, type: 2}
-  - {fileID: 11400000, guid: be6fe0d4c2abfd74b9f60d1e287af942, type: 2}
-  - {fileID: 11400000, guid: dab7cf8bcb44c944ca2f1611d6ba0d64, type: 2}
-  - {fileID: 11400000, guid: 54da6d87f2655b74c8cf42e33c809c4d, type: 2}
-  - {fileID: 11400000, guid: 23796de22ffe8834986b30759da00593, type: 2}
-  - {fileID: 11400000, guid: 949695f6559e62745a7b8c9b3864b9cc, type: 2}
+  - {fileID: 11400000, guid: 35d5397e3827d154492b0a313ddd7b4c, type: 2}

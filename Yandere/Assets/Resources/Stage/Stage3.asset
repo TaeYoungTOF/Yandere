@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: Stage3
   m_EditorClassIdentifier: 
   stageIndex: 3
+  stageName: "\uB9C8\uC744"
+  stageDesc: "\uB9C8\uC744\uC785\uB2C8\uB2E4"
+  stageImage: {fileID: 21300000, guid: 414463c7e177e3c46861870dc16eef38, type: 3}
   clearTime: 900
   achieveDatas: []
   waveDatas:
-  - {fileID: 11400000, guid: c5b697754fe718d4887da900ed16151d, type: 2}
-  - {fileID: 11400000, guid: 654f36019100efc41bb58bfb9c376cd2, type: 2}
-  - {fileID: 11400000, guid: f382ae796c2c8b0438fd5493c1903fc5, type: 2}
-  - {fileID: 11400000, guid: 1bc46502a93b17841a80f24f82633884, type: 2}
-  - {fileID: 11400000, guid: 26cdfa761ca7a6540979cb5a59c418e8, type: 2}
-  - {fileID: 11400000, guid: deb6d41a17c613f4fa2326ee81eae119, type: 2}
+  - {fileID: 11400000, guid: 8841920a8c2ea864898267cc250b3ffa, type: 2}
+  - {fileID: 11400000, guid: 891b6c10c8dd5fd4bb427debdacd9579, type: 2}
+  - {fileID: 11400000, guid: 8672409280072bf4e8637a72ed1489f4, type: 2}
+  - {fileID: 11400000, guid: 3b197d79808a4b441ae0d8f2c4db1ce6, type: 2}
+  - {fileID: 11400000, guid: 481ea4d0b4cd3e74d867ac1780812b7f, type: 2}
+  - {fileID: 11400000, guid: 5ae4d6c7b252fc34fbc95c6ef5b8b2c4, type: 2}
+  - {fileID: 11400000, guid: bdf64ab0a0fc03d44b2bd24a7902dd51, type: 2}

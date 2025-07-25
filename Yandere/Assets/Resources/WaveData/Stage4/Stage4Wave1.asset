@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefb1a1cba1d98c4998bb893a742c625, type: 3}
+  m_Name: Stage4Wave1
+  m_EditorClassIdentifier: 
+  eventType: 3
+  endTime: 90
+  spawnInterval: 2
+  spawnAmount: 3
+  enemyList:
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 5d76faf1ca8e2654fa4d1c8686de937e, type: 3}
+    spawnWeight: 1
+    dropTable: {fileID: 11400000, guid: 0863b90ad7b97244ab24f9bf53d2de40, type: 2}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 7f17470cbc3955540b0dac9b4bc7557c, type: 3}
+    spawnWeight: 2
+    dropTable: {fileID: 11400000, guid: 0863b90ad7b97244ab24f9bf53d2de40, type: 2}
