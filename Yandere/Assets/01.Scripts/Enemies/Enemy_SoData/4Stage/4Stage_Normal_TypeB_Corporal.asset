@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ece5762ae9a7f48a389f64f900ef03, type: 3}
+  m_Name: 4Stage_Normal_TypeB_Corporal
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 1439856908508736086, guid: 5d76faf1ca8e2654fa4d1c8686de937e, type: 3}
+  enemyType: 0
+  enemyAttackType: 0
+  monsterName: "4\uC2A4\uD14C\uC774\uC9C0_\uC77C\uBC18_\uC6D0\uAC70\uB9AC"
+  monsterMaxHp: 100
+  monsterAttack: 5
+  monsterDef: 0
+  attackCooldown: 2
+  monsterMoveSpeed: 2
