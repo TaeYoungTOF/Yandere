@@ -70,8 +70,6 @@ public class RagingEmotions : ActiveSkill<RagingEmotionsDataWrapper>
             GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.RagingEmotionsProj, spawnPos, Quaternion.identity);
             RagingEmotionsProjectile projectile = go.GetComponent<RagingEmotionsProjectile>();
             projectile.Initialize(player.transform, angle, data, _enemyLayer);
-            
-            projectile.transform.localScale = Vector3.one * data.projectileRadius;
         }
         
         yield return new WaitForSeconds(data.skillDuration);

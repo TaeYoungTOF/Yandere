@@ -5,17 +5,36 @@ using UnityEngine;
 
 public class SmokeDamageZone : MonoBehaviour
 {
+   [Header("설정")]
    [SerializeField] private float duration = 3f;
    [SerializeField] private float damageInterval = 1f;
    [SerializeField] private int damagePerTick = 100;
+   [SerializeField] private GameObject rangeIndicator;
+   
+   
 
    private List<Transform> targets = new();
+   private Coroutine damageRoutine;
 
    private void Start()
    {
-      StartCoroutine(DamageOverTime());
-      Destroy(gameObject, duration);
+      if (rangeIndicator != null)
+         rangeIndicator.SetActive(true);
+
+      damageRoutine = StartCoroutine(DamageOverTime());
+
+      // 지속 시간 후 사라지기
+      StartCoroutine(DestroyAfterDelay());
+   }
+
+   private IEnumerator DestroyAfterDelay()
+   {
+      yield return new WaitForSeconds(duration);
       
+      if (damageRoutine != null)
+         StopCoroutine(damageRoutine);
+
+      Destroy(gameObject);
    }
 
    IEnumerator DamageOverTime()
@@ -23,6 +42,7 @@ public class SmokeDamageZone : MonoBehaviour
       while (true)
       {
          yield return new WaitForSeconds(damageInterval);
+         
          foreach (var t in targets)
          {
             if (t != null)
