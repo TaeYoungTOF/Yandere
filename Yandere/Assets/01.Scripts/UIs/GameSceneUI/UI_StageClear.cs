@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class UI_StageClear : ToggleableUI
 {
     [SerializeField] private GameObject _stageClearPanel;
-    [SerializeField] private GameObject _stageSelcetPanel;
     [SerializeField] private Button _homeButton;
     [SerializeField] private Button _advetiseButton;
     [SerializeField] private Button _backButton;
@@ -46,6 +45,6 @@ public class UI_StageClear : ToggleableUI
 
     public void OnClickBackButton()
     {
-        _stageSelcetPanel.SetActive(true);
+        GameManager.Instance.LoadTitleScene();
     }
 }
