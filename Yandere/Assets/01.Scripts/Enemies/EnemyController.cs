@@ -7,17 +7,17 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 {
     public EnemyData enemyData;
     private float _monsterCurrentHealth;
-    private Transform _playerTransform;
+    protected Transform _playerTransform;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private SpriteRenderer _spriteRenderer;
+    protected SpriteRenderer _spriteRenderer;
     private EnemyAttackHandler _attackHandler;
     private IEnemyAttack _attackModule;
 
     
     // 에너미 상태 체크
-    private bool isInAttackRange = false;
-    private bool isDead = false;
+    public bool isInAttackRange = false;
+    public bool isDead = false;
     public bool isDashing = false;
     
     private float attackTimer = 0f;
@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         isInAttackRange = inRange;                                          // EnemyHitBox에서 OnTriggerEnter2D 상태로 "true" 또는 "false"값을 inRange로 받아서 isInAttackRange에 넣어주기
     }
     
-    void Start()
+    protected virtual void Start()
     {
         _monsterCurrentHealth = enemyData.monsterMaxHp;
 
@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         MonsterMove();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         // ✅ 테스트: H 키 누르면 데미지 주기
         if (Input.GetKeyDown(KeyCode.H))
@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         _dropContext.position = transform.position;
     }
 
-    public void MonsterMove()
+    protected virtual void MonsterMove()
     {
        
         if (isDead || isDashing || _playerTransform == null) return;
@@ -128,7 +128,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
     }
     
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         SoundManagerTest.Instance.Play("InGame_Enemy_HitSFX01");
         if (isDead) return;                                                 // 죽은 상태이면 이코드를 빠져나가게 함
@@ -144,7 +144,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         }
     }
 
-    public void MonsterDie()
+    protected virtual void MonsterDie()
     {
         isDead = true;                                                      // 죽은 상태체크
         _rigidbody2D.velocity = Vector2.zero;                               // Vector2.zero(0,0)을 _rigidbody2D.velocity에 넣어줌 (안 움직이게 하는 코드)
