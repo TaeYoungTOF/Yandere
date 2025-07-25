@@ -188,4 +188,10 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     {
         _spriteRenderer.flipX = direction.x < 0;
     }
+    
+    public void DelayAttack(float delay)
+    {
+        attackTimer = Mathf.Max(attackTimer, delay); // 현재 쿨보다 짧으면 덮지 않음
+    }
+    
 }

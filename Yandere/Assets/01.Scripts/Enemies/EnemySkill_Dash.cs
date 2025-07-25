@@ -12,6 +12,7 @@ public class EnemySkill_Dash : MonoBehaviour
     private Rigidbody2D _rb;
     private EnemyController _controller;
     private Transform _player;
+    private bool _canUseDash = false;
 
     private void Awake()
     {
@@ -23,11 +24,16 @@ public class EnemySkill_Dash : MonoBehaviour
     private void Update()
     {
         if (timer > 0f) timer -= Time.deltaTime;
-    }
 
+        // ✅ 대시 조건 체크를 여기서
+        if (_canUseDash && timer <= 0f)
+        {
+            TryDash();
+        }
+    }
     public void TryDash()
     {
-        if (timer > 0f || _player == null) return;
+        if (timer > 0f || _player == null || !_canUseDash) return;
 
         Vector2 dir = (_player.position - transform.position).normalized;
         _controller.isDashing = true;
@@ -41,5 +47,18 @@ public class EnemySkill_Dash : MonoBehaviour
         yield return new WaitForSeconds(duration);
         _rb.velocity = Vector2.zero;
         _controller.isDashing = false;
+        
+        _controller.DelayAttack(1f);
+        
     }
+    public void SetCanUseDash(bool value)
+    {
+        _canUseDash = value;
+    }
+    
+    public bool IsDashing => _controller != null && _controller.isDashing;
+
+    public float DashForce => dashForce;
+    
+    
 }

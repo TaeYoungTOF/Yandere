@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_BOssPattern_Charge : MonoBehaviour, IBossPattern
+public class Enemy_BossPattern_Charge : MonoBehaviour, IBossPattern
 {
+    
+    [SerializeField, Tooltip("남은 쿨타임 (읽기 전용)")]
+    private float debugCooldownLeft;
   
     [Header("돌진 속성")]
     [SerializeField] private float chargeSpeedMultiplier = 3f;
@@ -16,7 +19,9 @@ public class Enemy_BOssPattern_Charge : MonoBehaviour, IBossPattern
     [SerializeField] private float damagePercent = 0.15f;
 
     [Header("이펙트")]
-    [SerializeField] private GameObject chargeEffectPrefab; // 바닥 궤적 이펙트
+    [SerializeField] private Enemy_BossDashPreview dashPreview;  // 인스펙터에서 연결 (대쉬 거리 표시)
+    [SerializeField] private GameObject dashParticlePrefab;      // 인스펙터에서 연결 (대쉬 이펙트 표시)
+    [SerializeField] private float dashParticlePrefabDestroyTime = 0.5f;
 
     private Transform _player;
     private Rigidbody2D _rigid;
@@ -25,10 +30,16 @@ public class Enemy_BOssPattern_Charge : MonoBehaviour, IBossPattern
     private float _timer;
     private bool _isDone;
     private bool _isCharging;
+    private bool _canUseDash = false;
     private Vector2 _chargeDir;
 
     public bool IsDone => _isDone;
-    public bool CanExecute() => _timer <= 0f;
+    public bool IsDashing => _isCharging;
+    public float DashForce => _enemyController.enemyData.monsterMoveSpeed * chargeSpeedMultiplier;
+    public bool CanExecute()
+    {
+        return _timer <= 0f && _canUseDash;
+    }
 
     private void Awake()
     {
@@ -39,7 +50,15 @@ public class Enemy_BOssPattern_Charge : MonoBehaviour, IBossPattern
 
     private void Update()
     {
-        if (_timer > 0f) _timer -= Time.deltaTime;
+        if (_timer > 0f)
+        {
+            _timer -= Time.deltaTime;
+            debugCooldownLeft = _timer; // 인스펙터 확인용
+        }
+        else
+        {
+            debugCooldownLeft = 0f;
+        }
     }
 
     public void Execute()
@@ -51,6 +70,8 @@ public class Enemy_BOssPattern_Charge : MonoBehaviour, IBossPattern
     {
         _isDone = false;
         _isCharging = false;
+        
+        _enemyController.isDashing = true;
 
         // 1. 준비 단계 (방향 고정)
         _chargeDir = (_player.position - transform.position).normalized;
@@ -61,7 +82,14 @@ public class Enemy_BOssPattern_Charge : MonoBehaviour, IBossPattern
         Debug.Log("[Charge] 준비 중...");
         yield return new WaitForSeconds(windUpTime);
 
+        if (dashParticlePrefab != null)
+        {
+            GameObject effect = Instantiate(dashParticlePrefab, transform.position, Quaternion.identity);
+            Destroy(effect, dashParticlePrefabDestroyTime); // 2초 뒤 제거 (원하는 시간 조절 가능)
+        }
+        
         // 2. 돌진 시작
+        SoundManagerTest.Instance.Play("InGame_EnemyBoss_DashSkillSFX");
         _isCharging = true;
         float speed = _enemyController.enemyData.monsterMoveSpeed * chargeSpeedMultiplier;
         float elapsed = 0f;
@@ -75,6 +103,8 @@ public class Enemy_BOssPattern_Charge : MonoBehaviour, IBossPattern
 
         _rigid.velocity = Vector2.zero;
         _isCharging = false;
+        
+        _enemyController.isDashing = false;
 
         yield return new WaitForSeconds(1f); // 후딜레이
 
@@ -84,35 +114,17 @@ public class Enemy_BOssPattern_Charge : MonoBehaviour, IBossPattern
 
     private void SpawnChargeEffect()
     {
-        if (chargeEffectPrefab == null) return;
-
-        Vector3 startPos = transform.position;
-        Vector3 endPos = startPos + (Vector3)(_chargeDir * 5f); // 이펙트 길이
-
-        GameObject effect = Instantiate(chargeEffectPrefab, startPos, Quaternion.identity);
-        Vector3 dir = endPos - startPos;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        effect.transform.rotation = Quaternion.Euler(0, 0, angle);
-        effect.transform.localScale = new Vector3(dir.magnitude, 1f, 1f);
-        Destroy(effect, windUpTime + chargeDuration + 1f);
+        if (dashPreview != null)
+        {
+            dashPreview.direction = _chargeDir;
+            dashPreview.ShowDashDirection();
+        }
     }
-
-    // 충돌 처리용 함수
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    public void SetCanUseDash(bool value)
     {
-        if (!_isCharging) return;
-        if (!collision.CompareTag("Player")) return;
-
-        // 넉백
-        Vector2 pushDir = (collision.transform.position - transform.position).normalized;
-        Rigidbody2D playerRb = collision.GetComponent<Rigidbody2D>();
-        if (playerRb != null)
-            playerRb.AddForce(pushDir * knockbackForce, ForceMode2D.Impulse);
-
-        // // 데미지
-        // float damage = PlayerManager.Instance.MaxHP * damagePercent;
-        // StageManager.Instance.Player.TakeDamage(damage);
-        //
-        // Debug.Log($"[Charge] 플레이어 넉백 + 데미지 {damage}");
+        _canUseDash = value;
     }
+    
+    
 }
