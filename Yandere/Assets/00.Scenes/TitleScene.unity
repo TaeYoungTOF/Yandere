@@ -10924,42 +10924,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 653745680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27ef936df84571849a962ff38501738c, type: 3}
+  m_Script: {fileID: 11500000, guid: e69aa76f876e497408a72997cae395e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _index: 0
-  facilityData: {fileID: 11400000, guid: ec4652cceddd3cb4db1a10c52b2e838f, type: 2}
-  _infoButton: {fileID: 8704346562833228550}
-  _levelUpButton: {fileID: 938118795980391281}
-  currentLevel: 0
-  currentCost: 0
-  facilityNameText: {fileID: 4707689114177602036}
-  levelText: {fileID: 7164041379823757152}
-  levelDescriptionText: {fileID: 8261377491856988467}
-  _lockGO: {fileID: 0}
-  _requireLevel: {fileID: 0}
-  _unlockButton: {fileID: 0}
-  amount: 0
+  facilityMain: {fileID: 6344867933429191590}
   currentStack: 0
   maxStack: 12
   stackIntervalMinutes: 60
   currentTimeFormatted: 
   timeUntilNextStack: 
-  stackCountText: {fileID: 7405306757776221287}
-  timerText: {fileID: 8666241826139766536}
-  _photos:
-  - {fileID: 2823999554846207323}
-  - {fileID: 5398191241335870080}
-  - {fileID: 1056705714991783271}
-  - {fileID: 1589690134880989055}
-  - {fileID: 2116659119640643397}
-  - {fileID: 2951968307511263761}
-  - {fileID: 7884170555762170675}
-  - {fileID: 1624809674673007750}
-  - {fileID: 3855905055878355657}
-  - {fileID: 4187322154391464257}
-  - {fileID: 9180114170463892391}
-  - {fileID: 8103627262944587528}
 --- !u!1 &656615744
 GameObject:
   m_ObjectHideFlags: 0
@@ -37844,9 +37817,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39159,9 +39132,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40142,9 +40115,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41121,9 +41094,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -45389,9 +45362,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -46187,6 +46160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6344867933429191589}
+  - component: {fileID: 6344867933429191590}
   m_Layer: 0
   m_Name: Main reward
   m_TagString: Untagged
@@ -48344,9 +48318,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -48737,9 +48711,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -51792,9 +51766,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -52210,9 +52184,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -53990,9 +53964,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -54331,6 +54305,46 @@ RectTransform:
   m_AnchoredPosition: {x: 540, y: -500}
   m_SizeDelta: {x: 1030, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6344867933429191590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3707220240930675528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ef936df84571849a962ff38501738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _index: 0
+  facilityData: {fileID: 11400000, guid: ec4652cceddd3cb4db1a10c52b2e838f, type: 2}
+  _infoButton: {fileID: 8704346562833228550}
+  _levelUpButton: {fileID: 938118795980391281}
+  currentLevel: 0
+  currentCost: 0
+  facilityNameText: {fileID: 4707689114177602036}
+  levelText: {fileID: 7164041379823757152}
+  levelDescriptionText: {fileID: 8261377491856988467}
+  _lockGO: {fileID: 0}
+  _requireLevel: {fileID: 0}
+  _unlockButton: {fileID: 0}
+  amount: 0
+  stackCountText: {fileID: 7405306757776221287}
+  timerText: {fileID: 8666241826139766536}
+  _photos:
+  - {fileID: 2823999554846207323}
+  - {fileID: 5398191241335870080}
+  - {fileID: 1056705714991783271}
+  - {fileID: 1589690134880989055}
+  - {fileID: 2116659119640643397}
+  - {fileID: 2951968307511263761}
+  - {fileID: 7884170555762170675}
+  - {fileID: 1624809674673007750}
+  - {fileID: 3855905055878355657}
+  - {fileID: 4187322154391464257}
+  - {fileID: 9180114170463892391}
+  - {fileID: 8103627262944587528}
 --- !u!222 &6348302266781917296
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -54758,9 +54772,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -56226,9 +56240,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653745682}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: ConsumePhoto
+      - m_Target: {fileID: 6344867933429191590}
+        m_TargetAssemblyTypeName: FacilityMain, Assembly-CSharp
+        m_MethodName: OnClickPhoto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

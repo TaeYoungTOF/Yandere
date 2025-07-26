@@ -50,7 +50,7 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     
     private IEnumerator SkillCoroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         
         if (_activeCoroutine != null)
         {

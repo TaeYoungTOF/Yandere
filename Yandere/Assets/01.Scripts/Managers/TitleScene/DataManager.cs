@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
     public float currentExp;
     public float requiredExp;
 
-    [Header("Currencies")]
+    //[Header("Currencies")]
     public float obsessionCrystals;
     public float premiumCurrency;
 
@@ -59,18 +59,6 @@ public class DataManager : MonoBehaviour
     {
         accountLevel++;
         requiredExp *= 1.3f;
-    }
-
-    public void AddObsessionCrystals(float amount)
-    {
-        obsessionCrystals += amount;
-        UIManager_Title.Instance.UpdateUI();
-    }
-
-    public void AddPremiumCurrency(float amount)
-    {
-        premiumCurrency += amount;
-        UIManager_Title.Instance.UpdateUI();
     }
 
     public void SetData(int index, int facilityLevel, float value)
@@ -120,17 +108,5 @@ public class DataManager : MonoBehaviour
     private void Debug_GainExp()
     {
         GainExp(50);
-    }
-
-    [Button]
-    private void Debug_AddObsessionCrystals()
-    {
-        AddObsessionCrystals(100);
-    }
-
-    [Button]
-    private void Debug_AddPremiumCurrency()
-    {
-        AddPremiumCurrency(100);
     }
 }

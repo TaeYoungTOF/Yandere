@@ -1,6 +1,6 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class Facility : MonoBehaviour
@@ -75,14 +75,14 @@ public class Facility : MonoBehaviour
         }
         
         SoundManagerTest.Instance.Play("LobbyClick01_SFX");
-        DataManager.Instance.obsessionCrystals -= currentCost;
+        
+        ResourceManager.Instance.UseObsessionCrystals(currentCost);
         currentLevel++;
         currentCost = Mathf.FloorToInt(currentCost * facilityData.costMultiplier);
         amount += facilityData.valuePerLevel;
         
         UIManager_Title.Instance.popUp.CloseUpgradePanel();
         UpdateUI();
-        UIManager_Title.Instance.UpdateUI();
     }
 
     protected virtual void UpdateUI()
