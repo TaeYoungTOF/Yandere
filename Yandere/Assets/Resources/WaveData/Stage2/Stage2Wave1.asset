@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefb1a1cba1d98c4998bb893a742c625, type: 3}
   m_Name: Stage2Wave1
   m_EditorClassIdentifier: 
-  eventType: 3
-  endTime: 90
-  spawnInterval: 2
-  spawnAmount: 3
+  eventType: 1
+  endTime: 180
+  spawnInterval: 4
+  spawnAmount: 5
   enemyList:
   - enemyPrefab: {fileID: 1439856908508736086, guid: 93550e7649d77284bacdb8a8e4e160e4, type: 3}
-    spawnWeight: 2
-    dropTable: {fileID: 11400000, guid: 8df3987a18dcc844295d56e6ccc96086, type: 2}
+    spawnWeight: 4
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
   - enemyPrefab: {fileID: 1439856908508736086, guid: f515cf811fdb734439e16cb5dc2fa739, type: 3}
     spawnWeight: 1
-    dropTable: {fileID: 11400000, guid: 8df3987a18dcc844295d56e6ccc96086, type: 2}
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
