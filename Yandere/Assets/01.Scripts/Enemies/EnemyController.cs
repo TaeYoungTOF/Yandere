@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 {
     public EnemyData enemyData;
-    private float _monsterCurrentHealth;
+    public float _monsterCurrentHealth;
     protected Transform _playerTransform;
-    private Rigidbody2D _rigidbody2D;
-    private Animator _animator;
+    public Rigidbody2D _rigidbody2D;
+    public Animator _animator;
     protected SpriteRenderer _spriteRenderer;
     private EnemyAttackHandler _attackHandler;
     private IEnemyAttack _attackModule;
@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         MonsterMove();
     }
 
-    protected virtual void Update()
+    void Update()
     {
         // ✅ 테스트: H 키 누르면 데미지 주기
         if (Input.GetKeyDown(KeyCode.H))
@@ -79,7 +79,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
             if (attackTimer <= 0f)                      // 어택타이머가 0보다 같거나 작으면
             {
-                Debug.Log("몬스터 어택 실행 전");
                 MonsterAttack();                        // 몬스터어택을 실행하고
                 attackTimer = enemyData.attackCooldown; // 어택타이머를 다시 값을 넣어줌 (쿨타임 리셋!)
             }
@@ -134,10 +133,12 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         if (isDead) return;                                                 // 죽은 상태이면 이코드를 빠져나가게 함
 
         damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
-        
         _monsterCurrentHealth -= damage;
-        Debug.Log($"[EnemyController] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");
+        
+        Debug.Log($"[에너미컨트롤러] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");
+        
         _animator.SetTrigger("Hit");                                  // 애니메이터의 파라미터(트리거) "Hit"를 실행
+        
         if (_monsterCurrentHealth <= 0)                                     // 몬스터의 현재 체력이 0이면 아래 코드 실행
         {
             MonsterDie();

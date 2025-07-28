@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Enemy_BossController : MonoBehaviour
+public class Enemy_BossController1 : MonoBehaviour
 {
     [SerializeField] private string debugCurrentPattern;
     
