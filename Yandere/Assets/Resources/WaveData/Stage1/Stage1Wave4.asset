@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 2
   endTime: 600
-  spawnInterval: 2
+  spawnInterval: 3
   spawnAmount: 18
   enemyList:
   - enemyPrefab: {fileID: 1439856908508736086, guid: 426c24634e7bb0744a023822e5f27f2a, type: 3}
-    spawnWeight: 5
+    spawnWeight: 7
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
   - enemyPrefab: {fileID: 1439856908508736086, guid: 56559ce58056a0242a30614906838f53, type: 3}
-    spawnWeight: 5
+    spawnWeight: 6
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 100dc319802287c40a6d664536d4045f, type: 3}
-    spawnWeight: 3
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 0929312f3fd662e46a0e8d27e416d6a1, type: 3}
+    spawnWeight: 2
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
   - enemyPrefab: {fileID: 1439856908508736086, guid: 936498b1de8d65947808a245101cd6cb, type: 3}
     spawnWeight: 2
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
   - enemyPrefab: {fileID: 1439856908508736086, guid: a9336aff6b28b86419ca65b4b302add2, type: 3}
-    spawnWeight: 3
+    spawnWeight: 1
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
