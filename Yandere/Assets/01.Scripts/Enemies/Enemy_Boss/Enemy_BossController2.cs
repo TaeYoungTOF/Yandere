@@ -6,25 +6,42 @@ using Random = UnityEngine.Random;
 
 public class Enemy_BossController2 : EnemyController
 {
-    [Header("보스 패턴 트리거 범위")]
+    [Header("보스 공격 범위 (패턴 사용 시 사정거리)")]
     [SerializeField] private Transform pattern1Box;
     [SerializeField] private Vector2 pattern1Size;
-
     [SerializeField] private Transform pattern2Box;
     [SerializeField] private Vector2 pattern2Size;
+    [SerializeField] private Transform pattern3Box;
+    [SerializeField] private Vector2 pattern3Size;
 
     [Header("패턴 쿨타임")]
     [SerializeField] private float pattern1Cooldown = 10f;
     [SerializeField] private float pattern2Cooldown = 15f;
+    [SerializeField] private float pattern3Cooldown = 7f;
     
     [Header("패턴1 불렛 설정")]
-    [SerializeField] private GameObject projectilePrefab; // Demo_Project.Projectile 붙은 프리팹
+    [SerializeField] private GameObject projectilePrefab; 
     [SerializeField] private Transform firePoint; // 발사 위치 (보스 총구 위치)
     [SerializeField] private float bulletSpeed = 10f;
+    [SerializeField] private int bulletCount = 5;
+
+    [Header("패턴2 섬광 수류탄 설정")] 
+    [SerializeField] private GameObject grenadePrefab;
+    [SerializeField] private float grenadeThrowHeight  = 3f;
+    [SerializeField] private float grenadeDuration = 1.5f;
+
+    [Header("패턴3 단검 휘두르기 설정")] 
+    [SerializeField] private int slashCount = 3;
+    [SerializeField] private float slashInterval = 0.4f;
+    [SerializeField] private int pattern3Damage = 100;
+    [SerializeField] private float knockbackForce  = 10f;
+    [SerializeField] private GameObject slashEffectPrefab;
+    
+    
 
     private float pattern1Timer = 0f;
     private float pattern2Timer = 0f;
-
+    private float pattern3Timer = 0f;
     private bool isPatterning = false;
 
     protected override void Start()
@@ -41,6 +58,8 @@ public class Enemy_BossController2 : EnemyController
 
         pattern1Timer -= Time.deltaTime;
         pattern2Timer -= Time.deltaTime;
+        pattern3Timer -= Time.deltaTime;
+        
     }
 
     private IEnumerator BossPatternRoutine()
@@ -48,28 +67,24 @@ public class Enemy_BossController2 : EnemyController
         Debug.Log("보스 패턴 루프 진입");
         while (!isDead)
         {
-            yield return new WaitForSeconds(3f); // Idle 대기 시간
-            Debug.Log("패턴 체크 시작");
+            yield return new WaitForSeconds(3f);
+            if (isPatterning) continue;
 
-            if (isPatterning)
-            {
-                Debug.Log("이미 패턴 중");
-                continue;
-            }
+            List<Func<IEnumerator>> availablePatterns = new();
 
             if (IsPlayerInPattern1Range() && pattern1Timer <= 0f)
-            {
-                StartCoroutine(ExecutePattern1());
-                continue;
-            }
-
+                availablePatterns.Add(ExecutePattern1);
             if (IsPlayerInPattern2Range() && pattern2Timer <= 0f)
+                availablePatterns.Add(ExecutePattern2);
+            if (IsPlayerInPattern3Range() && pattern3Timer <= 0f)
+                availablePatterns.Add(ExecutePattern3);
+
+            if (availablePatterns.Count > 0)
             {
-                StartCoroutine(ExecutePattern2());
-                continue;
+                int randIndex = Random.Range(0, availablePatterns.Count);
+                StartCoroutine(availablePatterns[randIndex]());
             }
 
-            // 기본 동작 or 대기
             yield return null;
         }
     }
@@ -91,7 +106,7 @@ public class Enemy_BossController2 : EnemyController
         //animator.SetTrigger("GunAttack"); // 애니메이션 트리거
         yield return new WaitForSeconds(0.5f);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < bulletCount; i++)
         {
             FireBullet(); // 총알 발사 함수
             yield return new WaitForSeconds(0.2f); // 연사 간격
@@ -136,7 +151,7 @@ public class Enemy_BossController2 : EnemyController
         Collider2D hit = Physics2D.OverlapBox(pattern2Box.position, pattern2Size, 0f, LayerMask.GetMask("Player"));
         return hit != null;
     }
-
+    
     private IEnumerator ExecutePattern2()
     {
         isPatterning = true;
@@ -155,9 +170,75 @@ public class Enemy_BossController2 : EnemyController
 
     private void ThrowFlashGrenade()
     {
-        Debug.Log("수류탄 투척 (여기에 Grenade 프리팹 생성)");
-        // Instantiate(grenadePrefab, transform.position, Quaternion.identity);
+        if (_playerTransform == null || grenadePrefab == null)
+        {
+            Debug.LogWarning("섬광 수류탄 투척 실패: 대상 또는 프리팹이 없음");
+            return;
+        }
+        Vector3 startPos = firePoint.position;
+        Vector3 targetPos = _playerTransform.position;
+        
+        GameObject grenade = Instantiate(grenadePrefab, startPos, Quaternion.identity);
+        Enemy_BossGrenadeProjectile02 grenadeScript = grenade.GetComponent<Enemy_BossGrenadeProjectile02>();
+
+        if (grenadeScript != null)
+        {
+            grenadeScript.Init(targetPos, grenadeThrowHeight, grenadeDuration);
+        }
     }
+    
+
+    private bool IsPlayerInPattern3Range()
+    {
+        Collider2D hit = Physics2D.OverlapBox(pattern3Box.position, pattern3Size, 0f, LayerMask.GetMask("Player"));
+        return hit != null;
+    }
+
+    private IEnumerator ExecutePattern3()
+    {
+        isPatterning = true;
+        pattern3Timer = pattern3Cooldown;
+
+        Debug.Log("보스 패턴3: 단검 휘두르기");
+        for (int i = 0; i < slashCount; i++)
+        {
+            // 애니메이션 트리거 (필요 시)
+            // animator.SetTrigger("Slash");
+
+            // 이펙트 생성
+            if (slashEffectPrefab)
+                Instantiate(slashEffectPrefab, transform.position, Quaternion.identity);
+            
+            SoundManagerTest.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
+
+            // 데미지 및 넉백 적용
+            DealSlashDamage();
+
+            yield return new WaitForSeconds(slashInterval);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        isPatterning = false;
+    }
+    
+    private void DealSlashDamage()
+    {
+        Collider2D hit = Physics2D.OverlapBox(pattern3Box.position, pattern3Size, 0f, LayerMask.GetMask("Player"));
+        if (hit != null)
+        {
+            var player = hit.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(pattern3Damage);
+
+                Vector2 knockDir = (hit.transform.position - transform.position).normalized;
+                var rb = hit.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                    rb.AddForce(knockDir * knockbackForce, ForceMode2D.Impulse);
+            }
+        }
+    }
+    
     #endregion
 
     #region 디버그용 Gizmos
@@ -170,6 +251,10 @@ public class Enemy_BossController2 : EnemyController
         Gizmos.color = Color.blue;
         if (pattern2Box != null)
             Gizmos.DrawWireCube(pattern2Box.position, pattern2Size);
+        
+        Gizmos.color = Color.yellow;
+        if (pattern3Box != null)
+            Gizmos.DrawWireCube(pattern3Box.position, pattern3Size);
     }
     #endregion
 }

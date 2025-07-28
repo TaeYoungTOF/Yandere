@@ -16,6 +16,7 @@ public enum UIState
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
+    [SerializeField] private GameObject blindOverlay;
 
     [Header("Panels")]
     [SerializeField] private GameObject _joyStick;
@@ -83,5 +84,11 @@ public class UIManager : MonoBehaviour
 
         Debug.LogWarning($"[UIManager] Panel of type {type.Name} not found.");
         return null;
+    }
+    
+    public void ShowBlindOverlay(bool show)
+    {
+        if (blindOverlay != null)
+            blindOverlay.SetActive(show);
     }
 }
