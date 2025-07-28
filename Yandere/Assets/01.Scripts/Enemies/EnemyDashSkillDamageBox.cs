@@ -24,7 +24,7 @@ public class EnemyDashSkillDamageBox : MonoBehaviour
         }
 
        // float damage = PlayerManager.Instance.MaxHP * 0.1f;
-        StageManager.Instance.Player.TakeDamage(500);
+        StageManager.Instance.Player.TakeDamage(10);
         Debug.Log("[Dash] 대쉬 피해 처리 완료");
     }
 }

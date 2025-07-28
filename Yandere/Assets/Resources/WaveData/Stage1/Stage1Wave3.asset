@@ -17,18 +17,15 @@ MonoBehaviour:
   spawnInterval: 2.5
   spawnAmount: 25
   enemyList:
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 426c24634e7bb0744a023822e5f27f2a, type: 3}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 197b96356b086a14887f4c75b6ac96f4, type: 3}
     spawnWeight: 8
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 56559ce58056a0242a30614906838f53, type: 3}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: a30545f1766464844938f5a85a4bfdaa, type: 3}
     spawnWeight: 8
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 100dc319802287c40a6d664536d4045f, type: 3}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 5be15d955a18b1145b4d9aa67da8d112, type: 3}
     spawnWeight: 4
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: d91ea8ff02e7b2744bf35232a1b35654, type: 3}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: a9336aff6b28b86419ca65b4b302add2, type: 3}
     spawnWeight: 3
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 96e88b59bd0db5f4aa9d63e4e95f2594, type: 3}
-    spawnWeight: 2
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
