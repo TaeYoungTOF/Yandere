@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
     public float currentExp;
     public float requiredExp;
 
-    //[Header("Currencies")]
+    [Header("Currencies")]
     public float obsessionCrystals;
     public float premiumCurrency;
 
@@ -65,6 +65,15 @@ public class DataManager : MonoBehaviour
     {
         facilityLevels[index] = facilityLevel;
         inGameDatas[index] = value;
+    }
+
+    public void CalculateReward(float exp, float gold)
+    {
+        Debug.Log("ㅇㅅㅇ");
+        GainExp(exp);
+        obsessionCrystals += gold;
+        
+        UIManager_Title.Instance.UpdateUI();
     }
 
     public void InitNewData()
