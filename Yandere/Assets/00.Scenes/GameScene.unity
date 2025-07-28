@@ -1196,28 +1196,28 @@ MonoBehaviour:
   poolPrefabs:
   - PoolType: 4
     Prefab: {fileID: 8906970490064105965, guid: e7fc76a3b76053947a1a2daa49bfa77f, type: 3}
-    initialSize: 15
+    initialSize: 50
   - PoolType: 3
     Prefab: {fileID: 9025320943301313202, guid: f111e282255bf4f92b975d357cbac617, type: 3}
     initialSize: 50
   - PoolType: 5
     Prefab: {fileID: 9026727680048791279, guid: 0672cb011b6eb0343a1fdab569916307, type: 3}
-    initialSize: 10
+    initialSize: 50
   - PoolType: 6
     Prefab: {fileID: 738299376915222676, guid: 5668a1ba8f32c884e884f3f199a3e950, type: 3}
-    initialSize: 20
+    initialSize: 50
   - PoolType: 7
     Prefab: {fileID: 5310618298424018448, guid: 7409a9a584fc8844088dbf5c3c2a3865, type: 3}
-    initialSize: 20
+    initialSize: 50
   - PoolType: 8
     Prefab: {fileID: 8273631399777830139, guid: 7a5972a35fa57de4cb80168f889ad18c, type: 3}
-    initialSize: 20
+    initialSize: 50
   - PoolType: 9
     Prefab: {fileID: 8804051856548064786, guid: 6ae5361daec56ff45b6169f3b380f99e, type: 3}
     initialSize: 100
   - PoolType: 10
     Prefab: {fileID: 4596775477161923934, guid: b969e772a6d742f43aded224e3059944, type: 3}
-    initialSize: 30
+    initialSize: 50
 --- !u!1 &1212898035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,12 +1247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c963173caf45f42b7bb7ef059e4b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgms:
-  - {fileID: 8300000, guid: 4ac6fa83440429948b9c150548755530, type: 3}
-  sfxs: []
-  audioBgm: {fileID: 1798214304}
-  audioSfx: {fileID: 0}
-  audioMixer: {fileID: 24100000, guid: 39acb69cfb74d684b9200d0003d0d273, type: 2}
 --- !u!4 &1212898037
 Transform:
   m_ObjectHideFlags: 0
