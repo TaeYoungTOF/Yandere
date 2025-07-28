@@ -113,6 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: ee72560b291a80743a5582a622278e1a, type: 2}
+  isInAttackRange: 0
+  isDead: 0
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}

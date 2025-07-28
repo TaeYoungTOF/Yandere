@@ -56,9 +56,6 @@ public class Fireball : ActiveSkill<FireballDataWrapper>
             GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.FireballProj, origin, Quaternion.identity);
             var proj = go.GetComponent<FireballProjectile>();
             proj.Initialize(dir, data, _enemyLayer);
-
-            // 투사체 크기 조절
-            go.transform.localScale = Vector3.one * data.projectileSize;
         }
     }
 }

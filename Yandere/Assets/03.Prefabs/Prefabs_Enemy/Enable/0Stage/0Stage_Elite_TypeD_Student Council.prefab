@@ -95,7 +95,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 9b18f179ddfb353489183bd2362b30d7, type: 2}
+  isInAttackRange: 0
+  isDead: 0
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
@@ -262,7 +264,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -950128815, guid: 8ff9c9363db03e944b8de235c0a89588, type: 3}
+  m_Sprite: {fileID: -2009791283, guid: 3f0c8e6cce1326b44a46c7ec02b59d39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

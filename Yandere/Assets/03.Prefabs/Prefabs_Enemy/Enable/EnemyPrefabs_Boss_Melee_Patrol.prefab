@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 5f3d730fc239ec84d9a5c06b8c289a87, type: 2}
+  isInAttackRange: 0
+  isDead: 0
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
@@ -136,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cacd6765befa5e4da91aeeea2843da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugCurrentPattern: 
 --- !u!114 &-5432955241160701194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,13 +167,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a058a50f9048d44ab7c9156c441fd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugCooldownLeft: 0
   chargeSpeedMultiplier: 3
   chargeDuration: 1.2
   windUpTime: 2.5
   cooldown: 30
   knockbackForce: 10
   damagePercent: 0.15
-  chargeEffectPrefab: {fileID: 7730967266828452627, guid: df791798b46abab4b8d91676f28b94d8, type: 3}
+  dashPreview: {fileID: 0}
+  dashParticlePrefab: {fileID: 0}
+  dashParticlePrefabDestroyTime: 0.5
 --- !u!1 &1744125318946743083
 GameObject:
   m_ObjectHideFlags: 0

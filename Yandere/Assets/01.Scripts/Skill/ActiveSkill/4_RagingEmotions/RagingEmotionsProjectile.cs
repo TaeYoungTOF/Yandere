@@ -21,6 +21,8 @@ public class RagingEmotionsProjectile : BaseProjectile
         _currentAngle = startAngle;
         _data = data;
         this.enemyLayer = enemyLayer;
+            
+        transform.localScale = Vector3.one * _data.projectileRadius;
 
         // 랜덤하게 하나의 projectile prefab 활성화
         int randomIndex = Random.Range(0, _projectilePrefabs.Length);
@@ -61,7 +63,7 @@ public class RagingEmotionsProjectile : BaseProjectile
     {
         yield return new WaitForSeconds(duration);
         DOTween.Kill(this);
-        Destroy(gameObject);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.RagingEmotionsProj, gameObject);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
