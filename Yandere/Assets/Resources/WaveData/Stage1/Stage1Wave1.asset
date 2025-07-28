@@ -15,14 +15,14 @@ MonoBehaviour:
   eventType: 1
   endTime: 180
   spawnInterval: 3
-  spawnAmount: 15
+  spawnAmount: 5
   enemyList:
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 23d61333b2975ba44bf36e999bafb4ae, type: 3}
-    spawnWeight: 6
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 197b96356b086a14887f4c75b6ac96f4, type: 3}
+    spawnWeight: 2
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 56559ce58056a0242a30614906838f53, type: 3}
-    spawnWeight: 6
+  - enemyPrefab: {fileID: 1439856908508736086, guid: a30545f1766464844938f5a85a4bfdaa, type: 3}
+    spawnWeight: 2
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
-  - enemyPrefab: {fileID: 1439856908508736086, guid: 100dc319802287c40a6d664536d4045f, type: 3}
-    spawnWeight: 3
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 5be15d955a18b1145b4d9aa67da8d112, type: 3}
+    spawnWeight: 1
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}

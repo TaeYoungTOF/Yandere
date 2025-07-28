@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 1439856908508736086, guid: f150a05212e401b44882e84826f64d17, type: 3}
   enemyType: 1
-  enemyAttackType: 0
+  enemyAttackType: 2
   monsterName: "\uC0C1\uC810\uC8FC\uC778_2\uC2A4\uD14C\uC774\uC9C0"
-  monsterMaxHp: 400
-  monsterAttack: 5
+  monsterMaxHp: 700
+  monsterAttack: 3
   monsterDef: 0
   attackCooldown: 1
-  monsterMoveSpeed: 2
+  monsterMoveSpeed: 1
