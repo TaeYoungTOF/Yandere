@@ -60,7 +60,7 @@ public class UI_SkillSelect : ToggleableUI
 
     private void OnClickGoldButton()
     {
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateGold(10);
+        StageManager.Instance.ChangeGoldCount(10);
         UIManager.Instance.SetUIState(UIState.None);
 
         _goldButton.gameObject.SetActive(false);

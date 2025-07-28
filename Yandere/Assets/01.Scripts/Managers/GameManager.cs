@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -66,8 +67,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadGameScene()
     {
-        Debug.Log("[GameManager] Call Game Scene");
-
         InGameData = DataManager.Instance.inGameDatas;
         SceneManager.LoadScene("GameScene");
     }
@@ -75,8 +74,11 @@ public class GameManager : MonoBehaviour
     public void LoadTitleScene()
     {
         Debug.Log("[GameManager] Call Title Scene");
-
+        float exp = 100;
+        float gold = StageManager.Instance.CalculateReward();
+        
         SceneManager.LoadScene("TitleScene");
+        DataManager.Instance.CalculateReward(exp, gold);
     }
 
     public void LoadNextStage()

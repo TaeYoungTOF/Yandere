@@ -1145,19 +1145,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3658838188846882609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4986381029002341966}
-        m_TargetAssemblyTypeName: Facility, Assembly-CSharp
-        m_MethodName: UpgradeButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4588818924136723427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,7 +1785,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e346de980a6de42ac430ce059ee90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _index: 0
   facilityData: {fileID: 0}
+  _infoButton: {fileID: 4554552489182918051}
+  _levelUpButton: {fileID: 3668160094261582015}
   currentLevel: 0
   currentCost: 0
   facilityNameText: {fileID: 8836823851025625384}
@@ -1805,6 +1796,8 @@ MonoBehaviour:
   levelDescriptionText: {fileID: 2331905509223573888}
   _lockGO: {fileID: 172638313104757193}
   _requireLevel: {fileID: 8200076665225700471}
+  _unlockButton: {fileID: 2516336280619988398}
+  amount: 0
 --- !u!1 &6382488460835984608
 GameObject:
   m_ObjectHideFlags: 0

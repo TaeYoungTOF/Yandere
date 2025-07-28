@@ -18,11 +18,11 @@ public class StageManager : MonoBehaviour
     
     private bool hasPlayerBeenHit;
     public bool HasPlayerBeenHit => hasPlayerBeenHit;
-    
-    private int killCount = 0;
-    public int KillCount => killCount; 
 
-    
+    public int KillCount { get; private set;  } = 0;
+    public int GoldCount { get; private set; } = 0;
+
+
     public bool IsUIOpened = false;
 
     public float timeScale = 1f;
@@ -75,6 +75,8 @@ public class StageManager : MonoBehaviour
 
         StartCoroutine(StartWaveRoutine(currentSpawnData));
 
+        ChangeKillCount(0);
+        ChangeGoldCount(0);
         Player.GainExp(5);
     }
 
@@ -127,6 +129,18 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    public void ChangeKillCount (int amount)
+    {
+        KillCount += amount;
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateKillCount();
+    }
+
+    public void ChangeGoldCount (int amount)
+    {
+        GoldCount += amount;
+        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateGold();
+    }
+
     private IEnumerator StartWaveRoutine(WaveData spawnData)
     {
         yield return StartCoroutine(SpawnManager.HandleWave(spawnData));
@@ -149,6 +163,13 @@ public class StageManager : MonoBehaviour
     public void LevelUpEvent()
     {
         UIManager.Instance.SetUIState(UIState.SkillSelect);
+    }
+
+    public float CalculateReward()
+    {
+        ChangeGoldCount(KillCount);
+
+        return GoldCount;
     }
 
     public void OnPlayerHit()

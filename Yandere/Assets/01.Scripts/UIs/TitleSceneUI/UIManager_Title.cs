@@ -1,7 +1,4 @@
-using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager_Title : MonoBehaviour
 {
@@ -16,6 +13,8 @@ public class UIManager_Title : MonoBehaviour
         {
             Instance = this;
         }
+
+        popUp.Init();
     }
 
     public void UpdateUI()

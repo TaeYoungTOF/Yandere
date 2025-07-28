@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -6,11 +7,15 @@ public class Facility : MonoBehaviour
 {
     [SerializeField] private int _index;
     [SerializeField] protected FacilityData facilityData;
-    
+    public FacilityData FacilityData => facilityData;
+    [SerializeField] private Button _infoButton;
+    [SerializeField] private Button _levelUpButton;
     
     [Header("시설 인포")]
     [SerializeField] protected int currentLevel;
+    public  int CurrentLevel => currentLevel;
     [SerializeField] protected float currentCost;
+    public float CurrentCost => currentCost;
     
     [Header("UI 표시")]
     [SerializeField] protected TextMeshProUGUI facilityNameText;
@@ -20,8 +25,10 @@ public class Facility : MonoBehaviour
     [Header("Lock")]
     [SerializeField] private GameObject _lockGO;
     [SerializeField] private TMP_Text _requireLevel;
+    [SerializeField] private Button _unlockButton;
     
     [SerializeField] protected float amount;
+    public float Amount => amount;
     
     void Start()
     {
@@ -35,38 +42,47 @@ public class Facility : MonoBehaviour
         currentCost = facilityData.baseCost;
         facilityNameText.text = facilityData.facilityName;
         amount = facilityData.basevalue;
+        _infoButton.onClick.AddListener(OnClickInfoButton);
+        _levelUpButton.onClick.AddListener(CallLevelUpPanel);
 
         if (_lockGO)
         {
             _lockGO.SetActive(true);
             _requireLevel.text = facilityData.requiredAccountLevel.ToString();
+            _unlockButton.onClick.AddListener(OnClickUnLockButton);
         }
     }
-    
-    public void UpgradeButtonClick()
+
+    private void CallLevelUpPanel()
     {
         if (currentLevel >= facilityData.maxLevel)
         {
             SoundManagerTest.Instance.Play("LobbyClick02_SFX");
-            Debug.Log("[시설] 업그레이드 불가! 시설이 최대 레벨입니다!");
+            UIManager_Title.Instance.popUp.CallFullFacilityLvPanel();
             return;
         }
 
+        UIManager_Title.Instance.popUp.CallUpgradePanel(this);
+    }
+    
+    public void UpgradeButtonClick()
+    {
         if (DataManager.Instance.obsessionCrystals < currentCost)
         {
             SoundManagerTest.Instance.Play("LobbyClick02_SFX");
-            Debug.Log("[시설] 업그레이드 불가! 재화가 부족합니다!");
+            UIManager_Title.Instance.popUp.CallLackResourcePanel();
             return;
         }
         
         SoundManagerTest.Instance.Play("LobbyClick01_SFX");
-        DataManager.Instance.obsessionCrystals -= currentCost;
+        
+        ResourceManager.Instance.UseObsessionCrystals(currentCost);
         currentLevel++;
         currentCost = Mathf.FloorToInt(currentCost * facilityData.costMultiplier);
         amount += facilityData.valuePerLevel;
         
+        UIManager_Title.Instance.popUp.CloseUpgradePanel();
         UpdateUI();
-        UIManager_Title.Instance.UpdateUI();
     }
 
     protected virtual void UpdateUI()
@@ -77,15 +93,20 @@ public class Facility : MonoBehaviour
         DataManager.Instance.SetData(_index, currentLevel, amount);
     }
 
-    public void OnClickUnLockButton()
+    private void OnClickUnLockButton()
     {
         if (facilityData.requiredAccountLevel > DataManager.Instance.accountLevel)
         {
-            Debug.Log("[시설] 레벨이 부족합니다");
+            UIManager_Title.Instance.popUp.CallLackAccountLvPanel();
         }
         else
         {
             _lockGO.SetActive(false);
         }
+    }
+
+    private void OnClickInfoButton()
+    {
+        UIManager_Title.Instance.popUp.CallInfoPanel(facilityData.facilityName, facilityData.description);
     }
 }

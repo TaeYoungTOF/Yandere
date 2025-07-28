@@ -20,7 +20,7 @@ public class UI_Setting : ToggleableUI
     // 이전 음량값 저장
     private float _prebgmValue;
     
-    private void Awake()
+    /*private void Awake()
     {
         // 슬라이더의 값이 변경될 때 AddListener를 통해 값을 저장
         _bgmSlider.onValueChanged.AddListener(SetBGMVolume);
@@ -37,7 +37,7 @@ public class UI_Setting : ToggleableUI
         
         _bgmSlider = _bgmSlider.GetComponent<Slider>();
         
-    }
+    }*/
     
     // 아이콘 클릭시 음소거 버튼 구현
     public void OnMuteClick(bool isOn)
@@ -74,7 +74,7 @@ public class UI_Setting : ToggleableUI
 
     public override UIState GetUIState()
     {
-        return UIState.Setting;
+        return UIState.None;
     }
 
     public void OnClickReturnButton()

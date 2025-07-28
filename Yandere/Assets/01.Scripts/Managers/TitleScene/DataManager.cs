@@ -61,22 +61,19 @@ public class DataManager : MonoBehaviour
         requiredExp *= 1.3f;
     }
 
-    public void AddObsessionCrystals(float amount)
-    {
-        obsessionCrystals += amount;
-        UIManager_Title.Instance.UpdateUI();
-    }
-
-    public void AddPremiumCurrency(float amount)
-    {
-        premiumCurrency += amount;
-        UIManager_Title.Instance.UpdateUI();
-    }
-
     public void SetData(int index, int facilityLevel, float value)
     {
         facilityLevels[index] = facilityLevel;
         inGameDatas[index] = value;
+    }
+
+    public void CalculateReward(float exp, float gold)
+    {
+        Debug.Log("ㅇㅅㅇ");
+        GainExp(exp);
+        obsessionCrystals += gold;
+        
+        UIManager_Title.Instance.UpdateUI();
     }
 
     public void InitNewData()
@@ -119,18 +116,6 @@ public class DataManager : MonoBehaviour
     [Button]
     private void Debug_GainExp()
     {
-        GainExp(10);
-    }
-
-    [Button]
-    private void Debug_AddObsessionCrystals()
-    {
-        AddObsessionCrystals(100);
-    }
-
-    [Button]
-    private void Debug_AddPremiumCurrency()
-    {
-        AddPremiumCurrency(100);
+        GainExp(50);
     }
 }

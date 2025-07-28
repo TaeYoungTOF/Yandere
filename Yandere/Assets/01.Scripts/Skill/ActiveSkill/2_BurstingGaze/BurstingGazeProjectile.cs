@@ -23,7 +23,7 @@ public class BurstingGazeProjectile : BaseProjectile
         Vector3 targetPos = transform.position + (Vector3)(_direction * _distance);
         transform.DOMove(targetPos, _distance / _speed)
                  .SetEase(Ease.Linear)
-                 .OnComplete(() => Destroy(gameObject));
+                 .OnComplete(ReturnToPool);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,8 +33,13 @@ public class BurstingGazeProjectile : BaseProjectile
             if (other.TryGetComponent(out IDamagable target))
             {
                 target.TakeDamage(_damage);
-                ObjectPoolManager.Instance.ReturnToPool(PoolType.BurstingGazeProj, gameObject);
+                ReturnToPool();
             }
         }
+    }
+
+    private void ReturnToPool()
+    {
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.BurstingGazeProj, gameObject);
     }
 }

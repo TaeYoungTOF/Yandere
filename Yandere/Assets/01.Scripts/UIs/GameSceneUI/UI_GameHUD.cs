@@ -15,17 +15,13 @@ public class UI_GameHUD : MonoBehaviour
     [SerializeField] private Image _healthImage;
 
     private PlayerStat _stat;
-    private int _gold = 0;
-    private int _killCount = 0;
 
     private void Start()
     {
         UIManager.Instance.RegisterPanel(this);
 
         _stat = StageManager.Instance.Player.stat;
-
-        UpdateGold(0);
-        UpdateKillCount(0);
+        
         UpdateTime(0);
         UpdateExpImage();
         UpdateLevel();
@@ -37,18 +33,14 @@ public class UI_GameHUD : MonoBehaviour
         _achievementButton.onClick.AddListener(OnClickachivementBUtton);
     }
 
-    public void UpdateGold(int amount)
+    public void UpdateKillCount()
     {
-        _gold = _gold + amount;
-        _goldCountText.text = _gold.ToString();
-        Debug.Log("[GameHUD UI] Increase gold");
+        _killCountText.text = StageManager.Instance.KillCount.ToString();
     }
 
-    public void UpdateKillCount(int amount)
+    public void UpdateGold()
     {
-        _killCount = _killCount + amount;
-        _killCountText.text = _killCount.ToString();
-        Debug.Log("[GameHUD UI] Increase kill count");
+        _goldCountText.text = StageManager.Instance.GoldCount.ToString();
     }
 
     public void UpdateTime(float time)
