@@ -63,8 +63,6 @@ public class BurstingGaze2 : UpgradeSkill<BurstingGaze2Wrapper>
             var proj = projGo.GetComponent<BurstingGaze2Proj>();
             proj.Initialize(finalDir, data, _enemyLayer);
 
-            proj.transform.localScale = Vector3.one * data.projectileSize;
-
             yield return new WaitForSeconds(data.shootDelay);
         }
 
@@ -73,7 +71,6 @@ public class BurstingGaze2 : UpgradeSkill<BurstingGaze2Wrapper>
         GameObject secondProjGo = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGaze2Proj2, transform.position, Quaternion.identity);
         var secondProj = secondProjGo.GetComponent<BurstingGaze2Proj2>();
         secondProj.Initialize(player.GetLastMoveDirection(), data, _enemyLayer);
-        secondProj.transform.localScale = Vector3.one * data.secondPjtSize;
     }
 
     private float GetRandomAngle(float min, float max, float mode)

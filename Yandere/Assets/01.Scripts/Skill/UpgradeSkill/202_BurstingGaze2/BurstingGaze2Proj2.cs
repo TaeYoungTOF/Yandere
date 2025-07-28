@@ -17,6 +17,8 @@ public class BurstingGaze2Proj2 : BaseProjectile
         _dir = dir.normalized;
         _data = data;
         this.enemyLayer = enemyLayer;
+        
+        transform.localScale = Vector3.one * data.secondPjtSize;
 
         Vector3 targetPos = transform.position + (Vector3)(_dir * _data.projectileDistance);
         _moveTween = transform.DOMove(targetPos, _data.secondPjtDuration)

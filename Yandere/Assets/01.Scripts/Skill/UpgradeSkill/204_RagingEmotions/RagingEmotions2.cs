@@ -26,13 +26,27 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     
     public override void TryActivate()
     {
-        if (SkillManager.Instance.isLevelUp)
+        if (!SkillManager.Instance.isLevelUp) return;
+        
+        if (_activeCoroutine != null)
         {
-            UpdateActiveData();
-            Activate();
-
-            SkillManager.Instance.isLevelUp = false;
+            Debug.Log("[4th Upgrade Skill] StopCoroutine");
+        
+            StopCoroutine(_activeCoroutine);
+            _activeCoroutine = null;
+        
+            foreach (var proj in _spawnedProjectiles)
+            {
+                if (proj != null)
+                    proj.ReturnToPool();
+            }
+            _spawnedProjectiles.Clear();
         }
+            
+        UpdateActiveData();
+        Activate();
+
+        SkillManager.Instance.isLevelUp = false;
     }
     
     public override void UpdateActiveData()
@@ -51,21 +65,7 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     private IEnumerator SkillCoroutine()
     {
         yield return new WaitForSeconds(0.1f);
-        
-        if (_activeCoroutine != null)
-        {
-            Debug.Log("[4th Upgrade Skill] 호출됨");
-        
-            StopCoroutine(_activeCoroutine);
-            _activeCoroutine = null;
-        
-            foreach (var proj in _spawnedProjectiles)
-            {
-                if (proj != null)
-                    proj.ReturnToPool();
-            }
-            _spawnedProjectiles.Clear();
-        }
+        Debug.Log("[4th Upgrade Skill] Activate");
         
         for (int i = 0; i < data.projectileCount; i++)
         {

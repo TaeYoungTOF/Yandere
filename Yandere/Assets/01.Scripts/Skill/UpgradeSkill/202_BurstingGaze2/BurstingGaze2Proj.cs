@@ -10,15 +10,16 @@ public class BurstingGaze2Proj : BaseProjectile
     public override void Initialize() { }
     public void Initialize(Vector2 direction, BurstingGaze2Wrapper data, LayerMask enemyLayer)
     {
+        _direction = direction.normalized;
         _data = data;
         this.enemyLayer = enemyLayer;
 
-        _direction = direction.normalized;
+        transform.localScale = Vector3.one * _data.projectileSize;
 
         Vector3 targetPos = transform.position + (Vector3)(_direction * _data.projectileDistance);
         _moveTween = transform.DOMove(targetPos,  _data.projectileDistance / _data.projectileSpeed)
-            .SetEase(Ease.Linear)
-            .OnComplete(ReturnToPool);
+                              .SetEase(Ease.Linear)
+                              .OnComplete(ReturnToPool);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,6 +37,6 @@ public class BurstingGaze2Proj : BaseProjectile
     private void ReturnToPool()
     {
         _moveTween?.Kill();
-        ObjectPoolManager.Instance.ReturnToPool(PoolType.BurningJealousy2Proj, gameObject);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.BurstingGaze2Proj, gameObject);
     }
 }
