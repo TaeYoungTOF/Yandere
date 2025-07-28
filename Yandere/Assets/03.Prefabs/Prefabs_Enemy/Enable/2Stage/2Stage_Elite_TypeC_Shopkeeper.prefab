@@ -165,7 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2752694845013772231}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 4969234953210683382}
   - component: {fileID: 6544102730624388005}
   - component: {fileID: 2207224294273753728}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: DashSkillDamageBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
