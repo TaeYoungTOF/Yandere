@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemObject : MonoBehaviour, IDamagable
@@ -18,23 +15,6 @@ public class ItemObject : MonoBehaviour, IDamagable
         currentHealth = objectMaxHealth;
         _animator = GetComponent<Animator>();
     }
-
-    /**
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("게임 오브젝트 테스트 단축키 : E");
-            TakeDamage(10f);
-        }
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("PlayerSkill"))
-        {
-            TakeDamage(10f);
-        }
-    }*/
     
     public void TakeDamage(float damage)
     {

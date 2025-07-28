@@ -18,7 +18,6 @@ public class EtchedHatred2 : UpgradeSkill<EtchedHatred2Wrapper>
 
     [Header("References")]
     [SerializeField] private GameObject _wavePrefab;
-    [SerializeField] private GameObject _etchedHatredProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
     
     public readonly HashSet<Transform> attachedEnemies = new();
@@ -54,7 +53,7 @@ public class EtchedHatred2 : UpgradeSkill<EtchedHatred2Wrapper>
                 {
                     Vector3 spawnPos = e.transform.position;
 
-                    GameObject go = Instantiate(_etchedHatredProjectilePrefab, spawnPos, Quaternion.identity);
+                    GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.EtchedHatred2Proj, spawnPos, Quaternion.identity);
                     EtchedHatred2Proj projectile = go.GetComponent<EtchedHatred2Proj>();
                     projectile.Initialize(data, _enemyLayer, e.transform, attachedEnemies);
 

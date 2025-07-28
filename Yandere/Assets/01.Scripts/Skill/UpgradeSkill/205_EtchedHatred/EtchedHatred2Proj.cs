@@ -81,7 +81,12 @@ public class EtchedHatred2Proj : BaseProjectile
             }
         }
 
-        Destroy(gameObject, 0.5f);
+        Invoke(nameof(ReturnToPool), 0.5f);
+    }
+
+    private void ReturnToPool()
+    {
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.EtchedHatred2Proj, gameObject);
     }
     
     private void OnDrawGizmos()

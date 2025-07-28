@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class RagingEmotions2Wrapper : UpgradeSkillWrapper
@@ -18,11 +19,10 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     [SerializeField] private float _projRadius = 1f;
     
     [Header("References")]
-    [SerializeField] private GameObject _RagingEmotionsProjPrefab;
     [SerializeField] private LayerMask _enemyLayer;
     
     private Coroutine _activeCoroutine;
-    private List<GameObject> _spawnedProjectiles = new List<GameObject>();
+    private List<RagingEmotions2Proj> _spawnedProjectiles = new List<RagingEmotions2Proj>();
     
     public override void TryActivate()
     {
@@ -54,7 +54,7 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
         
         if (_activeCoroutine != null)
         {
-            Debug.Log("호출됨");
+            Debug.Log("[4th Upgrade Skill] 호출됨");
         
             StopCoroutine(_activeCoroutine);
             _activeCoroutine = null;
@@ -62,7 +62,7 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
             foreach (var proj in _spawnedProjectiles)
             {
                 if (proj != null)
-                    Destroy(proj);
+                    proj.ReturnToPool();
             }
             _spawnedProjectiles.Clear();
         }
@@ -73,12 +73,11 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
             Vector3 spawnDir = Quaternion.Euler(0f, 0f, angle) * Vector3.right;
             Vector3 spawnPos = player.transform.position + spawnDir * data.playerDistance;
 
-            GameObject go = Instantiate(_RagingEmotionsProjPrefab, spawnPos, Quaternion.identity);
+            //GameObject go = Instantiate(_RagingEmotionsProjPrefab, spawnPos, Quaternion.identity);
+            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.RagingEmotions2Proj, spawnPos, Quaternion.identity);
             RagingEmotions2Proj projectile = go.GetComponent<RagingEmotions2Proj>();
             projectile.Initialize(player.transform, angle, data, _enemyLayer);
-            _spawnedProjectiles.Add(go);
-            
-            projectile.transform.localScale = Vector3.one * data.projRadius;
+            _spawnedProjectiles.Add(projectile);
         }
 
         yield return null;

@@ -123,8 +123,6 @@ public class SkillManager : MonoBehaviour
         _upgradableSkills = new List<UpgradeSkill>();
         
         bool isUpgradable = false;
-        
-        Debug.Log(_upgradableSkills.Count);
 
         foreach (UpgradeSkill skill in availableUpgradeSkills)
         {

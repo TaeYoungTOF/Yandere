@@ -61,13 +61,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
     protected virtual void Update()
     {
-        // ✅ 테스트: H 키 누르면 데미지 주기
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("테스트: H 키로 데미지!");
-            TakeDamage(10f);
-        }
-      
         if (isDead) return;
 
         if (isInAttackRange)                            // 공격 범위(HitBox)안에 플레이어가 있으면
@@ -79,7 +72,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
             if (attackTimer <= 0f)                      // 어택타이머가 0보다 같거나 작으면
             {
-                Debug.Log("몬스터 어택 실행 전");
+                //Debug.Log("몬스터 어택 실행 전");
                 MonsterAttack();                        // 몬스터어택을 실행하고
                 attackTimer = enemyData.attackCooldown; // 어택타이머를 다시 값을 넣어줌 (쿨타임 리셋!)
             }
@@ -136,7 +129,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
         
         _monsterCurrentHealth -= damage;
-        Debug.Log($"[EnemyController] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");
+        //Debug.Log($"[EnemyController] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");
         _animator.SetTrigger("Hit");                                  // 애니메이터의 파라미터(트리거) "Hit"를 실행
         if (_monsterCurrentHealth <= 0)                                     // 몬스터의 현재 체력이 0이면 아래 코드 실행
         {

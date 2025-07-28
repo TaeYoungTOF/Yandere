@@ -1,117 +1,163 @@
+using System;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public enum PoolType
 {
-   EnemyBullet,
-   PlayerBullet,
-   Enemy,
-   Item,
-   FieldObject,
-   
-   //스킬
-   FireballProj,
-   BurstingGazeProj,
-   ParchedLongingProj,
-   RagingEmotionsProj,
-   EtchedHatredProj,
-   PouringAffectionProj,
+    EnemyBullet,
+    PlayerBullet,
+    Enemy,
+    Item,
+    FieldObject,
+
+    // Skills
+    FireballProj = 101,
+    BurstingGazeProj,
+    ParchedLongingProj,
+    RagingEmotionsProj,
+    EtchedHatredProj,
+    PouringAffectionProj,
+    
+    // UpgradeSkills
+    BurningJealousy2Proj = 201,
+    BurningJealousy2Proj2,
+    BurstingGaze2Proj,
+    BurstingGaze2Proj2,
+    ParchedLonging2Proj,
+    ParchedLonging2Proj2,
+    RagingEmotions2Proj,
+    EtchedHatred2Proj,
+    PouringAffection2Proj,
+    PouringAffection2Proj2,
 }
 
 [System.Serializable]
 public class PoolPrefabsEntry
 {
-    public PoolType PoolType;
-    public GameObject Prefab;
+    public PoolType poolType;
+    public GameObject prefab;
     public int initialSize;
 }
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static ObjectPoolManager Instance { get; private set; }  
-    
+    public static ObjectPoolManager Instance { get; private set; }
+
     [SerializeField] private List<PoolPrefabsEntry> poolPrefabs;
-    private Dictionary<PoolType, Queue<GameObject>> poolDictionary;
 
-    void Awake()
+    [System.Serializable]
+    private class PoolData
     {
-        Instance = this;
-        poolDictionary = new();
+        public List<GameObject> objects = new();
+        public int currentIndex = 0;
+        public Transform parent;
+    }
 
+    [SerializeField] private SerializedDictionary<PoolType, PoolData> _pools;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    private void Start()
+    {
+        _pools = new SerializedDictionary<PoolType, PoolData>();
+        InitializePools();
+    }
+
+    private void InitializePools()
+    {
+        Transform skillParent = new GameObject("Skill").transform;
+        Transform upgradeSkillParent = new GameObject("UpgradeSkill").transform;
+
+        skillParent.SetParent(transform);
+        upgradeSkillParent.SetParent(transform);
+        
         foreach (var entry in poolPrefabs)
         {
-            Queue<GameObject> queue = new();
-            for (int i = 0; i < entry.initialSize; i++)
+            Transform categoryParent = transform;
+
+            if ((int)entry.poolType >= 101 && (int)entry.poolType < 201)
             {
-                GameObject obj = Instantiate(entry.Prefab);
-                obj.SetActive(false);
-                obj.transform.SetParent(GetParentTransform(entry.PoolType));
-                queue.Enqueue(obj);
+                categoryParent = skillParent;
+            }
+            else if ((int)entry.poolType >= 201 && (int)entry.poolType < 301)
+            {
+                categoryParent = upgradeSkillParent;
             }
             
-            poolDictionary[entry.PoolType] = queue;
+            var parent = new GameObject($"ObjectPool_{entry.poolType}").transform;
+            parent.SetParent(categoryParent);
+            parent.position = Vector3.zero;
+
+            var poolData = new PoolData
+            {
+                parent = parent,
+                currentIndex = 0
+            };
+
+            for (int i = 0; i < entry.initialSize; i++)
+            {
+                GameObject obj = Instantiate(entry.prefab, parent);
+                obj.SetActive(false);
+                poolData.objects.Add(obj);
+            }
+
+            _pools[entry.poolType] = poolData;
         }
     }
 
     public GameObject GetFromPool(PoolType type, Vector3 position, Quaternion rotation)
     {
-        if (poolDictionary.TryGetValue(type, out var queue) && queue.Count > 0)
+        if (!_pools.TryGetValue(type, out var pool))
         {
-            var obj = queue.Dequeue();
-            obj.transform.SetPositionAndRotation(position, rotation);
-            obj.SetActive(true);
-            
-            obj.transform.SetParent(GetParentTransform(type));
-            
-            return obj;
+            Debug.LogWarning($"[pool] No pool found for {type}");
+            return null;
         }
-        
-        var entry = poolPrefabs.Find(e => e.PoolType == type);
-        if (entry != null)
+
+        if (pool.currentIndex >= pool.objects.Count)
         {
-            var newObj = Instantiate(entry.Prefab, position, rotation);
-            return newObj;
+            Debug.LogWarning($"[pool] Pool overflow: {type}");
+            return null;
         }
-        
-        Debug.LogWarning($"[pool] No prefab found for {type}");
-        return null;
-            
+
+        GameObject obj = pool.objects[pool.currentIndex];
+        obj.transform.SetPositionAndRotation(position, rotation);
+        obj.SetActive(true);
+        pool.currentIndex++;
+
+        return obj;
     }
 
     public void ReturnToPool(PoolType type, GameObject obj)
     {
-        obj.SetActive(false);
-        if(!poolDictionary.ContainsKey(type))
-            poolDictionary[type] = new Queue<GameObject>();
-        
-        poolDictionary[type].Enqueue(obj);
-    }
-   
-    private Transform GetParentTransform(PoolType type)
-    {
-        string parentName = type switch
+        if (!_pools.TryGetValue(type, out var pool))
         {
-            PoolType.Item => "ObjectPool_Items",
-            PoolType.FieldObject => "ObjectPool_FieldObjects",
-            PoolType.Enemy => "ObjectPool_Enemy",
-            PoolType.EnemyBullet => "ObjectPool_EnemyBullets",
-            //PlayerSkill
-            PoolType.FireballProj => "ObjectPool_PlayerSkill/FireballProj",
-            PoolType.BurstingGazeProj => "ObjectPool_PlayerSkill/BurstingGazeProj",
-            PoolType.ParchedLongingProj => "ObjectPool_PlayerSkill/ParchedLongingProj",
-            PoolType.RagingEmotionsProj => "ObjectPool_PlayerSkill/RagingEmotionsProj",
-            PoolType.EtchedHatredProj => "ObjectPool_PlayerSkill/EtchedHatredProj",
-            PoolType.PouringAffectionProj => "ObjectPool_PlayerSkill/PouringAffectionProj",
-            _ => "PooledObjects"
-        };
-
-        GameObject parent = GameObject.Find(parentName);
-        if (parent == null)
-        {
-            parent = new GameObject(parentName);
-            parent.transform.position = Vector3.zero;
+            Debug.LogWarning($"[pool] No pool found for {type}");
+            return;
         }
 
-        return parent.transform;
+        pool.currentIndex = Mathf.Max(pool.currentIndex - 1, 0);
+        obj.SetActive(false);
+        obj.transform.SetParent(pool.parent);
     }
+
+    /*
+    public int GetActiveCount(PoolType type)
+    {
+        return _pools.TryGetValue(type, out var pool) ? pool.currentIndex : -1;
+    }
+
+    public int GetPoolSize(PoolType type)
+    {
+        return _pools.TryGetValue(type, out var pool) ? pool.objects.Count : -1;
+    }*/
 }

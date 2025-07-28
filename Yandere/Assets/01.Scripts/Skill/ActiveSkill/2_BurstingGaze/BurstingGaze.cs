@@ -23,7 +23,6 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
     [SerializeField] private float _projectileDistance = 25f;
     
     [Header("References")]
-    //[SerializeField] private GameObject _burstingGazeProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     public override void UpdateActiveData()
@@ -45,25 +44,16 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
 
     private IEnumerator ShootProjectiles()
     {
-        Vector2 origin;
-        Vector2 dir;
-
         for (int i = 0; i < data.projectileCount; i++)
         {
-            origin = transform.position;
-            dir = player.GetLastMoveDirection();
-
             float randomAngle = GetRandomAngle(-data.angle / 2f, data.angle / 2f, 0);
+            Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * player.GetLastMoveDirection();
 
-            Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * dir;
-
-            //GameObject projGO = Instantiate(_burstingGazeProjectilePrefab, origin, Quaternion.identity);
-            GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGazeProj, origin, Quaternion.identity);
+            GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGazeProj, player.transform.position, Quaternion.identity);
             var proj = projGO.GetComponent<BurstingGazeProjectile>();
+            proj.Initialize(finalDir, data, _enemyLayer);
 
             proj.transform.localScale = Vector3.one * data.projectileSize;
-
-            proj.Initialize(finalDir, data.projectileSpeed, data.projectileDistance, data.skillDamage, _enemyLayer);
 
             yield return new WaitForSeconds(data.shootDelay);
         }
