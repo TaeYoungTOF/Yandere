@@ -89,7 +89,7 @@ public class Enemy_BossPattern_Charge : MonoBehaviour, IBossPattern
         }
         
         // 2. 돌진 시작
-        SoundManagerTest.Instance.Play("InGame_EnemyBoss_DashSkillSFX");
+        SoundManager.Instance.Play("InGame_EnemyBoss_DashSkillSFX");
         _isCharging = true;
         float speed = _enemyController.enemyData.monsterMoveSpeed * chargeSpeedMultiplier;
         float elapsed = 0f;

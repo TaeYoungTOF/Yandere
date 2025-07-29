@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManagerTest : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
-    public static SoundManagerTest Instance { get; private set; }
+    public static SoundManager Instance { get; private set; }
     
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmSource;

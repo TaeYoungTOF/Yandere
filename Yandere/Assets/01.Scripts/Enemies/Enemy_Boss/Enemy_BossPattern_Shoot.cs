@@ -54,7 +54,7 @@ public class Enemy_BossPattern_Shoot : MonoBehaviour, IBossPattern
 
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
                 bullet.GetComponent<Enemy_BossBullet>().Init(dir);
-                SoundManagerTest.Instance.Play("InGame_EnemyBoss_ShootSkillSFX");
+                SoundManager.Instance.Play("InGame_EnemyBoss_ShootSkillSFX");
             }
 
             yield return new WaitForSeconds(0.5f);
