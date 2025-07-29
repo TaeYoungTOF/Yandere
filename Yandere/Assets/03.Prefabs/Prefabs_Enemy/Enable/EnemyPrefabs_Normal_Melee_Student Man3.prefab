@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 5f3d730fc239ec84d9a5c06b8c289a87, type: 2}
+  _monsterCurrentHealth: 0
   isInAttackRange: 0
   isDead: 0
   isDashing: 0
@@ -130,6 +131,11 @@ MonoBehaviour:
     m_Bits: 1024
   pattern1Box: {fileID: 4258931613091233356}
   pattern1Size: {x: 6, y: 2}
+  pattern2Center: {fileID: 3798417423184156605}
+  pattern2DetectRadius: 6
+  pattern2SlashRadius: 3
+  pattern1Cooldown: 12
+  pattern2Cooldown: 2
   laserPrefab: {fileID: 7675876397032021012, guid: c0a765898e993244aa57c31167682c52, type: 3}
   laserSpawnPoint: {fileID: 3295909504478681482}
   laserSpeed: 15
@@ -137,7 +143,16 @@ MonoBehaviour:
   laserInterval: 2
   laserCount: 3
   laserDamage: 100
-  pattern1Cooldown: 12
+  teleportDistanceBehindPlayer: 1.5
+  preAttackDelay: 1
+  slashRadius: 3
+  pattern2Damage: 10
+  slashEffectPrefab: {fileID: 3430066284217930144, guid: 75330835b7729074b817f6491f5681c3, type: 3}
+  slashWarningPrefab: {fileID: 1691330588945861289, guid: cc04f70faf69d604b98b0e1ce7d087f3, type: 3}
+  warningDuration: 0.6
+  laserCount_pattern3: 5
+  laserInterval_pattern3: 0.6
+  laserPrefab_pattern3: {fileID: 7675876397032021012, guid: 698433567aaa4e04bb5db2f0dd67cdf7, type: 3}
 --- !u!1 &1744125318946743083
 GameObject:
   m_ObjectHideFlags: 0

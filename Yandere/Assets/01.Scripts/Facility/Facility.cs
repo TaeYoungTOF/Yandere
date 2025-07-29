@@ -57,7 +57,7 @@ public class Facility : MonoBehaviour
     {
         if (currentLevel >= facilityData.maxLevel)
         {
-            SoundManagerTest.Instance.Play("LobbyClick02_SFX");
+            SoundManager.Instance.Play("LobbyClick02_SFX");
             UIManager_Title.Instance.popUp.CallFullFacilityLvPanel();
             return;
         }
@@ -69,12 +69,12 @@ public class Facility : MonoBehaviour
     {
         if (DataManager.Instance.obsessionCrystals < currentCost)
         {
-            SoundManagerTest.Instance.Play("LobbyClick02_SFX");
+            SoundManager.Instance.Play("LobbyClick02_SFX");
             UIManager_Title.Instance.popUp.CallLackResourcePanel();
             return;
         }
         
-        SoundManagerTest.Instance.Play("LobbyClick01_SFX");
+        SoundManager.Instance.Play("LobbyClick01_SFX");
         
         ResourceManager.Instance.UseObsessionCrystals(currentCost);
         currentLevel++;

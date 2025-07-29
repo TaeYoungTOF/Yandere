@@ -42,7 +42,7 @@ public class GrenadeProjectile : MonoBehaviour
    private void Explode()
    {
       Instantiate(smokeZonePrefab, transform.position, Quaternion.identity);
-      SoundManagerTest.Instance.Play("InGame_EnemyBoss_SmokeSFX");
+      SoundManager.Instance.Play("InGame_EnemyBoss_SmokeSFX");
       Destroy(gameObject);
    }
    

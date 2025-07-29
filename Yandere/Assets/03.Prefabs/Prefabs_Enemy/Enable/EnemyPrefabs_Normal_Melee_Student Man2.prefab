@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 5f3d730fc239ec84d9a5c06b8c289a87, type: 2}
+  _monsterCurrentHealth: 0
   isInAttackRange: 0
   isDead: 0
   isDashing: 0
@@ -136,6 +137,7 @@ MonoBehaviour:
   pattern3Size: {x: 2, y: 2}
   pattern1Cooldown: 1
   pattern2Cooldown: 15
+  pattern3Cooldown: 7
   projectilePrefab: {fileID: 7160713118510500196, guid: 6946bcba1decb87438fa22934f987451, type: 3}
   firePoint: {fileID: 3295909504478681482}
   bulletSpeed: 1.5
@@ -143,12 +145,11 @@ MonoBehaviour:
   grenadePrefab: {fileID: 686026195265482604, guid: 590f11c269fbd654182781a1b197d0f5, type: 3}
   grenadeThrowHeight: 2
   grenadeDuration: 1
-  slashCount: 3
+  slashCount: 1
   slashInterval: 0.4
-  pattern3Cooldown: 7
   pattern3Damage: 100
   knockbackForce: 10
-  slashEffectPrefab: {fileID: 5980739460893816443, guid: e55015a5d697a6c42ad1add6aba17107, type: 3}
+  slashEffectPrefab: {fileID: 5353035219650899071, guid: 94b9381a0b104304e853b30553dc2320, type: 3}
 --- !u!1 &1744125318946743083
 GameObject:
   m_ObjectHideFlags: 0

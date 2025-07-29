@@ -193,6 +193,11 @@ public class Player : MonoBehaviour, IDamagable
         StartCoroutine(BlindDebuffRoutine(duration));
     }
 
+    public void ApplySlow(float percent)
+    {
+        //TODO : 아직 미구현 (디버프 : 이속 감속 )
+    }
+
     private IEnumerator BlindDebuffRoutine(float duration)
     {
         UIManager.Instance.ShowBlindOverlay(true); // 시야 가림
