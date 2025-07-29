@@ -30,19 +30,10 @@ public class UI_Pause : ToggleableUI
         
         _skillManager = SkillManager.Instance;
 
-        _settingButton.onClick.RemoveAllListeners();
         _settingButton.onClick.AddListener(OnClickSettingButton);
-
-        _homeButton.onClick.RemoveAllListeners();
         _homeButton.onClick.AddListener(OnClickHomeButton);
-
-        _backButton.onClick.RemoveAllListeners();
         _backButton.onClick.AddListener(OnClickBackButton);
-        
-        _confirmHomeButton.onClick.RemoveAllListeners();
         _confirmHomeButton.onClick.AddListener(OnClickConfirmHomeButtonButton);
-        
-        _confirmCancelButton.onClick.RemoveAllListeners();
         _confirmCancelButton.onClick.AddListener(OnClickconfirmCancelButton);
     }
 
@@ -116,20 +107,19 @@ public class UI_Pause : ToggleableUI
         ActiveConfirmPanel();
     }
 
-    private void OnClickBackButton()
-    {
-        UIManager.Instance.SetUIState(UIState.None);
-    }
-
     private void ActiveConfirmPanel()
     {
         _confirmPanel.SetActive(true);
     }
 
+    private void OnClickBackButton()
+    {
+        UIManager.Instance.SetUIState(UIState.None);
+    }
+
     private void OnClickConfirmHomeButtonButton()
     {
-        SceneManager.LoadScene("TitleScene");
-        UIManager.Instance.SetUIState(UIState.Lobby);
+        GameManager.Instance.LoadTitleScene();
     }
 
     private void OnClickconfirmCancelButton()

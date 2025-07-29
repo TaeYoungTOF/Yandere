@@ -5,8 +5,6 @@ public enum UIState
 {
     None,
     Pause,
-    Lobby,
-    //Setting,
     SkillSelect,
     StageClear,
     GameOver,

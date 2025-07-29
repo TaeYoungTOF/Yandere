@@ -31,7 +31,7 @@ public class AchievementManager : MonoBehaviour
             Debug.LogError("UI_Achievement is missing!");
     }
 
-    public void CheckAchievements(StageData stageData)
+    /*public void CheckAchievements(StageData stageData)
     {
         if (stageManager == null || stageData == null)
         {
@@ -91,7 +91,7 @@ public class AchievementManager : MonoBehaviour
             achievement.isCleared = true;
             ShowAchievementPopup(achievement);
         }
-    }
+    }*/
 
    /* private void FourthStarAchievement(Achievement achievement)
     {

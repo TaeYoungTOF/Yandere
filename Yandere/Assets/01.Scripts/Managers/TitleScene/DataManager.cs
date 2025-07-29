@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -42,6 +43,20 @@ public class DataManager : MonoBehaviour
             inGameDatas[i] = 0;    // 인게임 데이터 0으로 초기화 (초기값 필요시 변경)
         }
     }
+
+    private void InitNewData()
+    {
+        playerId = Guid.NewGuid().ToString();
+        accountLevel = 1;
+        currentExp = 0;
+        requiredExp = 100;
+
+        obsessionCrystals = 0;
+        premiumCurrency = 0;
+
+        //facilitySaveData = new FacilitySaveData();
+        settingData = new SettingData();
+    }
     
     public void GainExp(float amount)
     {
@@ -52,7 +67,6 @@ public class DataManager : MonoBehaviour
             currentExp -= requiredExp;
             LevelUp();
         }
-        UIManager_Title.Instance.UpdateUI();
     }
 
     private void LevelUp()
@@ -69,25 +83,8 @@ public class DataManager : MonoBehaviour
 
     public void CalculateReward(float exp, float gold)
     {
-        Debug.Log("ㅇㅅㅇ");
-        GainExp(exp);
         obsessionCrystals += gold;
-        
-        UIManager_Title.Instance.UpdateUI();
-    }
-
-    public void InitNewData()
-    {
-        playerId = Guid.NewGuid().ToString();
-        accountLevel = 1;
-        currentExp = 0;
-        requiredExp = 100;
-
-        obsessionCrystals = 0;
-        premiumCurrency = 0;
-
-        //facilitySaveData = new FacilitySaveData();
-        settingData = new SettingData();
+        GainExp(exp);
     }
 
     public AccountSaveData CreateSaveData()
@@ -117,5 +114,6 @@ public class DataManager : MonoBehaviour
     private void Debug_GainExp()
     {
         GainExp(50);
+        UIManager_Title.Instance.UpdateUI();
     }
 }

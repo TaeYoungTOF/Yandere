@@ -6,21 +6,21 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamagable
 {
     private Rigidbody2D _rigidbody2D;
+    private CircleCollider2D  _collider2D;
     private StageManager _stageManager;
-    public PlayerStat stat = new();
     private int _itemLayer;
-
+    
+    public PlayerStat stat = new();
 
     [Header("Player Controller")]
     public FloatingJoystick floatingJoystick;
-    private Vector3 moveVec;
-    private Vector3 lastMoveVec;
+    private Vector3 _moveVec;
+    private Vector3 _lastMoveVec;
     public PlayerAnim PlayerAnim { get; private set; }
 
     [Header("Level up")]
     private bool _isLeveling = false;
     private Queue<int> _levelUpQueue = new();
-
 
     [Header("DOTween Setting")]
     [SerializeField] private float _pullDuration = 1f;
@@ -32,37 +32,14 @@ public class Player : MonoBehaviour, IDamagable
     public void Init(StageManager stageManager)
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _collider2D = GetComponent<CircleCollider2D>();
         _stageManager = stageManager;
+        _itemLayer = LayerMask.NameToLayer("Item");
+        PlayerAnim = GetComponentInChildren<PlayerAnim>();
+        
         stat.ResetStats();
         GetDataFromGameManager();
         stat.UpdateStats();
-
-        PlayerAnim = GetComponentInChildren<PlayerAnim>();
-        _itemLayer = LayerMask.NameToLayer("Item");
-    }
-
-    private void Update()
-    {
-        PullItemsInRange();
-
-        // 조이스틱에서 입력 값을 받아 옴
-        float x = floatingJoystick.Horizontal;
-        float y = floatingJoystick.Vertical;
-        moveVec = new Vector3(x, y).normalized;
-
-        // 방향 계산 및 애니메이션 적용
-        if (moveVec.sqrMagnitude > 0)
-        {
-            lastMoveVec = moveVec;
-
-            var direction = GetDirectionFromVector(moveVec);
-            PlayerAnim.SetDirection(direction);
-            PlayerAnim.SetAni(AniType.Move);
-        }
-        else
-        {
-            PlayerAnim.SetAni(AniType.Idle);
-        }
     }
 
     private void GetDataFromGameManager()
@@ -79,11 +56,54 @@ public class Player : MonoBehaviour, IDamagable
         stat.GetBonusCoolDown(data[9]);
     }
 
+    private void Update()
+    {
+        PullItemsInRange();
+
+        // 조이스틱에서 입력 값을 받아 옴
+        float x = floatingJoystick.Horizontal;
+        float y = floatingJoystick.Vertical;
+        _moveVec = new Vector3(x, y).normalized;
+
+        // 방향 계산 및 애니메이션 적용
+        if (_moveVec.sqrMagnitude > 0)
+        {
+            _lastMoveVec = _moveVec;
+
+            var direction = GetDirectionFromVector(_moveVec);
+            PlayerAnim.SetDirection(direction);
+            PlayerAnim.SetAni(AniType.Move);
+        }
+        else
+        {
+            PlayerAnim.SetAni(AniType.Idle);
+        }
+    }
+
     private void FixedUpdate()
     {
-        // 이동 처리
-        //transform.position += stat.FinalMoveSpeed * Time.fixedDeltaTime * moveVec;
-        Vector2 targetPos = transform.position + (stat.FinalMoveSpeed * Time.fixedDeltaTime * moveVec);
+        if (_moveVec == Vector3.zero) return;
+
+        float moveDistance = stat.FinalMoveSpeed * Time.fixedDeltaTime;
+        Vector2 currentPos = _rigidbody2D.position;
+        Vector2 targetDir = _moveVec.normalized;
+        Vector2 targetPos = currentPos + targetDir * moveDistance;
+
+        RaycastHit2D hit = Physics2D.Raycast(currentPos, targetDir, moveDistance + _collider2D.radius, LayerMask.GetMask("Map"));
+        Color rayColor = hit.collider ? Color.red : Color.green;
+        Debug.DrawRay(currentPos, targetDir * (moveDistance + _collider2D.radius), rayColor, 0.05f);
+
+        if (hit.collider != null)
+        {
+            Vector2 closestPoint = hit.collider.ClosestPoint(targetPos);
+            float distanceToCollider = Vector2.Distance(closestPoint, targetPos);
+
+            if (distanceToCollider < _collider2D.radius)
+            {
+                return;
+            }
+        }
+
         _rigidbody2D.MovePosition(targetPos);
     }
 
@@ -101,7 +121,37 @@ public class Player : MonoBehaviour, IDamagable
 
     public Vector3 GetLastMoveDirection()
     {
-        return lastMoveVec != Vector3.zero ? lastMoveVec : Vector3.forward;
+        return _lastMoveVec != Vector3.zero ? _lastMoveVec : Vector3.forward;
+    }
+
+    private void PullItemsInRange()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stat.FinalPickupRadius);
+        foreach (var hit in hits)
+        {
+            if (hit.gameObject.layer != _itemLayer) continue;
+
+            Transform itemTransform = hit.transform;
+
+            if (hit.TryGetComponent<Item>(out var item))
+            {
+                if (!item.CanPickup()) return;
+            }
+
+            // 이미 DOTween으로 이동 중이면 중복 이동 방지
+            if (DOTween.IsTweening(itemTransform)) continue;
+
+            // DOTween을 사용해 부드럽게 플레이어 쪽으로 이동
+            Vector3 destination = transform.position;
+            float distance = Vector3.Distance(itemTransform.position, destination);
+
+            // 일정 거리 이상이면 더 빠르게 당김
+            float duration = Mathf.Clamp(distance / _pullSpeed, 0.1f, _pullDuration);
+
+            itemTransform.DOMove(destination, duration)
+                .SetEase(Ease.InOutQuad)
+                .SetLink(itemTransform.gameObject);
+        }
     }
 
     // 경험치 획득 처리
@@ -156,36 +206,6 @@ public class Player : MonoBehaviour, IDamagable
         stat.ChangeCurrentHp(-actualDamage);
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
-    }
-
-    private void PullItemsInRange()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stat.FinalPickupRadius);
-        foreach (var hit in hits)
-        {
-            if (hit.gameObject.layer != _itemLayer) continue;
-
-            Transform itemTransform = hit.transform;
-
-            if (hit.TryGetComponent<Item>(out var item))
-            {
-                if (!item.CanPickup()) return;
-            }
-
-            // 이미 DOTween으로 이동 중이면 중복 이동 방지
-            if (DOTween.IsTweening(itemTransform)) continue;
-
-            // DOTween을 사용해 부드럽게 플레이어 쪽으로 이동
-            Vector3 destination = transform.position;
-            float distance = Vector3.Distance(itemTransform.position, destination);
-
-            // 일정 거리 이상이면 더 빠르게 당김
-            float duration = Mathf.Clamp(distance / _pullSpeed, 0.1f, _pullDuration);
-
-            itemTransform.DOMove(destination, duration)
-                .SetEase(Ease.InOutQuad)
-                .SetLink(itemTransform.gameObject);
-        }
     }
     
     public void ApplyBlindDebuff(float duration)
