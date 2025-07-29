@@ -15,6 +15,6 @@ public class EnemyMeleeAttack : MonoBehaviour, IEnemyAttack
         
         dashSkill?.TryDash();                                               // 대쉬 스킬이 할당 되어 있다면 실행
         boomSkill?.TryBoom();
-        Debug.Log($"[Melee] 플레이어에게 {damage} 근접 피해");
+        //Debug.Log($"[Melee] 플레이어에게 {damage} 근접 피해");
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PouringAffection2Wrapper : UpgradeSkillWrapper
@@ -18,7 +16,6 @@ public class PouringAffection2 : UpgradeSkill<PouringAffection2Wrapper>
     [SerializeField] private float _spawnDuration = 2f;
     
     [Header("References")]
-    [SerializeField] private GameObject _projPrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     public override void UpdateActiveData()
@@ -34,10 +31,8 @@ public class PouringAffection2 : UpgradeSkill<PouringAffection2Wrapper>
     {
         Vector2 spawnPosition = new(Random.Range(-6, 6), Random.Range(-10, 10));
             
-        GameObject go = Instantiate(_projPrefab, spawnPosition, Quaternion.identity);
+        GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.PouringAffection2Proj, spawnPosition, Quaternion.identity);
         PouringAffection2Proj projectile = go.GetComponent<PouringAffection2Proj>();
         projectile.Initialize(data, _enemyLayer);
-
-        projectile.transform.localScale = Vector3.one * data.explodeRadius;
     }
 }

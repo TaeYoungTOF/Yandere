@@ -94,7 +94,7 @@ public class SkillManager : MonoBehaviour
         if (CheckUpgradable())
         {
             resultList.AddRange(_upgradableSkills);
-            count -= _upgradableSkills.Count;
+            count -= _upgradableSkills.Count - 1;
         }
         
         if (count > 0)
@@ -123,8 +123,6 @@ public class SkillManager : MonoBehaviour
         _upgradableSkills = new List<UpgradeSkill>();
         
         bool isUpgradable = false;
-        
-        Debug.Log(_upgradableSkills.Count);
 
         foreach (UpgradeSkill skill in availableUpgradeSkills)
         {

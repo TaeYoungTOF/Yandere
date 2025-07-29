@@ -17,6 +17,8 @@ public class PouringAffection2Proj : BaseProjectile
         _data = data;
         this.enemyLayer = enemyLayer;
 
+        transform.localScale = Vector3.one * data.explodeRadius;
+
         StartCoroutine(Activate());
     }
 
@@ -39,6 +41,7 @@ public class PouringAffection2Proj : BaseProjectile
         }
 
         _auraPrefab.SetActive(false);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.PouringAffection2Proj, gameObject);
     }
 
     private Vector3 GetRandomPointInCircle(Vector3 center, float radius)
@@ -49,7 +52,7 @@ public class PouringAffection2Proj : BaseProjectile
 
     private void Starfall(Vector3 spawnPosition)
     {
-        GameObject go = Instantiate(_proj2Prefab, spawnPosition, Quaternion.identity);
+        GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.PouringAffection2Proj2, spawnPosition, Quaternion.identity);
         PouringAffection2Proj2 proj2 = go.GetComponent<PouringAffection2Proj2>();
         proj2.Initialize(_data, enemyLayer, spawnPosition);
     }

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using UnityEngine;
-using UnityEngine.Pool;
 
 [System.Serializable]
 public class FireballDataWrapper : AcviteDataWapper
@@ -24,7 +23,6 @@ public class Fireball : ActiveSkill<FireballDataWrapper>
     [SerializeField] private float _enemySearchRange = 5f;
 
     [Header("References")]
-    //[SerializeField] private GameObject _fireballProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     public override void UpdateActiveData()
@@ -52,7 +50,6 @@ public class Fireball : ActiveSkill<FireballDataWrapper>
         {
             Vector2 dir = ((Vector2)target.transform.position - origin).normalized;
             
-            //GameObject projGO = Instantiate(_fireballProjectilePrefab, origin, Quaternion.identity);
             GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.FireballProj, origin, Quaternion.identity);
             var proj = go.GetComponent<FireballProjectile>();
             proj.Initialize(dir, data, _enemyLayer);

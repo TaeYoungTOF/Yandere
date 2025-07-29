@@ -5,11 +5,10 @@ using DG.Tweening;
 
 public class RagingEmotionsProjectile : BaseProjectile
 {
-    [SerializeField] private GameObject[] _projectilePrefabs;
-    
     private float _currentAngle;
     private RagingEmotionsDataWrapper _data;
     private Transform _player;
+    private Tween _rotateTween;
     
     private Dictionary<Collider2D, float> _lastHitTimes = new();
 
@@ -23,19 +22,12 @@ public class RagingEmotionsProjectile : BaseProjectile
         this.enemyLayer = enemyLayer;
             
         transform.localScale = Vector3.one * _data.projectileRadius;
-
-        // 랜덤하게 하나의 projectile prefab 활성화
-        int randomIndex = Random.Range(0, _projectilePrefabs.Length);
-        for (int i = 0; i < _projectilePrefabs.Length; i++)
-        {
-            _projectilePrefabs[i].SetActive(i == randomIndex);
-        }
         
         // 시작 위치 설정
         UpdatePosition();
 
         // 공전 애니메이션 시작
-        RotateAroundPlayer(data.skillDuration);
+        RotateAroundPlayer(_data.skillDuration);
     }
 
     private void UpdatePosition()
@@ -48,7 +40,7 @@ public class RagingEmotionsProjectile : BaseProjectile
 
     private void RotateAroundPlayer(float duration)
     {
-        DOTween.To(() => _currentAngle, x =>
+        _rotateTween = DOTween.To(() => _currentAngle, x =>
             {
                 _currentAngle = x;
                 UpdatePosition();
@@ -62,7 +54,7 @@ public class RagingEmotionsProjectile : BaseProjectile
     private IEnumerator EndAfterDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
-        DOTween.Kill(this);
+        _rotateTween?.Kill();
         ObjectPoolManager.Instance.ReturnToPool(PoolType.RagingEmotionsProj, gameObject);
     }
     

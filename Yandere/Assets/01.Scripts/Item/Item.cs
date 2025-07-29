@@ -46,8 +46,8 @@ public class Item : MonoBehaviour
                 DoMagnetEffect(player);
                 break;
         }
-        Destroy(gameObject);
-
+        
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.Item, gameObject);
     }
     
     public void SetPickupDelay(float delay)
