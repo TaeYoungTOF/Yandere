@@ -53,8 +53,6 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
             var proj = projGO.GetComponent<BurstingGazeProjectile>();
             proj.Initialize(finalDir, data, _enemyLayer);
 
-            proj.transform.localScale = Vector3.one * data.projectileSize;
-
             yield return new WaitForSeconds(data.shootDelay);
         }
     }

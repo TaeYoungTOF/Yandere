@@ -94,7 +94,7 @@ public class SkillManager : MonoBehaviour
         if (CheckUpgradable())
         {
             resultList.AddRange(_upgradableSkills);
-            count -= _upgradableSkills.Count;
+            count -= _upgradableSkills.Count - 1;
         }
         
         if (count > 0)

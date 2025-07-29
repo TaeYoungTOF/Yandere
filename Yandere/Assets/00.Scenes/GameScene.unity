@@ -1043,7 +1043,7 @@ MonoBehaviour:
     initialSize: 8
   - poolType: 102
     prefab: {fileID: 738299376915222676, guid: 5668a1ba8f32c884e884f3f199a3e950, type: 3}
-    initialSize: 15
+    initialSize: 20
   - poolType: 103
     prefab: {fileID: 5310618298424018448, guid: 7409a9a584fc8844088dbf5c3c2a3865, type: 3}
     initialSize: 20
@@ -1064,10 +1064,10 @@ MonoBehaviour:
     initialSize: 100
   - poolType: 203
     prefab: {fileID: 738299376915222676, guid: 1f6cd5a014727c5478512ebddba3be43, type: 3}
-    initialSize: 15
+    initialSize: 20
   - poolType: 204
     prefab: {fileID: 1824815454008703691, guid: a6a78ec5ed1a05c469317ac9fb9b0e47, type: 3}
-    initialSize: 2
+    initialSize: 3
   - poolType: 205
     prefab: {fileID: 5310618298424018448, guid: 637c862d292c0944ebb8f50cd01e97a7, type: 3}
     initialSize: 50

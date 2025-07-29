@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IDamagable
     [Header("Player Controller")]
     public FloatingJoystick floatingJoystick;
     private Vector3 moveVec;
-    private Vector3 lastMoveVec = Vector2.right;
+    private Vector3 lastMoveVec;
     public PlayerAnim PlayerAnim { get; private set; }
 
     [Header("Level up")]
@@ -208,7 +208,7 @@ public class Player : MonoBehaviour, IDamagable
             {
                 if (!item.CanPickup()) return;
                 
-                DOTween.Kill(item);
+                DOTween.Kill(collision.gameObject);
                 item.Use(this);
             }
         }

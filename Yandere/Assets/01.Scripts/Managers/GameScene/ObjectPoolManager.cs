@@ -126,7 +126,7 @@ public class ObjectPoolManager : MonoBehaviour
         if (pool.currentIndex >= pool.objects.Count)
         {
             Debug.LogWarning($"[pool] Pool overflow: {type}");
-            return null;
+            pool.currentIndex = 0;
         }
 
         GameObject obj = pool.objects[pool.currentIndex];
