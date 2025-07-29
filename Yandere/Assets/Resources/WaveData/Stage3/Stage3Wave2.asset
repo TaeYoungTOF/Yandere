@@ -18,11 +18,11 @@ MonoBehaviour:
   spawnAmount: 3
   enemyList:
   - enemyPrefab: {fileID: 1439856908508736086, guid: 21a8784586999c949b8e31c51c6851aa, type: 3}
-    spawnWeight: 10
+    spawnWeight: 20
     dropTable: {fileID: 11400000, guid: d1e00531190ba9d48b23d182e0ee8fb8, type: 2}
   - enemyPrefab: {fileID: 1439856908508736086, guid: 844fcc6e22008404d940a28eaa149b54, type: 3}
-    spawnWeight: 10
+    spawnWeight: 5
     dropTable: {fileID: 11400000, guid: d1e00531190ba9d48b23d182e0ee8fb8, type: 2}
   - enemyPrefab: {fileID: 1439856908508736086, guid: f5b897cfeef3632478d3edbdb635c9ee, type: 3}
-    spawnWeight: 10
+    spawnWeight: 5
     dropTable: {fileID: 11400000, guid: d1e00531190ba9d48b23d182e0ee8fb8, type: 2}
