@@ -32,7 +32,7 @@ public class UI_MainHUD : MonoBehaviour
         
         OnSelectButtonClicked(2);
         
-        _settingButton.onClick.AddListener(()=> SoundManagerTest.Instance.OpenSettingPanel());
+        _settingButton.onClick.AddListener(()=> SoundManager.Instance.OpenSettingPanel());
     }
 
     public void UpdateUI()
@@ -47,7 +47,7 @@ public class UI_MainHUD : MonoBehaviour
 
     private void OnSelectButtonClicked(int index)
     {
-        SoundManagerTest.Instance.Play("LobbyClick01_SFX");
+        SoundManager.Instance.Play("LobbyClick01_SFX");
         
         for (int i = 0; i < _selected.Length; i++)
         {

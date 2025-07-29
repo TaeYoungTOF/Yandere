@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5580790371508943010}
   - component: {fileID: 231809317980687346}
   - component: {fileID: 5569739380141773139}
-  - component: {fileID: 2680300639204327895}
+  - component: {fileID: 808645320378225760}
   m_Layer: 10
-  m_Name: EnemyPrefabs_Normal_Melee_Student Man2
+  m_Name: EnemyPrefabs_Normal_Melee_Student Man4
   m_TagString: Enemy_Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2680300639204327895
+--- !u!114 &808645320378225760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1439856908508736086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6af7769f0dcdd74084d14d3f918c759, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c7d4f81f37bcf2458f32c231b6406d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 5f3d730fc239ec84d9a5c06b8c289a87, type: 2}
@@ -123,33 +123,20 @@ MonoBehaviour:
   isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
+    dropTable: {fileID: 0}
   separationRadius: 0.5
   pushForce: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
-  pattern1Box: {fileID: 4258931613091233356}
-  pattern1Size: {x: 10, y: 10}
-  pattern2Box: {fileID: 3798417423184156605}
-  pattern2Size: {x: 8, y: 8}
-  pattern3Box: {fileID: 6292302649219762602}
-  pattern3Size: {x: 2, y: 2}
-  pattern1Cooldown: 1
+  pattern1Cooldown: 12
   pattern2Cooldown: 15
-  pattern3Cooldown: 7
-  projectilePrefab: {fileID: 7160713118510500196, guid: 6946bcba1decb87438fa22934f987451, type: 3}
-  firePoint: {fileID: 3295909504478681482}
-  bulletSpeed: 1.5
-  bulletCount: 5
-  grenadePrefab: {fileID: 686026195265482604, guid: 590f11c269fbd654182781a1b197d0f5, type: 3}
-  grenadeThrowHeight: 2
-  grenadeDuration: 1
-  slashCount: 1
-  slashInterval: 0.4
-  pattern3Damage: 100
-  knockbackForce: 10
-  slashEffectPrefab: {fileID: 5353035219650899071, guid: 94b9381a0b104304e853b30553dc2320, type: 3}
+  pattern1SmokeEffectPrefab: {fileID: 686026195265482604, guid: ff394b6cb1cde4b409dfc94d84c914f4, type: 3}
+  smokeRadius: 3
+  smokeDuration: 5
+  slowAmount: 0.3
+  smokeSpawnPoint: {fileID: 3295909504478681482}
+  pattern1DetectDistance: 8
 --- !u!1 &1744125318946743083
 GameObject:
   m_ObjectHideFlags: 0

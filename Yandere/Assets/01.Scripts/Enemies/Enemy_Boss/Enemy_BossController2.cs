@@ -42,25 +42,57 @@ public class Enemy_BossController2 : EnemyController
     private float pattern1Timer = 0f;
     private float pattern2Timer = 0f;
     private float pattern3Timer = 0f;
-    private bool isPatterning = false;
 
     protected override void Start()
     {
         base.Start();
-        Debug.Log("보스 Start 실행됨");
         StartCoroutine(BossPatternRoutine());
     }
 
-    protected override void Update()
+    void Update()
     {
-        base.Update(); // 혹시라도 이동/사망은 그대로 유지
         if (isDead) return;
 
         pattern1Timer -= Time.deltaTime;
         pattern2Timer -= Time.deltaTime;
         pattern3Timer -= Time.deltaTime;
-        
     }
+    
+    #region 보스 몬스터2 : TakeDamage 코드
+    public override void TakeDamage(float damage)
+    {
+        SoundManager.Instance.Play("InGame_Enemy_HitSFX01");
+        if (isDead) return;
+
+        damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
+        _monsterCurrentHealth -= damage;
+
+        Debug.Log($"[보스컨트롤러2] {enemyData.monsterName}가 {damage} 피해를 입었습니다");
+
+        _animator.SetTrigger("Hit");
+
+ 
+        if (_monsterCurrentHealth <= 0)
+        {
+            BossMonsterDie();
+        }
+    }
+    
+    #endregion
+
+    #region 보스 몬스터2 : Die 코드
+    void BossMonsterDie()
+    {
+        isDead = true;                                                      // 죽은 상태체크
+        _rigidbody2D.velocity = Vector2.zero;                               // Vector2.zero(0,0)을 _rigidbody2D.velocity에 넣어줌 (안 움직이게 하는 코드)
+        _animator.SetTrigger("Dead");                                  // 애니메이터의 파라미터(트리거) "Dead"를 실행
+        
+        StageManager.Instance.ChangeKillCount(1);
+        Destroy(gameObject, 1.0f);
+        
+        //TODO : 클리어 UI창 연결 해야함
+    }
+    #endregion
 
     private IEnumerator BossPatternRoutine()
     {
@@ -186,7 +218,9 @@ public class Enemy_BossController2 : EnemyController
             grenadeScript.Init(targetPos, grenadeThrowHeight, grenadeDuration);
         }
     }
+    #endregion
     
+    #region 패턴3: 단검 휘두르기
 
     private bool IsPlayerInPattern3Range()
     {
@@ -206,10 +240,10 @@ public class Enemy_BossController2 : EnemyController
             // animator.SetTrigger("Slash");
 
             // 이펙트 생성
-            if (slashEffectPrefab)
-                Instantiate(slashEffectPrefab, transform.position, Quaternion.identity);
+            GameObject slashEffect = Instantiate(slashEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(slashEffect, 0.8f);
             
-            SoundManagerTest.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
+            SoundManager.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
 
             // 데미지 및 넉백 적용
             DealSlashDamage();
