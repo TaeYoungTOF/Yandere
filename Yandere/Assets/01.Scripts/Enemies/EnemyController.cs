@@ -8,11 +8,12 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     public EnemyData enemyData;
     public float _monsterCurrentHealth;
     protected Transform _playerTransform;
-    public Rigidbody2D _rigidbody2D;
-    public Animator _animator;
+    protected Rigidbody2D _rigidbody2D;
+    protected Animator _animator;
     protected SpriteRenderer _spriteRenderer;
     private EnemyAttackHandler _attackHandler;
     private IEnemyAttack _attackModule;
+    protected bool isPatterning = false;
 
     
     // 에너미 상태 체크
@@ -96,8 +97,12 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
     protected virtual void MonsterMove()
     {
-       
-        if (isDead || isDashing || _playerTransform == null) return;
+        if (isDead || isDashing || isPatterning || _playerTransform == null)
+        {
+            _rigidbody2D.velocity = Vector2.zero;       // 움직임 완전 정지
+            _animator.SetBool("Run", false);            // 애니메이션도 정지
+            return;
+        }
 
         Vector2 direction = (_playerTransform.position - transform.position).normalized;
 
@@ -112,9 +117,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
             _animator.SetBool("Run", _rigidbody2D.velocity.magnitude > 0.1f);
         }
 
-        UpdateSpriteDirection(direction);   // ✅ 방향만 갱신
+        UpdateSpriteDirection(direction);
         AvoidOtherEnemies();
-        
     }
 
     public void MonsterAttack()
@@ -129,7 +133,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     
     public virtual void TakeDamage(float damage)
     {
-        SoundManagerTest.Instance.Play("InGame_Enemy_HitSFX01");
+        SoundManager.Instance.Play("InGame_Enemy_HitSFX01");
         if (isDead) return;                                                 // 죽은 상태이면 이코드를 빠져나가게 함
 
         damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
@@ -185,7 +189,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         Gizmos.DrawWireSphere(transform.position, separationRadius);
     }
     
-    private void UpdateSpriteDirection(Vector2 direction)
+    public void UpdateSpriteDirection(Vector2 direction)
     {
         _spriteRenderer.flipX = direction.x < 0;
     }

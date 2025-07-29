@@ -42,7 +42,6 @@ public class Enemy_BossController2 : EnemyController
     private float pattern1Timer = 0f;
     private float pattern2Timer = 0f;
     private float pattern3Timer = 0f;
-    private bool isPatterning = false;
 
     protected override void Start()
     {
@@ -62,7 +61,7 @@ public class Enemy_BossController2 : EnemyController
     #region 보스 몬스터2 : TakeDamage 코드
     public override void TakeDamage(float damage)
     {
-        SoundManagerTest.Instance.Play("InGame_Enemy_HitSFX01");
+        SoundManager.Instance.Play("InGame_Enemy_HitSFX01");
         if (isDead) return;
 
         damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
@@ -241,10 +240,10 @@ public class Enemy_BossController2 : EnemyController
             // animator.SetTrigger("Slash");
 
             // 이펙트 생성
-            if (slashEffectPrefab)
-                Instantiate(slashEffectPrefab, transform.position, Quaternion.identity);
+            GameObject slashEffect = Instantiate(slashEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(slashEffect, 0.8f);
             
-            SoundManagerTest.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
+            SoundManager.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
 
             // 데미지 및 넉백 적용
             DealSlashDamage();
