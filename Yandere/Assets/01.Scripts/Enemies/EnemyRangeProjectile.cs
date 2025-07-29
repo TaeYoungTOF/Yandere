@@ -12,6 +12,8 @@ public class EnemyRangeProjectile  : MonoBehaviour
     private Vector2 moveDir;
     private float damage;
 
+    private Tween _moveTween;
+
     public void Init(Vector2 dir, float damage)
     {
         this.moveDir = dir.normalized;
@@ -25,7 +27,7 @@ public class EnemyRangeProjectile  : MonoBehaviour
         // 💡 일정 시간 후에 움직임 시작 (0.05초 후 움직이게)
         StartCoroutine(DelayedMove(targetPos));
     
-        Destroy(gameObject, lifetime);
+        Invoke(nameof(DestroyProj), lifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -34,7 +36,7 @@ public class EnemyRangeProjectile  : MonoBehaviour
         {
             Debug.Log("[RangeProjectile] 플레이어 피격!");
             StageManager.Instance.Player.TakeDamage(damage);
-            Destroy(gameObject);
+            DestroyProj();
         }
     }
     
@@ -44,6 +46,12 @@ public class EnemyRangeProjectile  : MonoBehaviour
     
         transform.DOMove(targetPos, distance / speed)
             .SetEase(Ease.Linear)
-            .OnComplete(() => Destroy(gameObject));
+            .OnComplete(DestroyProj);
+    }
+
+    private void DestroyProj()
+    {
+        _moveTween?.Kill();
+        Destroy(gameObject);
     }
 }

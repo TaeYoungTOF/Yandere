@@ -14,6 +14,8 @@ public class ParchedLonging2Proj2 : BaseProjectile
         
         _data = data;
         this.enemyLayer = enemyLayer;
+        
+        transform.localScale = Vector3.one * _data.secondProjSize;
 
         StartCoroutine(Explode());
     }
@@ -21,8 +23,8 @@ public class ParchedLonging2Proj2 : BaseProjectile
     private IEnumerator Explode()
     {
         yield return new WaitForSeconds(_data.secondDuration);
-        
-        Destroy(gameObject);
+
+        ReturnToPool();
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -38,5 +40,10 @@ public class ParchedLonging2Proj2 : BaseProjectile
             target.TakeDamage(_data.secondDmg);
             _lastHitTimes[other] = Time.time;
         }
+    }
+
+    private void ReturnToPool()
+    {
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.ParchedLonging2Proj2, gameObject);
     }
 }

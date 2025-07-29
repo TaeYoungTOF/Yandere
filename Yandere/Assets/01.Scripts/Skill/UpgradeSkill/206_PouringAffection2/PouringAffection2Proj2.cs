@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,6 +7,7 @@ public class PouringAffection2Proj2 : BaseProjectile
     [SerializeField] private GameObject _explosionPrefab;
 
     private PouringAffection2Wrapper _data;
+    private Tween _moveTween;
     
     public override void Initialize() { }
     public void Initialize(PouringAffection2Wrapper data, LayerMask enemyLayer, Vector3 targetPosition)
@@ -21,9 +20,9 @@ public class PouringAffection2Proj2 : BaseProjectile
         
         Vector3 start = GetRandomStartPosition(targetPosition, 8f); // 8f는 시작 거리, 필요에 따라 조정
         
-        transform.DOMove(targetPosition, 0.5f)
-            .SetEase(Ease.Linear)
-            .OnComplete(() => Explode());
+        _moveTween = transform.DOMove(targetPosition, 0.5f)
+                              .SetEase(Ease.Linear)
+                              .OnComplete(Explode);
     }
     
     private Vector3 GetRandomStartPosition(Vector3 target, float distance)
@@ -54,6 +53,14 @@ public class PouringAffection2Proj2 : BaseProjectile
             }
         }
         
-        Destroy(gameObject, 1f);
+        Invoke(nameof(ReturnToPool), 1f);
     }
+
+    private void ReturnToPool()
+    {
+        _moveTween?.Kill();
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.ParchedLonging2Proj2, gameObject);
+    }
+    
+    
 }

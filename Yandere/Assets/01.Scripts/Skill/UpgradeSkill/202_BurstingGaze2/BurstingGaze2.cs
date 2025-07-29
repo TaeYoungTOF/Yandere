@@ -33,8 +33,6 @@ public class BurstingGaze2 : UpgradeSkill<BurstingGaze2Wrapper>
     [SerializeField] private float _secondPjtDuration = 3f;
     
     [Header("References")]
-    [SerializeField] private GameObject _burstingGazeProjectilePrefab;
-    [SerializeField] private GameObject _secondPjtPrefab;
     [SerializeField] private LayerMask _enemyLayer;
     
     public override void UpdateActiveData()
@@ -56,35 +54,23 @@ public class BurstingGaze2 : UpgradeSkill<BurstingGaze2Wrapper>
 
     private IEnumerator ShootProjectiles()
     {
-        Vector2 origin;
-        Vector2 dir;
-
         for (int i = 0; i < data.projectileCount; i++)
         {
-            origin = transform.position;
-            dir = player.GetLastMoveDirection();
-
             float randomAngle = GetRandomAngle(-data.angle / 2f, data.angle / 2f, 0);
+            Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * player.GetLastMoveDirection();
 
-            Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * dir;
-
-            GameObject projGO = Instantiate(_burstingGazeProjectilePrefab, origin, Quaternion.identity);
-            var proj = projGO.GetComponent<BurstingGazeProjectile>();
-            proj.Initialize(finalDir, data.projectileSpeed, data.projectileDistance, data.skillDamage, _enemyLayer);
-
-            //GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.Projectile, origin, Quaternion.identity, _burstingGazeProjectilePrefab);
-
-            proj.transform.localScale = Vector3.one * data.projectileSize;
+            GameObject projGo = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGaze2Proj, player.transform.position, Quaternion.identity);
+            var proj = projGo.GetComponent<BurstingGaze2Proj>();
+            proj.Initialize(finalDir, data, _enemyLayer);
 
             yield return new WaitForSeconds(data.shootDelay);
         }
 
         yield return new WaitForSeconds(data.secondShootDelay);
             
-        GameObject secondPjtGO = Instantiate(_secondPjtPrefab, transform.position, Quaternion.identity);
-        var secondPjt = secondPjtGO.GetComponent<BurstingGaze2Pjt>();
-        secondPjt.Initialize(player.GetLastMoveDirection(), data, _enemyLayer);
-        secondPjt.transform.localScale = Vector3.one * data.secondPjtSize;
+        GameObject secondProjGo = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGaze2Proj2, transform.position, Quaternion.identity);
+        var secondProj = secondProjGo.GetComponent<BurstingGaze2Proj2>();
+        secondProj.Initialize(player.GetLastMoveDirection(), data, _enemyLayer);
     }
 
     private float GetRandomAngle(float min, float max, float mode)

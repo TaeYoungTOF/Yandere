@@ -62,13 +62,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
     void Update()
     {
-        // ✅ 테스트: H 키 누르면 데미지 주기
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("테스트: H 키로 데미지!");
-            TakeDamage(10f);
-        }
-      
         if (isDead) return;
 
         if (isInAttackRange)                            // 공격 범위(HitBox)안에 플레이어가 있으면
@@ -138,7 +131,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
         damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
         _monsterCurrentHealth -= damage;
-        
         Debug.Log($"[에너미컨트롤러] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");
         
         _animator.SetTrigger("Hit");                                  // 애니메이터의 파라미터(트리거) "Hit"를 실행

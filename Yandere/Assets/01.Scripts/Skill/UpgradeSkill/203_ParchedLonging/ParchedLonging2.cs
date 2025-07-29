@@ -29,7 +29,6 @@ public class ParchedLonging2 : UpgradeSkill<ParchedLonging2Wrapper>
     [SerializeField] private float _secondProjSize = 4f;
 
     [Header("References")]
-    [SerializeField] private GameObject _parchedLongingProj2Prefab;
     [SerializeField] private LayerMask _enemyLayer;
 
     public override void UpdateActiveData()
@@ -54,11 +53,9 @@ public class ParchedLonging2 : UpgradeSkill<ParchedLonging2Wrapper>
             Vector3 spawnDir = Quaternion.Euler(0f, 0f, angle) * Vector3.up;
             Vector3 spawnPos = player.transform.position + spawnDir * data.playerDistance;
 
-            GameObject go = Instantiate(_parchedLongingProj2Prefab, spawnPos, Quaternion.identity);
+            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.ParchedLonging2Proj, spawnPos, Quaternion.identity);
             ParchedLonging2Proj proj = go.GetComponent<ParchedLonging2Proj>();
             proj.Initialize(data, _enemyLayer);
-            
-            proj.transform.localScale = Vector3.one * data.projRadius;
         }
     }
 }

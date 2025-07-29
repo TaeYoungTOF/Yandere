@@ -29,7 +29,6 @@ public class BurningJealousy2 : UpgradeSkill<BurningJealousy2Wrapper>
     [SerializeField] private float _secondExplodeRadius = 3f;
 
     [Header("References")]
-    [SerializeField] private GameObject _fireballProjectilePrefab;
     [SerializeField] private LayerMask _enemyLayer;
     
     public override void UpdateActiveData()
@@ -47,8 +46,6 @@ public class BurningJealousy2 : UpgradeSkill<BurningJealousy2Wrapper>
 
     protected override void Activate()
     {
-        Debug.Log("BurningJeoulousy2 is active");
-
         Vector2 origin = transform.position;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(origin, data.enemySearchRange, _enemyLayer);
@@ -58,13 +55,10 @@ public class BurningJealousy2 : UpgradeSkill<BurningJealousy2Wrapper>
         foreach (var target in sortedTargets)
         {
             Vector2 dir = ((Vector2)target.transform.position - origin).normalized;
-            
-            GameObject projGO = Instantiate(_fireballProjectilePrefab, origin, Quaternion.identity);
-            var proj = projGO.GetComponent<BurningJealousy2Projectile>();
-            proj.Initialize(dir, data, _enemyLayer);
 
-            // 투사체 크기 조절
-            projGO.transform.localScale = Vector3.one * data.pjtSize;
+            GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.BurningJealousy2Proj, origin, Quaternion.identity);
+            var proj = projGO.GetComponent<BurningJealousy2Proj>();
+            proj.Initialize(dir, data, _enemyLayer);
         }
     }
 }

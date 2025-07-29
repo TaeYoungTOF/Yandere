@@ -18,12 +18,15 @@ public class ItemObject_Spawner : MonoBehaviour
     private void Start()
     {
         Debug.Log("[Spawner] Start 호출됨"); // ✅ 디버그 추가
-        SpawnItemObjectPrefab(); // ▶ 처음에 한 개 생성
         StartCoroutine(SpawnJarRoutine()); // ▶ 이후 일정 시간마다 계속 생성
     }
 
     private IEnumerator SpawnJarRoutine()
     {
+        yield return null; // 1프레임 대기
+        
+        SpawnItemObjectPrefab(); // ▶ 처음에 한 개 생성
+        
         while (true)
         {
             yield return new WaitForSeconds(spawnInterval);
@@ -43,7 +46,7 @@ public class ItemObject_Spawner : MonoBehaviour
     {
         Vector3 spawnPos = GetRandomPosition();
         GameObject ItemObjectPrefab = ObjectPoolManager.Instance.GetFromPool(PoolType.FieldObject, spawnPos, Quaternion.identity);
-        ItemObjectPrefab.transform.SetParent(transform);
+        //ItemObjectPrefab.transform.SetParent(transform);
         spawnedItemObjectPrefab.Add(ItemObjectPrefab);
     }
 

@@ -7,7 +7,6 @@ public class ParchedLonging2Proj : BaseProjectile
 {
     [SerializeField] private GameObject blackholePrefab;
     [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private GameObject _secondProjPrefab;
     
     private ParchedLonging2Wrapper _data;
     private Dictionary<Collider2D, float> _lastHitTimes = new();
@@ -22,6 +21,8 @@ public class ParchedLonging2Proj : BaseProjectile
         
         _data = data;
         this.enemyLayer = enemyLayer;
+            
+        transform.localScale = Vector3.one * data.projRadius;
 
         StartCoroutine(Explode());
     }
@@ -72,15 +73,19 @@ public class ParchedLonging2Proj : BaseProjectile
             }
         }
         
-        GameObject go = Instantiate(_secondProjPrefab, transform.position, Quaternion.identity);
+        GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.ParchedLonging2Proj2, transform.position, Quaternion.identity);
         ParchedLonging2Proj2 proj = go.GetComponent<ParchedLonging2Proj2>();
         proj.Initialize(_data, enemyLayer);
-        proj.transform.localScale = Vector3.one * _data.secondProjSize;
         
         //explosionPrefab.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         
         //Destroy(gameObject, _data.secondDuration + 2f);
-        Destroy(gameObject, 0.5f);
+        Invoke(nameof(ReturnToPool), 0.5f);
+    }
+
+    private void ReturnToPool()
+    {
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.ParchedLonging2Proj, gameObject);
     }
 }

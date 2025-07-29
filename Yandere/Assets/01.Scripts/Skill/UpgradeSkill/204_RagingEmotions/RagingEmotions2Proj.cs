@@ -7,6 +7,7 @@ public class RagingEmotions2Proj : BaseProjectile
     private float _currentAngle;
     private RagingEmotions2Wrapper _data;
     private Transform _player;
+    private Tween _rotateTween;
     
     private Dictionary<Collider2D, float> _lastHitTimes = new();
 
@@ -18,6 +19,8 @@ public class RagingEmotions2Proj : BaseProjectile
         _currentAngle = startAngle;
         _data = data;
         this.enemyLayer = enemyLayer;
+            
+        transform.localScale = Vector3.one * data.projRadius;
         
         // 시작 위치 설정
         UpdatePosition();
@@ -36,7 +39,7 @@ public class RagingEmotions2Proj : BaseProjectile
 
     private void RotateAroundPlayer()
     {
-        DOTween.To(() => _currentAngle, x =>
+        _rotateTween = DOTween.To(() => _currentAngle, x => 
             {
                 _currentAngle = x;
                 UpdatePosition();
@@ -72,6 +75,12 @@ public class RagingEmotions2Proj : BaseProjectile
         enemy.attachedRigidbody.DOMove(targetPos, 0.2f)
             .SetEase(Ease.OutQuad)
             .SetLink(enemy.gameObject);
+    }
+
+    public void ReturnToPool()
+    {
+        _rotateTween?.Kill();
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.RagingEmotions2Proj, gameObject);
     }
 
 #if UNITY_EDITOR

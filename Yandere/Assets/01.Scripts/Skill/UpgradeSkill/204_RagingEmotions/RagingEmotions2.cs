@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class RagingEmotions2Wrapper : UpgradeSkillWrapper
@@ -18,21 +19,34 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     [SerializeField] private float _projRadius = 1f;
     
     [Header("References")]
-    [SerializeField] private GameObject _RagingEmotionsProjPrefab;
     [SerializeField] private LayerMask _enemyLayer;
     
     private Coroutine _activeCoroutine;
-    private List<GameObject> _spawnedProjectiles = new List<GameObject>();
+    private List<RagingEmotions2Proj> _spawnedProjectiles = new List<RagingEmotions2Proj>();
     
     public override void TryActivate()
     {
-        if (SkillManager.Instance.isLevelUp)
+        if (!SkillManager.Instance.isLevelUp) return;
+        
+        if (_activeCoroutine != null)
         {
-            UpdateActiveData();
-            Activate();
-
-            SkillManager.Instance.isLevelUp = false;
+            Debug.Log("[4th Upgrade Skill] StopCoroutine");
+        
+            StopCoroutine(_activeCoroutine);
+            _activeCoroutine = null;
+        
+            foreach (var proj in _spawnedProjectiles)
+            {
+                if (proj != null)
+                    proj.ReturnToPool();
+            }
+            _spawnedProjectiles.Clear();
         }
+            
+        UpdateActiveData();
+        Activate();
+
+        SkillManager.Instance.isLevelUp = false;
     }
     
     public override void UpdateActiveData()
@@ -51,21 +65,7 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     private IEnumerator SkillCoroutine()
     {
         yield return new WaitForSeconds(0.1f);
-        
-        if (_activeCoroutine != null)
-        {
-            Debug.Log("호출됨");
-        
-            StopCoroutine(_activeCoroutine);
-            _activeCoroutine = null;
-        
-            foreach (var proj in _spawnedProjectiles)
-            {
-                if (proj != null)
-                    Destroy(proj);
-            }
-            _spawnedProjectiles.Clear();
-        }
+        Debug.Log("[4th Upgrade Skill] Activate");
         
         for (int i = 0; i < data.projectileCount; i++)
         {
@@ -73,12 +73,11 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
             Vector3 spawnDir = Quaternion.Euler(0f, 0f, angle) * Vector3.right;
             Vector3 spawnPos = player.transform.position + spawnDir * data.playerDistance;
 
-            GameObject go = Instantiate(_RagingEmotionsProjPrefab, spawnPos, Quaternion.identity);
+            //GameObject go = Instantiate(_RagingEmotionsProjPrefab, spawnPos, Quaternion.identity);
+            GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.RagingEmotions2Proj, spawnPos, Quaternion.identity);
             RagingEmotions2Proj projectile = go.GetComponent<RagingEmotions2Proj>();
             projectile.Initialize(player.transform, angle, data, _enemyLayer);
-            _spawnedProjectiles.Add(go);
-            
-            projectile.transform.localScale = Vector3.one * data.projRadius;
+            _spawnedProjectiles.Add(projectile);
         }
 
         yield return null;
