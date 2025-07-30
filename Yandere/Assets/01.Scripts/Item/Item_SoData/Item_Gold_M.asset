@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4faf1bbdf5aed413685a02b2ed7c6ff9, type: 3}
-  m_Name: Item_EXP_Big
+  m_Name: Item_Gold_M
   m_EditorClassIdentifier: 
-  itemName: "\uACBD\uD5D8\uCE58(\uB300)"
-  description: "\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C \uB300\uB7C9\uC758 \uACBD\uD5D8\uCE58\uB97C
-    \uC90D\uB2C8\uB2E4."
-  icon: {fileID: 21300000, guid: 05bd6cedaaa08453980367a1d2ad931f, type: 3}
-  itemtpye: 3
-  amount: 10
+  itemName: "\uC9D1\uCC29\uC758\uACB0\uC815(\uC18C)"
+  description: "\uD50C\uB808\uC774\uC5B4\uAC00 \uBCF4\uD1B5\uB7C9\uC758 \uC9D1\uCC29\uC758
+    \uACB0\uC815\uC744 \uC5BB\uC2B5\uB2C8\uB2E4"
+  icon: {fileID: 21300000, guid: c29f74b0be0d91743b8b99fcf9761475, type: 3}
+  itemtpye: 2
+  amount: 60
   explosionRadius: 0
   explosionDamage: 0
   magnetRadius: 0
