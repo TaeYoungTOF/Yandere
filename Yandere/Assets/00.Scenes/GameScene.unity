@@ -1034,10 +1034,10 @@ MonoBehaviour:
   poolPrefabs:
   - poolType: 4
     prefab: {fileID: 8906970490064105965, guid: e7fc76a3b76053947a1a2daa49bfa77f, type: 3}
-    initialSize: 50
+    initialSize: 10
   - poolType: 3
     prefab: {fileID: 9025320943301313202, guid: f111e282255bf4f92b975d357cbac617, type: 3}
-    initialSize: 50
+    initialSize: 100
   - poolType: 101
     prefab: {fileID: 9026727680048791279, guid: 0672cb011b6eb0343a1fdab569916307, type: 3}
     initialSize: 8
@@ -1129,8 +1129,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1798214305}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1223300036
@@ -13671,3 +13670,4 @@ SceneRoots:
   - {fileID: 1725014473}
   - {fileID: 1863622890}
   - {fileID: 4453776426033514756}
+  - {fileID: 1212898037}
