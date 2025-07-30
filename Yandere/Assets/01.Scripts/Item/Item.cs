@@ -36,14 +36,17 @@ public class Item : MonoBehaviour
                 player.Heal(itemData.amount);
                 SoundManager.Instance.Play("InGame_Player_HealItemPickUpSFX");
                 break;
-            // case ItemType.GoldItem:
-            //     player.GainGold((int)itemData.amount);
-            //     break;
+            case ItemType.GoldItem:
+                 StageManager.Instance.ChangeGoldCount((int)itemData.amount);
+                 break;
             case ItemType.BoomItem:
                 DoExplosionEffect();
                 break;
             case ItemType.MagnetItem:
                 DoMagnetEffect(player);
+                break;
+            default:
+                Debug.LogWarning($"[Item] No Type of  {itemData.itemtpye}");
                 break;
         }
         

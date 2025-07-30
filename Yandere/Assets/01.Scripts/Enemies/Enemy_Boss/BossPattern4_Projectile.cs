@@ -83,7 +83,7 @@ public class BossPattern4_Projectile : MonoBehaviour
                 var player = hit.GetComponent<Player>();
                 if (player != null)
                 {
-                    player.ApplySlow(slowAmount);
+                    StageManager.Instance.Player.stat.GetBonusMoveSpeed(-slowAmount);
                     // player.ApplySmokeBlind();
                 }
             }

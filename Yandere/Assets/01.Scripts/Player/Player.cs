@@ -207,23 +207,6 @@ public class Player : MonoBehaviour, IDamagable
 
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
     }
-    
-    public void ApplyBlindDebuff(float duration)
-    {
-        StartCoroutine(BlindDebuffRoutine(duration));
-    }
-
-    public void ApplySlow(float percent)
-    {
-        //TODO : 아직 미구현 (디버프 : 이속 감속 )
-    }
-
-    private IEnumerator BlindDebuffRoutine(float duration)
-    {
-        UIManager.Instance.ShowBlindOverlay(true); // 시야 가림
-        yield return new WaitForSeconds(duration);
-        UIManager.Instance.ShowBlindOverlay(false); // 해제
-    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {

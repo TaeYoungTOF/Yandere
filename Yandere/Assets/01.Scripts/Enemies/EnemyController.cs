@@ -131,7 +131,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
         damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
         _monsterCurrentHealth -= damage;
-        Debug.Log($"[에너미컨트롤러] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");
+        //Debug.Log($"[에너미컨트롤러] {enemyData.monsterName}가(이) {damage}의 피해를 입었습니다.");
         
         _animator.SetTrigger("Hit");                                  // 애니메이터의 파라미터(트리거) "Hit"를 실행
         
