@@ -32,6 +32,12 @@ public class TY_Debug : MonoBehaviour
     }
 
     [Button]
+    private void AddGoldCount()
+    {
+        StageManager.Instance.ChangeGoldCount(100);
+    }
+
+    [Button]
     public void AddTimeScale()
     {
         StageManager.Instance.timeScale += 1;

@@ -8,7 +8,14 @@ public class UI_StageClear : ToggleableUI
     [SerializeField] private Button _homeButton;
     [SerializeField] private Button _advetiseButton;
     [SerializeField] private Button _backButton;
+    
     [SerializeField] private TMP_Text _clearText;
+    [SerializeField] private TMP_Text _timeText;
+    [SerializeField] private TMP_Text _expText;
+    [SerializeField] private TMP_Text _killText;
+    [SerializeField] private TMP_Text _goldText;
+    
+    private StageManager _stageManager;
 
     private void Start()
     {
@@ -20,6 +27,8 @@ public class UI_StageClear : ToggleableUI
         
         _homeButton.onClick.AddListener(GameManager.Instance.LoadTitleScene);
         _backButton.onClick.AddListener(OnClickBackButton);
+        
+        _stageManager = StageManager.Instance;
     }
 
     public override UIState GetUIState()
@@ -29,18 +38,13 @@ public class UI_StageClear : ToggleableUI
     
     public override void UIAction()
     {
-        _clearText.text = $"Stage {StageManager.Instance.currentStageData.stageIndex} Clear !!";
+        _clearText.text = $"스테이지 {StageManager.Instance.currentStageData.stageIndex}\n 클리어";
+        _timeText.text = $"{Mathf.FloorToInt(_stageManager.ElapsedTime/60f):00}:{Mathf.FloorToInt(_stageManager.ElapsedTime%60f):00}";
+        _expText.text = $"{_stageManager.Exp}";
+        _killText.text = $"{_stageManager.KillCount}";
+        _goldText.text = $"{_stageManager.GoldCount}";
         
         _stageClearPanel.SetActive(true);
-
-        /*if (StageManager.Instance.currentStageData.stageIndex == GameManager.Instance.MaxStageIndex)
-        {
-            _nextButton.gameObject.SetActive(false);
-        }
-        else
-        {
-            _nextButton.gameObject.SetActive(true);
-        }*/
     }
 
     public void OnClickBackButton()

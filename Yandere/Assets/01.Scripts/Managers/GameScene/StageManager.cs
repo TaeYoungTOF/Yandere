@@ -8,19 +8,14 @@ public class StageManager : MonoBehaviour
     [SerializeField] GameObject[] mapPrefabs;
 
     public Player Player { get; private set; }
-    public SpawnManager SpawnManager { get; private set; }
+    private SpawnManager _spawnManager;
     public ItemDropManager ItemDropManager { get; private set; }
     public StageData currentStageData;
     public WaveData currentSpawnData;
 
-    private bool isStageCleared;
-    public bool IsStageCleared => isStageCleared;
-    
-    private bool hasPlayerBeenHit;
-    public bool HasPlayerBeenHit => hasPlayerBeenHit;
-
-    public int KillCount { get; private set;  } = 0;
-    public int GoldCount { get; private set; } = 0;
+    public int Exp { get; private set; }
+    public int KillCount { get; private set; }
+    public int GoldCount { get; private set; }
 
 
     public bool IsUIOpened = false;
@@ -57,7 +52,7 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnManager = GetComponentInChildren<SpawnManager>();
+        _spawnManager = GetComponentInChildren<SpawnManager>();
         ItemDropManager = GetComponentInChildren<ItemDropManager>();
 
         currentStageData = GameManager.Instance.currentStageData;
@@ -75,6 +70,7 @@ public class StageManager : MonoBehaviour
 
         StartCoroutine(StartWaveRoutine(currentSpawnData));
 
+        Exp = 0;
         ChangeKillCount(0);
         ChangeGoldCount(0);
         Player.GainExp(5);
@@ -118,7 +114,7 @@ public class StageManager : MonoBehaviour
 
         if (currentSpawnData.endTime <= _elapsedTime)
         {
-            SpawnManager.StopSpawn();
+            _spawnManager.StopSpawn();
 
             int nextIndex = currentStageData.waveDatas.IndexOf(currentSpawnData) + 1;
             if (nextIndex < currentStageData.waveDatas.Count)
@@ -143,15 +139,37 @@ public class StageManager : MonoBehaviour
 
     private IEnumerator StartWaveRoutine(WaveData spawnData)
     {
-        yield return StartCoroutine(SpawnManager.HandleWave(spawnData));
+        yield return StartCoroutine(_spawnManager.HandleWave(spawnData));
     }
 
     public void StageClear()
     {
-        isStageCleared = true;
         Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
-        
 
+        switch (currentStageData.stageIndex)
+        {
+            case 1:
+                Exp = 100;
+                GoldCount += KillCount;
+                break;
+            case 2:
+                Exp = 200;
+                GoldCount += (int)(KillCount * 1.25f);
+                break;
+            case 3:
+                Exp = 300;
+                GoldCount +=(int)(KillCount * 1.5f);
+                break;
+            case 4:
+                Exp = 400;
+                GoldCount += (int)(KillCount * 1.75f);
+                break;
+            default:
+                Exp = 50;
+                GoldCount += 1000;
+                break;
+        }
+        
         UIManager.Instance.SetUIState(UIState.StageClear);
     }
 
@@ -171,15 +189,4 @@ public class StageManager : MonoBehaviour
 
         return GoldCount;
     }
-
-    public void OnPlayerHit()
-    {
-        hasPlayerBeenHit = true;
-    }
-
-    /*public void TargetKillCount()
-    {
-        killCount++;
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateKillCount(killCount);
-    }*/
 }

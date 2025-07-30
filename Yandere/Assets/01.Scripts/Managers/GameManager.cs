@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +20,10 @@ public class GameManager : MonoBehaviour
         get => _maxStageIndex;
     }
     public StageData currentStageData;
+
+    private bool _rewardPending;
+    private float _pendingExp;
+    private float _pendingGold;
 
     private void Awake()
     {
@@ -71,14 +74,20 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    public void LoadTitleScene()
+    public async void LoadTitleScene()
     {
         Debug.Log("[GameManager] Call Title Scene");
-        float exp = 100;
-        float gold = StageManager.Instance.CalculateReward();
         
-        SceneManager.LoadScene("TitleScene");
-        DataManager.Instance.CalculateReward(exp, gold);
+        _rewardPending = true;
+        _pendingExp = StageManager.Instance.Exp;
+        _pendingGold = StageManager.Instance.GoldCount;
+
+        // 비동기 씬 로드
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("TitleScene");
+        while (!asyncLoad.isDone)
+        {
+            await System.Threading.Tasks.Task.Yield();
+        }
     }
 
     public void LoadNextStage()
@@ -114,12 +123,18 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("씬 로드됨: " + scene.name);
-
         switch (scene.name)
         {
             case "TitleScene":
                 SoundManager.Instance.Play("Title_BGM");
+
+                if (_rewardPending)
+                {
+                    DataManager.Instance.CalculateReward(_pendingExp, _pendingGold);
+                    _pendingExp = 0;
+                    _pendingGold = 0;
+                    _rewardPending = false;
+                }
                 break;
             case "GameScene":
                 SoundManager.Instance.Play("Stage1_BGM");
