@@ -48,6 +48,12 @@ public class UI_MainHUD : MonoBehaviour
     private void OnSelectButtonClicked(int index)
     {
         SoundManager.Instance.Play("LobbyClick01_SFX");
+
+        if (index == 1 || index == 3 || index == 4)
+        {
+            UIManager_Title.Instance.CallPreparingPopUp();
+            return;
+        }
         
         for (int i = 0; i < _selected.Length; i++)
         {
