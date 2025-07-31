@@ -361,70 +361,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 219609301}
-  - component: {fileID: 219609300}
-  - component: {fileID: 219609299}
+  - component: {fileID: 219609302}
   m_Layer: 0
-  m_Name: '[ AchivementManager ] '
+  m_Name: '[ QuestManager ]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &219609299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219609298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 402c5ec302bfdde44812cc69e3743035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allAchievements:
-  - rank: 0
-    isCleared: 0
-    description: 
-    currentProgress: 0
-    targetProgress: 0
-    category: 0
-    conditionType: 1
-    conditionValue: 120
-    title: "\uD53C\uD574\uB97C \uC785\uC9C0 \uC54A\uACE0 120\uCD08 \uC0DD"
-  - rank: 1
-    isCleared: 0
-    description: 
-    currentProgress: 0
-    targetProgress: 0
-    category: 0
-    conditionType: 2
-    conditionValue: 1000
-    title: "\uCD1D 1,000\u314F\uB9AC \uBAAC\uC2A4\uD130 \uCC98"
-  - rank: 2
-    isCleared: 0
-    description: 
-    currentProgress: 0
-    targetProgress: 0
-    category: 0
-    conditionType: 6
-    conditionValue: 6
-    title: "\uC561\uD2F0\uBE0C \uC2A4\uD0AC 6\uAC1C \uBAA8\uB450 \uD68D"
-  currentRandomAchievements: []
---- !u!114 &219609300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219609298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e80676cb63f07043afa94cdffe6023c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageManager: {fileID: 709524318}
-  ui_Achievement: {fileID: 4525051404582775856}
 --- !u!4 &219609301
 Transform:
   m_ObjectHideFlags: 0
@@ -440,6 +384,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &219609302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219609298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e80676cb63f07043afa94cdffe6023c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allQuests:
+  - category: 0
+    content: 0
+    isCleared: 0
+    description: "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4 \uD558\uAE30"
+    currentValue: 0
+    maxValue: 5
+  - category: 0
+    content: 1
+    isCleared: 0
+    description: "\uBD80\uD65C x 1"
+    currentValue: 0
+    maxValue: 10
+  - category: 0
+    content: 1
+    isCleared: 0
+    description: "\uBD80\uD65C x 2"
+    currentValue: 0
+    maxValue: 15
+  currentQuests: []
 --- !u!1001 &259139277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12924,6 +12900,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1725014473}
     m_Modifications:
+    - target: {fileID: 157075963443825175, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157075963443825175, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702567141042232763, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3839979806824726448, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095638073442809298, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095638073442809298, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7336123316370935381, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
       propertyPath: m_Name
       value: UI_Achievement
@@ -12968,6 +12968,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8631527005561940842, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631527005561940842, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12976,11 +12984,6 @@ PrefabInstance:
 --- !u!4 &4525051404582775855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8350073401559089482, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
-  m_PrefabInstance: {fileID: 4525051404582775854}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4525051404582775856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7336123316370935381, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
   m_PrefabInstance: {fileID: 4525051404582775854}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &5155326999703240116

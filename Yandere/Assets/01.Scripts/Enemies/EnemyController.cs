@@ -153,8 +153,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
         StageManager.Instance.ChangeKillCount(1);
         Destroy(gameObject, 1.0f);
-        
-        RandomAchievementManager.Instance.UpdateProgress(ConditionType.TotalMonsterKills, 1); // 업적에서 몬스터 죽음 체크
     }
 
     void AvoidOtherEnemies()
