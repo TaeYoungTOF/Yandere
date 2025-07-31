@@ -5,5 +5,4 @@ public class SkillData_Passive : SkillData
 {
     [Header("Passive Skill")]
     public float value;
-    [Multiline(2)]public string dialogue;
 }

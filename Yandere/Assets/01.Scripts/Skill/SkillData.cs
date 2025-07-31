@@ -6,5 +6,7 @@ public class SkillData : ScriptableObject
     public string skillName;
     public Sprite skillIcon;
     
+    [Multiline(2)]public string dialogue;
+    
     [Multiline(3)] public string levelupTooltip;
 }
