@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
     public float sfxVolume = 1f;
     
     private Dictionary<string, SoundData> soundDictionary;
+    private Dictionary<SoundCategory, List<SoundData>> categorizedSFX = new();
 
     [Header("UI")]
     [SerializeField] private GameObject _settingPanel;
@@ -37,6 +38,14 @@ public class SoundManager : MonoBehaviour
         {
             if (!soundDictionary.ContainsKey(sound.soundName))
                 soundDictionary.Add(sound.soundName, sound);
+            // 🔥 SFX만 분류
+            if (sound.soundType == SoundType.SFX)
+            {
+                if (!categorizedSFX.ContainsKey(sound.soundCategory))
+                    categorizedSFX[sound.soundCategory] = new List<SoundData>();
+
+                categorizedSFX[sound.soundCategory].Add(sound);
+            }
         }
         
         _settingPanel.SetActive(false);
@@ -53,7 +62,7 @@ public class SoundManager : MonoBehaviour
 
         if (data.soundType == SoundType.BGM)
         {
-            bgmSource.clip = data.soundClip;
+            bgmSource.clip = data.soundClips[0];
             bgmSource.volume = data.volume * masterVolume * bgmVolume;
             bgmSource.loop = data.loop;
             bgmSource.Play();
@@ -61,7 +70,7 @@ public class SoundManager : MonoBehaviour
         
         else if (data.soundType == SoundType.SFX)
         {
-            sfxSource.PlayOneShot(data.soundClip, data.volume * masterVolume * sfxVolume);
+            sfxSource.PlayOneShot(data.soundClips[0], data.volume * masterVolume * sfxVolume);
         }
     }
 
@@ -76,7 +85,9 @@ public class SoundManager : MonoBehaviour
         
         if (bgmSource.isPlaying)
         {
-            SoundData currentBGM = soundDataList.Find(x => x.soundClip == bgmSource.clip);
+            SoundData currentBGM = soundDataList.Find(x =>
+                x.soundClips != null && x.soundClips.Contains(bgmSource.clip));
+
             if (currentBGM != null)
                 bgmSource.volume = currentBGM.volume * masterVolume * bgmVolume;
         }
@@ -85,10 +96,11 @@ public class SoundManager : MonoBehaviour
     {
         bgmVolume = volume;
 
-        // 🔍 현재 재생 중인 BGM의 SoundData 찾아서 반영
         if (bgmSource.isPlaying)
         {
-            SoundData currentBGM = soundDataList.Find(x => x.soundClip == bgmSource.clip);
+            SoundData currentBGM = soundDataList.Find(x =>
+                x.soundClips != null && x.soundClips.Contains(bgmSource.clip));
+
             if (currentBGM != null)
             {
                 float dataVol = currentBGM.volume;
@@ -107,4 +119,27 @@ public class SoundManager : MonoBehaviour
         _settingPanel.SetActive(true);
         Play("LobbyClick01_SFX");
     }
+
+    public void PlayRandomSFX(SoundCategory category)
+    {
+        if (!categorizedSFX.ContainsKey(category) || categorizedSFX[category].Count == 0)
+        {
+            Debug.LogWarning($"[SoundManager] 카테고리 '{category}'에 사운드가 없습니다.");
+            return;
+        }
+
+        List<SoundData> list = categorizedSFX[category];
+        SoundData selected = list[Random.Range(0, list.Count)];
+
+        // ✅ 랜덤 클립 선택
+        if (selected.soundClips == null || selected.soundClips.Count == 0)
+        {
+            Debug.LogWarning($"[SoundManager] '{category}' 카테고리의 SoundData에 클립이 없습니다.");
+            return;
+        }
+
+        AudioClip clip = selected.soundClips[Random.Range(0, selected.soundClips.Count)];
+        sfxSource.PlayOneShot(clip, selected.volume * masterVolume * sfxVolume);
+    }
+   
 }
