@@ -110,20 +110,24 @@ public class UI_Pause : ToggleableUI
     private void ActiveConfirmPanel()
     {
         _confirmPanel.SetActive(true);
+        SoundManager.Instance.Play("LobbyClick01_SFX");
     }
 
     private void OnClickBackButton()
     {
         UIManager.Instance.SetUIState(UIState.None);
+        SoundManager.Instance.Play("LobbyClick02_SFX");
     }
 
     private void OnClickConfirmHomeButtonButton()
     {
         GameManager.Instance.LoadTitleScene();
+        SoundManager.Instance.Play("LobbyClick02_SFX");
     }
 
     private void OnClickconfirmCancelButton()
     {
         _confirmPanel.SetActive(false);
+        SoundManager.Instance.Play("LobbyClick02_SFX");
     }
 }

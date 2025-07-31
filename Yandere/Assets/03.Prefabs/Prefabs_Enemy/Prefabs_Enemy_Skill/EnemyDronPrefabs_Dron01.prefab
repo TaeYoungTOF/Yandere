@@ -164,6 +164,10 @@ MonoBehaviour:
   moveSpeed: 5
   chaseDuration: 5
   explodeRange: 0.5
-  damage: 100
+  damage: 10
+  explosionDelay: 0.5
+  explodeRadius: 2
   explosionEffectPrefab: {fileID: 3198923806287051063, guid: 442486026d7ae68428087e1cf03543fe, type: 3}
   explosionRangeEffectPrefab: {fileID: 1691330588945861289, guid: 7bbf2daf2c124b14f93cb2bd6f432142, type: 3}
+  explosionWarningPrefab: {fileID: 1691330588945861289, guid: 5dc4a7371f2e2714a846828660d093d1, type: 3}
+  explosionWarningDuration: 0.5

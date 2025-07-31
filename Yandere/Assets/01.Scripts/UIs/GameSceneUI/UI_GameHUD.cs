@@ -68,10 +68,12 @@ public class UI_GameHUD : MonoBehaviour
     public void OnClickPauseBUtton()
     {
         UIManager.Instance.SetUIState(UIState.Pause);
+        SoundManager.Instance.Play("LobbyClick01_SFX");
     }
 
     public void OnClickachivementBUtton()
     {
         UIManager.Instance.SetUIState(UIState.Achievement);   
+        SoundManager.Instance.Play("LobbyClick01_SFX");
     }
 }

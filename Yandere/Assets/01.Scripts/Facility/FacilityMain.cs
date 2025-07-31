@@ -38,6 +38,7 @@ public class FacilityMain : Facility
    
    public void OnClickPhoto()
    {
+      SoundManager.Instance.Play("LobbyClick01_SFX");
       ResourceManager.Instance.UseStack(amount);
       UpdateUI();
    }

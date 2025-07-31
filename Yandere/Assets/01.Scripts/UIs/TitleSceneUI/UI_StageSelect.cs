@@ -43,7 +43,8 @@ public class UI_StageSelect : MonoBehaviour
     private void OnClickPrevButton()
     {
         if (_currentStageData.stageIndex < 1) return;
-            
+        
+        SoundManager.Instance.Play("LobbyClick01_SFX");
         GameManager.Instance.SetStage(GameManager.Instance.stageDatas[_currentStageData.stageIndex - 1]);
         UpdateUI();
     }
@@ -52,6 +53,7 @@ public class UI_StageSelect : MonoBehaviour
     {
         if (_currentStageData.stageIndex >= GameManager.Instance.MaxStageIndex) return;
         
+        SoundManager.Instance.Play("LobbyClick01_SFX");
         GameManager.Instance.SetStage(GameManager.Instance.stageDatas[_currentStageData.stageIndex + 1]);
         UpdateUI();
     }

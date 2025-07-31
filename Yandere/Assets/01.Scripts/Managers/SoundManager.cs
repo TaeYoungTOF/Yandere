@@ -105,5 +105,6 @@ public class SoundManager : MonoBehaviour
     public void OpenSettingPanel()
     {
         _settingPanel.SetActive(true);
+        Play("LobbyClick01_SFX");
     }
 }

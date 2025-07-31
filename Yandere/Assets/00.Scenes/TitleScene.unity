@@ -756,7 +756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -1830}
+  m_AnchoredPosition: {x: 540, y: -1500}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21837062
@@ -1996,31 +1996,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 91750546}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1273450614}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1302673429}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &91750546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2607,7 +2583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -2820}
+  m_AnchoredPosition: {x: 540, y: -2490}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &154269033
@@ -2909,7 +2885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -3150}
+  m_AnchoredPosition: {x: 540, y: -2820}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &184561394
@@ -5009,7 +4985,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -2490}
+  m_AnchoredPosition: {x: 540, y: -2160}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283404647
@@ -6809,6 +6785,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 43032fb8d42fcfa41931a7c555994c76, type: 2}
   - {fileID: 11400000, guid: d8197c5309694ac4398ed29254beed94, type: 2}
   - {fileID: 11400000, guid: 8777c6636a77aa64bbf7fa6620613043, type: 2}
+  - {fileID: 11400000, guid: 037b472b1c3388242a8872999ee1cb53, type: 2}
+  - {fileID: 11400000, guid: 46434cc88c0980649b93d7d24c6f6707, type: 2}
   masterVolume: 1
   bgmVolume: 1
   sfxVolume: 1
@@ -8920,7 +8898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &536726042
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13065,7 +13043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -1500}
+  m_AnchoredPosition: {x: 540, y: -1170}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838494999
@@ -17811,6 +17789,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 425966031}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LobbyClick01_SFX
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1073824407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18201,6 +18191,7 @@ MonoBehaviour:
   _costText: {fileID: 1294667908}
   _confirmButton: {fileID: 1807974575}
   _upgradeBackButton: {fileID: 792744625}
+  _lackAccountLvButton: {fileID: 91750545}
   _infoPanel: {fileID: 619390169}
   _infoTitleText: {fileID: 593525679}
   _infoText: {fileID: 601124203}
@@ -22172,7 +22163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -2160}
+  m_AnchoredPosition: {x: 540, y: -1830}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1305580120
@@ -30632,7 +30623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -3810}
+  m_AnchoredPosition: {x: 540, y: -3480}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1789457206
@@ -30901,7 +30892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1800285999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31199,7 +31190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -3480}
+  m_AnchoredPosition: {x: 540, y: -3150}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1812418752
@@ -38864,7 +38855,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930737359571007398}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 425966031}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LobbyClick01_SFX
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &935544772080569433
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47174,6 +47177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2924263629155926909}
+  - component: {fileID: 4204170452068467097}
   m_Layer: 0
   m_Name: Button_Add
   m_TagString: Untagged
@@ -47181,6 +47185,62 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4204170452068467097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4204170452068467096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 425966031}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LobbyClick01_SFX
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &4216303866134695013
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55984,8 +56044,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1421.7618}
-  m_SizeDelta: {x: 1080, y: 4300}
+  m_AnchoredPosition: {x: 0, y: -1240.3577}
+  m_SizeDelta: {x: 1080, y: 3970}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6979210081333720418
 RectTransform:
@@ -56100,7 +56160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -4140}
+  m_AnchoredPosition: {x: 540, y: -3810}
   m_SizeDelta: {x: 1030, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &7042508232355292117
@@ -58374,6 +58434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4171398542806499193}
+  - component: {fileID: 7764536722816649124}
   m_Layer: 0
   m_Name: Button_Add
   m_TagString: Untagged
@@ -58381,6 +58442,62 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7764536722816649124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764536722816649123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 425966031}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LobbyClick01_SFX
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &7772172969492674883
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59601,6 +59718,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 425966031}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LobbyClick02_SFX
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &8296261637322549714

@@ -127,6 +127,7 @@ public class UI_Achievement : ToggleableUI
     private void OnClickbackButton()
     {
         UIManager.Instance.SetUIState(UIState.None);
+        SoundManager.Instance.Play("LobbyClick02_SFX");
     }
 
     private float EaseOutCubic(float t)
