@@ -5417,12 +5417,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c44e4c1e0801fe43be2f869e5aa2cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stageSelectPanel: {fileID: 147609471}
   _stageName: {fileID: 4325452469492181565}
   _stageDesc: {fileID: 5353122129178993714}
   _stageImage: {fileID: 7925375972992006918}
   _startButton: {fileID: 4855697137448864315}
   _prevButton: {fileID: 566786779086938917}
   _nextButton: {fileID: 5935170157494144121}
+  _backButton: {fileID: 4361870961113063043}
 --- !u!1 &313500535
 GameObject:
   m_ObjectHideFlags: 0
@@ -7458,6 +7460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 464105578}
+  - component: {fileID: 464105579}
   m_Layer: 0
   m_Name: UI_Lobby
   m_TagString: Untagged
@@ -7481,6 +7484,20 @@ Transform:
   - {fileID: 536726042}
   m_Father: {fileID: 8764986192909737229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &464105579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464105577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b192fe3d9549194a9214b8e7c47c797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageSelectPanel: {fileID: 147609471}
+  _stageSelectButton: {fileID: 1073824406}
 --- !u!1 &478101696
 GameObject:
   m_ObjectHideFlags: 0
@@ -8898,7 +8915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &536726042
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17776,31 +17793,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1073824407}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 147609471}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 425966031}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: LobbyClick01_SFX
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1073824407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47736,31 +47729,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1470527198730511665}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 147609471}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 425966031}
-        m_TargetAssemblyTypeName: SoundManagerTest, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: LobbyClick02_SFX
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &4380342341883918450
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -4,12 +4,14 @@ using UnityEngine.UI;
 
 public class UI_StageSelect : MonoBehaviour
 {
+    [SerializeField] private GameObject _stageSelectPanel;
     [SerializeField] private TMP_Text _stageName;
     [SerializeField] private TMP_Text _stageDesc;
     [SerializeField] private Image _stageImage;
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _prevButton;
     [SerializeField] private Button _nextButton;
+    [SerializeField] private Button _backButton;
     
     private StageData _currentStageData;
 
@@ -18,6 +20,7 @@ public class UI_StageSelect : MonoBehaviour
         _startButton.onClick.AddListener(OnClickStartButton);
         _prevButton.onClick.AddListener(OnClickPrevButton);
         _nextButton.onClick.AddListener(OnClickNextButton);
+        _backButton.onClick.AddListener(OnClickBackButton);
 
         UpdateUI();
     }
@@ -56,6 +59,12 @@ public class UI_StageSelect : MonoBehaviour
         SoundManager.Instance.Play("LobbyClick01_SFX");
         GameManager.Instance.SetStage(GameManager.Instance.stageDatas[_currentStageData.stageIndex + 1]);
         UpdateUI();
+    }
+
+    private void OnClickBackButton()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _stageSelectPanel.SetActive(false);
     }
     
     
