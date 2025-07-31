@@ -67,24 +67,29 @@ public class Enemy_BossGrenadeProjectile02 : MonoBehaviour
          if (player != null)
          {
             player.TakeDamage(damageAmount);
-
+            
             ApplyBlindDebuff(blindDuration);
+            
          }
       }
 
-      Destroy(gameObject);
+      Destroy(gameObject, 5f);
    }
     
    private void ApplyBlindDebuff(float duration)
    {
        StartCoroutine(BlindDebuffRoutine(duration));
+       
    }
 
    private IEnumerator BlindDebuffRoutine(float duration)
    {
        UIManager.Instance.ShowBlindOverlay(true); // 시야 가림
+
        yield return new WaitForSeconds(duration);
+      
        UIManager.Instance.ShowBlindOverlay(false); // 해제
+
    }
    
    private void OnDrawGizmosSelected()
