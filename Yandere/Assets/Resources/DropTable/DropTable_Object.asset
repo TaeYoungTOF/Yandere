@@ -17,7 +17,7 @@ MonoBehaviour:
     probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 1e57d7cbc18cb2f45a61384d7259a647, type: 2}
-    probability: 100
+    probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 750d9f1dd0e984318b30a1caddf5e1c4, type: 2}
     probability: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 005e70430f70a3b49a9dad750f374eb4, type: 2}
-    probability: 0
+    probability: 100
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 47afa6227d947874d90bbc95d69172be, type: 2}
     probability: 0
