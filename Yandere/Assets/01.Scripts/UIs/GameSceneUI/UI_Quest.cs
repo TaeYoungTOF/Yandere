@@ -49,6 +49,7 @@ public class UI_Quest : ToggleableUI
         {
             var quest = QuestManager.Instance.currentQuests[i];
             
+            _panels[i].starIcon.SetActive(quest.isCleared);
             SetPanel(_panels[i], quest.currentValue, quest.maxValue);
         }
     }
@@ -63,8 +64,7 @@ public class UI_Quest : ToggleableUI
 
     private void SetPanel(QuestPanel questPanel, int curValue, int maxValue)
     {
-        questPanel.starIcon.SetActive(curValue == maxValue);
         questPanel.progressText.text = $"{curValue} / {maxValue}";
-        questPanel.progressBar.value = (float)curValue / maxValue;
+        questPanel.progressBar.value = Mathf.Clamp((float)curValue / maxValue, 0, 1);
     }
 }

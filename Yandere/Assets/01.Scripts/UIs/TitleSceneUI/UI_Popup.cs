@@ -64,8 +64,6 @@ public class UI_Popup : MonoBehaviour
         _upgradePanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
-    
- 
 
     public void CallInfoPanel(string facilityName, string info)
     {

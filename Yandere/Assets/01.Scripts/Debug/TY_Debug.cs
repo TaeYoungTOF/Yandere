@@ -38,6 +38,12 @@ public class TY_Debug : MonoBehaviour
     }
 
     [Button]
+    private void AddKillCount()
+    {
+        StageManager.Instance.ChangeKillCount(100);
+    }
+
+    [Button]
     public void AddTimeScale()
     {
         StageManager.Instance.timeScale += 1;

@@ -30,10 +30,12 @@ public class Item : MonoBehaviour
         {
             case ItemType.ExpItem:
                 player.GainExp(itemData.amount);
+                QuestManager.Instance.expItemUseCount++;
                 SoundManager.Instance.Play("InGame_Player_ExpItemPickUpSFX");
                 break;
             case ItemType.HealItem:
                 player.Heal(itemData.amount);
+                QuestManager.Instance.healItemUseCount++;
                 SoundManager.Instance.Play("InGame_Player_HealItemPickUpSFX");
                 break;
             case ItemType.GoldItem:

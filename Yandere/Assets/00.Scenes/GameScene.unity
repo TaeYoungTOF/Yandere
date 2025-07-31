@@ -396,26 +396,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e80676cb63f07043afa94cdffe6023c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStageCleared: 0
+  surviveTimer: 0
+  killCount: 0
+  eliteKillCount: 0
+  healItemUseCount: 0
+  expItemUseCount: 0
+  lastDamageTime: 0
+  lastMoveTime: 0
+  currentQuests: []
   allQuests:
   - category: 0
     content: 0
     isCleared: 0
-    description: "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4 \uD558\uAE30"
+    description: "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4\uD558\uAE30"
     currentValue: 0
-    maxValue: 5
-  - category: 0
-    content: 1
+    maxValue: 1
+  - category: 1
+    content: 3
     isCleared: 0
-    description: "\uBD80\uD65C x 1"
+    description: "\uD53C\uD574 \uC785\uC9C0 \uC54A\uACE0 120\uCD08 \uC0DD\uC874\uD558\uAE30"
     currentValue: 0
-    maxValue: 10
-  - category: 0
-    content: 1
+    maxValue: 120
+  - category: 1
+    content: 4
     isCleared: 0
-    description: "\uBD80\uD65C x 2"
+    description: "5\uBD84 \uB3D9\uC548 \uC0DD\uC874\uD558\uAE30"
     currentValue: 0
-    maxValue: 15
-  currentQuests: []
+    maxValue: 300
+  - category: 0
+    content: 2
+    isCleared: 0
+    description: "\uD68C\uBCF5\uC57D\uC744 1\uAC1C \uC774\uD558\uB85C \uC0AC\uC6A9\uD558\uACE0
+      \uD074\uB9AC\uC5B4\uD558\uAE30"
+    currentValue: 0
+    maxValue: 2
+  - category: 2
+    content: 5
+    isCleared: 0
+    description: "1000\uBA85\uC758 \uC801 \uBB34\uCC0C\uB974\uAE30"
+    currentValue: 0
+    maxValue: 1000
+  - category: 2
+    content: 5
+    isCleared: 0
+    description: "2000\uBA85\uC758 \uC801 \uBB34\uCC0C\uB974\uAE30"
+    currentValue: 0
+    maxValue: 2000
+  - category: 0
+    content: 6
+    isCleared: 0
+    description: "20\uBA85\uC758 \uC5D8\uB9AC\uD2B8 \uC801 \uBB34\uCC0C\uB974\uAE30"
+    currentValue: 0
+    maxValue: 20
+  - category: 3
+    content: 7
+    isCleared: 0
+    description: "\uC561\uD2F0\uBE0C \uC2A4\uD0AC 6\uAC1C \uBAA8\uB450 \uD68D\uB4DD\uD558\uAE30"
+    currentValue: 0
+    maxValue: 6
+  - category: 3
+    content: 8
+    isCleared: 0
+    description: "\uD328\uC2DC\uBE0C \uC2A4\uD0AC 6\uAC1C \uBAA8\uB450 \uD68D\uB4DD\uD558\uAE30"
+    currentValue: 0
+    maxValue: 6
+  - category: 3
+    content: 9
+    isCleared: 0
+    description: "\uC9C4\uD654 \uC2A4\uD0AC 1\uAC1C \uC774\uC0C1 \uD68D\uB4DD\uD558\uAE30"
+    currentValue: 0
+    maxValue: 1
+  - category: 3
+    content: 9
+    isCleared: 0
+    description: "\uC9C4\uD654 \uC2A4\uD0AC 2\uAC1C \uC774\uC0C1 \uD68D\uB4DD\uD558\uAE30"
+    currentValue: 0
+    maxValue: 2
+  - category: 0
+    content: 7
+    isCleared: 0
+    description: "2000\uBA85\uC758 \uC801 \uBB34\uCC0C\uB974\uAE30"
+    currentValue: 0
+    maxValue: 2000
+  - category: 4
+    content: 10
+    isCleared: 0
+    description: "\uACBD\uD5D8\uCE58 \uC624\uBE0C\uC81D\uD2B8 5000\uAC1C \uD68D\uB4DD\uD558\uAE30"
+    currentValue: 0
+    maxValue: 5000
+  - category: 1
+    content: 11
+    isCleared: 0
+    description: "60\uCD08 \uB3D9\uC548 \uC6C0\uC9C1\uC774\uC9C0 \uC54A\uACE0 \uC0DD\uC874\uD558\uAE30"
+    currentValue: 0
+    maxValue: 60
 --- !u!1001 &259139277
 PrefabInstance:
   m_ObjectHideFlags: 0

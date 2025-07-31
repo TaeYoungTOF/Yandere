@@ -146,6 +146,9 @@ public class StageManager : MonoBehaviour
     {
         Debug.Log($"[StageManager] {currentStageData.stageIndex} Stage Clear!!");
 
+        QuestManager.Instance.isStageCleared = true;
+        QuestManager.Instance.UpdateValue();
+        
         switch (currentStageData.stageIndex)
         {
             case 1:
@@ -167,6 +170,22 @@ public class StageManager : MonoBehaviour
             default:
                 Exp = 50;
                 GoldCount += 1000;
+                break;
+        }
+
+        switch (QuestManager.Instance.ReturnClearedQuest())
+        {
+            case 1:
+                GoldCount = (int)(GoldCount * 1.1f);
+                break;
+            case 2:
+                GoldCount = (int)(GoldCount * 1.2f);
+                break;
+            case 3:
+                GoldCount = (int)(GoldCount * 1.4f);
+                break;
+            default:
+                Debug.Log("[StageManager] cleared Quest 0");
                 break;
         }
         
