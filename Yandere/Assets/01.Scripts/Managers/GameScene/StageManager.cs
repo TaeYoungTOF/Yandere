@@ -201,11 +201,4 @@ public class StageManager : MonoBehaviour
     {
         UIManager.Instance.SetUIState(UIState.SkillSelect);
     }
-
-    public float CalculateReward()
-    {
-        ChangeGoldCount(KillCount);
-
-        return GoldCount;
-    }
 }
