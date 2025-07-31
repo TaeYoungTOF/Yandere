@@ -16,6 +16,9 @@ public class UI_Popup : MonoBehaviour
     [SerializeField] private Button _confirmButton;
     [SerializeField] private Button _upgradeBackButton;
     
+    [Header("LackAccountLv Pop-up")]
+    [SerializeField] private Button _lackAccountLvButton;
+    
     [Header("Info Pop-up")]
     [SerializeField] private GameObject _infoPanel;
     [SerializeField] private TMP_Text _infoTitleText;
@@ -29,8 +32,10 @@ public class UI_Popup : MonoBehaviour
     public void Init()
     {
         _upgradeBackButton.onClick.AddListener(CloseUpgradePanel);
+        _lackAccountLvButton.onClick.AddListener(CloseLackAccountLvPanel);
         
         _popUpPanel.SetActive(false);
+        
     }
 
     public void CallUpgradePanel(Facility facility)
@@ -50,9 +55,12 @@ public class UI_Popup : MonoBehaviour
 
     public void CloseUpgradePanel()
     {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
         _upgradePanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
+    
+ 
 
     public void CallInfoPanel(string facilityName, string info)
     {
@@ -72,6 +80,13 @@ public class UI_Popup : MonoBehaviour
     {
         _popUpPanel.SetActive(true);
         _lackAccountLvPanel.SetActive(true);
+    }
+    
+    public void CloseLackAccountLvPanel()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _lackAccountLvPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
     }
     
     public void CallFullFacilityLvPanel()

@@ -54,6 +54,7 @@ public class BossPattern4_Projectile : MonoBehaviour
         if (explosionEffectPrefab != null)
         {
             GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            SoundManager.Instance.Play("InGame_EnemyBoss4Pattern1_SmokeSFX");
             Destroy(effect, 3f); // 파티클 길이에 따라 조정
         }
 

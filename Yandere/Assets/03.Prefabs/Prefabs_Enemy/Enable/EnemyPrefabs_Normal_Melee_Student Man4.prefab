@@ -209,6 +209,8 @@ MonoBehaviour:
   flameThrowHeight: 3
   flameDuration: 3
   flameDamagePerTick: 50
+  flameEffectRadius: 3.5
+  flameDamageRadius: 5.2
   flameTickInterval: 0.5
   dronePrefab: {fileID: 6659842523496968857, guid: 9cbf07f3355d1e6459a40cce62e602da, type: 3}
   droneSpawnPoints:

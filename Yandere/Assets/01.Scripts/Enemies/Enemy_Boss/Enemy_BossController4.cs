@@ -22,11 +22,11 @@ public class Enemy_BossController4 : EnemyController
 
     [Header("보스 패턴2 화염방사기")]
     [SerializeField] private GameObject flameEffectPrefab;
-    [SerializeField] private Transform pattern2Box;
-    [SerializeField] private Vector2 pattern2Size;
     [SerializeField] private float flameThrowHeight = 3f;
     [SerializeField] private float flameDuration = 3f;
     [SerializeField] private float flameDamagePerTick = 50;
+    [SerializeField] private float flameEffectRadius = 3.5f;      // 🔥 시각 효과 반경
+    [SerializeField] private float flameDamageRadius = 5f;        // 🔥 실제 데미지 반경
     [SerializeField] private float flameTickInterval = 0.5f;
 
     [Header("보스 패턴3 드론 소환")]
@@ -123,6 +123,7 @@ public class Enemy_BossController4 : EnemyController
         Vector3 targetPos = _playerTransform.position;
 
         GameObject grenade = Instantiate(pattern1SmokeEffectPrefab, startPos, Quaternion.identity);
+       
         var grenadeScript = grenade.GetComponent<BossPattern4_Projectile>();
 
         if (grenadeScript != null)
@@ -134,51 +135,75 @@ public class Enemy_BossController4 : EnemyController
     
 #region 패턴2: 화염 방사기
 
-    private bool IsPlayerInPattern2Range()
+private bool IsPlayerInPattern2Range()
+{
+    float detectRange = 8f; // 원형 감지 범위
+    Collider2D hit = Physics2D.OverlapCircle(transform.position, detectRange, LayerMask.GetMask("Player"));
+    return hit != null;
+}
+
+private IEnumerator ExecutePattern2()
+{
+    isPatterning = true;
+    pattern2Timer = pattern2Cooldown;
+
+    Debug.Log("보스 패턴2: 화염방사기 발동");
+    _animator.Play("Idle");
+
+    yield return new WaitForSeconds(0.5f);
+
+    // 플레이어 방향 기준 회전 각도 계산
+    Vector2 forward = (_playerTransform.position - transform.position).normalized;
+    float angleDeg = Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg;
+
+    // 🔥 화염 이펙트 생성
+    GameObject effect = Instantiate(flameEffectPrefab, transform.position, Quaternion.Euler(0, 0, angleDeg - 90f));
+    SoundManager.Instance.Play("InGame_EnemyBoss4Pattern2_FlameSFX");
+    effect.transform.parent = transform;
+    Destroy(effect, flameDuration);
+
+    // 이펙트 크기 변경 (선택사항)
+    // effect.transform.localScale = Vector3.one * flameEffectRadius;
+
+    float fanAngle = 45f; // 부채꼴 각도
+    float timer = 0f;
+
+    while (timer < flameDuration)
     {
-     Collider2D hit = Physics2D.OverlapBox(pattern2Box.position, pattern2Size, 0f, LayerMask.GetMask("Player"));
-     return hit != null;
-    }
+        Collider2D[] candidates = Physics2D.OverlapCircleAll(transform.position, flameDamageRadius, LayerMask.GetMask("Player"));
 
-    private IEnumerator ExecutePattern2()
-    {
-        isPatterning = true;
-        pattern2Timer = pattern2Cooldown;
-
-        Debug.Log("보스 패턴2: 화염방사기 발동");
-
-        yield return new WaitForSeconds(0.5f);
-
-        // 🔥 화염 이펙트 생성 및 방향 회전
-        GameObject effect = Instantiate(flameEffectPrefab, transform.position, Quaternion.identity);
-        effect.transform.parent = transform;
-
-        Vector2 direction = (_playerTransform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        effect.transform.rotation = Quaternion.Euler(0, 0, angle - 90f); // ✅ 위쪽 기준이면 -90도 회전 필요
-
-        Destroy(effect, flameDuration);
-
-        float timer = 0f;
-        while (timer < flameDuration)
+        foreach (var target in candidates)
         {
-            Collider2D[] hits = Physics2D.OverlapBoxAll(pattern2Box.position, pattern2Size, 0f, LayerMask.GetMask("Player"));
-            foreach (var hit in hits)
+            if (target == null) continue;
+
+            Vector2 toTarget = (target.transform.position - transform.position);
+            float distance = toTarget.magnitude;
+
+            // ✅ 거리 체크 (flameDamageRadius 사용)
+            if (distance > flameDamageRadius)
+                continue;
+
+            // ✅ 부채꼴 방향 체크
+            float angleToTarget = Vector2.Angle(forward, toTarget.normalized);
+            if (angleToTarget <= fanAngle / 2f)
             {
-                Player player = hit.GetComponent<Player>();
+                Player player = target.GetComponent<Player>();
                 if (player != null)
                 {
                     player.TakeDamage(flameDamagePerTick);
                 }
             }
-            timer += flameTickInterval;
-            yield return new WaitForSeconds(flameTickInterval);
         }
 
-        yield return new WaitForSeconds(1f);
-        isPatterning = false;
+        timer += flameTickInterval;
+        yield return new WaitForSeconds(flameTickInterval);
     }
-    
+
+    yield return new WaitForSeconds(1f);
+    isPatterning = false;
+}
+
+
 #endregion
 
 #region 패턴3: 군사 드론 소환
@@ -295,18 +320,52 @@ private void ShuffleList<T>(List<T> list)
     #endregion
 
     #region 디버그용 Gizmos
+
     private void OnDrawGizmosSelected()
     {
+        // 기존 코드 유지
         Gizmos.color = Color.gray;
         if (smokeSpawnPoint != null)
             Gizmos.DrawWireSphere(smokeSpawnPoint.position, 1.5f);
-        
-        Gizmos.color = Color.red;
-        if (pattern2Box != null)
-            Gizmos.DrawWireCube(pattern2Box.position, pattern2Size);
-    }
-  
 
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 8f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, flameDamageRadius );
+
+        // 🔥 부채꼴 방향 시각화 추가
+#if UNITY_EDITOR
+        if (!Application.isPlaying) return;
+#endif
+
+        if (_playerTransform != null)
+        {
+            Vector3 origin = transform.position;
+            Vector2 forward = (_playerTransform.position - transform.position).normalized;
+            float fanAngle = 45f;
+            int segments = 30;
+            float step = fanAngle / segments;
+
+            Gizmos.color = Color.yellow;
+
+            for (int i = 0; i <= segments; i++)
+            {
+                float angle = -fanAngle / 2f + step * i;
+                float rad = Mathf.Deg2Rad * angle;
+                Vector2 dir = new Vector2(
+                    forward.x * Mathf.Cos(rad) - forward.y * Mathf.Sin(rad),
+                    forward.x * Mathf.Sin(rad) + forward.y * Mathf.Cos(rad)
+                );
+
+                Gizmos.DrawLine(origin, origin + (Vector3)(dir.normalized * flameDamageRadius ));
+            }
+
+            // 정면 방향선
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(origin, origin + (Vector3)(forward * flameDamageRadius ));
+        }
+    }
     
     #endregion
 }
