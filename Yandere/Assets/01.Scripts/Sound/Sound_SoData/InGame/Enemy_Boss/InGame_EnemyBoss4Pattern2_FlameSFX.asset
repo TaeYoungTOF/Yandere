@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: InGame_EnemyBoss4Pattern2_FlameSFX
   m_EditorClassIdentifier: 
   soundType: 1
+  soundCategory: 0
   soundName: InGame_EnemyBoss4Pattern2_FlameSFX
-  soundClip: {fileID: 8300000, guid: 0aebdd15f58e3b24c8111d7dc142ec30, type: 3}
   volume: 0.2
   loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: 0aebdd15f58e3b24c8111d7dc142ec30, type: 3}

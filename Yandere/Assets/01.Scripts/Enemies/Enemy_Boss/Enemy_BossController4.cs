@@ -11,7 +11,6 @@ public class Enemy_BossController4 : EnemyController
     [Header("패턴 쿨타임")]
     [SerializeField] private float pattern1Cooldown = 12f;
     [SerializeField] private float pattern2Cooldown = 10f;
-    [SerializeField] private float pattern3Cooldown = 5f;
 
     [Header("보스 패턴1 스모크 스크린")]
     [SerializeField] private GameObject pattern1SmokeEffectPrefab;
@@ -22,10 +21,9 @@ public class Enemy_BossController4 : EnemyController
 
     [Header("보스 패턴2 화염방사기")]
     [SerializeField] private GameObject flameEffectPrefab;
-    [SerializeField] private float flameThrowHeight = 3f;
     [SerializeField] private float flameDuration = 3f;
     [SerializeField] private float flameDamagePerTick = 50;
-    [SerializeField] private float flameEffectRadius = 3.5f;      // 🔥 시각 효과 반경
+    //[SerializeField] private float flameEffectRadius = 3.5f;      // 🔥 시각 효과 반경
     [SerializeField] private float flameDamageRadius = 5f;        // 🔥 실제 데미지 반경
     [SerializeField] private float flameTickInterval = 0.5f;
 
@@ -39,13 +37,13 @@ public class Enemy_BossController4 : EnemyController
 
     private float pattern1Timer = 0f;
     private float pattern2Timer = 0f;
-    private float pattern3Timer = 0f;
+
 
     private bool triggered70 = false;
     private bool triggered40 = false;
     private bool triggered10 = false;
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
         StartCoroutine(BossPatternRoutine());
@@ -56,6 +54,7 @@ public class Enemy_BossController4 : EnemyController
         if (isDead) return;
         pattern1Timer -= Time.deltaTime;
         pattern2Timer -= Time.deltaTime;
+
     }
 
     private IEnumerator BossPatternRoutine()

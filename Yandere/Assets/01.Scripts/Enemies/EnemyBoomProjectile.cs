@@ -6,8 +6,8 @@ using DG.Tweening;
 public class EnemyBoomProjectile : MonoBehaviour
 {
     [SerializeField] private float speed = 5f; // 초당 속도
-    [SerializeField] private float distance = 10f; // 총 이동 거리
-    [SerializeField] private float lifetime = 3f; // 최대 유지 시간
+   // [SerializeField] private float distance = 10f; // 총 이동 거리
+   // [SerializeField] private float lifetime = 3f; // 최대 유지 시간
 
     private Vector2 moveDir;
 

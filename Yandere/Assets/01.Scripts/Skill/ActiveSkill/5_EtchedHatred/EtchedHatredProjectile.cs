@@ -53,6 +53,11 @@ public class EtchedHatredProjectile : BaseProjectile
         _debuffPrefab.SetActive(false);
         _explosionPrefab.SetActive(true);
 
+        if (_explosionPrefab)
+        {
+            SoundManager.Instance.PlayRandomSFX(SoundCategory.EtchedHatred);
+        }
+
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, _data.explosionRadius, enemyLayer);
 
         foreach (var e in enemies)

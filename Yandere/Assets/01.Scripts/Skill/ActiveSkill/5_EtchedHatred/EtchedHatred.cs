@@ -65,6 +65,7 @@ public class EtchedHatred : ActiveSkill<EtchedHatredDataWrapper>
                     //GameObject go = Instantiate(_etchedHatredProjectilePrefab, spawnPos, Quaternion.identity);
                     GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.EtchedHatredProj, spawnPos, Quaternion.identity);
                     EtchedHatredProjectile projectile = go.GetComponent<EtchedHatredProjectile>();
+                    SoundManager.Instance.Play("InGame_PlayerSkill_EtchedHatred01");
                     projectile.Initialize(data, _enemyLayer, e.transform);
 
                     _attachedEnemies.Add(e.transform); // 중복 방지용으로 등록

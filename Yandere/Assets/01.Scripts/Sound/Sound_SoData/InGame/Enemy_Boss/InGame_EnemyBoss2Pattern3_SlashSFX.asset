@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: InGame_EnemyBoss2Pattern3_SlashSFX
   m_EditorClassIdentifier: 
   soundType: 1
+  soundCategory: 0
   soundName: InGame_EnemyBoss2Pattern3_SlashSFX
-  soundClip: {fileID: 8300000, guid: 1b0ced3319dd2cf4c850e2c713210822, type: 3}
   volume: 0.4
   loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: 1b0ced3319dd2cf4c850e2c713210822, type: 3}

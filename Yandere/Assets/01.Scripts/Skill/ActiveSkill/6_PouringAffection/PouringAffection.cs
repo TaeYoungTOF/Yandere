@@ -46,6 +46,7 @@ public class PouringAffection : ActiveSkill<PouringAffectionDataWrapper>
             //GameObject go = Instantiate(_pouringAffectionProjectilePrefab, spawnPosition, spawnRotation);
             GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.PouringAffectionProj, spawnPosition, spawnRotation);
             PouringAffectionProjectile projectile = go.GetComponent<PouringAffectionProjectile>();
+            SoundManager.Instance.PlayRandomSFX(SoundCategory.PouringAffectionProjectile);
             projectile.Initialize(data, _enemyLayer, offset.x > 0);
         }
     }

@@ -15,6 +15,7 @@ public class FireballProjectile : BaseProjectile
     public void Initialize(Vector2 direction, FireballDataWrapper data, LayerMask enemyLayer)
     {
         fireballPrefab.SetActive(true);
+        SoundManager.Instance.PlayRandomSFX(SoundCategory.Fireball);
         explosionPrefab.SetActive(false);
         
         _direction = direction;
@@ -59,6 +60,8 @@ public class FireballProjectile : BaseProjectile
             if (e.TryGetComponent(out IDamagable target))
             {
                 target.TakeDamage(_data.skillDamage);
+                SoundManager.Instance.PlayRandomSFX(SoundCategory.FireProjectile);
+                
             }
         }
 
