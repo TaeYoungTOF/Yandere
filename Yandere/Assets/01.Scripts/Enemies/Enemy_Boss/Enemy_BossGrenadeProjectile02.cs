@@ -72,7 +72,7 @@ public class Enemy_BossGrenadeProjectile02 : MonoBehaviour
          }
       }
 
-      Destroy(gameObject);
+      Destroy(gameObject, 5f);
    }
     
    private void ApplyBlindDebuff(float duration)
