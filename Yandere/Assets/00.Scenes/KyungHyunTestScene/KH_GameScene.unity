@@ -178,7 +178,6 @@ MonoBehaviour:
   coolDownTimer: 0
   _playerDistance: 2.5
   _projRadius: 1
-  _RagingEmotionsProjPrefab: {fileID: 8273631399777830139, guid: 1b414a60e2fb6b04bb62e4119bddf410, type: 3}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 5120
@@ -455,8 +454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e80676cb63f07043afa94cdffe6023c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageManager: {fileID: 709524318}
-  ui_Achievement: {fileID: 4525051404582775856}
+  allQuests: []
+  currentQuests: []
+  surviveTimer: 0
+  killCount: 0
 --- !u!4 &219609301
 Transform:
   m_ObjectHideFlags: 0
@@ -1140,7 +1141,6 @@ MonoBehaviour:
   _secondDuration: 4
   _secondDmg: 90
   _secondProjSize: 4
-  _parchedLongingProj2Prefab: {fileID: 5310618298424018448, guid: 637c862d292c0944ebb8f50cd01e97a7, type: 3}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 5120
@@ -1256,30 +1256,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolPrefabs:
-  - PoolType: 4
-    Prefab: {fileID: 8906970490064105965, guid: e7fc76a3b76053947a1a2daa49bfa77f, type: 3}
+  - poolType: 0
+    prefab: {fileID: 0}
     initialSize: 15
-  - PoolType: 3
-    Prefab: {fileID: 9025320943301313202, guid: f111e282255bf4f92b975d357cbac617, type: 3}
+  - poolType: 0
+    prefab: {fileID: 0}
     initialSize: 50
-  - PoolType: 5
-    Prefab: {fileID: 9026727680048791279, guid: 0672cb011b6eb0343a1fdab569916307, type: 3}
+  - poolType: 0
+    prefab: {fileID: 0}
     initialSize: 10
-  - PoolType: 6
-    Prefab: {fileID: 738299376915222676, guid: 5668a1ba8f32c884e884f3f199a3e950, type: 3}
+  - poolType: 0
+    prefab: {fileID: 0}
     initialSize: 20
-  - PoolType: 7
-    Prefab: {fileID: 5310618298424018448, guid: 7409a9a584fc8844088dbf5c3c2a3865, type: 3}
+  - poolType: 0
+    prefab: {fileID: 0}
     initialSize: 20
-  - PoolType: 8
-    Prefab: {fileID: 8273631399777830139, guid: 7a5972a35fa57de4cb80168f889ad18c, type: 3}
+  - poolType: 0
+    prefab: {fileID: 0}
     initialSize: 20
-  - PoolType: 9
-    Prefab: {fileID: 8804051856548064786, guid: 6ae5361daec56ff45b6169f3b380f99e, type: 3}
+  - poolType: 0
+    prefab: {fileID: 0}
     initialSize: 100
-  - PoolType: 10
-    Prefab: {fileID: 4596775477161923934, guid: b969e772a6d742f43aded224e3059944, type: 3}
+  - poolType: 0
+    prefab: {fileID: 0}
     initialSize: 30
+  _pools:
+    _serializedList: []
 --- !u!1 &1212898035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,7 +1390,6 @@ MonoBehaviour:
   _searchRadius: 8
   _explosionRadius: 3
   _wavePrefab: {fileID: 1998971515089099989}
-  _etchedHatredProjectilePrefab: {fileID: 8804051856548064786, guid: 86a860529b9d09f458b4ca5225a011e5, type: 3}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1898,6 +1899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf254af95daba74ea815cadc1162a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blindOverlay: {fileID: 0}
   _joyStick: {fileID: 190654503}
   _currentState: 0
 --- !u!4 &1725014473
@@ -2272,7 +2274,6 @@ MonoBehaviour:
   _pjtSize: 0.8
   _secondDmg: 25
   _secondExplodeRadius: 3
-  _fireballProjectilePrefab: {fileID: 2074056189656437895, guid: c9692adaac3e0cd4b85a652a7e85c42b, type: 3}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 5120
@@ -2334,8 +2335,6 @@ MonoBehaviour:
   _secondPjtDmg: 120
   _secondPjtSize: 2
   _secondPjtDuration: 3
-  _burstingGazeProjectilePrefab: {fileID: 738299376915222676, guid: 5668a1ba8f32c884e884f3f199a3e950, type: 3}
-  _secondPjtPrefab: {fileID: 1824815454008703691, guid: a6a78ec5ed1a05c469317ac9fb9b0e47, type: 3}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 5120
@@ -2405,7 +2404,6 @@ MonoBehaviour:
   _explodeRadius: 14
   _secondExplodeRadius: 4
   _spawnDuration: 2
-  _projPrefab: {fileID: 3000653826481396746, guid: 58b35db8183491541b696f33bbb7e341, type: 3}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 5120
@@ -13194,9 +13192,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1725014473}
     m_Modifications:
+    - target: {fileID: 157075963443825175, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 157075963443825175, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095638073442809298, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095638073442809298, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7336123316370935381, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
       propertyPath: m_Name
       value: UI_Achievement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853268788110455518, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8350073401559089482, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13238,6 +13256,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8631527005561940842, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631527005561940842, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13246,11 +13272,6 @@ PrefabInstance:
 --- !u!4 &4525051404582775855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8350073401559089482, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
-  m_PrefabInstance: {fileID: 4525051404582775854}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4525051404582775856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7336123316370935381, guid: efde476a5201aab4aae9a374d0e5984a, type: 3}
   m_PrefabInstance: {fileID: 4525051404582775854}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &5155326999703240116
