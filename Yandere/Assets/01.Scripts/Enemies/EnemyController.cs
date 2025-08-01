@@ -149,7 +149,11 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
         _dropContext.position = transform.position;
         StageManager.Instance.ItemDropManager.HandleDrop(_dropContext);
-        //StageManager.Instance.TargetKillCount();
+
+        if (gameObject.CompareTag("Enemy_Elite"))
+        {
+            QuestManager.Instance.eliteKillCount++;
+        }
 
         StageManager.Instance.ChangeKillCount(1);
         Destroy(gameObject, 1.0f);
