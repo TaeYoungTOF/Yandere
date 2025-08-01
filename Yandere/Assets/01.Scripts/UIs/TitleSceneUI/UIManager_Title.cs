@@ -21,4 +21,9 @@ public class UIManager_Title : MonoBehaviour
     {
         mainHUD.UpdateUI();
     }
+
+    public void CallPreparingPopUp()
+    {
+        popUp.CallPreparingPopUp();
+    }
 }

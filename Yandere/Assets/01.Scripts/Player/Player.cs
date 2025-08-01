@@ -113,6 +113,7 @@ public class Player : MonoBehaviour, IDamagable
         }
 
         _rigidbody2D.MovePosition(targetPos);
+        QuestManager.Instance.lastMoveTime = Time.time;
     }
 
     private targetDirectType GetDirectionFromVector(Vector3 dir)
@@ -213,6 +214,8 @@ public class Player : MonoBehaviour, IDamagable
         float actualDamage = amount * (1 - (stat.FinalDef / (stat.FinalDef + 500)));
         stat.ChangeCurrentHp(-actualDamage);
 
+        QuestManager.Instance.lastDamageTime = Time.time;
+        
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
     }
 

@@ -28,11 +28,16 @@ public class UI_Popup : MonoBehaviour
     [SerializeField] private GameObject _lackResourcePanel;
     [SerializeField] private GameObject _lackAccountLvPanel;
     [SerializeField] private GameObject _fullFacilityLvPanel;
+    
+    [Header("Preparing Pop-up")]
+    [SerializeField] private GameObject _preparingPanel;
+    [SerializeField] private Button _prepaingBackButton;
 
     public void Init()
     {
         _upgradeBackButton.onClick.AddListener(CloseUpgradePanel);
         _lackAccountLvButton.onClick.AddListener(CloseLackAccountLvPanel);
+        _prepaingBackButton.onClick.AddListener(ClosePreparingPopUp);
         
         _popUpPanel.SetActive(false);
         
@@ -59,8 +64,6 @@ public class UI_Popup : MonoBehaviour
         _upgradePanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
-    
- 
 
     public void CallInfoPanel(string facilityName, string info)
     {
@@ -82,7 +85,7 @@ public class UI_Popup : MonoBehaviour
         _lackAccountLvPanel.SetActive(true);
     }
     
-    public void CloseLackAccountLvPanel()
+    private void CloseLackAccountLvPanel()
     {
         SoundManager.Instance.Play("LobbyClick02_SFX");
         _lackAccountLvPanel.SetActive(false);
@@ -93,5 +96,18 @@ public class UI_Popup : MonoBehaviour
     {
         _popUpPanel.SetActive(true);
         _fullFacilityLvPanel.SetActive(true);
+    }
+
+    public void CallPreparingPopUp()
+    {
+        _popUpPanel.SetActive(true);
+        _preparingPanel.SetActive(true);
+    }
+
+    private void ClosePreparingPopUp()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _preparingPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
     }
 }
