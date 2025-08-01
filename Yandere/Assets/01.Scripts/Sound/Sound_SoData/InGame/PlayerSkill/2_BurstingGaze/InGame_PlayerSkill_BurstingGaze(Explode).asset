@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37539841065ecc04abf91ea63dbd6b84, type: 3}
+  m_Name: InGame_PlayerSkill_BurstingGaze(Explode)
+  m_EditorClassIdentifier: 
+  soundType: 1
+  soundCategory: 3
+  soundName: InGame_PlayerSkill_2_BurstingGaze02
+  volume: 1
+  loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: 80331f18004553d4d8d9a684cb98f659, type: 3}
+  - {fileID: 8300000, guid: a6a58defd02253840b4dd61d1e24e465, type: 3}

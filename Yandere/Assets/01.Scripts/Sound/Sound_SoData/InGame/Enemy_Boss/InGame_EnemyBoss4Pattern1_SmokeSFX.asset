@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: InGame_EnemyBoss4Pattern1_SmokeSFX
   m_EditorClassIdentifier: 
   soundType: 1
+  soundCategory: 0
   soundName: InGame_EnemyBoss4Pattern1_SmokeSFX
-  soundClip: {fileID: 8300000, guid: ae1b4ff02970f4e4fbd36fe11c386b6f, type: 3}
   volume: 0.5
   loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: ae1b4ff02970f4e4fbd36fe11c386b6f, type: 3}

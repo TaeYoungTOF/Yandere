@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37539841065ecc04abf91ea63dbd6b84, type: 3}
-  m_Name: TitleScence_BGM
+  m_Name: InGame_PlayerSKill_RagingEmotions(Projectile)
   m_EditorClassIdentifier: 
-  soundType: 0
-  soundName: Title_BGM
-  soundClip: {fileID: 8300000, guid: 6ae6e57d434a13442809323d8f9703e5, type: 3}
-  volume: 0.4
-  loop: 1
+  soundType: 1
+  soundCategory: 7
+  soundName: InGame_PlayerSKill_RagingEmotions01
+  volume: 0.3
+  loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: 337a056068cae434ba9662d87c57db62, type: 3}
+  - {fileID: 8300000, guid: 666edd6de6bf72749bedf203f840fe7c, type: 3}

@@ -48,6 +48,7 @@ public class ParchedLonging : ActiveSkill<ParchedLongingDataWrapper>
 
             //GameObject go = Instantiate(_parchedLongingProjectilePrefab, spawnPos, Quaternion.identity);
             GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.ParchedLongingProj, spawnPos, Quaternion.identity);
+            SoundManager.Instance.PlayRandomSFX(SoundCategory.ParchedLongingProjectile);
             ParchedLongingProjectile projectile = go.GetComponent<ParchedLongingProjectile>();
             projectile.Initialize(data, _enemyLayer);
         }

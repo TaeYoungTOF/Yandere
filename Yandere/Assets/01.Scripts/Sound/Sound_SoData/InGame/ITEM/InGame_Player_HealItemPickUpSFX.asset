@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: InGame_Player_HealItemPickUpSFX
   m_EditorClassIdentifier: 
   soundType: 1
+  soundCategory: 0
   soundName: InGame_Player_HealItemPickUpSFX
-  soundClip: {fileID: 8300000, guid: e68fbaec4b868104b92cbbf238531232, type: 3}
   volume: 0.8
   loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: e68fbaec4b868104b92cbbf238531232, type: 3}

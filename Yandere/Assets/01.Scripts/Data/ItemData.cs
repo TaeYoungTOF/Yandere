@@ -19,6 +19,7 @@ public class ItemData : ScriptableObject
    [Multiline (3)]public string description;
    public Sprite icon;
    public ItemType itemtpye;
+   public GameObject itemEffectPrefab;
    public float amount;
 
    [Header("폭탄 전용")]

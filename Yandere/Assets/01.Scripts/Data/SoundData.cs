@@ -13,11 +13,15 @@ public enum SoundCategory
 {
     None,
     Fireball,
+    FireProjectile,
     BurstingGaze,
+    BurstingGazeProjectile,
     ParchedLonging,
-    RagingEmotions,
+    ParchedLongingProjectile,
+    RagingEmotionsProjectile,
     EtchedHatred,
-    PouringAffection
+    PouringAffection,
+    PouringAffectionProjectile,
 }
 
 [CreateAssetMenu(fileName = "SoundData", menuName = "Audio/SoundData")]

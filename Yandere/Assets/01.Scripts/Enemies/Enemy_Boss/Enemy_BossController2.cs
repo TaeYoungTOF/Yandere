@@ -154,12 +154,12 @@ public class Enemy_BossController2 : EnemyController
             Debug.LogWarning("FireBullet 실패: _playerTransform이 null입니다.");
             return;
         }
-
-        Debug.Log("총알 발사 실행됨");
+        
         Vector3 dir = (_playerTransform.position - firePoint.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x);
 
         GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        SoundManager.Instance.Play("InGame_EnemyBoss2Pattern1_GunSFX");
         var proj = bullet.GetComponent<BossPattern2_Projectile>();
 
         if (proj == null)
@@ -210,13 +210,16 @@ public class Enemy_BossController2 : EnemyController
         Vector3 startPos = firePoint.position;
         Vector3 targetPos = _playerTransform.position;
         
+       
         GameObject grenade = Instantiate(grenadePrefab, startPos, Quaternion.identity);
+        SoundManager.Instance.Play("InGame_EnemyBoss_ThrowingSFX");
         Enemy_BossGrenadeProjectile02 grenadeScript = grenade.GetComponent<Enemy_BossGrenadeProjectile02>();
 
         if (grenadeScript != null)
         {
             grenadeScript.Init(targetPos, grenadeThrowHeight, grenadeDuration);
         }
+        
     }
     #endregion
     

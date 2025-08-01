@@ -30,7 +30,7 @@ public class Enemy_BossController3 : EnemyController
     [Header("보스 패턴2 360도 베기 설정")]
     [SerializeField] private float teleportDistanceBehindPlayer = 1.5f;
     [SerializeField] private float preAttackDelay = 1f;
-    [SerializeField] private float slashRadius = 3f;
+    // [SerializeField] private float slashRadius = 3f;
     [SerializeField] private int pattern2Damage = 100;
     [SerializeField] private GameObject slashEffectPrefab;
     
@@ -47,7 +47,7 @@ public class Enemy_BossController3 : EnemyController
     private float pattern2Timer = 0f;
     
     
-    void Start()
+    protected override void Start()
     {
         base.Start();
         StartCoroutine(BossPatternRoutine());
@@ -140,7 +140,7 @@ public class Enemy_BossController3 : EnemyController
         // 조준 및 충전
         yield return new WaitForSeconds(laserChargeTime); // 2초 충전
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < laserCount; i++)
         {
             FireLaser(); // 레이저 발사
             yield return new WaitForSeconds(laserInterval);

@@ -8,37 +8,25 @@ using static Demo_Project.SceneManager;
         [Header("이펙트 프리팹")]
         public GameObject impactObject = null;
         public GameObject muzzleFlashObject = null;
-        public GameObject chargingObject = null;
 
         [Header("설정")]
-        public bool isChargeable = false;
         public bool rotateSprite = true;
         public bool muzzleFlash = true;
-        public Color muzzleFlashColor = Color.white;
-        public Color chargeColor = Color.white;
-
         public bool explodeAtScreenEdge = true;
 
         [Header("이동 관련")]
         public float moveAngle = 0; // 라디안
         public float spriteAngle = 0; // 라디안
         public float moveSpeed = 5f;
-        public float angleRandomness = 0f;
 
         [Header("데미지 설정")]
         public float damage = 10f;
         public string targetTag = "Player";
-
-        [Header("기타 설정")]
-        public Vector2 bulletOriginPoint = new Vector2(.36f, 0);
-        public Vector2 muzzleFlashOriginPoint = new Vector2(0, 0);
-        public Vector2 chargeOriginPoint = new Vector2(0, 0);
-
+        
         public float rotationSpeed = 0;
         public float rotationRange = 0;
 
         private bool rotateClockwise = false;
-        private float xOffset = 0;
         private float timeSinceLastFrame = 0;
         
         private bool isFacingLeft = false;
@@ -50,7 +38,7 @@ using static Demo_Project.SceneManager;
 
         void Start()
         {
-            xOffset = transform.position.x;
+
 
             if (rotateSprite)
             {
@@ -122,14 +110,11 @@ using static Demo_Project.SceneManager;
 
         void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log("Trigger 충돌 대상: " + col.name + ", 태그: " + col.tag);
-
             if (!col.CompareTag(targetTag)) return;
 
             var player = col.GetComponent<Player>();
             if (player != null)
             {
-                Debug.Log("플레이어에 직접 데미지 적용");
                 StageManager.Instance.Player.TakeDamage(damage); // 직접 호출로 확인
             }
 

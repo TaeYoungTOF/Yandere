@@ -65,6 +65,10 @@ public class ParchedLongingProjectile : BaseProjectile
         
         blackholePrefab.SetActive(false);
         explosionPrefab.SetActive(true);
+        if (explosionPrefab == true)
+        {
+            SoundManager.Instance.Play("InGame_PlayerSkill_ParchedLonging02");
+        }
 
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, _data.projectileRadius, enemyLayer);
 
@@ -72,7 +76,9 @@ public class ParchedLongingProjectile : BaseProjectile
         {
             if (e.TryGetComponent(out IDamagable target))
             {
+                
                 target.TakeDamage(_data.skillDamage);
+                
             }
         }
 

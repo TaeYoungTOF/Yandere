@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: InGame_EnemyBoss3Pattern1_LaserSFX
   m_EditorClassIdentifier: 
   soundType: 1
+  soundCategory: 0
   soundName: InGame_EnemyBoss3Pattern1_LaserSFX
-  soundClip: {fileID: 8300000, guid: e800fb79a32dc804eacf49ff972a1c5d, type: 3}
   volume: 0.2
   loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: e800fb79a32dc804eacf49ff972a1c5d, type: 3}

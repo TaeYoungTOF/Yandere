@@ -51,6 +51,7 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
 
             GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGazeProj, player.transform.position, Quaternion.identity);
             var proj = projGO.GetComponent<BurstingGazeProjectile>();
+            SoundManager.Instance.Play("InGame_PlayerSkill_2_BurstingGaze01");
             proj.Initialize(finalDir, data, _enemyLayer);
 
             yield return new WaitForSeconds(data.shootDelay);
