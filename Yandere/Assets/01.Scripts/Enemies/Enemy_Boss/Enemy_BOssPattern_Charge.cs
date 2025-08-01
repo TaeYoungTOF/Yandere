@@ -15,8 +15,8 @@ public class Enemy_BossPattern_Charge : MonoBehaviour, IBossPattern
     [SerializeField] private float cooldown = 30f;
 
     [Header("충돌 피해")]
-    [SerializeField] private float knockbackForce = 10f;
-    [SerializeField] private float damagePercent = 0.15f;
+    //[SerializeField] private float knockbackForce = 10f;
+    //[SerializeField] private float damagePercent = 0.15f;
 
     [Header("이펙트")]
     [SerializeField] private Enemy_BossDashPreview dashPreview;  // 인스펙터에서 연결 (대쉬 거리 표시)

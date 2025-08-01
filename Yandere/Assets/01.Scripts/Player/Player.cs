@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamagable
     private int _itemLayer;
     
     public PlayerStat stat = new();
+    public bool isBlinded = false;
 
     [Header("Player Controller")]
     public FloatingJoystick floatingJoystick;
@@ -58,6 +59,13 @@ public class Player : MonoBehaviour, IDamagable
 
     private void Update()
     {
+        if (isBlinded)
+        {
+            _moveVec = Vector3.zero;           // ✅ 입력도 막고
+            PlayerAnim.SetAni(AniType.Idle);   // ✅ 애니메이션도 Idle 고정
+            return;
+        } 
+        
         PullItemsInRange();
 
         // 조이스틱에서 입력 값을 받아 옴

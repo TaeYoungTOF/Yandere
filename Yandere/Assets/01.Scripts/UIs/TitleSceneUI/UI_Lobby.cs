@@ -13,7 +13,7 @@ public class UI_Lobby : MonoBehaviour
 
     private void OnClickStageSelectButton()
     {
-        SoundManager.Instance.Play("LobbyClick01_SFX");
+        SoundManager.Instance.Play("Lobby_StageSelect_Click01SFX");
         _stageSelectPanel.SetActive(true);
     }
 }

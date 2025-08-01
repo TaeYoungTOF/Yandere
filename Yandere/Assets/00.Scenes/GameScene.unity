@@ -1738,6 +1738,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2668165522901210198, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2668165523308479279, guid: 531203e169818ec4b87ca84b327ad1d4, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -13443,6 +13447,7 @@ MonoBehaviour:
     _finalSkillDuration: 0
     _coolDown: 0
     _projectileCount: 0
+  isBlinded: 0
   floatingJoystick: {fileID: 190654502}
   _pullDuration: 0.5
   _pullSpeed: 10

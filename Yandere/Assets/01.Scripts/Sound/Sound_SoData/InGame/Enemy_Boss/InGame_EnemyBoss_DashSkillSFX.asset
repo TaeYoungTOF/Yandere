@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: InGame_EnemyBoss_DashSkillSFX
   m_EditorClassIdentifier: 
   soundType: 1
+  soundCategory: 0
   soundName: InGame_EnemyBoss_DashSkillSFX
-  soundClip: {fileID: 8300000, guid: 9436cc6cc67c74a48b365e300a131acc, type: 3}
   volume: 1
   loop: 0
+  soundClips: []

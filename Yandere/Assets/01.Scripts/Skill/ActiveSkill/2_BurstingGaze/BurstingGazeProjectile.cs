@@ -30,6 +30,7 @@ public class BurstingGazeProjectile : BaseProjectile
             if (other.TryGetComponent(out IDamagable target))
             {
                 target.TakeDamage(_data.skillDamage);
+                //SoundManager.Instance.PlayRandomSFX(SoundCategory.BurstingGaze);
                 ReturnToPool();
             }
         }

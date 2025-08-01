@@ -32,10 +32,10 @@ public class ItemObject : MonoBehaviour, IDamagable
     {
         isBroken = true;
         
-        Debug.Log("오브젝트가 파괴 됨");
         _animator.SetTrigger("Break");
         _dropContext.position = transform.position;
         StageManager.Instance.ItemDropManager.HandleDrop(_dropContext);
+        SoundManager.Instance.Play("InGame_ObjectField_DestroySFX");
         
     }
     

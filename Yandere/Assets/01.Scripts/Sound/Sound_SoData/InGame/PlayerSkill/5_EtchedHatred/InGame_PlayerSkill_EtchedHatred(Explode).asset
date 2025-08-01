@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37539841065ecc04abf91ea63dbd6b84, type: 3}
+  m_Name: InGame_PlayerSkill_EtchedHatred(Explode)
+  m_EditorClassIdentifier: 
+  soundType: 1
+  soundCategory: 8
+  soundName: InGame_PlayerSkill_EtchedHatred02
+  volume: 1
+  loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: 78b0349c1490b5644895a5714c5ad8c4, type: 3}
+  - {fileID: 8300000, guid: ff34a7ba7a7b34f4587af9846017b4db, type: 3}
+  - {fileID: 8300000, guid: 608a2766d10b76043a7ae9fdc92d5cde, type: 3}
+  - {fileID: 8300000, guid: 9b74e4ccbfc782b40be97ec13de87ad8, type: 3}

@@ -16,6 +16,7 @@ MonoBehaviour:
   description: "\uD50C\uB808\uC774\uC5B4 \uCCB4\uB825\uC744 \uB300\uB7C9 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
   icon: {fileID: 21300000, guid: 9db7270e084d1ab448b37d8900f0cf07, type: 3}
   itemtpye: 1
+  itemEffectPrefab: {fileID: 6513990714404019241, guid: 0b3e190c245c4fe4a93ac7d9e409cd15, type: 3}
   amount: 100
   explosionRadius: 0
   explosionDamage: 0

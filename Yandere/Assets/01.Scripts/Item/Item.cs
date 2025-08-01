@@ -31,15 +31,19 @@ public class Item : MonoBehaviour
             case ItemType.ExpItem:
                 player.GainExp(itemData.amount);
                 QuestManager.Instance.expItemUseCount++;
+                itemPickUpEffect();
                 SoundManager.Instance.Play("InGame_Player_ExpItemPickUpSFX");
                 break;
             case ItemType.HealItem:
                 player.Heal(itemData.amount);
                 QuestManager.Instance.healItemUseCount++;
+                itemPickUpEffect();
                 SoundManager.Instance.Play("InGame_Player_HealItemPickUpSFX");
                 break;
             case ItemType.GoldItem:
                  StageManager.Instance.ChangeGoldCount((int)itemData.amount);
+                 itemPickUpEffect();
+                 SoundManager.Instance.Play("InGame_Player_MoneyPickUpSFX");
                  break;
             case ItemType.BoomItem:
                 DoExplosionEffect();
@@ -106,6 +110,15 @@ public class Item : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void itemPickUpEffect()
+    {
+        GameObject itemPickEffect = Instantiate(itemData.itemEffectPrefab, transform.position, Quaternion.identity);
+        
+        itemPickEffect.transform.SetParent(StageManager.Instance.Player.transform);
+        
+        Destroy(itemPickEffect, 0.8f);
     }
     
     

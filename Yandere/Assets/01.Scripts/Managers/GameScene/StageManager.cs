@@ -89,6 +89,8 @@ public class StageManager : MonoBehaviour
         if (Player.stat.CurrentHp <= 0)
         {
             Time.timeScale = 0f;
+            SoundManager.Instance.Play("InGame_Player_Die");
+            SoundManager.Instance.StopBGM();
             GameOver();
             return;
         }
@@ -98,6 +100,8 @@ public class StageManager : MonoBehaviour
         if (_elapsedTime >= _maxTime)
         {
             Debug.Log("[StageManager] Time Over");
+            SoundManager.Instance.Play("InGame_Player_Die");
+            SoundManager.Instance.StopBGM();
             GameOver();
             return;
         }

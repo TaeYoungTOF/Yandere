@@ -69,6 +69,7 @@ public class RagingEmotions : ActiveSkill<RagingEmotionsDataWrapper>
             //GameObject go = Instantiate(_RagingEmotionsProjectilePrefab, spawnPos, Quaternion.identity);
             GameObject go = ObjectPoolManager.Instance.GetFromPool(PoolType.RagingEmotionsProj, spawnPos, Quaternion.identity);
             RagingEmotionsProjectile projectile = go.GetComponent<RagingEmotionsProjectile>();
+            SoundManager.Instance.PlayRandomSFX(SoundCategory.RagingEmotionsProjectile);
             projectile.Initialize(player.transform, angle, data, _enemyLayer);
         }
         

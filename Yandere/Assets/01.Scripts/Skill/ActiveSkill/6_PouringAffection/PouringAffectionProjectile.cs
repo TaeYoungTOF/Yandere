@@ -45,6 +45,10 @@ public class PouringAffectionProjectile : BaseProjectile
         
         _starPrefab.SetActive(false);
         _explosionPrefab.SetActive(true);
+        if (_explosionPrefab)
+        {
+            SoundManager.Instance.Play("InGame_PlayerSkill_PouringAffection02");
+        }
 
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, _data.explosionRadius, enemyLayer);
 

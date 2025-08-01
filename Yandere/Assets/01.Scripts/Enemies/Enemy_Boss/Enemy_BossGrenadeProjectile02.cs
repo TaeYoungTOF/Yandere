@@ -55,11 +55,23 @@ public class Enemy_BossGrenadeProjectile02 : MonoBehaviour
 
    private void Explode()
    {
-      // 💥 폭발 이펙트 (도착 지점 기준)
+      // 💥 폭발 이펙트 생성 (도착 지점 기준)
       if (explosionEffect != null)
-         Instantiate(explosionEffect, targetPos, Quaternion.identity);
+      {
+         GameObject effect = Instantiate(explosionEffect, targetPos, Quaternion.identity);
+         Destroy(effect, 5f); // 폭발 이펙트만 5초 뒤 제거
+      }
 
-      // TODO: 디버프 영역 생성 예정 (ex: SmokeDamageZone)
+      SoundManager.Instance.Play("InGame_EnemyBoss2Pattern2_BombSFX");
+
+      // 🎯 수류탄 시각 제거
+      SpriteRenderer sr = GetComponent<SpriteRenderer>();
+      if (sr != null) sr.enabled = false;
+
+      Collider2D col = GetComponent<Collider2D>();
+      if (col != null) col.enabled = false;
+
+      // 디버프 적용
       Collider2D hit = Physics2D.OverlapCircle(targetPos, damageRadius, LayerMask.GetMask("Player"));
       if (hit != null)
       {
@@ -67,24 +79,30 @@ public class Enemy_BossGrenadeProjectile02 : MonoBehaviour
          if (player != null)
          {
             player.TakeDamage(damageAmount);
-
-            ApplyBlindDebuff(blindDuration);
+            player.isBlinded = true;
+            ApplyBlindDebuff(blindDuration, player);
          }
       }
-
-      Destroy(gameObject);
+      
    }
     
-   private void ApplyBlindDebuff(float duration)
+   private void ApplyBlindDebuff(float duration, Player player)
    {
-       StartCoroutine(BlindDebuffRoutine(duration));
+       StartCoroutine(BlindDebuffRoutine(duration, player));
+       
    }
 
-   private IEnumerator BlindDebuffRoutine(float duration)
+   private IEnumerator BlindDebuffRoutine(float duration, Player player)
    {
-       UIManager.Instance.ShowBlindOverlay(true); // 시야 가림
-       yield return new WaitForSeconds(duration);
-       UIManager.Instance.ShowBlindOverlay(false); // 해제
+      UIManager.Instance.ShowBlindOverlay(true);
+
+      yield return new WaitForSeconds(duration);
+
+      UIManager.Instance.ShowBlindOverlay(false);
+
+      player.isBlinded = false;
+      
+      Destroy(gameObject); // ❗ 코루틴 끝나고 수류탄 삭제
    }
    
    private void OnDrawGizmosSelected()
