@@ -134,8 +134,8 @@ MonoBehaviour:
   pattern2Center: {fileID: 3798417423184156605}
   pattern2DetectRadius: 6
   pattern2SlashRadius: 3
-  pattern1Cooldown: 12
-  pattern2Cooldown: 2
+  pattern1Cooldown: 2
+  pattern2Cooldown: 12
   laserPrefab: {fileID: 7675876397032021012, guid: c0a765898e993244aa57c31167682c52, type: 3}
   laserSpawnPoint: {fileID: 3295909504478681482}
   laserSpeed: 15

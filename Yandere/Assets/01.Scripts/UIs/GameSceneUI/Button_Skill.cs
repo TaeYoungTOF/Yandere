@@ -22,6 +22,8 @@ public class Button_Skill : MonoBehaviour
 
     public void OnClick()
     {
+        SoundManager.Instance.Play("LobbyClick01_SFX");
+        
         _skill.LevelUp();
 
         UIManager.Instance.SetUIState(UIState.None);
