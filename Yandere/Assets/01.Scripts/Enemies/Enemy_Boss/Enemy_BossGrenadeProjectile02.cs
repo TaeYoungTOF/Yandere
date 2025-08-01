@@ -83,7 +83,7 @@ public class Enemy_BossGrenadeProjectile02 : MonoBehaviour
             ApplyBlindDebuff(blindDuration, player);
          }
       }
-
+      
    }
     
    private void ApplyBlindDebuff(float duration, Player player)
