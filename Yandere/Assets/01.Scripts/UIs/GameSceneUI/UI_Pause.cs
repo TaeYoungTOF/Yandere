@@ -33,8 +33,8 @@ public class UI_Pause : ToggleableUI
         _settingButton.onClick.AddListener(OnClickSettingButton);
         _homeButton.onClick.AddListener(OnClickHomeButton);
         _backButton.onClick.AddListener(OnClickBackButton);
-        _confirmHomeButton.onClick.AddListener(OnClickConfirmHomeButtonButton);
-        _confirmCancelButton.onClick.AddListener(OnClickconfirmCancelButton);
+        _confirmHomeButton.onClick.AddListener(OnClickConfirmHomeButton);
+        _confirmCancelButton.onClick.AddListener(OnClickConfirmCancelButton);
     }
 
     public override UIState GetUIState()
@@ -119,13 +119,13 @@ public class UI_Pause : ToggleableUI
         SoundManager.Instance.Play("LobbyClick02_SFX");
     }
 
-    private void OnClickConfirmHomeButtonButton()
+    private void OnClickConfirmHomeButton()
     {
-        GameManager.Instance.LoadTitleScene();
+        GameManager.Instance.LoadScene(SceneName.TitleScene);
         SoundManager.Instance.Play("LobbyClick02_SFX");
     }
 
-    private void OnClickconfirmCancelButton()
+    private void OnClickConfirmCancelButton()
     {
         _confirmPanel.SetActive(false);
         SoundManager.Instance.Play("LobbyClick02_SFX");

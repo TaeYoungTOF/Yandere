@@ -16,8 +16,9 @@ MonoBehaviour:
   stageName: "\uAC70\uB9AC"
   stageDesc: "\uAC70\uB9AC\uC785\uB2C8\uB2E4"
   stageImage: {fileID: 21300000, guid: 414463c7e177e3c46861870dc16eef38, type: 3}
+  spawnAreaMin: {x: -23, y: -11}
+  spawnAreaMax: {x: 26, y: 10}
   clearTime: 660
-  achieveDatas: []
   waveDatas:
   - {fileID: 11400000, guid: 480e5b9b2a22fb14780153dee1921487, type: 2}
   - {fileID: 11400000, guid: 9de41a640bf27d44da36039c4f6e02f3, type: 2}

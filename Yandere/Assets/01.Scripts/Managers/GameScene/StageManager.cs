@@ -63,34 +63,31 @@ public class StageManager : MonoBehaviour
             Debug.LogError("[StageManager] Map Prefab is Null!");
             return;
         }
-
         Instantiate(mapPrefabs[currentStageData.stageIndex], Vector3.zero, Quaternion.identity);
 
         _maxTime = currentStageData.clearTime;
-
-        StartCoroutine(StartWaveRoutine(currentSpawnData));
 
         Exp = 0;
         ChangeKillCount(0);
         ChangeGoldCount(0);
         Player.GainExp(5);
+        
+        _spawnManager.SetSpawnArea(currentStageData.spawnAreaMin, currentStageData.spawnAreaMax);
+        StartCoroutine(_spawnManager.SpawnJarRoutine());
+        StartCoroutine(_spawnManager.HandleWave(currentSpawnData));
     }
 
     private void Update()
     {
-        // Achievement UI는 게임을 멈추지 않도록 예외 처리
-        if (IsUIOpened/** && UIManager.Instance._currentState != UIState.Achievement*/)
+        if (IsUIOpened)
         {
             Time.timeScale = 0f;
             return;
         }
 
-
         if (Player.stat.CurrentHp <= 0)
         {
             Time.timeScale = 0f;
-            SoundManager.Instance.Play("InGame_Player_Die");
-            SoundManager.Instance.StopBGM();
             GameOver();
             return;
         }
@@ -99,9 +96,6 @@ public class StageManager : MonoBehaviour
 
         if (_elapsedTime >= _maxTime)
         {
-            Debug.Log("[StageManager] Time Over");
-            SoundManager.Instance.Play("InGame_Player_Die");
-            SoundManager.Instance.StopBGM();
             GameOver();
             return;
         }
@@ -124,7 +118,7 @@ public class StageManager : MonoBehaviour
             if (nextIndex < currentStageData.waveDatas.Count)
             {
                 currentSpawnData = currentStageData.waveDatas[nextIndex];
-                StartCoroutine(StartWaveRoutine(currentSpawnData));
+                StartCoroutine(_spawnManager.HandleWave(currentSpawnData));
             }
         }
     }
@@ -139,11 +133,6 @@ public class StageManager : MonoBehaviour
     {
         GoldCount += amount;
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateGold();
-    }
-
-    private IEnumerator StartWaveRoutine(WaveData spawnData)
-    {
-        yield return StartCoroutine(_spawnManager.HandleWave(spawnData));
     }
 
     public void StageClear()
@@ -198,11 +187,8 @@ public class StageManager : MonoBehaviour
 
     private void GameOver()
     {
+        SoundManager.Instance.Play("InGame_Player_Die");
+        SoundManager.Instance.StopBGM();
         UIManager.Instance.SetUIState(UIState.GameOver);
-    }
-
-    public void LevelUpEvent()
-    {
-        UIManager.Instance.SetUIState(UIState.SkillSelect);
     }
 }

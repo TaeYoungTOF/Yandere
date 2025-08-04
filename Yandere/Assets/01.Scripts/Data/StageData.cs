@@ -8,6 +8,10 @@ public class StageData : ScriptableObject {
     public string stageDesc;
     public Sprite stageImage;
 
+    [Header("Spawn Area")]
+    public Vector2 spawnAreaMin;
+    public Vector2 spawnAreaMax;
+
     [Tooltip("초 단위로 작성")]
     public float clearTime;
 

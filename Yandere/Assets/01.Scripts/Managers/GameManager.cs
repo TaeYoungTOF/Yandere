@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,10 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("Stage Data")]
     public StageData[] stageDatas;
     [SerializeField] private int _maxStageIndex;
-    public int MaxStageIndex
-    {
-        get => _maxStageIndex;
-    }
+    public int MaxStageIndex => _maxStageIndex;
     public StageData currentStageData;
 
     private bool _rewardPending;
@@ -68,50 +66,27 @@ public class GameManager : MonoBehaviour
         currentStageData = stageData;
     }
 
-    public void LoadGameScene()
+    public void LoadScene(SceneName sceneName)
     {
-        InGameData = DataManager.Instance.inGameDatas;
-        SceneManager.LoadScene("GameScene");
-    }
-
-    public async void LoadTitleScene()
-    {
-        Debug.Log("[GameManager] Call Title Scene");
+        switch (sceneName)
+        {
+            case SceneName.TitleScene:
+                _rewardPending = true;
+                _pendingExp = StageManager.Instance.Exp;
+                _pendingGold = StageManager.Instance.GoldCount;
+                break;
+            case SceneName.GameScene:
+                InGameData = DataManager.Instance.inGameDatas;
+                break;
+            default:
+                Debug.LogError("[GameManager] Invalid scene name: " + sceneName);
+                break;
+        }
         
-        _rewardPending = true;
-        _pendingExp = StageManager.Instance.Exp;
-        _pendingGold = StageManager.Instance.GoldCount;
-
-        // 비동기 씬 로드
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("TitleScene");
-        while (!asyncLoad.isDone)
-        {
-            await System.Threading.Tasks.Task.Yield();
-        }
-    }
-
-    public void LoadNextStage()
-    {
-        int nextIndex = currentStageData.stageIndex;
-
-        if (nextIndex >= MaxStageIndex)
-        {
-            Debug.Log("[GameManager] Last Stage. Return to Title");
-
-            LoadTitleScene();
-            return;
-        }
-
-        nextIndex++;
-
-        currentStageData = stageDatas[nextIndex - 1];
-
-        Debug.Log($"[GameManager] Load Next Stage: {currentStageData.stageIndex}");
-
-        LoadGameScene();
+        StartCoroutine(SceneLoader.Instance.LoadAsync(sceneName));
     }
     
-    private void OnEnable()
+    /*private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -119,7 +94,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    }*/
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

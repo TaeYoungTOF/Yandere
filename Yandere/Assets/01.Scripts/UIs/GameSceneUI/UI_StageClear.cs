@@ -34,8 +34,8 @@ public class UI_StageClear : ToggleableUI
         _homeButton.onClick.RemoveAllListeners();
         _backButton.onClick.RemoveAllListeners();
         
-        _homeButton.onClick.AddListener(GameManager.Instance.LoadTitleScene);
-        _backButton.onClick.AddListener(OnClickBackButton);
+        _homeButton.onClick.AddListener(() => GameManager.Instance.LoadScene(SceneName.TitleScene));
+        _backButton.onClick.AddListener(() => GameManager.Instance.LoadScene(SceneName.TitleScene));
         
         _stageManager = StageManager.Instance;
     }
@@ -74,10 +74,5 @@ public class UI_StageClear : ToggleableUI
             _questPanels[i].progressText.text = $"{currentQuests[i].currentValue} / {currentQuests[i].maxValue}";
             _questPanels[i].progressBar.value = Mathf.Clamp((float)currentQuests[i].currentValue / currentQuests[i].maxValue, 0, 1);
         }
-    }
-
-    private void OnClickBackButton()
-    {
-        GameManager.Instance.LoadTitleScene();
     }
 }

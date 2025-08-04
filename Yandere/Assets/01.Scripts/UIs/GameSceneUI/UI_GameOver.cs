@@ -21,8 +21,8 @@ public class UI_GameOver : ToggleableUI
         Init(_gameOverPanel);
         _gameOverPanel.SetActive(false);
 
-        _homeButton.onClick.AddListener(GameManager.Instance.LoadTitleScene);
-        _restartButton.onClick.AddListener(GameManager.Instance.LoadGameScene);
+        _homeButton.onClick.AddListener(() => GameManager.Instance.LoadScene(SceneName.TitleScene));
+        _restartButton.onClick.AddListener(() => GameManager.Instance.LoadScene(SceneName.GameScene));
         
         _stageManager = StageManager.Instance;
     }

@@ -6,14 +6,27 @@ public class SpawnManager : MonoBehaviour
 {
     private WaveData _currentSpawnData;
     private Coroutine _spawnRoutine;
+    
+    [Header("Object Settings")]
+    [SerializeField] private int maxItemObjectPrefabCount = 10; // 동시에 존재 가능한 최대 개수
+    [SerializeField] private float spawnInterval = 5f; // 스폰 간격 (초)
+    private List<GameObject> spawnedItemObjectPrefab = new List<GameObject>();
 
     [Header("Spawn Settings")]
     [SerializeField] private float _spawnRadius = 10f;
     [SerializeField] private List<EnemySpawnWeigth> _spawnWeights;
     [SerializeField] private float _spawnInterval;
     [SerializeField] private int _spawnAmount;
+    [SerializeField] private Vector2 _spawnAreaMin; // 좌하단 좌표
+    [SerializeField] private Vector2 _spawnAreaMax; // 우상단 좌표
 
-    public void SetSpawnData(WaveData spawnData)
+    public void SetSpawnArea(Vector2 spawnAreaMin, Vector2 spawnAreaMax)
+    {
+        _spawnAreaMin = spawnAreaMin;
+        _spawnAreaMax = spawnAreaMax;
+    }
+
+    private void SetSpawnData(WaveData spawnData)
     {
         _currentSpawnData = spawnData;
         _spawnWeights = _currentSpawnData.enemyList;
@@ -21,37 +34,23 @@ public class SpawnManager : MonoBehaviour
         _spawnAmount = _currentSpawnData.spawnAmount;
     }
 
-    public IEnumerator HandleWave(WaveData spawnData)
+    public IEnumerator HandleWave(WaveData waveData)
     {
-        SetSpawnData(spawnData);
+        SetSpawnData(waveData);
 
         yield return null;
 
-        switch (spawnData.eventType)
+        switch (waveData.eventType)
         {
             case EventType.StartWave:
-                Debug.Log("[SpawnManager] StartWave");
-                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
-                yield return _spawnRoutine;
-                break;
             case EventType.AddStrongerEnemy:
-                Debug.Log("[SpawnManager] AddStrongerEnemy");
-                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
-                yield return _spawnRoutine;
-                break;
             case EventType.AddEliteEnemy:
-                Debug.Log("[SpawnManager] AddEliteEnemy");
-                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
-                yield return _spawnRoutine;
-                break;
             case EventType.AddRangeEnemy:
-                Debug.Log("[SpawnManager] AddRangeEnemy");
                 _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
                 yield return _spawnRoutine;
                 break;
             case EventType.AddBossEnemy:
-                Debug.Log("[SpawnManager] AddBossEnemy");
-                _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval, _spawnAmount));
+                _spawnRoutine = StartCoroutine(SpawnBoss());
                 yield return _spawnRoutine;
                 break;
             default:
@@ -62,29 +61,6 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnRoutine(float spawnInterval, int spawnAmount)
     {
-        /**
-        int count = 0;
-        
-        while (true)
-        {
-            int totalWeight = 0;
-            foreach (var entry in _spawnWeights)
-                totalWeight += entry.spawnWeight;
-
-            foreach (var entry in _spawnWeights)
-            {
-                float ratio = (float)entry.spawnWeight / totalWeight;
-                count = Mathf.Clamp(count,1, Mathf.RoundToInt(spawnAmount * ratio));
-
-                for (int i = 0; i < count; i++)
-                {
-                    InstantiateEnemy(entry);
-                }
-            }
-
-            yield return new WaitForSeconds(spawnInterval);
-        }*/
-        
         while (true)
         {
             for (int i = 0; i < spawnAmount; i++)
@@ -95,6 +71,14 @@ public class SpawnManager : MonoBehaviour
 
             yield return new WaitForSeconds(spawnInterval);
         }
+    }
+
+    private IEnumerator SpawnBoss()
+    {
+        var entry = GetWeightedRandomEntry();
+        InstantiateEnemy(entry);
+
+        yield return null;
     }
     
     private EnemySpawnWeigth GetWeightedRandomEntry()
@@ -129,6 +113,34 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public IEnumerator SpawnJarRoutine()
+    {
+        yield return null; // 1프레임 대기
+        
+        SpawnItemObjectPrefab(); // ▶ 처음에 한 개 생성
+        
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnInterval);
+
+            // 현재 개수가 최대보다 적으면 생성
+            if (spawnedItemObjectPrefab.Count < maxItemObjectPrefabCount)
+            {
+                SpawnItemObjectPrefab();
+            }
+
+            // 리스트에서 null(파괴된) 오브젝트 정리
+            spawnedItemObjectPrefab.RemoveAll(jar => jar == null);
+        }
+    }
+
+    private void SpawnItemObjectPrefab()
+    {
+        Vector3 spawnPos = GetRandomSpawnPosition();
+        GameObject ItemObjectPrefab = ObjectPoolManager.Instance.GetFromPool(PoolType.FieldObject, spawnPos, Quaternion.identity);
+        spawnedItemObjectPrefab.Add(ItemObjectPrefab);
+    }
+
     private Vector3 GetRandomSpawnPosition()
     {
         Transform playerTransform = StageManager.Instance.Player.transform;
@@ -139,13 +151,37 @@ public class SpawnManager : MonoBehaviour
             return Vector3.zero;
         }
 
-        Vector2 center = playerTransform.position;
-        Vector2 direction = Random.insideUnitCircle.normalized;
-        float distance = _spawnRadius + Random.Range(0f, 5f);
-        
-        Vector2 spawnPos = center + direction * distance;
-        
-        return new Vector3(spawnPos.x, spawnPos.y, 0);
+        const int maxAttempts = 50; // 무한 루프 방지
+        const float colliderCheckRadius = 0.5f; // 충돌 검사 범위 (적 크기에 맞춰 조절)
+        int attempt = 0;
+
+        while (attempt < maxAttempts)
+        {
+            attempt++;
+
+            float randomX = Random.Range(_spawnAreaMin.x, _spawnAreaMax.x);
+            float randomY = Random.Range(_spawnAreaMin.y, _spawnAreaMax.y);
+            Vector2 spawnPos = new Vector2(randomX, randomY);
+
+            // 해당 위치에 Collider가 있는지 검사
+            LayerMask mapLayer = LayerMask.GetMask("Map");
+            if (Physics2D.OverlapCircle(spawnPos, colliderCheckRadius, mapLayer) != null)
+            {
+                continue;
+            }
+
+            // 플레이어와의 거리 검사
+            if (Vector2.Distance(spawnPos, playerTransform.position) < _spawnRadius)
+            {
+                continue;
+            }
+
+            return new Vector3(spawnPos.x, spawnPos.y, 0);
+        }
+
+        // fallback
+        Debug.LogWarning("[SpawnManager] Failed to find Spawn Position");
+        return playerTransform.position + Vector3.right * _spawnRadius;
     }
 
     public void StopSpawn()
@@ -155,5 +191,21 @@ public class SpawnManager : MonoBehaviour
             StopCoroutine(_spawnRoutine);
             _spawnRoutine = null;
         }
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+
+        // 사각형 네 꼭짓점 구해서 선으로 그림
+        Vector3 bottomLeft = new Vector3(_spawnAreaMin.x, _spawnAreaMin.y, 0);
+        Vector3 topLeft = new Vector3(_spawnAreaMin.x, _spawnAreaMax.y, 0);
+        Vector3 topRight = new Vector3(_spawnAreaMax.x, _spawnAreaMax.y, 0);
+        Vector3 bottomRight = new Vector3(_spawnAreaMax.x, _spawnAreaMin.y, 0);
+
+        Gizmos.DrawLine(bottomLeft, topLeft);
+        Gizmos.DrawLine(topLeft, topRight);
+        Gizmos.DrawLine(topRight, bottomRight);
+        Gizmos.DrawLine(bottomRight, bottomLeft);
     }
 }

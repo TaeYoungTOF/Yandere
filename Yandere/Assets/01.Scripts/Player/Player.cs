@@ -193,7 +193,7 @@ public class Player : MonoBehaviour, IDamagable
             stat.level++;
             stat.requiredExp += 1f;
 
-            _stageManager.LevelUpEvent();
+            UIManager.Instance.SetUIState(UIState.SkillSelect);
             UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
 
             yield return new WaitForSeconds(0.1f);

@@ -450,10 +450,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b067bdfa09d7b44f973b69de6e4638a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxItemObjectPrefabCount: 10
+  spawnInterval: 5
   _spawnRadius: 8
   _spawnWeights: []
   _spawnInterval: 0
   _spawnAmount: 0
+  _spawnAreaMin: {x: 0, y: 0}
+  _spawnAreaMax: {x: 0, y: 0}
 --- !u!1 &219609298
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,55 +903,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 555.819, y: 901.89246, z: 9.099861}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &931304778
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 931304780}
-  - component: {fileID: 931304779}
-  m_Layer: 0
-  m_Name: '[ ItemSpawnerManager ]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &931304779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931304778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49746e53188ae04a95a1a10abceeacd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Field_ItemObjectPrefab: {fileID: 8906970490064105965, guid: e7fc76a3b76053947a1a2daa49bfa77f, type: 3}
-  maxItemObjectPrefabCount: 10
-  spawnInterval: 5
-  spawnAreaMin: {x: -28, y: -26}
-  spawnAreaMax: {x: 28, y: 26}
---- !u!4 &931304780
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931304778}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13850,7 +13805,6 @@ SceneRoots:
   - {fileID: 1248482716}
   - {fileID: 895308579}
   - {fileID: 709524319}
-  - {fileID: 931304780}
   - {fileID: 219609301}
   - {fileID: 1999354856}
   - {fileID: 1725014473}
