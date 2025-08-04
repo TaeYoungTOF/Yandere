@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8558856441385917589}
   m_Layer: 10
   m_Name: 1Stage_Elite_TypeD_Student Council
-  m_TagString: Enemy_Normal
+  m_TagString: Enemy_Elite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d365b735565879548a1af1d3010b7109, type: 2}
+  _monsterCurrentHealth: 0
   isInAttackRange: 0
   isDead: 0
   isDashing: 0

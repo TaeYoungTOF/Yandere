@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cefb1a1cba1d98c4998bb893a742c625, type: 3}
-  m_Name: 0StageWaveBoss
+  m_Name: TestWaveData_Jun
   m_EditorClassIdentifier: 
-  eventType: 4
-  endTime: 480
-  spawnInterval: 480
+  eventType: 0
+  endTime: 99999
+  spawnInterval: 99999
   spawnAmount: 1
   enemyList:
-  - enemyPrefab: {fileID: 1439856908508736086, guid: e94f17bf4e6077b4aaac2c538b205996, type: 3}
-    spawnWeight: 0
-    dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
+  - enemyPrefab: {fileID: 1439856908508736086, guid: 3fdbcd0e9e9065a4d962b3c83744056b, type: 3}
+    spawnWeight: 2
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
