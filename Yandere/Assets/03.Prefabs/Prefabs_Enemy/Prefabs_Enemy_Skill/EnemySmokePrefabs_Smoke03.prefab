@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 1270223676235266615, guid: 4f75b067fafdbcf408b6db06258b56ee, type: 3}
   warningEffectPrefab: {fileID: 1691330588945861289, guid: 6da857b3762fb094dafda6eb33467c97, type: 3}
+  stunEffectPrefab: {fileID: 6952382888897578267, guid: f136b1a075e85024a8bf6c0771f764d8, type: 3}
   damageRadius: 2
   damageAmount: 10
   blindDuration: 2

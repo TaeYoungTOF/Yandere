@@ -65,12 +65,17 @@ public class SoundManager : MonoBehaviour
             bgmSource.clip = data.soundClips[0];
             bgmSource.volume = data.volume * masterVolume * bgmVolume;
             bgmSource.loop = data.loop;
+            bgmSource.pitch = data.pitch;
             bgmSource.Play();
         }
         
         else if (data.soundType == SoundType.SFX)
         {
-            sfxSource.PlayOneShot(data.soundClips[0], data.volume * masterVolume * sfxVolume);
+           sfxSource.clip = data.soundClips[0];
+           sfxSource.volume = data.volume * masterVolume * sfxVolume;
+           sfxSource.pitch = data.pitch;
+           sfxSource.loop = data.loop;
+           sfxSource.Play();
         }
     }
 
@@ -137,9 +142,14 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"[SoundManager] '{category}' 카테고리의 SoundData에 클립이 없습니다.");
             return;
         }
-
+        
         AudioClip clip = selected.soundClips[Random.Range(0, selected.soundClips.Count)];
-        sfxSource.PlayOneShot(clip, selected.volume * masterVolume * sfxVolume);
+        
+        sfxSource.clip = clip;
+        sfxSource.volume = selected.volume * masterVolume * sfxVolume;
+        sfxSource.pitch = selected.pitch;
+        sfxSource.loop = false;
+        sfxSource.Play();
     }
    
 }

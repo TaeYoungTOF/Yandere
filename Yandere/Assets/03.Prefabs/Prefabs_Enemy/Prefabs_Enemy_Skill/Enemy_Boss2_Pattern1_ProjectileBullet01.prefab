@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7160713118510500199}
   - component: {fileID: 7160713118510500198}
   m_Layer: 11
-  m_Name: EnemyBulletPrefabs_Boss_Projectile_Bullet01
+  m_Name: Enemy_Boss2_Pattern1_ProjectileBullet01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4787,22 +4787,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactObject: {fileID: 7495853581713593668, guid: 8316cbf2b44a4fa46b1fabcd4c2f1428, type: 3}
   muzzleFlashObject: {fileID: 1856835495579851328, guid: 0878c99493450524f8bd94c47aafed87, type: 3}
-  chargingObject: {fileID: 0}
-  isChargeable: 0
   rotateSprite: 1
   muzzleFlash: 1
-  muzzleFlashColor: {r: 1, g: 0.70980394, b: 0, a: 1}
-  chargeColor: {r: 1, g: 1, b: 1, a: 1}
   explodeAtScreenEdge: 1
   moveAngle: 0
   spriteAngle: 0
   moveSpeed: 5
-  angleRandomness: 0
   damage: 10
   targetTag: Player
-  bulletOriginPoint: {x: 0.5, y: 0}
-  muzzleFlashOriginPoint: {x: 0.5, y: 0.1}
-  chargeOriginPoint: {x: 1, y: 0.1}
   rotationSpeed: 0
   rotationRange: 0
 --- !u!199 &7160713118510500193

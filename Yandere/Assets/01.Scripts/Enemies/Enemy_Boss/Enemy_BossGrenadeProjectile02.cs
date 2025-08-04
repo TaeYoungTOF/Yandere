@@ -80,6 +80,7 @@ public class Enemy_BossGrenadeProjectile02 : MonoBehaviour
          {
             player.TakeDamage(damageAmount);
             player.isBlinded = true;
+            StageManager.Instance.Player.ShowStunEffect(true);
             ApplyBlindDebuff(blindDuration, player);
          }
       }
@@ -99,11 +100,13 @@ public class Enemy_BossGrenadeProjectile02 : MonoBehaviour
       yield return new WaitForSeconds(duration);
 
       UIManager.Instance.ShowBlindOverlay(false);
+      StageManager.Instance.Player.ShowStunEffect(false);
 
       player.isBlinded = false;
       
       Destroy(gameObject); // ❗ 코루틴 끝나고 수류탄 삭제
    }
+   
    
    private void OnDrawGizmosSelected()
    

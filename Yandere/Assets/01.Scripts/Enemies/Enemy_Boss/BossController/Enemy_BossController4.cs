@@ -6,8 +6,6 @@ public class Enemy_BossController4 : EnemyController
 {
     
     
-    [Header("보스 공격 범위 (패턴 사용 시 Scence 사정거리 표시)")]
-    
     [Header("패턴 쿨타임")]
     [SerializeField] private float pattern1Cooldown = 12f;
     [SerializeField] private float pattern2Cooldown = 10f;
@@ -56,6 +54,45 @@ public class Enemy_BossController4 : EnemyController
         pattern2Timer -= Time.deltaTime;
 
     }
+    #region  #region 보스 몬스터3 : TakeDamage 코드
+
+    public override void TakeDamage(float damage)
+    {
+        SoundManager.Instance.Play("InGame_Enemy_HitSFX01");
+        if (isDead) return;
+
+        damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
+        _monsterCurrentHealth -= damage;
+
+        Debug.Log($"[보스컨트롤러4] {enemyData.monsterName}가 {damage} 피해를 입었습니다");
+        _animator.SetTrigger("Hit");
+
+        if (_monsterCurrentHealth <= 0)
+        {
+            BossMonsterDie();
+        }
+    }
+    #endregion
+
+    #region 보스 몬스터4 : Die 코드
+
+    private void BossMonsterDie()
+    {
+        isDead = true;
+        _rigidbody2D.velocity = Vector2.zero;
+        _animator.SetTrigger("Dead");
+
+        StageManager.Instance.ChangeKillCount(1);
+        Destroy(gameObject, 1.0f);
+        
+        StageManager.Instance.StageClear();
+    }
+
+    #endregion
+
+  
+    
+    
 
     private IEnumerator BossPatternRoutine()
     {
@@ -286,37 +323,7 @@ private void ShuffleList<T>(List<T> list)
 }
 
 #endregion
-    
-    #region 피격 및 사망 처리
 
-    public override void TakeDamage(float damage)
-    {
-        SoundManager.Instance.Play("InGame_Enemy_HitSFX01");
-        if (isDead) return;
-
-        damage *= 1 - enemyData.monsterDef / (enemyData.monsterDef + 500);
-        _monsterCurrentHealth -= damage;
-
-        Debug.Log($"[보스컨트롤러4] {enemyData.monsterName}가 {damage} 피해를 입었습니다");
-        _animator.SetTrigger("Hit");
-
-        if (_monsterCurrentHealth <= 0)
-        {
-            BossMonsterDie();
-        }
-    }
-
-    private void BossMonsterDie()
-    {
-        isDead = true;
-        _rigidbody2D.velocity = Vector2.zero;
-        _animator.SetTrigger("Dead");
-
-        StageManager.Instance.ChangeKillCount(1);
-        Destroy(gameObject, 1.0f);
-    }
-
-    #endregion
 
     #region 디버그용 Gizmos
 

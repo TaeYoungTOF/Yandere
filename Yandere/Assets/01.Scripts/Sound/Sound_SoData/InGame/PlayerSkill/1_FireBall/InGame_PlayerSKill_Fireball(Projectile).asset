@@ -16,6 +16,7 @@ MonoBehaviour:
   soundCategory: 1
   soundName: InGame_PlayerSKill_Fireball
   volume: 1
+  pitch: 0.9
   loop: 0
   soundClips:
   - {fileID: 8300000, guid: 83ad9d931ca1db84792ce95f49a3aca4, type: 3}
