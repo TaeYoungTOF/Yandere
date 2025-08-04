@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 using DG.Tweening;
@@ -5,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public enum SceneName
 {
@@ -22,6 +24,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private TMP_Text progressText;
     [SerializeField] private Transform loadingCircle;
     [SerializeField] private float rotateDuration = 2f;
+    private Tween _rotateTween;
 
     [SerializeField] private string[] dialogues;
 
@@ -41,6 +44,12 @@ public class SceneLoader : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void Start()
+    {
+        _isLoading = false;
+        ResetUI();
     }
 
     /*public async Task LoadAsync(SceneName sceneName)
@@ -103,14 +112,10 @@ public class SceneLoader : MonoBehaviour
         {
             case SceneName.GameScene:
                 RotateCircle();
-                loadingSlider.value = 0;
-                progressText.text = "LOADING... 0%";
-                dialogueText.text = dialogues[Random.Range(0, dialogues.Length)];
-        
                 loadingPanel.SetActive(true);
                 break;
+            case SceneName.TitleScene:
             default:
-                loadingPanel.SetActive(false);
                 Debug.Log("[SceneLoader] Loading...");
                 break;
         }
@@ -139,8 +144,8 @@ public class SceneLoader : MonoBehaviour
         {
             await Task.Yield();
         }
-        
-        loadingPanel.SetActive(false);
+
+        ResetUI();
         _isLoading = false;
     }
 
@@ -148,9 +153,19 @@ public class SceneLoader : MonoBehaviour
     {
         if (!loadingCircle) return;
         
-        loadingCircle.DORotate(new Vector3(0, 0, -360), rotateDuration, RotateMode.FastBeyond360)
-                     .SetLoops(-1, LoopType.Restart)
-                     .SetEase(Ease.Linear);
+        _rotateTween = loadingCircle.DORotate(new Vector3(0, 0, -360), rotateDuration, RotateMode.FastBeyond360)
+                                    .SetLoops(-1, LoopType.Restart)
+                                    .SetEase(Ease.Linear);
+    }
+
+    private void ResetUI()
+    {
+        loadingSlider.value = 0;
+        progressText.text = "LOADING... 0%";
+        dialogueText.text = dialogues[Random.Range(0, dialogues.Length)];
+        
+        loadingPanel.SetActive(false);
+        _rotateTween.Kill();
     }
 
     private void UpdateProgress(float progress)
@@ -163,6 +178,6 @@ public class SceneLoader : MonoBehaviour
 
     private void SetComplete()
     {
-        progressText.text = "Start!";
+        progressText.text = "Done!";
     }
 }

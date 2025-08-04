@@ -189,6 +189,7 @@ public class StageManager : MonoBehaviour
     {
         SoundManager.Instance.Play("InGame_Player_Die");
         SoundManager.Instance.StopBGM();
+        
         UIManager.Instance.SetUIState(UIState.GameOver);
     }
 }

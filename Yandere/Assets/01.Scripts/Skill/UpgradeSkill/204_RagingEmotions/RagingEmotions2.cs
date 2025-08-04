@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UnityEngine;
 
 public class RagingEmotions2Wrapper : UpgradeSkillWrapper
@@ -26,7 +25,7 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     
     public override void TryActivate()
     {
-        if (!SkillManager.Instance.isLevelUp) return;
+        if (SkillManager.Instance.isLevelUp == false) return;
         
         if (_activeCoroutine != null)
         {

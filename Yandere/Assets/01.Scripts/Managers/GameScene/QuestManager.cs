@@ -51,8 +51,6 @@ public class QuestManager : MonoBehaviour
                 currentQuests.Add(allQuests[randomIndex]);
             }
         }
-
-        Debug.Log("퀘스트 3개가 생성되었습니다.");
         
         lastDamageTime = Time.time;
         lastMoveTime = Time.time;

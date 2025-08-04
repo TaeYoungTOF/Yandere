@@ -195,12 +195,11 @@ public class Player : MonoBehaviour, IDamagable
 
             UIManager.Instance.SetUIState(UIState.SkillSelect);
             UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
+            SkillManager.Instance.isLevelUp = true;
 
             yield return new WaitForSeconds(0.1f);
         }
-
         _isLeveling = false;
-        SkillManager.Instance.isLevelUp = true;
     }
 
     public void Heal(float amount)

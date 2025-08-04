@@ -70,16 +70,13 @@ public class RagingEmotionsProjectile : BaseProjectile
         {
             target.TakeDamage(_data.skillDamage);
             _lastHitTimes[other] = Time.time;
-
-            if (other.CompareTag("Enemy_Normal"))
-            {
-                ApplyKnockback(other);
-            }
+            ApplyKnockback(other);
         }
     }
     
     private void ApplyKnockback(Collider2D enemy)
     {
+        if (!enemy.CompareTag("Enemy_Normal")) return;
         if (enemy.attachedRigidbody is null) return;
 
         Vector2 knockbackDir = (enemy.transform.position - _player.position).normalized;
