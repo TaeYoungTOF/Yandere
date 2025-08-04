@@ -127,6 +127,7 @@ MonoBehaviour:
     m_Bits: 1024
   pattern1Cooldown: 15
   pattern2Cooldown: 30
+  pattern3Cooldown: 30
   pattern1BulletPrefab: {fileID: 7160713118510500196, guid: 5b0e2ab5e59589e419cc5d844c103965, type: 3}
   pattern1BulletSpawnPoint: {fileID: 3295909504478681482}
   shootDelay: 0.5
@@ -135,7 +136,7 @@ MonoBehaviour:
   pattern1AttackRange: 10
   pattern1Interval: 1
   dashEffectPrefab: {fileID: 2155770278696552338, guid: 6ac2dc3ce1301284c8fef625e331509f, type: 3}
-  dashRange: 8
+  pattern2DashRange: 8
   dashSpeed: 20
   dashDuration: 0.5
   dashDamage: 50
@@ -144,7 +145,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   pattern2Interval: 1
+  patternWarningTime: 1
   dashLinePreview: {fileID: 1797129183290427105}
+  pattern3grenadeProjectilePrefab: {fileID: 2472780607359801529, guid: f3d47950cece49446b7c13759a721bcc, type: 3}
+  pattern3grenadeSpawnPoint: {fileID: 3295909504478681482}
+  pattern3Interval: 1
+  pattern3GrenadeRange: 7
+  grenadeThrowHeight: 3
+  grenadeDuration: 1.5
 --- !u!1 &1744125318946743083
 GameObject:
   m_ObjectHideFlags: 0

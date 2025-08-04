@@ -300,7 +300,7 @@ public class Enemy_BossController11 : EnemyController
        
       GameObject grenade = Instantiate(pattern3grenadeProjectilePrefab, startPos, Quaternion.identity);
       SoundManager.Instance.Play("InGame_EnemyBoss_ThrowingSFX");
-      Enemy_BossGrenadeProjectile02 grenadeScript = grenade.GetComponent<Enemy_BossGrenadeProjectile02>();
+        Enemy_Boss1_Pattern3_Projectile01 grenadeScript = grenade.GetComponent<Enemy_Boss1_Pattern3_Projectile01>();
 
       if (grenadeScript != null)
       {
