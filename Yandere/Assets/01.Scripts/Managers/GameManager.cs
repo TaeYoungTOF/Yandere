@@ -83,10 +83,11 @@ public class GameManager : MonoBehaviour
                 break;
         }
         
-        StartCoroutine(SceneLoader.Instance.LoadAsync(sceneName));
+        //StartCoroutine(SceneLoader.Instance.LoadAsync(sceneName));
+        SceneLoader.Instance.LoadAsync(sceneName);
     }
     
-    /*private void OnEnable()
+    private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-    }*/
+    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

@@ -12012,6 +12012,8 @@ MonoBehaviour:
   dialogueText: {fileID: 8463449737076122002}
   loadingSlider: {fileID: 2535952776975546605}
   progressText: {fileID: 1058617088021403270}
+  loadingCircle: {fileID: 6675697722553721790}
+  rotateDuration: 2
   dialogues:
   - "\uD6C4\uD6C4... \uB108\uC5D0\uAC8C \uAC00\uACE0 \uC788\uC5B4"
   - "\uC774\uC81C \uACE7 \uB9CC\uB0A0 \uC218 \uC788\uACA0\uB124"
@@ -39739,7 +39741,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LOADING... 75%
+  m_text: LOADING... 0%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f9d253c918824659b9426046aca78cc, type: 2}
   m_sharedMaterial: {fileID: -8394420552937558723, guid: 6f9d253c918824659b9426046aca78cc, type: 2}
