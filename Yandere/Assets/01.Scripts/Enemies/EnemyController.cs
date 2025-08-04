@@ -11,7 +11,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     protected Rigidbody2D _rigidbody2D;
     protected Animator _animator;
     protected SpriteRenderer _spriteRenderer;
-    private EnemyAttackHandler _attackHandler;
     private IEnemyAttack _attackModule;
     protected bool isPatterning = false;
 
@@ -37,7 +36,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _attackHandler = GetComponent<EnemyAttackHandler>();
     }
     
     public void SetAttackRange(bool inRange)

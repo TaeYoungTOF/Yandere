@@ -16,6 +16,7 @@ MonoBehaviour:
   soundCategory: 0
   soundName: InGame_Enemy_HitSFX01
   volume: 0.1
+  pitch: 0.8
   loop: 0
   soundClips:
   - {fileID: 8300000, guid: 428d1daffc6929a469288fa99e566279, type: 3}

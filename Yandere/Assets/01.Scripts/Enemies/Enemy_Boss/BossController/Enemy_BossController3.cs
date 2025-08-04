@@ -95,8 +95,8 @@ public class Enemy_BossController3 : EnemyController
         
         StageManager.Instance.ChangeKillCount(1);
         Destroy(gameObject, 1.0f);
-        
-        //TODO : 클리어 UI창 연결 해야함
+
+        StageManager.Instance.StageClear();
     }
     
     #endregion

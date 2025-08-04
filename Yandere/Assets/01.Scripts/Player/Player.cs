@@ -23,6 +23,9 @@ public class Player : MonoBehaviour, IDamagable
     private bool _isLeveling = false;
     private Queue<int> _levelUpQueue = new();
 
+    [Header("Stun Debuff")]
+    [SerializeField] private GameObject stunEffectOjbect;
+
     [Header("DOTween Setting")]
     [SerializeField] private float _pullDuration = 1f;
     [SerializeField] private float _pullSpeed = 1f;
@@ -217,6 +220,12 @@ public class Player : MonoBehaviour, IDamagable
         QuestManager.Instance.lastDamageTime = Time.time;
         
         UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
+    }
+
+    public void ShowStunEffect(bool isOn)
+    {
+        if(stunEffectOjbect != null)
+            stunEffectOjbect.SetActive(isOn);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
