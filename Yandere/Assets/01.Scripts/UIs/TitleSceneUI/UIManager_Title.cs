@@ -6,6 +6,7 @@ public class UIManager_Title : MonoBehaviour
     
     public UI_MainHUD mainHUD;
     public UI_Popup popUp;
+    public UI_Loading loadingUI;
 
     private void Awake()
     {
