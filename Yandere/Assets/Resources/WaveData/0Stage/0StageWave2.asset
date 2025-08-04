@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 2
   endTime: 120
-  spawnInterval: 1
-  spawnAmount: 3
+  spawnInterval: 4
+  spawnAmount: 8
   enemyList:
   - enemyPrefab: {fileID: 1439856908508736086, guid: 90b1549a802a7a646b31daf638168ce5, type: 3}
     spawnWeight: 10

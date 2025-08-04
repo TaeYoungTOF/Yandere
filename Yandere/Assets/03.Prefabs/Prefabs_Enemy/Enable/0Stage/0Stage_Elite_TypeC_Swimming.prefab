@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2225890990482138536}
   m_Layer: 10
   m_Name: 0Stage_Elite_TypeC_Swimming
-  m_TagString: Enemy_Normal
+  m_TagString: Enemy_Elite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 1933ede35a5428e4e85e187b030aa9e3, type: 2}
+  _monsterCurrentHealth: 0
   isInAttackRange: 0
   isDead: 0
   isDashing: 0
