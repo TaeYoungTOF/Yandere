@@ -11,6 +11,11 @@ GameObject:
   - component: {fileID: 5580790371508943010}
   - component: {fileID: 231809317980687346}
   - component: {fileID: 5569739380141773139}
+  - component: {fileID: 8065796078529405819}
+  - component: {fileID: 5566623243095440608}
+  - component: {fileID: -5432955241160701194}
+  - component: {fileID: 3037125812561989875}
+  - component: {fileID: 291542951558218491}
   m_Layer: 10
   m_Name: 0Stage_Boss_Patrol
   m_TagString: Enemy_Boss
@@ -101,6 +106,96 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8065796078529405819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439856908508736086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 2cc4967163277054a8d5dc6dd01159bd, type: 2}
+  _monsterCurrentHealth: 0
+  isInAttackRange: 0
+  isDead: 0
+  isDashing: 0
+  _dropContext:
+    position: {x: 0, y: 0, z: 0}
+    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
+  separationRadius: 0.3
+  pushForce: 0.1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &5566623243095440608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439856908508736086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cacd6765befa5e4da91aeeea2843da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugCurrentPattern: 
+--- !u!114 &-5432955241160701194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439856908508736086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a322b29abe6d7e6469300e74b497d430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4617303447827056098, guid: e1ef8845b77a2a842bc6767ff8634884, type: 3}
+  bulletSpawnPoint: {fileID: 3295909504478681482}
+  spreadAngle: 20
+  cooldown: 3
+--- !u!114 &3037125812561989875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439856908508736086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a058a50f9048d44ab7c9156c441fd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugCooldownLeft: 0
+  chargeSpeedMultiplier: 10
+  chargeDuration: 0.5
+  windUpTime: 1
+  cooldown: 0.5
+  dashPreview: {fileID: 603264237339288436}
+  dashParticlePrefab: {fileID: 458098296294749932, guid: 174c5dc53fd3d0447bfa97c91f4c7794, type: 3}
+  dashParticlePrefabDestroyTime: 0.4
+--- !u!114 &291542951558218491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439856908508736086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259d7a6e7cbb50748b9e20eb1b46972c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadePrefab: {fileID: 2472780607359801529, guid: f3d47950cece49446b7c13759a721bcc, type: 3}
+  grenadeSpawnPoint: {fileID: 3295909504478681482}
+  cooldown: 3
+  throwForce: 7
 --- !u!1 &1744125318946743083
 GameObject:
   m_ObjectHideFlags: 0

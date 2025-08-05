@@ -154,8 +154,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         }
 
         StageManager.Instance.ChangeKillCount(1);
-        StartCoroutine(DelayedReturnToPool());
-
+        Destroy(gameObject, 1.0f);
     }
 
     void AvoidOtherEnemies()
@@ -190,12 +189,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     public void DelayAttack(float delay)
     {
         attackTimer = Mathf.Max(attackTimer, delay); // 현재 쿨보다 짧으면 덮지 않음
-    }
-
-    public virtual IEnumerator DelayedReturnToPool()
-    {
-        yield return new WaitForSeconds(1f);
-        ObjectPoolManager.Instance.ReturnToPool(PoolType.Enemy, gameObject);
     }
     
 }

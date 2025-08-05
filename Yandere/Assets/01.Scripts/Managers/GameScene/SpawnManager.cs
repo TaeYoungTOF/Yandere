@@ -104,8 +104,7 @@ public class SpawnManager : MonoBehaviour
     private void InstantiateEnemy(EnemySpawnWeigth entry)
     {
         var position = GetRandomSpawnPosition();
-        GameObject instance = ObjectPoolManager.Instance.GetFromPool(PoolType.Enemy, position, Quaternion.identity);
-        //var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
+        var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
 
         if (instance.TryGetComponent<EnemyController>(out var controller))
         {

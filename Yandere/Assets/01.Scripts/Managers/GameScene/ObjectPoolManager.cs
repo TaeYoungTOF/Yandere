@@ -29,17 +29,6 @@ public enum PoolType
     EtchedHatred2Proj,
     PouringAffection2Proj,
     PouringAffection2Proj2,
-    
-    // EnemySkills
-    Stage1BossSkillProj01 = 301,
-    Stage1BossSkillProj02,
-    Stage2BossSkillProj01,
-    Stage2BossSkillProj02,
-    Stage3BossSkillProj01,
-    Stage3BossSkillProj02,
-    Stage4BossSkillProj01,
-    Stage4BossSkillProj02,
-    
 }
 
 [System.Serializable]
@@ -87,7 +76,6 @@ public class ObjectPoolManager : MonoBehaviour
     {
         Transform skillParent = new GameObject("Skill").transform;
         Transform upgradeSkillParent = new GameObject("UpgradeSkill").transform;
-        Transform enemySkillParent = new GameObject("EnemySkill").transform;
 
         skillParent.SetParent(transform);
         upgradeSkillParent.SetParent(transform);
@@ -103,10 +91,6 @@ public class ObjectPoolManager : MonoBehaviour
             else if ((int)entry.poolType >= 201 && (int)entry.poolType < 301)
             {
                 categoryParent = upgradeSkillParent;
-            }
-            else if ((int)entry.poolType >= 301 && (int)entry.poolType < 401)
-            {
-                categoryParent = enemySkillParent;
             }
             
             var parent = new GameObject($"ObjectPool_{entry.poolType}").transform;
