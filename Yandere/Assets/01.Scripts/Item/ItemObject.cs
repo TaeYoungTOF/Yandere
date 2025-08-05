@@ -10,7 +10,7 @@ public class ItemObject : MonoBehaviour, IDamagable
     private Animator _animator;
     
 
-    void Awake()
+    public void Init()
     {
         currentHealth = objectMaxHealth;
         _animator = GetComponent<Animator>();

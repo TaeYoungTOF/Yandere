@@ -154,7 +154,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         }
 
         StageManager.Instance.ChangeKillCount(1);
-        StartCoroutine(DelayedReturnToPool());
+        //StartCoroutine(DelayedReturnToPool());
+        Destroy(gameObject, 1f);
 
     }
 

@@ -104,8 +104,8 @@ public class SpawnManager : MonoBehaviour
     private void InstantiateEnemy(EnemySpawnWeigth entry)
     {
         var position = GetRandomSpawnPosition();
-        GameObject instance = ObjectPoolManager.Instance.GetFromPool(PoolType.Enemy, position, Quaternion.identity);
-        //var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
+        //GameObject instance = ObjectPoolManager.Instance.GetFromPool(PoolType.Enemy, position, Quaternion.identity);
+        var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
 
         if (instance.TryGetComponent<EnemyController>(out var controller))
         {
@@ -139,6 +139,9 @@ public class SpawnManager : MonoBehaviour
     {
         Vector3 spawnPos = GetRandomSpawnPosition();
         GameObject ItemObjectPrefab = ObjectPoolManager.Instance.GetFromPool(PoolType.FieldObject, spawnPos, Quaternion.identity);
+        ItemObject item = ItemObjectPrefab.GetComponent<ItemObject>();
+        item.Init();
+        
         spawnedItemObjectPrefab.Add(ItemObjectPrefab);
     }
 
