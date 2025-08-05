@@ -40,7 +40,7 @@ public class UI_StageSelect : MonoBehaviour
     private void OnClickStartButton()
     {
         SoundManager.Instance.Play("LobbyClick01_SFX");
-        GameManager.Instance.LoadGameScene();
+        GameManager.Instance.LoadScene(SceneName.GameScene);
     }
     
     private void OnClickPrevButton()

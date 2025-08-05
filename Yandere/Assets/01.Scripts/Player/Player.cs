@@ -7,7 +7,6 @@ public class Player : MonoBehaviour, IDamagable
 {
     private Rigidbody2D _rigidbody2D;
     private CircleCollider2D  _collider2D;
-    private StageManager _stageManager;
     private int _itemLayer;
     
     public PlayerStat stat = new();
@@ -37,7 +36,6 @@ public class Player : MonoBehaviour, IDamagable
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<CircleCollider2D>();
-        _stageManager = stageManager;
         _itemLayer = LayerMask.NameToLayer("Item");
         PlayerAnim = GetComponentInChildren<PlayerAnim>();
         
@@ -193,14 +191,13 @@ public class Player : MonoBehaviour, IDamagable
             stat.level++;
             stat.requiredExp += 1f;
 
-            _stageManager.LevelUpEvent();
+            UIManager.Instance.SetUIState(UIState.SkillSelect);
             UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
+            SkillManager.Instance.isLevelUp = true;
 
             yield return new WaitForSeconds(0.1f);
         }
-
         _isLeveling = false;
-        SkillManager.Instance.isLevelUp = true;
     }
 
     public void Heal(float amount)

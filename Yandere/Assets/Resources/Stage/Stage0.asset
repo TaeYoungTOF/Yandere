@@ -17,6 +17,8 @@ MonoBehaviour:
   stageDesc: "\uC774\uC81C\uBD80\uD130 \uADF8\uB97C \uB3C5\uCC28\uC9C0\uD558\uAE30
     \uC704\uD55C \uACE0\uB3C5\uD55C \uC2F8\uC6C0\uC774 \uC2DC\uC791\uB429\uB2C8\uB2E4."
   stageImage: {fileID: 21300000, guid: 414463c7e177e3c46861870dc16eef38, type: 3}
+  spawnAreaMin: {x: -29, y: -28}
+  spawnAreaMax: {x: 29, y: 28}
   clearTime: 480
   waveDatas:
   - {fileID: 11400000, guid: 949695f6559e62745a7b8c9b3864b9cc, type: 2}

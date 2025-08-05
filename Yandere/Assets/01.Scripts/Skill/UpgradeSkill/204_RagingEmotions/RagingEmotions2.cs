@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UnityEngine;
 
 public class RagingEmotions2Wrapper : UpgradeSkillWrapper
@@ -26,12 +25,10 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     
     public override void TryActivate()
     {
-        if (!SkillManager.Instance.isLevelUp) return;
+        if (SkillManager.Instance.isLevelUp == false) return;
         
         if (_activeCoroutine != null)
         {
-            Debug.Log("[4th Upgrade Skill] StopCoroutine");
-        
             StopCoroutine(_activeCoroutine);
             _activeCoroutine = null;
         
@@ -65,7 +62,6 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     private IEnumerator SkillCoroutine()
     {
         yield return new WaitForSeconds(0.1f);
-        Debug.Log("[4th Upgrade Skill] Activate");
         
         for (int i = 0; i < data.projectileCount; i++)
         {
