@@ -83,7 +83,7 @@ public class Enemy_BossController4 : EnemyController
         _animator.SetTrigger("Dead");
 
         StageManager.Instance.ChangeKillCount(1);
-        Destroy(gameObject, 1.0f);
+        StartCoroutine(DelayedReturnToPool());
         
         StageManager.Instance.StageClear();
     }
@@ -160,7 +160,7 @@ public class Enemy_BossController4 : EnemyController
 
         GameObject grenade = Instantiate(pattern1SmokeEffectPrefab, startPos, Quaternion.identity);
        
-        var grenadeScript = grenade.GetComponent<BossPattern4_Projectile>();
+        var grenadeScript = grenade.GetComponent<Enemy_Boss4_Pattern1_Projectile01>();
 
         if (grenadeScript != null)
         {

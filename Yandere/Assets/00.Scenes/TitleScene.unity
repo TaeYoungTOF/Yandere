@@ -6882,6 +6882,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bddd26f29f7a75040b96516e9717e6cc, type: 2}
   - {fileID: 11400000, guid: 9a445d9c751b7dd42b5354e92f7eb4d7, type: 2}
   - {fileID: 11400000, guid: 1ef8aa1f9e0e541439398c74e93c7322, type: 2}
+  - {fileID: 11400000, guid: 935dd806c2eab48429658ba4de1c6a7c, type: 2}
   masterVolume: 1
   bgmVolume: 1
   sfxVolume: 1
@@ -28091,17 +28092,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6119825749202245837, guid: fdcf6628b4a573e409146c5c03b03277, type: 3}
   m_PrefabInstance: {fileID: 3056123929098907487}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1599466561 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 928411884115614587, guid: fdcf6628b4a573e409146c5c03b03277, type: 3}
-  m_PrefabInstance: {fileID: 3056123929098907487}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e250e7ff974ff044fadef4bd919024ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1610839936
 GameObject:
   m_ObjectHideFlags: 0
@@ -49409,7 +49399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainHUD: {fileID: 516267380}
   popUp: {fileID: 1089437803}
-  loadingUI: {fileID: 1599466561}
+  loadingUI: {fileID: 0}
 --- !u!224 &4879896339576808871
 RectTransform:
   m_ObjectHideFlags: 0
