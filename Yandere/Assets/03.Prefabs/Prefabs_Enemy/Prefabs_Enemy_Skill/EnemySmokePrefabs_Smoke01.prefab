@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3996383258627011873}
   - component: {fileID: -5830169351289370316}
   - component: {fileID: -2546989268882844394}
+  - component: {fileID: 8287595314474046094}
   - component: {fileID: -934957001765955720}
   m_Layer: 0
   m_Name: EnemySmokePrefabs_Smoke01
@@ -149,7 +150,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
---- !u!114 &-934957001765955720
+--- !u!114 &8287595314474046094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,6 +158,24 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2472780607359801529}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8674174fa99938b4983771607fbdb9bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffectPrefab: {fileID: 5053730917752719040, guid: 7dfb4acb33e13474fa12474fe642e096, type: 3}
+  explsotionWarningEffectPrefab: {fileID: 1691330588945861289, guid: 6da857b3762fb094dafda6eb33467c97, type: 3}
+  smokeTickDamage: 10
+  smokeDamageperTickTime: 1
+  smokeRadius: 3
+  smokeDuration: 5
+--- !u!114 &-934957001765955720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472780607359801529}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6efd34c91e5c3a749a969c7a0755fb55, type: 3}
   m_Name: 
