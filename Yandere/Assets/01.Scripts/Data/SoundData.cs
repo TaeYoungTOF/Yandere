@@ -32,7 +32,7 @@ public class SoundData : ScriptableObject
    public string soundName;
    //public AudioClip soundClip;
    [Range(0, 1)] public float volume = 1f;
-   [Range(0, 1)] public float pitch = 1f;
+   [Range(0, 2)] public float pitch = 1f;
    public bool loop = false;
    
    [Header("🎵 여러 클립 등록")]

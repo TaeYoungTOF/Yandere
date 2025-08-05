@@ -13,22 +13,30 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
     [SerializeField] private float smokeTickDamage = 10f;
     [SerializeField] private float smokeDamageperTickTime = 1f;
     [SerializeField] private float smokeRadius = 3f;
-    [SerializeField] private float smokeDuration = 5f; 
+    [SerializeField] private float smokeDuration = 4f; 
     
     private Vector3 targetPos;
     private float moveDuration;
     private float arcHeight;
     
-    public void Init(Vector3 target, float height, float duration)
+    public void Init(Vector3 target, float height, float duration, float tickDamage, float damageperTickTime, float smokeRadius, float smokeduration)
     {
         targetPos = target;
         arcHeight = height;
         moveDuration = duration;
+        smokeTickDamage = tickDamage;
+        smokeDamageperTickTime = damageperTickTime;
+        smokeDuration = smokeduration;
 
         // ✅ 도착 지점에 경고 이펙트 생성
         if (explsotionWarningEffectPrefab != null)
         {
             GameObject war = Instantiate(explsotionWarningEffectPrefab, targetPos, Quaternion.identity);
+
+            // ✅ smokeRadius 기준으로 크기 조정 (직경 = 반지름 × 2)
+            float scale = smokeRadius * 2f * 0.8f;
+            war.transform.localScale = new Vector3(scale, scale, 1f);
+
             Destroy(war, 0.8f);
         }
 
@@ -60,10 +68,12 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
         // ✅ 폭발 이펙트 생성
         if (explosionEffectPrefab != null)
         {
+           
+            SoundManager.Instance.Play("InGame_EnemyBoss1Pattern3_SmokeSFX02");
             GameObject effect = Instantiate(explosionEffectPrefab, targetPos, Quaternion.identity);
             Destroy(effect, smokeDuration); // 연막 지속 시간 후 제거
         }
-
+        SoundManager.Instance.Play("InGame_EnemyBoss1Pattern3_SmokeSFX");
         // ✅ 데미지 주는 영역 생성 (코루틴 시작)
         StartCoroutine(DamageOverTime());
     }
@@ -92,6 +102,12 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
         }
 
         Destroy(gameObject); // 끝나면 수류탄 오브젝트도 제거
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, smokeRadius);
     }
 
 }
