@@ -77,7 +77,7 @@ public class SpawnManager : MonoBehaviour
     {
         var entry = GetWeightedRandomEntry();
         InstantiateEnemy(entry);
-        UIManager.Instance.BossStage.CallBossWarning(entry.enemyPrefab.name);
+        UIManager.Instance.BossStage.CallBossWarning(entry.id.ToString());
 
         yield return null;
     }
@@ -105,8 +105,8 @@ public class SpawnManager : MonoBehaviour
     private void InstantiateEnemy(EnemySpawnWeigth entry)
     {
         var position = GetRandomSpawnPosition();
-        //GameObject instance = ObjectPoolManager.Instance.GetFromPool(PoolType.Enemy, position, Quaternion.identity);
-        var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
+        //var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
+        GameObject instance = ObjectPoolManager.Instance.GetEnemyFromPool(entry.id, position, Quaternion.identity);
 
         if (instance.TryGetComponent<EnemyController>(out var controller))
         {

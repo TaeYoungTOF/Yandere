@@ -65,22 +65,18 @@ public class ObjectPoolManager : MonoBehaviour
     }
 
     [SerializeField] private SerializedDictionary<PoolType, PoolData> _pools;
+    [SerializeField] private SerializedDictionary<EnemyID, PoolData> _enemyPools;
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        Instance = this;
     }
 
     private void Start()
     {
         _pools = new SerializedDictionary<PoolType, PoolData>();
         InitializePools();
+        InitializeEnemyPool(StageManager.Instance.currentStageData.enemyList);
     }
 
     private void InitializePools()
@@ -155,6 +151,66 @@ public class ObjectPoolManager : MonoBehaviour
     public void ReturnToPool(PoolType type, GameObject obj)
     {
         if (!_pools.TryGetValue(type, out var pool))
+        {
+            Debug.LogWarning($"[pool] No pool found for {type}");
+            return;
+        }
+
+        pool.currentIndex = Mathf.Max(pool.currentIndex - 1, 0);
+        obj.SetActive(false);
+        obj.transform.SetParent(pool.parent);
+    }
+
+    private void InitializeEnemyPool(List<SpawnEnemyEntry> enemies)
+    {
+        Transform parent = new GameObject("Enemy").transform;
+        parent.SetParent(transform);
+        parent.position = Vector3.zero;
+
+        foreach (var entry in enemies)
+        {
+            var poolData = new PoolData
+            {
+                parent = parent,
+                currentIndex = 0
+            };
+
+            for (int i = 0; i < entry.initialSize; i++)
+            {
+                GameObject obj = Instantiate(entry.enemyPrefab, parent);
+                obj.SetActive(false);
+                poolData.objects.Add(obj);
+            }
+
+            _enemyPools[entry.id] = poolData;
+        }
+    }
+
+    public GameObject GetEnemyFromPool(EnemyID type, Vector3 position, Quaternion rotation)
+    {
+        if (!_enemyPools.TryGetValue(type, out var pool))
+        {
+            Debug.LogWarning($"[pool] No pool found for {type}");
+            return null;
+        }
+
+        if (pool.currentIndex >= pool.objects.Count)
+        {
+            Debug.LogWarning($"[pool] Pool overflow: {type}");
+            pool.currentIndex = 0;
+        }
+
+        GameObject obj = pool.objects[pool.currentIndex];
+        obj.transform.SetPositionAndRotation(position, rotation);
+        obj.SetActive(true);
+        pool.currentIndex++;
+
+        return obj;
+    }
+
+    public void ReturnEnemyToPool(EnemyID type, GameObject obj)
+    {
+        if (!_enemyPools.TryGetValue(type, out var pool))
         {
             Debug.LogWarning($"[pool] No pool found for {type}");
             return;

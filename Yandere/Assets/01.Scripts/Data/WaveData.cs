@@ -13,7 +13,7 @@ public enum EventType
 [System.Serializable]
 public class EnemySpawnWeigth
 {
-    public GameObject enemyPrefab;
+    public EnemyID id;
     [Range(1, 100)] public int spawnWeight;
     public DropTable dropTable;
 }
