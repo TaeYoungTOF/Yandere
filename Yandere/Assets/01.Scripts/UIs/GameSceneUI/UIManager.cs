@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private GameObject _joyStick;
     private SerializedDictionary<System.Type, Component> _typedPanels = new();
+    [HideInInspector] public UI_BossStage BossStage { get; private set; }
 
     [SerializeField] private UIState _currentState;
 

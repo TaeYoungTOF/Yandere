@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 3382616357597825790}
   - component: {fileID: 2180643695818922770}
   m_Layer: 0
-  m_Name: UI_BossStage
+  m_Name: UI_BossWarning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -371,10 +371,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bossStageUI: {fileID: 9116444162841237680}
-  _bossStageText: {fileID: 4815353604517422060}
-  _bossStageGrow: {fileID: 6687032088933948067}
-  _bossWarning: {fileID: 2404973266954198722}
-  _bossGrow: {fileID: 5127902194985517136}
+  _bossNameText: {fileID: 2190163224486749460}
+  _warningText: {fileID: 6672555675443931464}
+  _bossGlow: {fileID: 5127902194985517136}
 --- !u!1 &4209850407931372539
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +535,6 @@ GameObject:
   - component: {fileID: 6672555675443931464}
   - component: {fileID: 5830444090267508500}
   - component: {fileID: 4815353604517422060}
-  - component: {fileID: 2404973266954198722}
   m_Layer: 0
   m_Name: Text_BossWarning
   m_TagString: Untagged
@@ -558,10 +556,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2042384295320807786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -62.028168, y: 805}
-  m_SizeDelta: {x: 49.056335, y: 57.534}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1340, y: 855}
+  m_SizeDelta: {x: 700, y: 57.534}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5830444090267508500
 CanvasRenderer:
@@ -591,7 +589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BOSS!  WARNING!  BOSS!  WARNING!
+  m_text: BOSS!  WARNING!  BOSS!  WARNING!  BOSS!  WARNING!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d24597521fa0a4bfc9e53f9542a6af29, type: 2}
   m_sharedMaterial: {fileID: -8394420552937558723, guid: d24597521fa0a4bfc9e53f9542a6af29, type: 2}
@@ -660,27 +658,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!95 &2404973266954198722
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4779728297511643689}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: acce62bcf45766e4ebd091bc14701405, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6139621201055160502
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,13 +879,14 @@ GameObject:
   - component: {fileID: 2579158483445304936}
   - component: {fileID: 5662210345829777181}
   - component: {fileID: 2962985346723211836}
+  - component: {fileID: 1835056058467005662}
   m_Layer: 0
   m_Name: Canvas_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7006707952572443041
 RectTransform:
   m_ObjectHideFlags: 0
@@ -993,3 +971,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &1835056058467005662
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9116444162841237680}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

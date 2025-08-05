@@ -77,6 +77,7 @@ public class SpawnManager : MonoBehaviour
     {
         var entry = GetWeightedRandomEntry();
         InstantiateEnemy(entry);
+        UIManager.Instance.BossStage.CallBossWarning(entry.enemyPrefab.name);
 
         yield return null;
     }

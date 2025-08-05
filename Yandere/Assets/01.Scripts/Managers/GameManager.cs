@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         }
         
         //StartCoroutine(SceneLoader.Instance.LoadAsync(sceneName));
-        SceneLoader.Instance.LoadAsync(sceneName);
+        _ = SceneLoader.Instance.LoadAsync(sceneName);
     }
     
     private void OnEnable()
