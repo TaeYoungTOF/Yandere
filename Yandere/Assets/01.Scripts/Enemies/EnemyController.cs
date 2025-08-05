@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     [SerializeField] private float separationRadius = 0.5f;                 // 주변 탐지 반경
     [SerializeField] private float pushForce = 1.0f;                        // 밀어내는 힘
     [SerializeField] private LayerMask enemyLayer;                          // 레이어 구분
+
+    public EnemyID EnemyId { get; private set; }
     
     private void Awake()
     {
@@ -53,6 +55,12 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
         _attackModule = GetComponent<IEnemyAttack>();
     }
+
+    public void SetEnemyId(EnemyID id)
+    {
+        EnemyId = id;
+    }
+    
     void FixedUpdate()
     {
         MonsterMove();
@@ -154,8 +162,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         }
 
         StageManager.Instance.ChangeKillCount(1);
-        //StartCoroutine(DelayedReturnToPool());
-        Destroy(gameObject, 1f);
+        StartCoroutine(DelayedReturnToPool(1f));
 
     }
 
@@ -196,7 +203,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     public virtual IEnumerator DelayedReturnToPool(float amount)
     {
         yield return new WaitForSeconds(amount);
-        ObjectPoolManager.Instance.ReturnToPool(PoolType.Enemy, gameObject);
+        ObjectPoolManager.Instance.ReturnEnemyToPool(EnemyId, gameObject);
     }
     
 }

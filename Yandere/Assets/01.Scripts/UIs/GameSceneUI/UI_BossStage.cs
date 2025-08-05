@@ -17,6 +17,8 @@ public class UI_BossStage : MonoBehaviour
     private void Start()
     {
         _bossStageUI.SetActive(false);
+
+        UIManager.Instance.bossStage = this;
     }
     
     public void CallBossWarning(string bossName)
@@ -48,7 +50,7 @@ public class UI_BossStage : MonoBehaviour
 
     private IEnumerator CloseUI()
     {
-        yield return new WaitForSeconds(100f);
+        yield return new WaitForSeconds(5f);
         _bossStageUI.SetActive(false);
         _tween.Kill();
 

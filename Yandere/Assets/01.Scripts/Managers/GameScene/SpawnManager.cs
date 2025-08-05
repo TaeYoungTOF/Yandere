@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -77,7 +78,7 @@ public class SpawnManager : MonoBehaviour
     {
         var entry = GetWeightedRandomEntry();
         InstantiateEnemy(entry);
-        UIManager.Instance.BossStage.CallBossWarning(entry.id.ToString());
+        UIManager.Instance.bossStage.CallBossWarning(entry.id.ToString());
 
         yield return null;
     }
@@ -107,6 +108,8 @@ public class SpawnManager : MonoBehaviour
         var position = GetRandomSpawnPosition();
         //var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
         GameObject instance = ObjectPoolManager.Instance.GetEnemyFromPool(entry.id, position, Quaternion.identity);
+        EnemyController enemy = instance.GetComponent<EnemyController>();
+        enemy.SetEnemyId(entry.id);
 
         if (instance.TryGetComponent<EnemyController>(out var controller))
         {
