@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 7434256955565601114}
   - component: {fileID: 5302274329199061226}
   - component: {fileID: 6687032088933948067}
+  - component: {fileID: 5127902194985517136}
   m_Layer: 0
   m_Name: Panel_InnerGlow
   m_TagString: Untagged
@@ -303,6 +304,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5127902194985517136
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3922152854943609819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bffc3c9c937d209479a2a244ecd06d8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4084783473152293227
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3382616357597825790}
+  - component: {fileID: 2180643695818922770}
   m_Layer: 0
   m_Name: UI_BossStage
   m_TagString: Untagged
@@ -335,6 +358,23 @@ Transform:
   - {fileID: 7006707952572443041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2180643695818922770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084783473152293227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828aec722ff5d8942a0ca80a776bd4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossStageUI: {fileID: 9116444162841237680}
+  _bossStageText: {fileID: 4815353604517422060}
+  _bossStageGrow: {fileID: 6687032088933948067}
+  _bossWarning: {fileID: 2404973266954198722}
+  _bossGrow: {fileID: 5127902194985517136}
 --- !u!1 &4209850407931372539
 GameObject:
   m_ObjectHideFlags: 0
