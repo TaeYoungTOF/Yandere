@@ -7,7 +7,6 @@ public class Player : MonoBehaviour, IDamagable
 {
     private Rigidbody2D _rigidbody2D;
     private CircleCollider2D  _collider2D;
-    private StageManager _stageManager;
     private int _itemLayer;
     
     public PlayerStat stat = new();
@@ -37,7 +36,6 @@ public class Player : MonoBehaviour, IDamagable
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<CircleCollider2D>();
-        _stageManager = stageManager;
         _itemLayer = LayerMask.NameToLayer("Item");
         PlayerAnim = GetComponentInChildren<PlayerAnim>();
         
