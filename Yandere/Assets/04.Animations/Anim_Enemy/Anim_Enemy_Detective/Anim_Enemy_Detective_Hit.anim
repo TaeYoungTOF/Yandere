@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AnimEnemy_Detective_Hit
+  m_Name: Anim_Enemy_Detective_Hit
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,7 +22,11 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -5176446, guid: 889723344a6e88f409443607bbf827cd, type: 3}
+    - time: 0.05
+      value: {fileID: -5176446, guid: 889723344a6e88f409443607bbf827cd, type: 3}
     - time: 0.1
+      value: {fileID: -1238875778, guid: 889723344a6e88f409443607bbf827cd, type: 3}
+    - time: 0.15
       value: {fileID: -1238875778, guid: 889723344a6e88f409443607bbf827cd, type: 3}
     - time: 0.2
       value: {fileID: -1383159088, guid: 889723344a6e88f409443607bbf827cd, type: 3}
@@ -49,6 +53,8 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -5176446, guid: 889723344a6e88f409443607bbf827cd, type: 3}
+    - {fileID: -5176446, guid: 889723344a6e88f409443607bbf827cd, type: 3}
+    - {fileID: -1238875778, guid: 889723344a6e88f409443607bbf827cd, type: 3}
     - {fileID: -1238875778, guid: 889723344a6e88f409443607bbf827cd, type: 3}
     - {fileID: -1383159088, guid: 889723344a6e88f409443607bbf827cd, type: 3}
   m_AnimationClipSettings:
