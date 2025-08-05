@@ -105,7 +105,7 @@ public class Enemy_BossController1 : EnemyController
         
       StageManager.Instance.ChangeKillCount(1);
       
-      StartCoroutine(DelayedReturnToPool());
+      StartCoroutine(DelayedReturnToPool(1));
 
 
       StageManager.Instance.StageClear();
@@ -197,13 +197,18 @@ public class Enemy_BossController1 : EnemyController
          float angleRad = angleDeg * Mathf.Deg2Rad;
 
          // 총알 생성
-         GameObject bullet = Instantiate(pattern1BulletPrefab, pattern1BulletSpawnPoint.position, Quaternion.identity);
-         Destroy(bullet, 3.5f);
+         //GameObject bullet = Instantiate(pattern1BulletPrefab, pattern1BulletSpawnPoint.position, Quaternion.identity);
+         GameObject bullet = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern1Proj01,
+            pattern1BulletSpawnPoint.position, Quaternion.identity);
+         StartCoroutine(DelayedReturnToPool(3.5f));
+         ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj01, gameObject);
+         //Destroy(bullet, 3.5f);
          
          // 사운드 이펙트
          SoundManager.Instance.Play("InGame_EnemyBoss1_Pattern1_GunSFX");
          
          // 보스1용 Projectile 컴포넌트 가져오기
+         
          Enemy_Boss1_Pattern1_Projectile01 proj = bullet.GetComponent<Enemy_Boss1_Pattern1_Projectile01>();
         
          if (proj == null)
@@ -328,8 +333,11 @@ public class Enemy_BossController1 : EnemyController
       Vector3 targetPos = _playerTransform.position;
         
        
-      GameObject grenade = Instantiate(pattern3GrenadeProjectilePrefab, startPos, Quaternion.identity);
+      //GameObject grenade = Instantiate(pattern3GrenadeProjectilePrefab, startPos, Quaternion.identity);
       SoundManager.Instance.Play("InGame_EnemyBoss_ThrowingSFX");
+      GameObject grenade = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern3Proj01,
+         pattern1BulletSpawnPoint.position, Quaternion.identity);
+      
       Enemy_Boss1_Pattern3_Projectile01 grenadeScript = grenade.GetComponent<Enemy_Boss1_Pattern3_Projectile01>();
 
       if (grenadeScript != null)

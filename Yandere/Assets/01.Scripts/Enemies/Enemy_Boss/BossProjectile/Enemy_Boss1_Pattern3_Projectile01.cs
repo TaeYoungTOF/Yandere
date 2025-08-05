@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
@@ -31,6 +32,7 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
         // ✅ 도착 지점에 경고 이펙트 생성
         if (explsotionWarningEffectPrefab != null)
         {
+            
             GameObject war = Instantiate(explsotionWarningEffectPrefab, targetPos, Quaternion.identity);
 
             // ✅ smokeRadius 기준으로 크기 조정 (직경 = 반지름 × 2)
@@ -70,8 +72,13 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
         {
            
             SoundManager.Instance.Play("InGame_EnemyBoss1Pattern3_SmokeSFX02");
-            GameObject effect = Instantiate(explosionEffectPrefab, targetPos, Quaternion.identity);
-            Destroy(effect, smokeDuration); // 연막 지속 시간 후 제거
+            //GameObject effect = Instantiate(explosionEffectPrefab, targetPos, Quaternion.identity);
+            GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern3Proj02,
+                transform.position, Quaternion.identity);
+            
+            StartCoroutine(DelayedReturnToPool(smokeDuration));
+            //Destroy(effect, smokeDuration); // 연막 지속 시간 후 제거
+            ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern3Proj02, effect);
         }
         SoundManager.Instance.Play("InGame_EnemyBoss1Pattern3_SmokeSFX");
         // ✅ 데미지 주는 영역 생성 (코루틴 시작)
@@ -102,6 +109,11 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
         }
 
         Destroy(gameObject); // 끝나면 수류탄 오브젝트도 제거
+    }
+    
+    IEnumerator DelayedReturnToPool(float delay)
+    {
+        yield return new WaitForSeconds(delay);
     }
     
     private void OnDrawGizmosSelected()
