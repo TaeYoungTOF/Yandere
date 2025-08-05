@@ -26,11 +26,8 @@ public class UI_GameHUD : MonoBehaviour
         UpdateExpImage();
         UpdateLevel();
 
-        _pauseButton.onClick.RemoveAllListeners();
-        _pauseButton.onClick.AddListener(OnClickPauseBUtton);
-        
-        _achievementButton.onClick.RemoveAllListeners();
-        _achievementButton.onClick.AddListener(OnClickachivementBUtton);
+        _pauseButton.onClick.AddListener(OnClickPauseButton);
+        _achievementButton.onClick.AddListener(OnClickAchievementButton);
     }
 
     public void UpdateKillCount()
@@ -65,13 +62,13 @@ public class UI_GameHUD : MonoBehaviour
         _healthImage.fillAmount = Mathf.Clamp01(ratio);
     }
 
-    public void OnClickPauseBUtton()
+    private void OnClickPauseButton()
     {
         UIManager.Instance.SetUIState(UIState.Pause);
         SoundManager.Instance.Play("LobbyClick01_SFX");
     }
 
-    public void OnClickachivementBUtton()
+    private void OnClickAchievementButton()
     {
         UIManager.Instance.SetUIState(UIState.Achievement);   
         SoundManager.Instance.Play("LobbyClick01_SFX");
