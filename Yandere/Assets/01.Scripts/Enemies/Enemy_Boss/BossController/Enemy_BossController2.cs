@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 public class Enemy_BossController2 : EnemyController
@@ -89,7 +90,7 @@ public class Enemy_BossController2 : EnemyController
         _animator.SetTrigger("Dead");                                  // 애니메이터의 파라미터(트리거) "Dead"를 실행
         
         StageManager.Instance.ChangeKillCount(1);
-        StartCoroutine(DelayedReturnToPool());
+        StartCoroutine(DelayedReturnToPool(1));
 
         StageManager.Instance.StageClear();
     }
@@ -181,9 +182,14 @@ public class Enemy_BossController2 : EnemyController
         Vector3 dir = (_playerTransform.position - pattern1BulletSpawnPoint.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x);
         // 총알 생성
-        GameObject bullet = Instantiate(pattern1BulletPrefab, pattern1BulletSpawnPoint.position, Quaternion.identity);
-        Destroy(bullet, 3.5f);
+        //GameObject bullet = Instantiate(pattern1BulletPrefab, pattern1BulletSpawnPoint.position, Quaternion.identity);
+        GameObject bullet = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern1Proj01, pattern1BulletSpawnPoint.position, Quaternion.identity);
+        
+        StartCoroutine(DelayedReturnToPool(3.5f));
+        //Destroy(bullet, 3.5f);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage2BossSkillPattern1Proj01, bullet);;
         // 사운드 이펙트
+        
         SoundManager.Instance.Play("InGame_EnemyBoss2Pattern1_GunSFX");
        
         // 보스2용 Projectile 컴포넌트 가져오기
@@ -231,7 +237,8 @@ public class Enemy_BossController2 : EnemyController
         Vector3 targetPos = _playerTransform.position;
         
        
-        GameObject grenade = Instantiate(pattern2GrenadeProjectilePrefab, startPos, Quaternion.identity);
+        //GameObject grenade = Instantiate(pattern2GrenadeProjectilePrefab, startPos, Quaternion.identity);
+        GameObject grenade = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern2Proj01, startPos, Quaternion.identity);
         SoundManager.Instance.Play("InGame_EnemyBoss_ThrowingSFX");
         Enemy_Boss2_Pattern2_GrenadeProjectile02 grenadeScript = grenade.GetComponent<Enemy_Boss2_Pattern2_GrenadeProjectile02>();
 
@@ -257,10 +264,14 @@ public class Enemy_BossController2 : EnemyController
             // animator.SetTrigger("Slash");
 
             // 이펙트 생성
-            GameObject slashEffect = Instantiate(pattern3SlashEffectPrefab, transform.position, Quaternion.identity);
-            Destroy(slashEffect, 0.8f);
-            
-            SoundManager.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
+            GameObject slashEffect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern2Proj03, transform.position, Quaternion.identity);
+           // GameObject slashEffect = Instantiate(pattern3SlashEffectPrefab, transform.position, Quaternion.identity);
+           StartCoroutine(DelayedReturnToPool(0.8f));
+          
+           ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage2BossSkillPattern2Proj03, slashEffect);
+           //Destroy(slashEffect, 0.8f);
+           
+           SoundManager.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
 
             // 데미지 및 넉백 적용
             DealSlashDamage();

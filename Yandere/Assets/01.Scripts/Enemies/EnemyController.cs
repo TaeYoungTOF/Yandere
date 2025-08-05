@@ -193,9 +193,9 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         attackTimer = Mathf.Max(attackTimer, delay); // 현재 쿨보다 짧으면 덮지 않음
     }
 
-    public virtual IEnumerator DelayedReturnToPool()
+    public virtual IEnumerator DelayedReturnToPool(float amount)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(amount);
         ObjectPoolManager.Instance.ReturnToPool(PoolType.Enemy, gameObject);
     }
     

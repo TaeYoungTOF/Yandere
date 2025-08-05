@@ -32,6 +32,8 @@ public class Enemy_Boss4_Pattern3_DroneChaser : MonoBehaviour
         // 드론 몸에 붙는 범위 시각화 이펙트
         if (explosionRangeEffectPrefab != null)
         {
+            
+            //GameObject rangeEffectInstance = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern3Proj02, transform.position, Quaternion.identity);
             rangeEffectInstance = Instantiate(
                 explosionRangeEffectPrefab,
                 transform.position,
@@ -71,9 +73,12 @@ public class Enemy_Boss4_Pattern3_DroneChaser : MonoBehaviour
         // 폭발 경고
         if (explosionWarningPrefab != null)
         {
-            GameObject warning = Instantiate(explosionWarningPrefab, transform.position, Quaternion.identity);
+            GameObject warning = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern3Proj03, transform.position, Quaternion.identity);
+           // GameObject warning = Instantiate(explosionWarningPrefab, transform.position, Quaternion.identity);
             warning.transform.localScale = Vector3.one * explodeRadius * 2f;
-            Destroy(warning, explosionWarningDuration);
+            StartCoroutine(DelayedReturnToPool(explosionWarningDuration));
+            //Destroy(warning, explosionWarningDuration);
+            ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage4BossSkillPattern3Proj03, warning);
         }
 
         yield return new WaitForSeconds(delay);
@@ -89,12 +94,16 @@ public class Enemy_Boss4_Pattern3_DroneChaser : MonoBehaviour
 
         if (explosionEffectPrefab != null)
         {
-            GameObject fx = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-            Destroy(fx, 1f);
+            GameObject fx = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern3Proj04, transform.position, Quaternion.identity);
+            // fx = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            StartCoroutine(DelayedReturnToPool(1f));
+            //Destroy(fx, 1f);
+            ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage4BossSkillPattern3Proj04, fx);
         }
 
         SoundManager.Instance.Play("HIT");
-        Destroy(gameObject);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage4BossSkillPattern3Proj03, gameObject);
+        //(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -105,6 +114,10 @@ public class Enemy_Boss4_Pattern3_DroneChaser : MonoBehaviour
         {
             StartCoroutine(ExplodeDelayed(explosionDelay));
         }
+    }
+    IEnumerator DelayedReturnToPool(float delay)
+    {
+        yield return new WaitForSeconds(delay);
     }
 
 #if UNITY_EDITOR

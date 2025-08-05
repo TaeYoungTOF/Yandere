@@ -44,13 +44,20 @@ public class Enemy_Boss1_Pattern1_Projectile01 : MonoBehaviour
 
       if (muzzleFlash && muzzleFlashEffect != null)
       {
-         GameObject flash = Instantiate(muzzleFlashEffect, transform.position, Quaternion.identity);
+         
+         //GameObject flash = Instantiate(muzzleFlashEffect, transform.position, Quaternion.identity);
+         GameObject flash = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern1Proj02,
+            transform.position, Quaternion.identity);
+       
+        
 
          // Z축 회전으로 파티클 방향 조정
          float rotZ = isFacingLeft ? 180f : 0f;
          flash.transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-         Destroy(flash, 0.5f);
+         StartCoroutine(DelayedReturnToPool(0.5f));
+        // Destroy(flash, 0.5f);
+         ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj02, flash);
       }
    }
 
@@ -110,10 +117,21 @@ public class Enemy_Boss1_Pattern1_Projectile01 : MonoBehaviour
    {
       if (impactEffect != null)
       {
-         GameObject effect = Instantiate(impactEffect, transform.position, Quaternion.identity);
-         Destroy(effect, impactEffectLifeTime);
-      }
+         //GameObject effect = Instantiate(impactEffect, transform.position, Quaternion.identity);
+         GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern1Proj03,
+            transform.position, Quaternion.identity);
 
-      Destroy(gameObject);
+         StartCoroutine(DelayedReturnToPool(impactEffectLifeTime));
+         ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj03, effect);
+         //Destroy(effect, impactEffectLifeTime);
+      }
+   
+      ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj03, gameObject);
+      //Destroy(gameObject);
+   }
+
+   IEnumerator DelayedReturnToPool(float delay)
+   {
+      yield return new WaitForSeconds(delay);
    }
 }

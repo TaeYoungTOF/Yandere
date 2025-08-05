@@ -58,7 +58,8 @@ public class Enemy_Boss3_pattern1_Projectile01 : MonoBehaviour
         }
 
         yield return new WaitForSeconds(duration);
-        Destroy(gameObject);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage3BossSkillPattern1Proj02, gameObject);
+        //Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()

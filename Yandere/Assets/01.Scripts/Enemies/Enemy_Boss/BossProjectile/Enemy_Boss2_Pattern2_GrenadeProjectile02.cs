@@ -58,8 +58,12 @@ public class Enemy_Boss2_Pattern2_GrenadeProjectile02 : MonoBehaviour
       // 💥 폭발 이펙트 생성 (도착 지점 기준)
       if (explosionEffect != null)
       {
-         GameObject effect = Instantiate(explosionEffect, targetPos, Quaternion.identity);
-         Destroy(effect, 5f); // 폭발 이펙트만 5초 뒤 제거
+         //GameObject effect = Instantiate(explosionEffect, targetPos, Quaternion.identity);
+         GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern2Proj02, targetPos, Quaternion.identity);;
+
+         StartCoroutine(DelayedReturnToPool(5f));
+         ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage2BossSkillPattern2Proj02, effect);
+         //Destroy(effect, 5f); // 폭발 이펙트만 5초 뒤 제거
       }
 
       SoundManager.Instance.Play("InGame_EnemyBoss2Pattern2_BombSFX");
@@ -104,7 +108,12 @@ public class Enemy_Boss2_Pattern2_GrenadeProjectile02 : MonoBehaviour
 
       player.isBlinded = false;
       
-      Destroy(gameObject); // ❗ 코루틴 끝나고 수류탄 삭제
+     // Destroy(gameObject); // ❗ 코루틴 끝나고 수류탄 삭제
+      ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage2BossSkillPattern2Proj02, gameObject);
+   }
+   IEnumerator DelayedReturnToPool(float delay)
+   {
+      yield return new WaitForSeconds(delay);
    }
    
    
