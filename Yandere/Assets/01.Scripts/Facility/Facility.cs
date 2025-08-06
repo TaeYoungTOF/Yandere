@@ -87,12 +87,12 @@ public class Facility : MonoBehaviour
         UpdateUI();
     }
 
-    protected virtual void UpdateUI()
+    protected void UpdateUI()
     {
         levelText.text = $"Lv.{currentLevel.ToString()}";
         levelDescriptionText.text = $"{facilityData.statTargetText} + {amount}%";
         
-        DataManager.Instance.SetData(_index, currentLevel, amount);
+        DataManager.Instance.SetFacilityData(_index, currentLevel, amount);
     }
 
     private void OnClickUnLockButton()
