@@ -38,8 +38,8 @@ public class UI_MainHUD : MonoBehaviour
     public void UpdateUI()
     {
         _accountlevelText.text = _dataManager.accountLevel.ToString();
-        _expText.text = $"{_dataManager.currentExp:F0} / { _dataManager.requiredExp:F0}";
-        _expSlider.value = _dataManager.currentExp /  _dataManager.requiredExp;
+        _expText.text = $"{_dataManager.currentExp:F0} / { _dataManager.RequiredExp:F0}";
+        _expSlider.value = _dataManager.currentExp /  _dataManager.RequiredExp;
         
         _obsessionCrystalsText.text = _dataManager.obsessionCrystals.ToString();
         _premiumCurrencyText.text = _dataManager.premiumCurrency.ToString();

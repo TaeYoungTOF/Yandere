@@ -1,39 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class AccountSaveData
+public class SaveData
 {
+    [Header("Account Info")]
     public string playerId;
     public int accountLevel;
-    public double totalPlayTime;
+    public float currentExp;
 
+    [Header("Currencies")]
     public float obsessionCrystals;
     public float premiumCurrency;
 
-    public FacilitySaveData facilitySaveData;
+    [Header("Data Bundle")]
+    public int[] facilityLevels;
     public SettingData settingData;
-}
-
-[System.Serializable]
-public class FacilitySaveData
-{
-    public int[] facilityLevels = new int[5];
 }
 
 [System.Serializable]
 public class SettingData
 {
-    public float bgmVolume = 1f;
-    public float sfxVolume = 1f;
-    public bool isVibrationOn = true;
-}
-
-[System.Serializable]
-public class SaveData
-{
-    public string lastPlayTime;
-    public float gold = 0f;
-    public int stage = 1;
+    [Range(0, 1)] public float masterVolume;
+    [Range(0, 1)] public float bgmVolume;
+    [Range(0, 1)] public float sfxVolume;
 }
