@@ -286,12 +286,16 @@ MonoBehaviour:
   pattern2Interval: 1
   patternWarningTime: 1
   dashLinePreview: {fileID: 8488710103220461050}
-  pattern3GrenadeProjectilePrefab: {fileID: 2472780607359801529, guid: f3d47950cece49446b7c13759a721bcc, type: 3}
+  pattern3GrenadeProjectilePrefab: {fileID: 0}
   pattern3GrenadeSpawnPoint: {fileID: 3295909504478681482}
   pattern3Interval: 1
   pattern3GrenadeRange: 7
   grenadeThrowHeight: 3
   grenadeDuration: 1.5
+  smokeTickDamage: 10
+  smokeDamagePerTickTime: 1
+  smokeRadius: 3
+  smokeDuration: 4
 --- !u!1 &1744125318946743083
 GameObject:
   m_ObjectHideFlags: 0
