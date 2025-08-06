@@ -11,7 +11,7 @@ public class DataManager : MonoBehaviour
     public string playerId;
     public int accountLevel;
     public float currentExp;
-    public float RequiredExp => 100 + accountLevel * 30;
+    public float RequiredExp => 70 + accountLevel * 30;
 
     [Header("Currencies")]
     public float obsessionCrystals;

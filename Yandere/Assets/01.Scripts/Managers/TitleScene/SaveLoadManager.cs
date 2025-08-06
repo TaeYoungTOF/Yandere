@@ -65,7 +65,7 @@ public class SaveLoadManager : MonoBehaviour
 
     private void CreateNewData()
     {
-        Debug.Log("[SaveLoadManager] Create]");
+        Debug.Log("[SaveLoadManager] Create");
         
         DataManager.Instance.playerId = Guid.NewGuid().ToString();
         DataManager.Instance.accountLevel = 1;
@@ -87,7 +87,7 @@ public class SaveLoadManager : MonoBehaviour
 
     private void LoadSaveData(SaveData save)
     {
-        Debug.Log("[SaveLoadManager] Load]");
+        Debug.Log("[SaveLoadManager] Load");
         
         DataManager.Instance.playerId = save.playerId;
         DataManager.Instance.accountLevel = save.accountLevel;
