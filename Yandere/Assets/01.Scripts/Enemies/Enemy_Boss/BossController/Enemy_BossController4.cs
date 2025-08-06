@@ -185,7 +185,7 @@ private IEnumerator ExecutePattern2()
     pattern2Timer = pattern2Cooldown;
 
     Debug.Log("보스 패턴2: 화염방사기 발동");
-    _animator.Play("Idle");
+    //_animator.Play("Idle");
 
     yield return new WaitForSeconds(0.5f);
 
@@ -198,8 +198,7 @@ private IEnumerator ExecutePattern2()
     GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern2Proj01, transform.position, Quaternion.Euler(0, 0, angleDeg - 90f));
     SoundManager.Instance.Play("InGame_EnemyBoss4Pattern2_FlameSFX");
     effect.transform.parent = transform;
-    StartCoroutine(DelayedReturnToPool(flameDuration));
-    ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage4BossSkillPattern2Proj01, effect);;
+    StartCoroutine(ReturnToPoolAfterDelay(effect, flameDuration, PoolType.Stage4BossSkillPattern2Proj01));
     //Destroy(effect, flameDuration);
 
     // 이펙트 크기 변경 (선택사항)
@@ -314,7 +313,13 @@ private void SpawnDrones(int count)
         }
 
         //Instantiate(dronePrefab, spawnPoint.position, Quaternion.identity);
-        GameObject dron = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern3Proj01, spawnPoint.position, Quaternion.identity);
+        GameObject drone = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern3Proj01, spawnPoint.position, Quaternion.identity);
+        SoundManager.Instance.Play("InGame_EnemyBoss4Pattern3_Drone");
+        Enemy_Boss4_Pattern3_DroneChaser script = drone.GetComponent<Enemy_Boss4_Pattern3_DroneChaser>();
+        if (script != null)
+        {
+            script.Init(spawnPoint.position, _playerTransform); // 드론에 초기화 함수가 있다면 위치와 타겟을 넘겨줍니다
+        }
     }
 }
 
@@ -328,6 +333,15 @@ private void ShuffleList<T>(List<T> list)
 }
 
 #endregion
+
+private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+{
+    yield return new WaitForSeconds(delay);
+    if (obj != null && obj.activeInHierarchy)
+    {
+        ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+    }
+}
 
 
     #region 디버그용 Gizmos

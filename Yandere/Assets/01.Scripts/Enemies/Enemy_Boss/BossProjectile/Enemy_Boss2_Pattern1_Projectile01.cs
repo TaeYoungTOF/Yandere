@@ -72,6 +72,12 @@ using static Demo_Project.SceneManager;
             bulletSpeed = speed;
             moveAngleRad = angle;
             spriteAngleRad = angle;
+            
+            // 명확히 회전 설정
+            if (rotateSprite)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+            }
         }
 
         void Move()

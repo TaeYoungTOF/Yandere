@@ -55,9 +55,8 @@ public class Enemy_Boss1_Pattern1_Projectile01 : MonoBehaviour
          float rotZ = isFacingLeft ? 180f : 0f;
          flash.transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-         StartCoroutine(DelayedReturnToPool(0.5f));
+         StartCoroutine(ReturnToPoolAfterDelay(flash, 0.5f, PoolType.Stage1BossSkillPattern1Proj02));
         // Destroy(flash, 0.5f);
-         ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj02, flash);
       }
    }
 
@@ -73,6 +72,12 @@ public class Enemy_Boss1_Pattern1_Projectile01 : MonoBehaviour
       bulletSpeed = speed;
       moveAngleRad = angle;
       spriteAngleRad = angle;
+
+      // 명확히 회전 설정
+      if (rotateSprite)
+      {
+         transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+      }
    }
 
    void BulletMove()
@@ -122,16 +127,26 @@ public class Enemy_Boss1_Pattern1_Projectile01 : MonoBehaviour
             transform.position, Quaternion.identity);
 
          StartCoroutine(DelayedReturnToPool(impactEffectLifeTime));
-         ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj03, effect);
+         StartCoroutine(ReturnToPoolAfterDelay(effect, impactEffectLifeTime, PoolType.Stage1BossSkillPattern1Proj03));
          //Destroy(effect, impactEffectLifeTime);
       }
    
-      ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj03, gameObject);
+      ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj01, gameObject);
       //Destroy(gameObject);
    }
 
    IEnumerator DelayedReturnToPool(float delay)
    {
       yield return new WaitForSeconds(delay);
+   }
+   
+   private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+   {
+      yield return new WaitForSeconds(delay);
+
+      if (obj != null && obj.activeInHierarchy)
+      {
+         ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+      }
    }
 }

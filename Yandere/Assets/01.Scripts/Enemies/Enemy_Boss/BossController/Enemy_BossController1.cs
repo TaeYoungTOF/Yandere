@@ -52,7 +52,8 @@ public class Enemy_BossController1 : EnemyController
    private float pattern1Timer = 0f;
    private float pattern2Timer = 0f;
    private float pattern3Timer = 0f;
-
+   
+   
 
    protected override void Start()
    {
@@ -62,7 +63,7 @@ public class Enemy_BossController1 : EnemyController
       if (dashLinePreview != null)
          dashLinePreview.enabled = false;
    }
-
+   
    void Update()
    {
       if (isDead) return;
@@ -109,6 +110,7 @@ public class Enemy_BossController1 : EnemyController
 
 
       StageManager.Instance.StageClear();
+      StartCoroutine(DelayedReturnToPool(1f));
    }
     
    #endregion
@@ -197,28 +199,29 @@ public class Enemy_BossController1 : EnemyController
          float angleRad = angleDeg * Mathf.Deg2Rad;
 
          // 총알 생성
-         //GameObject bullet = Instantiate(pattern1BulletPrefab, pattern1BulletSpawnPoint.position, Quaternion.identity);
-         GameObject bullet = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern1Proj01,
-            pattern1BulletSpawnPoint.position, Quaternion.identity);
-         StartCoroutine(DelayedReturnToPool(3.5f));
-         ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern1Proj01, gameObject);
-         //Destroy(bullet, 3.5f);
-         
+         GameObject bullet = ObjectPoolManager.Instance.GetFromPool(
+            PoolType.Stage1BossSkillPattern1Proj01,
+            pattern1BulletSpawnPoint.position,
+            Quaternion.identity);
+
+         // ✅ bullet 오브젝트를 나중에 풀로 되돌리도록 코루틴 실행 (중요!)
+         StartCoroutine(ReturnToPoolAfterDelay(bullet, 3.5f, PoolType.Stage1BossSkillPattern1Proj01));
+
          // 사운드 이펙트
          SoundManager.Instance.Play("InGame_EnemyBoss1_Pattern1_GunSFX");
-         
+
          // 보스1용 Projectile 컴포넌트 가져오기
-         
          Enemy_Boss1_Pattern1_Projectile01 proj = bullet.GetComponent<Enemy_Boss1_Pattern1_Projectile01>();
-        
+
          if (proj == null)
          {
             Debug.LogWarning("Projectile 스크립트가 프리팹에 없음!");
             return;
          }
-            proj.Init(bulletDamage, bulletSpeed, angleRad);
-            bool facingLeft = _spriteRenderer.flipX;
-            proj.SetFacingDirection(facingLeft);
+
+         proj.Init(bulletDamage, bulletSpeed, angleRad);
+         bool facingLeft = _spriteRenderer.flipX;
+         proj.SetFacingDirection(facingLeft);
          
       }
    }
@@ -261,8 +264,10 @@ public class Enemy_BossController1 : EnemyController
       float timer = 0f;
       while (timer < dashDuration)
       {
-         GameObject dasheffect = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
-         Destroy(dasheffect, 0.5f);
+         GameObject  dashEffect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern2Proj01, transform.position, Quaternion.identity);
+         //GameObject dasheffect = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
+         StartCoroutine(ReturnToPoolAfterDelay(dashEffect, 0.5f, PoolType.Stage1BossSkillPattern2Proj01));
+         //Destroy(dasheffect, 0.5f);
         
          // ✅ 돌진 방향 고정
          transform.position += (Vector3)(cachedDashDir * dashSpeed * Time.deltaTime);
@@ -335,16 +340,44 @@ public class Enemy_BossController1 : EnemyController
        
       //GameObject grenade = Instantiate(pattern3GrenadeProjectilePrefab, startPos, Quaternion.identity);
       SoundManager.Instance.Play("InGame_EnemyBoss_ThrowingSFX");
-      GameObject grenade = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern3Proj01,
-         pattern1BulletSpawnPoint.position, Quaternion.identity);
-      
+
+
+
+// 🎯 3. 수류탄 생성
+      GameObject grenade = ObjectPoolManager.Instance.GetFromPool(
+         PoolType.Stage1BossSkillPattern3Proj01,
+         pattern3GrenadeSpawnPoint.position,
+         Quaternion.identity);
+
+// 🎯 4. 컴포넌트 찾고 Init
       Enemy_Boss1_Pattern3_Projectile01 grenadeScript = grenade.GetComponent<Enemy_Boss1_Pattern3_Projectile01>();
 
       if (grenadeScript != null)
       {
-         grenadeScript.Init(targetPos, grenadeThrowHeight, grenadeDuration, smokeTickDamage, smokeDamagePerTickTime, smokeRadius, smokeDuration);
+         grenadeScript.Init(
+            targetPos,
+            grenadeThrowHeight,
+            grenadeDuration,
+            smokeTickDamage,
+            smokeDamagePerTickTime,
+            smokeRadius,
+            smokeDuration,
+            pattern3GrenadeSpawnPoint.position);
       }
-        
+      else
+      {
+         Debug.LogError("💥 Init 실패! GetComponent<Enemy_Boss1_Pattern3_Projectile01>() 결과가 null");
+      }
+   }
+   
+   private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+   {
+      yield return new WaitForSeconds(delay);
+
+      if (obj != null && obj.activeInHierarchy)
+      {
+         ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+      }
    }
 
    #endregion

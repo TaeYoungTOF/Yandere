@@ -10,19 +10,20 @@ public class Enemy_Boss2_Pattern2_GrenadeProjectile02 : MonoBehaviour
    
    [Header("수류탄 설정")]
    [SerializeField] private float damageRadius = 2f;
-   [SerializeField] private int damageAmount = 10;
+   [SerializeField] private float damageAmount = 10;
    [SerializeField] private float blindDuration = 5f; 
 
    private Vector3 targetPos;
    private float moveDuration;
    private float arcHeight;
 
-   public void Init(Vector3 target, float height, float duration)
+   public void Init(Vector3 target, float height, float duration, float damage, float debuffDuration)
    {
+      damageAmount = damage;
       targetPos = target;
       arcHeight = height;
       moveDuration = duration;
-
+      blindDuration = debuffDuration;
       // ✅ 도착 지점에 경고 이펙트 생성
       if (warningEffectPrefab != null)
       {
@@ -61,8 +62,8 @@ public class Enemy_Boss2_Pattern2_GrenadeProjectile02 : MonoBehaviour
          //GameObject effect = Instantiate(explosionEffect, targetPos, Quaternion.identity);
          GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern2Proj02, targetPos, Quaternion.identity);;
 
-         StartCoroutine(DelayedReturnToPool(5f));
-         ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage2BossSkillPattern2Proj02, effect);
+         StartCoroutine(ReturnToPoolAfterDelay(effect, 5f, PoolType.Stage2BossSkillPattern2Proj02));
+        
          //Destroy(effect, 5f); // 폭발 이펙트만 5초 뒤 제거
       }
 
@@ -114,6 +115,15 @@ public class Enemy_Boss2_Pattern2_GrenadeProjectile02 : MonoBehaviour
    IEnumerator DelayedReturnToPool(float delay)
    {
       yield return new WaitForSeconds(delay);
+   }
+   private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+   {
+      yield return new WaitForSeconds(delay);
+
+      if (obj != null && obj.activeInHierarchy)
+      {
+         ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+      }
    }
    
    

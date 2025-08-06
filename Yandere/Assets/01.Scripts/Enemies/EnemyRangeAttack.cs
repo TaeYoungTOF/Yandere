@@ -25,7 +25,7 @@ public class EnemyRangeAttack : MonoBehaviour, IEnemyAttack
     {
         if (_playerTransform == null) return;
         
-        dashSkill?.TryDash();                                               // 대쉬 스킬이 할당 되어 있다면 실행
+       // dashSkill?.TryDash();                                               // 대쉬 스킬이 할당 되어 있다면 실행
         boomSkill?.TryBoom();                                               // 연막탄 스킬이 할당 되어 있다면 실행
         Vector2 direction = (_playerTransform.position - transform.position).normalized;
         StartCoroutine(FireBulletsSequentially(direction, damage));

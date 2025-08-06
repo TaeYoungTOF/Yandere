@@ -17,12 +17,26 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
     [SerializeField] private float smokeDuration = 4f; 
     
     private Vector3 targetPos;
+    private Vector3 startPos;
     private float moveDuration;
     private float arcHeight;
+
     
-    public void Init(Vector3 target, float height, float duration, float tickDamage, float damageperTickTime, float smokeRadius, float smokeduration)
+    public void Init(Vector3 target,
+        float height,
+        float duration,
+        float tickDamage,
+        float damageperTickTime,
+        float smokeRadius,
+        float smokeduration,
+        Vector3 startPosition)
     {
+
+        transform.position = startPosition;  // ← 이걸 반드시 Init의 첫 줄에 유지
+
+        // ✅ 기존 네 변수명 유지해서 할당
         targetPos = target;
+        startPos = startPosition;
         arcHeight = height;
         moveDuration = duration;
         smokeTickDamage = tickDamage;
@@ -48,7 +62,7 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
 
     private IEnumerator MoveToTarget()
     {
-        Vector3 startPos = transform.position;
+       // Vector3 startPos = transform.position;
         float elapsed = 0f;
 
         while (elapsed < moveDuration)
@@ -76,9 +90,17 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
             GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage1BossSkillPattern3Proj02,
                 transform.position, Quaternion.identity);
             
-            StartCoroutine(DelayedReturnToPool(smokeDuration));
+            effect.transform.position = transform.position;
+            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                ps.Clear(); // 이전 파티클 흔적 제거
+                ps.Play();  // 다시 재생
+            }
+
+            
             //Destroy(effect, smokeDuration); // 연막 지속 시간 후 제거
-            ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern3Proj02, effect);
+            StartCoroutine(ReturnToPoolAfterDelay(effect, smokeDuration, PoolType.Stage1BossSkillPattern3Proj02));
         }
         SoundManager.Instance.Play("InGame_EnemyBoss1Pattern3_SmokeSFX");
         // ✅ 데미지 주는 영역 생성 (코루틴 시작)
@@ -108,12 +130,22 @@ public class Enemy_Boss1_Pattern3_Projectile01 : MonoBehaviour
             timer += smokeDamageperTickTime;
         }
 
-        Destroy(gameObject); // 끝나면 수류탄 오브젝트도 제거
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage1BossSkillPattern3Proj01, gameObject);
     }
     
     IEnumerator DelayedReturnToPool(float delay)
     {
         yield return new WaitForSeconds(delay);
+    }
+    
+    private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (obj != null && obj.activeInHierarchy)
+        {
+            ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+        }
     }
     
     private void OnDrawGizmosSelected()

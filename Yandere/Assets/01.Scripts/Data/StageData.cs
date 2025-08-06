@@ -36,10 +36,25 @@ public enum EnemyID
     StudentMan,
     StudentGirl,
     Teacher,
-    
+    StudentCouncil,
+    Swimming,
+    Patrol,
     // Stage 2
-    
+    Aunty,
+    Uncle,
+    Shopkeeper,
+    Bully,
+    Detctive,
     // Stage 3
-    
+    SecurityGuard,
+    Firemen,
+    Senior,
+    FireCaptain,
+    EliteSoliders,
     // Stage 4
+    Corporal,
+    PrivateFirst,
+    Sergent,
+    Staff,
+    Secret
 }

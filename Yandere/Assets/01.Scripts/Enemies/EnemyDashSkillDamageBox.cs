@@ -13,14 +13,14 @@ public class EnemyDashSkillDamageBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!_dash.IsDashing) return;
+       // if (!_dash.IsDashing) return;
         if (!other.CompareTag("Player")) return;
 
         Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
         if (playerRb != null)
         {
             Vector2 dir = (other.transform.position - transform.position).normalized;
-            playerRb.AddForce(dir * _dash.DashForce, ForceMode2D.Impulse);
+            //playerRb.AddForce(dir * _dash.DashForce, ForceMode2D.Impulse);
         }
 
        // float damage = PlayerManager.Instance.MaxHP * 0.1f;

@@ -4784,17 +4784,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8f728b76b023e438db5143dd28e1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactObject: {fileID: 7495853581713593668, guid: 8316cbf2b44a4fa46b1fabcd4c2f1428, type: 3}
-  muzzleFlashEffect: {fileID: 1856835495579851328, guid: 0878c99493450524f8bd94c47aafed87, type: 3}
+  impactObject: {fileID: 2229246716130286074, guid: 47fdc1e199eabc04285ee76793423bd3, type: 3}
+  muzzleFlashEffect: {fileID: 665763694298556478, guid: 94b715ab8924ead4c8cce55748036bc7, type: 3}
   bulletSpeed: 5
   bulletDamage: 10
-  lifeTime: 3.5
+  impactEffectLifeTime: 0.5
   moveAngleRad: 0
   spriteAngleRad: 0
+  targetTag: Player
   rotateSprite: 1
   muzzleFlash: 1
-  explodeAtScreenEdge: 1
-  targetTag: Player
   rotationSpeed: 0
   rotationRange: 0
 --- !u!199 &7160713118510500193
