@@ -83,7 +83,7 @@ public class Enemy_BossController4 : EnemyController
         _animator.SetTrigger("Dead");
 
         StageManager.Instance.ChangeKillCount(1);
-        StartCoroutine(DelayedReturnToPool());
+        StartCoroutine(DelayedReturnToPool(1));
         
         StageManager.Instance.StageClear();
     }
@@ -158,7 +158,8 @@ public class Enemy_BossController4 : EnemyController
         Vector3 startPos = smokeSpawnPoint.position;
         Vector3 targetPos = _playerTransform.position;
 
-        GameObject grenade = Instantiate(pattern1SmokeEffectPrefab, startPos, Quaternion.identity);
+       // GameObject grenade = Instantiate(pattern1SmokeEffectPrefab, startPos, Quaternion.identity);
+        GameObject grenade = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern1Proj01, startPos, Quaternion.identity); 
        
         var grenadeScript = grenade.GetComponent<Enemy_Boss4_Pattern1_Projectile01>();
 
@@ -184,7 +185,7 @@ private IEnumerator ExecutePattern2()
     pattern2Timer = pattern2Cooldown;
 
     Debug.Log("보스 패턴2: 화염방사기 발동");
-    _animator.Play("Idle");
+    //_animator.Play("Idle");
 
     yield return new WaitForSeconds(0.5f);
 
@@ -193,10 +194,12 @@ private IEnumerator ExecutePattern2()
     float angleDeg = Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg;
 
     // 🔥 화염 이펙트 생성
-    GameObject effect = Instantiate(flameEffectPrefab, transform.position, Quaternion.Euler(0, 0, angleDeg - 90f));
+    //GameObject effect = Instantiate(flameEffectPrefab, transform.position, Quaternion.Euler(0, 0, angleDeg - 90f));
+    GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern2Proj01, transform.position, Quaternion.Euler(0, 0, angleDeg - 90f));
     SoundManager.Instance.Play("InGame_EnemyBoss4Pattern2_FlameSFX");
     effect.transform.parent = transform;
-    Destroy(effect, flameDuration);
+    StartCoroutine(ReturnToPoolAfterDelay(effect, flameDuration, PoolType.Stage4BossSkillPattern2Proj01));
+    //Destroy(effect, flameDuration);
 
     // 이펙트 크기 변경 (선택사항)
     // effect.transform.localScale = Vector3.one * flameEffectRadius;
@@ -309,7 +312,14 @@ private void SpawnDrones(int count)
             spawnPoint = droneSpawnPoints[Random.Range(0, droneSpawnPoints.Length)];
         }
 
-        Instantiate(dronePrefab, spawnPoint.position, Quaternion.identity);
+        //Instantiate(dronePrefab, spawnPoint.position, Quaternion.identity);
+        GameObject drone = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern3Proj01, spawnPoint.position, Quaternion.identity);
+        SoundManager.Instance.Play("InGame_EnemyBoss4Pattern3_Drone");
+        Enemy_Boss4_Pattern3_DroneChaser script = drone.GetComponent<Enemy_Boss4_Pattern3_DroneChaser>();
+        if (script != null)
+        {
+            script.Init(spawnPoint.position, _playerTransform); // 드론에 초기화 함수가 있다면 위치와 타겟을 넘겨줍니다
+        }
     }
 }
 
@@ -323,6 +333,15 @@ private void ShuffleList<T>(List<T> list)
 }
 
 #endregion
+
+private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+{
+    yield return new WaitForSeconds(delay);
+    if (obj != null && obj.activeInHierarchy)
+    {
+        ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+    }
+}
 
 
     #region 디버그용 Gizmos

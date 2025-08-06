@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    
+    private SaveLoadManager _saveLoadManager;
 
     /** @todo SaveSystem 추후 조정
     private AutoSaveSystem _autoSaveSystem;
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         //_timer = 0f;
         //SoundManagerTest.Instance.Play("Title_BGM");
+        _saveLoadManager = SaveLoadManager.Instance;
     }
 
     private void Update()
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
                 _pendingGold = StageManager.Instance.GoldCount;
                 break;
             case SceneName.GameScene:
+                _saveLoadManager.UpdateSaveData(_saveLoadManager.CreateSaveData());
                 InGameData = DataManager.Instance.inGameDatas;
                 break;
             default:
@@ -84,7 +88,7 @@ public class GameManager : MonoBehaviour
         }
         
         //StartCoroutine(SceneLoader.Instance.LoadAsync(sceneName));
-        SceneLoader.Instance.LoadAsync(sceneName);
+        _ = SceneLoader.Instance.LoadAsync(sceneName);
     }
     
     private void OnEnable()

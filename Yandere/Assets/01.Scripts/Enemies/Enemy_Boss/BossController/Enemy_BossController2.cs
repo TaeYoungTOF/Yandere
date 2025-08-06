@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 public class Enemy_BossController2 : EnemyController
@@ -25,6 +26,8 @@ public class Enemy_BossController2 : EnemyController
     [Header("보스패턴2 섬광 수류탄 설정")] 
     [SerializeField] private GameObject pattern2GrenadeProjectilePrefab;
     [SerializeField] private Transform pattern2GrenadeSpawnPoint;
+    [SerializeField] private float pattern2Damage = 10f;
+    [SerializeField] private float pattern2DebuffBlindDuration = 5f;
     [SerializeField] private float pattern2Interval;
     [SerializeField] private float pattern2GrenadeRange = 7f;
     [SerializeField] private float grenadeThrowHeight  = 3f;
@@ -89,7 +92,7 @@ public class Enemy_BossController2 : EnemyController
         _animator.SetTrigger("Dead");                                  // 애니메이터의 파라미터(트리거) "Dead"를 실행
         
         StageManager.Instance.ChangeKillCount(1);
-        StartCoroutine(DelayedReturnToPool());
+        StartCoroutine(DelayedReturnToPool(1));
 
         StageManager.Instance.StageClear();
     }
@@ -181,8 +184,12 @@ public class Enemy_BossController2 : EnemyController
         Vector3 dir = (_playerTransform.position - pattern1BulletSpawnPoint.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x);
         // 총알 생성
-        GameObject bullet = Instantiate(pattern1BulletPrefab, pattern1BulletSpawnPoint.position, Quaternion.identity);
-        Destroy(bullet, 3.5f);
+        //GameObject bullet = Instantiate(pattern1BulletPrefab, pattern1BulletSpawnPoint.position, Quaternion.identity);
+        GameObject bullet = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern1Proj01, pattern1BulletSpawnPoint.position, Quaternion.identity);
+        
+        StartCoroutine(ReturnToPoolAfterDelay(bullet, 3.5f, PoolType.Stage2BossSkillPattern1Proj01));
+        //Destroy(bullet, 3.5f);
+  
         // 사운드 이펙트
         SoundManager.Instance.Play("InGame_EnemyBoss2Pattern1_GunSFX");
        
@@ -231,13 +238,14 @@ public class Enemy_BossController2 : EnemyController
         Vector3 targetPos = _playerTransform.position;
         
        
-        GameObject grenade = Instantiate(pattern2GrenadeProjectilePrefab, startPos, Quaternion.identity);
+        //GameObject grenade = Instantiate(pattern2GrenadeProjectilePrefab, startPos, Quaternion.identity);
+        GameObject grenade = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern2Proj01, startPos, Quaternion.identity);
         SoundManager.Instance.Play("InGame_EnemyBoss_ThrowingSFX");
         Enemy_Boss2_Pattern2_GrenadeProjectile02 grenadeScript = grenade.GetComponent<Enemy_Boss2_Pattern2_GrenadeProjectile02>();
 
         if (grenadeScript != null)
         {
-            grenadeScript.Init(targetPos, grenadeThrowHeight, grenadeDuration);
+            grenadeScript.Init(targetPos, grenadeThrowHeight, grenadeDuration, pattern2Damage, pattern2DebuffBlindDuration);;
         }
         
     }
@@ -257,10 +265,13 @@ public class Enemy_BossController2 : EnemyController
             // animator.SetTrigger("Slash");
 
             // 이펙트 생성
-            GameObject slashEffect = Instantiate(pattern3SlashEffectPrefab, transform.position, Quaternion.identity);
-            Destroy(slashEffect, 0.8f);
-            
-            SoundManager.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
+            GameObject slashEffect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern3Proj01, transform.position, Quaternion.identity);
+           // GameObject slashEffect = Instantiate(pattern3SlashEffectPrefab, transform.position, Quaternion.identity);
+           
+           StartCoroutine(ReturnToPoolAfterDelay(slashEffect, 0.8f, PoolType.Stage2BossSkillPattern3Proj01));
+           //Destroy(slashEffect, 0.8f);
+           
+           SoundManager.Instance.Play("InGame_EnemyBoss2Pattern3_SlashSFX");
 
             // 데미지 및 넉백 적용
             DealSlashDamage();
@@ -294,6 +305,16 @@ public class Enemy_BossController2 : EnemyController
     }
     
     #endregion
+    
+    private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (obj != null && obj.activeInHierarchy)
+        {
+            ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+        }
+    }
 
     #region Scene창 사거리 기즈모 표시
     private void OnDrawGizmosSelected()

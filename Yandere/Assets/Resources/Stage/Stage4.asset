@@ -21,6 +21,22 @@ MonoBehaviour:
   spawnAreaMin: {x: -24, y: -25}
   spawnAreaMax: {x: 24, y: 21}
   clearTime: 660
+  enemyList:
+  - id: 16
+    enemyPrefab: {fileID: 1439856908508736086, guid: 5d76faf1ca8e2654fa4d1c8686de937e, type: 3}
+    initialSize: 50
+  - id: 17
+    enemyPrefab: {fileID: 1439856908508736086, guid: 7f17470cbc3955540b0dac9b4bc7557c, type: 3}
+    initialSize: 50
+  - id: 18
+    enemyPrefab: {fileID: 1439856908508736086, guid: 82d922bc7a5195a4898916ca64a853e4, type: 3}
+    initialSize: 10
+  - id: 19
+    enemyPrefab: {fileID: 1439856908508736086, guid: fb38ed90b85925644a75337b1a863af3, type: 3}
+    initialSize: 10
+  - id: 20
+    enemyPrefab: {fileID: 1439856908508736086, guid: 83e7b2141f9ca8f45ab9bba4374f76ab, type: 3}
+    initialSize: 1
   waveDatas:
   - {fileID: 11400000, guid: 40e35cb37202a3843abe3d038f27bbbe, type: 2}
   - {fileID: 11400000, guid: 51eef56eaac7c6a4a84e914740a895b6, type: 2}

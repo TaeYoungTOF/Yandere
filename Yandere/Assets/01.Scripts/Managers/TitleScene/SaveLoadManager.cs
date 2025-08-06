@@ -1,14 +1,13 @@
 using UnityEngine;
 using System;
-using System.IO;
 
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance { get; private set; }
-
-    private string SavePath => Path.Combine(Application.persistentDataPath, "save.json");
-
-    public SaveData CurrentData { get; private set; }
+    
+    private const int FacilityAmount = 11;
+    
+    [SerializeField] private SaveData saveData;         // 임시 필드
 
     private void Awake()
     {
@@ -24,42 +23,88 @@ public class SaveLoadManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-        Load();
+        
+        // 임시 코드
+        saveData = null;
     }
 
-    public void Save()
+    public SaveData CreateSaveData()
     {
-        CurrentData.lastPlayTime = DateTime.Now.ToBinary().ToString();
-
-        string json = JsonUtility.ToJson(CurrentData, true);
-        File.WriteAllText(SavePath, json);
-        Debug.Log("[SaveManager] 게임 저장 완료");
-    }
-
-    public void Load()
-    {
-        if (File.Exists(SavePath))
+        var settingData = new SettingData()
         {
-            string json = File.ReadAllText(SavePath);
-            CurrentData = JsonUtility.FromJson<SaveData>(json);
-            Debug.Log("[SaveManager] 게임 불러오기 완료");
+            masterVolume = SoundManager.Instance.masterVolume,
+            bgmVolume = SoundManager.Instance.bgmVolume,
+            sfxVolume = SoundManager.Instance.sfxVolume,
+        };
+
+        return new SaveData()
+        {
+            playerId = DataManager.Instance.playerId,
+            accountLevel = DataManager.Instance.accountLevel,
+            currentExp = DataManager.Instance.currentExp,
+            
+            obsessionCrystals = DataManager.Instance.obsessionCrystals,
+            premiumCurrency = DataManager.Instance.premiumCurrency,
+            
+            facilityLevels = DataManager.Instance.facilityLevels,
+            settingData = settingData
+        };
+    }
+
+    public void RequireData()
+    {
+        if (saveData == null)
+        {
+            CreateNewData();
         }
         else
         {
-            CurrentData = new SaveData(); // 최초 실행
-            Debug.Log("[SaveManager] 저장 데이터 없음. 새로 생성");
+            LoadSaveData(saveData);
         }
     }
 
-    public DateTime GetLastPlayTime()
+    private void CreateNewData()
     {
-        if (!string.IsNullOrEmpty(CurrentData.lastPlayTime))
+        Debug.Log("[SaveLoadManager] Create]");
+        
+        DataManager.Instance.playerId = Guid.NewGuid().ToString();
+        DataManager.Instance.accountLevel = 1;
+        DataManager.Instance.currentExp = 0;
+
+        DataManager.Instance.obsessionCrystals = 0;
+        DataManager.Instance.premiumCurrency = 0;
+        
+        DataManager.Instance.facilityLevels = new int[FacilityAmount];
+        for (int i = 0; i < FacilityAmount; i++)
         {
-            long binary = Convert.ToInt64(CurrentData.lastPlayTime);
-            return DateTime.FromBinary(binary);
+            DataManager.Instance.facilityLevels[i] = 0;
         }
 
-        return DateTime.Now;
+        SoundManager.Instance.masterVolume = 1f;
+        SoundManager.Instance.bgmVolume = 1f;
+        SoundManager.Instance.sfxVolume = 1f;
+    }
+
+    private void LoadSaveData(SaveData save)
+    {
+        Debug.Log("[SaveLoadManager] Load]");
+        
+        DataManager.Instance.playerId = save.playerId;
+        DataManager.Instance.accountLevel = save.accountLevel;
+        DataManager.Instance.currentExp = save.currentExp;
+        
+        DataManager.Instance.obsessionCrystals = save.obsessionCrystals;
+        DataManager.Instance.premiumCurrency = save.premiumCurrency;
+        
+        DataManager.Instance.facilityLevels = save.facilityLevels;
+
+        SoundManager.Instance.masterVolume = save.settingData.masterVolume;
+        SoundManager.Instance.bgmVolume = save.settingData.bgmVolume;
+        SoundManager.Instance.sfxVolume = save.settingData.sfxVolume;
+    }
+
+    public void UpdateSaveData(SaveData save)
+    {
+        saveData = save;
     }
 }

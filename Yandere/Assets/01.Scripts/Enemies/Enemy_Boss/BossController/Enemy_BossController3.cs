@@ -93,7 +93,7 @@ public class Enemy_BossController3 : EnemyController
         _animator.SetTrigger("Dead"); // 애니메이터의 파라미터(트리거) "Dead"를 실행
 
         StageManager.Instance.ChangeKillCount(1);
-        StartCoroutine(DelayedReturnToPool());
+        StartCoroutine(DelayedReturnToPool(1));
 
         StageManager.Instance.StageClear();
     }
@@ -156,7 +156,8 @@ public class Enemy_BossController3 : EnemyController
         Debug.Log("보스 패턴1: 레이저 3회 발사");
         
         // 조준 및 충전
-        GameObject chargeEffect = Instantiate(pattern1LaserChargeEffectPrefab, pattern1LaserSpawnPoint.position, Quaternion.identity);
+        GameObject chargeEffect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage3BossSkillPattern1Proj01, pattern1LaserSpawnPoint.position, Quaternion.identity);
+        //GameObject chargeEffect = Instantiate(pattern1LaserChargeEffectPrefab, pattern1LaserSpawnPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(laserChargeTime); // 충전 시간
         
         for (int i = 0; i < laserCount; i++)
@@ -182,7 +183,8 @@ public class Enemy_BossController3 : EnemyController
             if (LaserLinePreview != null)
                 LaserLinePreview.enabled = false;
             
-            Destroy(chargeEffect);
+            StartCoroutine(ReturnToPoolAfterDelay(chargeEffect, 1f, PoolType.Stage3BossSkillPattern1Proj01));
+            //Destroy(chargeEffect);
             
             FireLaser();                                            // 레이저 발사 함수
             
@@ -208,7 +210,8 @@ public class Enemy_BossController3 : EnemyController
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
         // 레이저 생성
-        GameObject laser = Instantiate(pattern1LaserPrefab, startPos, rotation);
+        //GameObject laser = Instantiate(pattern1LaserPrefab, startPos, rotation);
+        GameObject laser = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage3BossSkillPattern1Proj02, startPos, rotation);
         
         // 사운드 이펙트
         SoundManager.Instance.Play("InGame_EnemyBoss3Pattern1_LaserSFX");
@@ -218,7 +221,7 @@ public class Enemy_BossController3 : EnemyController
         
         if (proj != null)
         {
-            proj.Init(direction, laserDamage);
+            proj.Init(direction, laserDamage, PoolType.Stage3BossSkillPattern1Proj02);
         }
     }
 
@@ -262,8 +265,10 @@ public class Enemy_BossController3 : EnemyController
 
         yield return new WaitForSeconds(warningDuration); // ⚠️ 경고 시간 대기
 
-        var effect = Instantiate(slashEffectPrefab, transform.position, Quaternion.identity);
-        Destroy(effect, 0.3f); // ✅ 생성된 인스턴스만 파괴
+        //var effect = Instantiate(slashEffectPrefab, transform.position, Quaternion.identity);
+        GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage3BossSkillPattern2Proj01, transform.position, Quaternion.identity);
+        StartCoroutine(ReturnToPoolAfterDelay(effect, 0.3f, PoolType.Stage3BossSkillPattern2Proj01));
+        //Destroy(effect, 0.3f); // ✅ 생성된 인스턴스만 파괴
         SoundManager.Instance.Play("InGame_EnemyBoss3Pattern2_SlashSFX");
 
         // 360도 슬래시 공격
@@ -296,7 +301,8 @@ public class Enemy_BossController3 : EnemyController
         Debug.Log("보스 패턴3: 빠른 레이저 5회 발사");
 
         // 충전 대기
-        GameObject chargeEffect = Instantiate(pattern3LaserChargeEffectPrefab, pattern1LaserSpawnPoint.position, Quaternion.identity);
+        //GameObject chargeEffect = Instantiate(pattern3LaserChargeEffectPrefab, pattern1LaserSpawnPoint.position, Quaternion.identity);
+        GameObject chargeEffect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage3BossSkillPattern3Proj01, pattern1LaserSpawnPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(laserChargeTime_Patter3);
 
         // 연속 레이저 발사
@@ -318,13 +324,16 @@ public class Enemy_BossController3 : EnemyController
             }
         
             yield return new WaitForSeconds(patternWarningTime);  // 경고 시간
-            Destroy(chargeEffect);
-            GameObject laser = Instantiate(laserPrefab_Pattern3, pattern1LaserSpawnPoint.position, Quaternion.identity);
+            //Destroy(chargeEffect);
+            ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage3BossSkillPattern3Proj01, chargeEffect);
+            // laser = Instantiate(laserPrefab_Pattern3, pattern1LaserSpawnPoint.position, Quaternion.identity);
+            GameObject laser = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage3BossSkillPattern3Proj02, pattern1LaserSpawnPoint.position, Quaternion.identity);
+            
             SoundManager.Instance.Play("InGame_EnemyBoss3Pattern1_LaserSFX");
             var proj = laser.GetComponent<Enemy_Boss3_pattern1_Projectile01>();
             if (proj != null)
             {
-                proj.Init(cachedDashDir, laserDamage);
+                proj.Init(cachedDashDir, laserDamage, PoolType.Stage3BossSkillPattern3Proj02);
             }
 
             if (LaserLinePreview != null)
@@ -337,6 +346,16 @@ public class Enemy_BossController3 : EnemyController
     }
 
     #endregion
+    
+    private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (obj != null && obj.activeInHierarchy)
+        {
+            ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+        }
+    }
     
     #region Scene창 사거리 기즈모 표시
 

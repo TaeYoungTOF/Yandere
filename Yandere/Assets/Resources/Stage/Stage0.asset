@@ -20,6 +20,7 @@ MonoBehaviour:
   spawnAreaMin: {x: -29, y: -28}
   spawnAreaMax: {x: 29, y: 28}
   clearTime: 480
+  enemyList: []
   waveDatas:
   - {fileID: 11400000, guid: 29964afdc3271d6498c55457de74c624, type: 2}
   - {fileID: 11400000, guid: dab7cf8bcb44c944ca2f1611d6ba0d64, type: 2}

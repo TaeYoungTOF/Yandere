@@ -46,13 +46,16 @@ using static Demo_Project.SceneManager;
 
             if (muzzleFlash && muzzleFlashEffect != null)
             {
-                GameObject flash = Instantiate(muzzleFlashEffect, transform.position, Quaternion.identity);
+                
+                //GameObject flash = Instantiate(muzzleFlashEffect, transform.position, Quaternion.identity);
+                GameObject flash = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern1Proj02, transform.position, Quaternion.identity);
 
                 // Z축 회전으로 파티클 방향 조정
                 float rotZ = isFacingLeft ? 180f : 0f;
                 flash.transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
-                Destroy(flash, 0.5f);
+                StartCoroutine(DelayedReturnToPool(0.5f));
+                ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage2BossSkillPattern1Proj02, flash);
+                //Destroy(flash, 0.5f);
             }
         }
 
@@ -69,6 +72,12 @@ using static Demo_Project.SceneManager;
             bulletSpeed = speed;
             moveAngleRad = angle;
             spriteAngleRad = angle;
+            
+            // 명확히 회전 설정
+            if (rotateSprite)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+            }
         }
 
         void Move()
@@ -116,10 +125,19 @@ using static Demo_Project.SceneManager;
         {
             if (impactObject != null)
             {
-                GameObject impact = Instantiate(impactObject, transform.position, Quaternion.identity);
-                Destroy(impact, impactEffectLifeTime); // 🔥 impact 이펙트 제거
+               // GameObject impact = Instantiate(impactObject, transform.position, Quaternion.identity);
+                GameObject impact = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage2BossSkillPattern1Proj03, transform.position, Quaternion.identity);
+
+                StartCoroutine(DelayedReturnToPool(impactEffectLifeTime));
+                ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage2BossSkillPattern1Proj03, impact);
+                //Destroy(impact, impactEffectLifeTime); // 🔥 impact 이펙트 제거
             }
 
-            Destroy(gameObject);
+            ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage2BossSkillPattern1Proj03, gameObject);
+        }
+        
+        IEnumerator DelayedReturnToPool(float delay)
+        {
+            yield return new WaitForSeconds(delay);
         }
     }

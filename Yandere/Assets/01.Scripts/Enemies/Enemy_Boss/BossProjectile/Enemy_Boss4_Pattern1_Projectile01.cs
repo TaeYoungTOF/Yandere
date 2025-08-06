@@ -53,9 +53,13 @@ public class Enemy_Boss4_Pattern1_Projectile01 : MonoBehaviour
         // 2. 이펙트 생성
         if (explosionEffectPrefab != null)
         {
-            GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            //GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern1Proj02, transform.position, Quaternion.identity);
             SoundManager.Instance.Play("InGame_EnemyBoss4Pattern1_SmokeSFX");
-            Destroy(effect, 3f); // 파티클 길이에 따라 조정
+            StartCoroutine(DelayedReturnToPool(3f));
+            ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage4BossSkillPattern1Proj02, effect);
+            
+            //Destroy(effect, 3f); // 파티클 길이에 따라 조정
         }
 
         // 3. 지속 피해 코루틴 시작
@@ -93,7 +97,8 @@ public class Enemy_Boss4_Pattern1_Projectile01 : MonoBehaviour
             yield return new WaitForSeconds(tickInterval);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage4BossSkillPattern1Proj02, gameObject);
     }
 
     private void Update()
@@ -108,8 +113,23 @@ public class Enemy_Boss4_Pattern1_Projectile01 : MonoBehaviour
     {
         if (explosionEffectPrefab != null)
         {
-            GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-            Destroy(effect, smokelifeTime); // 이펙트 파괴 시간 설정
+            //GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage4BossSkillPattern1Proj03, transform.position, Quaternion.identity);
+            StartCoroutine(ReturnToPoolAfterDelay(effect, smokelifeTime, PoolType.Stage4BossSkillPattern1Proj03));
+            //Destroy(effect, smokelifeTime); // 이펙트 파괴 시간 설정
+        }
+    }
+    IEnumerator DelayedReturnToPool(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+    }
+    
+    private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+    {
+        yield return new WaitForSeconds(delay);
+        if (obj != null && obj.activeInHierarchy)
+        {
+            ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
         }
     }
 

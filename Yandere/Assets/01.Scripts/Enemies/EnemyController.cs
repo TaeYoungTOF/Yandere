@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 {
+    private EnemySkill_Dash _dashSkill;
     public EnemyData enemyData;
     public float _monsterCurrentHealth;
     protected Transform _playerTransform;
@@ -18,7 +19,6 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     // 에너미 상태 체크
     public bool isInAttackRange = false;
     public bool isDead = false;
-    public bool isDashing = false;
     
     private float attackTimer = 0f;
     
@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     [SerializeField] private float separationRadius = 0.5f;                 // 주변 탐지 반경
     [SerializeField] private float pushForce = 1.0f;                        // 밀어내는 힘
     [SerializeField] private LayerMask enemyLayer;                          // 레이어 구분
+
+    public EnemyID EnemyId { get; private set; }
     
     private void Awake()
     {
@@ -52,7 +54,15 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
             _playerTransform = player.transform;
 
         _attackModule = GetComponent<IEnemyAttack>();
+        _dashSkill = GetComponent<EnemySkill_Dash>();
+        
     }
+
+    public virtual void SetEnemyId(EnemyID id)
+    {
+        EnemyId = id;
+    }
+    
     void FixedUpdate()
     {
         MonsterMove();
@@ -62,21 +72,32 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     {
         if (isDead) return;
 
-        if (isInAttackRange)                            // 공격 범위(HitBox)안에 플레이어가 있으면
+        if (_dashSkill != null)
         {
-            if (attackTimer > 0f)                       // 어택타이머가 0보다 크면
+            if (PlayerInDashSkillRange() && !_dashSkill.IsDashing())
             {
-                attackTimer -= Time.deltaTime;          // 어택타이머의 시간을 감소 시킴
+                _dashSkill.SetCanUseDash(true);
+            }
+            else
+            {
+                _dashSkill.SetCanUseDash(false);
+            }
+        }
+
+        // 공격 로직
+        if (isInAttackRange)
+        {
+            if (attackTimer > 0f)
+            {
+                attackTimer -= Time.deltaTime;
             }
 
-            if (attackTimer <= 0f)                      // 어택타이머가 0보다 같거나 작으면
+            if (attackTimer <= 0f)
             {
-                MonsterAttack();                        // 몬스터어택을 실행하고
-                attackTimer = enemyData.attackCooldown; // 어택타이머를 다시 값을 넣어줌 (쿨타임 리셋!)
+                MonsterAttack();
+                attackTimer = enemyData.attackCooldown;
             }
-            
         }
-        
     }
 
     // DropContext를 세팅하는 메서드입니다
@@ -86,9 +107,11 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         _dropContext.position = transform.position;
     }
 
+    #region 몬스터 이동 로직
+
     protected virtual void MonsterMove()
     {
-        if (isDead || isDashing || isPatterning || _playerTransform == null)
+        if (isDead || isPatterning || _playerTransform == null)
         {
             _rigidbody2D.velocity = Vector2.zero;       // 움직임 완전 정지
             _animator.SetBool("Run", false);            // 애니메이션도 정지
@@ -112,6 +135,10 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         AvoidOtherEnemies();
     }
 
+    #endregion
+
+    #region 몬스터 어택 로직
+
     public void MonsterAttack()
     {
         _animator.SetTrigger("Attack");
@@ -121,7 +148,11 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         _attackModule?.Attack(damage); // null 체크
 
     }
-    
+
+    #endregion
+
+    #region 몬스터 피격 로직
+
     public virtual void TakeDamage(float damage)
     {
         SoundManager.Instance.Play("InGame_Enemy_HitSFX01");
@@ -139,6 +170,10 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         }
     }
 
+    #endregion
+
+    #region 몬스터 다이 로직
+
     protected virtual void MonsterDie()
     {
         isDead = true;                                                      // 죽은 상태체크
@@ -154,10 +189,13 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         }
 
         StageManager.Instance.ChangeKillCount(1);
-        //StartCoroutine(DelayedReturnToPool());
-        Destroy(gameObject, 1f);
+        StartCoroutine(DelayedReturnToPool(1f));
 
     }
+
+    #endregion
+
+    #region 몬스터 겹침 충돌 방지 로직
 
     void AvoidOtherEnemies()
     {
@@ -176,12 +214,15 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
         _rigidbody2D.velocity += pushDir * pushForce;
     }
+
+    #endregion
+   
+
     
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, separationRadius);
-    }
+
+    
+    
+  
     
     public void UpdateSpriteDirection(Vector2 direction)
     {
@@ -192,11 +233,37 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
     {
         attackTimer = Mathf.Max(attackTimer, delay); // 현재 쿨보다 짧으면 덮지 않음
     }
-
-    public virtual IEnumerator DelayedReturnToPool()
+    
+    private bool PlayerInDashSkillRange()
     {
-        yield return new WaitForSeconds(1f);
-        ObjectPoolManager.Instance.ReturnToPool(PoolType.Enemy, gameObject);
+        if (_dashSkill == null || _playerTransform == null) return false;
+        return Vector2.Distance(transform.position, _playerTransform.position) <= _dashSkill.GetDetectRadius();
     }
+
+    protected IEnumerator DelayedReturnToPool(float amount)
+    {
+        yield return new WaitForSeconds(amount);
+        ObjectPoolManager.Instance.ReturnEnemyToPool(EnemyId, gameObject);
+    }
+
+    #region  Scene창 사거리 기즈모 표시
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (_dashSkill != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _dashSkill.GetDetectRadius());
+        }
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, separationRadius);
+    }
+#endif
+  
+
+    #endregion
+  
     
 }
