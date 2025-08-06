@@ -238,7 +238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0071087, y: -0.013306}
+  m_AnchoredPosition: {x: -0.0070995456, y: -0.013401389}
   m_SizeDelta: {x: 1090, y: 1936.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!198 &2236450665607822381
@@ -255,7 +255,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  emitterVelocityMode: 2
+  emitterVelocityMode: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -812,7 +812,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 1
-    maxNumParticles: 1000
+    maxNumParticles: 50
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -948,7 +948,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 2800000, guid: 5db6b969745d0c346a0c0662ec79aa59, type: 3}
+    m_Texture: {fileID: 0}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
@@ -1592,20 +1592,20 @@ ParticleSystem:
           time: 0
           value: 0
           inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -1695,12 +1695,16 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
-    - sprite: {fileID: 0}
+    - sprite: {fileID: -180186962, guid: 41aebe785585c6d4897f89c4ca5f97e3, type: 3}
+    - sprite: {fileID: 528674507, guid: 41aebe785585c6d4897f89c4ca5f97e3, type: 3}
+    - sprite: {fileID: -1932815715, guid: 41aebe785585c6d4897f89c4ca5f97e3, type: 3}
+    - sprite: {fileID: -603352097, guid: 41aebe785585c6d4897f89c4ca5f97e3, type: 3}
+    - sprite: {fileID: -1147555168, guid: 41aebe785585c6d4897f89c4ca5f97e3, type: 3}
+    - sprite: {fileID: -242366964, guid: 41aebe785585c6d4897f89c4ca5f97e3, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
