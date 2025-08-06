@@ -17,6 +17,6 @@ MonoBehaviour:
   spawnInterval: 480
   spawnAmount: 1
   enemyList:
-  - enemyPrefab: {fileID: 1439856908508736086, guid: e94f17bf4e6077b4aaac2c538b205996, type: 3}
+  - id: 5
     spawnWeight: 0
     dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
