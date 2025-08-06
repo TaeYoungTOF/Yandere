@@ -183,7 +183,7 @@ public class Enemy_BossController3 : EnemyController
             if (LaserLinePreview != null)
                 LaserLinePreview.enabled = false;
             
-            ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage3BossSkillPattern1Proj01, chargeEffect);
+            StartCoroutine(ReturnToPoolAfterDelay(chargeEffect, 1f, PoolType.Stage3BossSkillPattern1Proj01));
             //Destroy(chargeEffect);
             
             FireLaser();                                            // 레이저 발사 함수
@@ -221,7 +221,7 @@ public class Enemy_BossController3 : EnemyController
         
         if (proj != null)
         {
-            proj.Init(direction, laserDamage);
+            proj.Init(direction, laserDamage, PoolType.Stage3BossSkillPattern1Proj02);
         }
     }
 
@@ -267,8 +267,7 @@ public class Enemy_BossController3 : EnemyController
 
         //var effect = Instantiate(slashEffectPrefab, transform.position, Quaternion.identity);
         GameObject effect = ObjectPoolManager.Instance.GetFromPool(PoolType.Stage3BossSkillPattern2Proj01, transform.position, Quaternion.identity);
-        StartCoroutine(DelayedReturnToPool(0.3f));
-        ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage3BossSkillPattern2Proj01, effect);
+        StartCoroutine(ReturnToPoolAfterDelay(effect, 0.3f, PoolType.Stage3BossSkillPattern2Proj01));
         //Destroy(effect, 0.3f); // ✅ 생성된 인스턴스만 파괴
         SoundManager.Instance.Play("InGame_EnemyBoss3Pattern2_SlashSFX");
 
@@ -334,7 +333,7 @@ public class Enemy_BossController3 : EnemyController
             var proj = laser.GetComponent<Enemy_Boss3_pattern1_Projectile01>();
             if (proj != null)
             {
-                proj.Init(cachedDashDir, laserDamage);
+                proj.Init(cachedDashDir, laserDamage, PoolType.Stage3BossSkillPattern3Proj02);
             }
 
             if (LaserLinePreview != null)
@@ -347,6 +346,16 @@ public class Enemy_BossController3 : EnemyController
     }
 
     #endregion
+    
+    private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (obj != null && obj.activeInHierarchy)
+        {
+            ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+        }
+    }
     
     #region Scene창 사거리 기즈모 표시
 

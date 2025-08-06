@@ -34,6 +34,8 @@ public enum PoolType
     Stage1BossSkillPattern1Proj01 = 301,
     Stage1BossSkillPattern1Proj02,
     Stage1BossSkillPattern1Proj03,
+    Stage1BossSkillPattern2Proj01,
+    Stage1BossSkillPattern3Proj00,
     Stage1BossSkillPattern3Proj01,
     Stage1BossSkillPattern3Proj02,
     Stage2BossSkillPattern1Proj01,
@@ -41,7 +43,7 @@ public enum PoolType
     Stage2BossSkillPattern1Proj03,
     Stage2BossSkillPattern2Proj01,
     Stage2BossSkillPattern2Proj02,
-    Stage2BossSkillPattern2Proj03,
+    Stage2BossSkillPattern3Proj01,
     Stage3BossSkillPattern1Proj01,
     Stage3BossSkillPattern1Proj02,
     Stage3BossSkillPattern2Proj01,
@@ -55,11 +57,9 @@ public enum PoolType
     Stage4BossSkillPattern3Proj02,
     Stage4BossSkillPattern3Proj03,
     Stage4BossSkillPattern3Proj04,
-    Stage2BossSkillProj02,
-    Stage3BossSkillProj01,
-    Stage3BossSkillProj02,
-    Stage4BossSkillProj01,
-    Stage4BossSkillProj02,
+    EnemyDashSkill,
+    EnemyChargeSkill,
+    EnemyDashWarningEffect,
     
 }
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37539841065ecc04abf91ea63dbd6b84, type: 3}
+  m_Name: InGame_Enemy_DashRunSFX01
+  m_EditorClassIdentifier: 
+  soundType: 1
+  soundCategory: 0
+  soundName: InGame_Enemy_DashRunSFX01
+  volume: 1
+  pitch: 1
+  loop: 0
+  soundClips:
+  - {fileID: 8300000, guid: 1dcbec26c3fcb174a96b2f377a447844, type: 3}

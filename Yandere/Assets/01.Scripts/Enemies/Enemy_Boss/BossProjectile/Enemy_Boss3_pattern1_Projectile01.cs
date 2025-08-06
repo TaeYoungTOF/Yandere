@@ -15,13 +15,15 @@ public class Enemy_Boss3_pattern1_Projectile01 : MonoBehaviour
     [SerializeField] private float boxCastDistance = 0.1f;
     [SerializeField] private Vector2 boxCastOffset = new Vector2(0f, 2.5f); // ✅ 오프셋 설정 가능
 
+    private PoolType poolType;
     private Vector3 moveDir;
     private bool hasHit = false;
 
-    public void Init(Vector3 direction, float dmg)
+    public void Init(Vector3 direction, float dmg, PoolType type)
     {
         moveDir = direction.normalized;
         bulletDamage = dmg;
+        poolType = type; // 저장!
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
@@ -58,9 +60,21 @@ public class Enemy_Boss3_pattern1_Projectile01 : MonoBehaviour
         }
 
         yield return new WaitForSeconds(duration);
-        ObjectPoolManager.Instance.ReturnToPool(PoolType.Stage3BossSkillPattern1Proj02, gameObject);
+        StartCoroutine(ReturnToPoolAfterDelay(gameObject, duration, poolType));
+        
         //Destroy(gameObject);
     }
+    
+    private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay, PoolType poolType)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (obj != null && obj.activeInHierarchy)
+        {
+            ObjectPoolManager.Instance.ReturnToPool(poolType, obj);
+        }
+    }
+
 
     private void OnDrawGizmosSelected()
     {
