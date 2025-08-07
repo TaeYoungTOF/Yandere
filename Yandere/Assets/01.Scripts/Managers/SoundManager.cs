@@ -68,7 +68,7 @@ public class SoundManager : MonoBehaviour
             bgmSource.pitch = data.pitch;
             bgmSource.Play();
         }
-        
+
         else if (data.soundType == SoundType.SFX)
         {
            sfxSource.clip = data.soundClips[0];
@@ -76,6 +76,7 @@ public class SoundManager : MonoBehaviour
            sfxSource.pitch = data.pitch;
            sfxSource.loop = data.loop;
            sfxSource.Play();
+            //sfxSource.PlayOneShot(data.soundClips[0]);
         }
     }
 
