@@ -4445,7 +4445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d82d26cc5209e146870e3d97fab4c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stageClearPanel: {fileID: 5419241824656941431}
+  panel: {fileID: 5419241824656941431}
   _homeButton: {fileID: 537914914395927601}
   _advertiseButton: {fileID: 0}
   _backButton: {fileID: 6852009934539552278}

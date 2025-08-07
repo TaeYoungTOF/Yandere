@@ -5,9 +5,10 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
     
-    [SerializeField] GameObject[] mapPrefabs;
+    [SerializeField] private GameObject[] mapPrefabs;
 
-    public Player Player { get; private set; }
+    [SerializeField] private Player player;
+    public Player Player => player;
     private SpawnManager _spawnManager;
     public ItemDropManager ItemDropManager { get; private set; }
     public StageData currentStageData;
@@ -46,8 +47,7 @@ public class StageManager : MonoBehaviour
             }
         }
 
-        Player = FindObjectOfType<Player>();
-        Player.Init(this);
+        Player.Init();
     }
 
     private void Start()
@@ -67,14 +67,21 @@ public class StageManager : MonoBehaviour
 
         _maxTime = currentStageData.clearTime;
 
-        Exp = 0;
+        UIManager.Instance.gameHUD.Init();
+        
+        _spawnManager.SetSpawnArea(currentStageData.spawnAreaMin, currentStageData.spawnAreaMax);
+        StartCoroutine(Init());
+        StartCoroutine(_spawnManager.HandleWave(currentSpawnData));
+        StartCoroutine(_spawnManager.SpawnJarRoutine());
+    }
+
+    private IEnumerator Init()
+    {
+        yield return new WaitForSeconds(1f);
+        
         ChangeKillCount(0);
         ChangeGoldCount(0);
         Player.GainExp(5);
-        
-        _spawnManager.SetSpawnArea(currentStageData.spawnAreaMin, currentStageData.spawnAreaMax);
-        StartCoroutine(_spawnManager.SpawnJarRoutine());
-        StartCoroutine(_spawnManager.HandleWave(currentSpawnData));
     }
 
     private void Update()
@@ -102,7 +109,7 @@ public class StageManager : MonoBehaviour
 
         _elapsedTime += Time.deltaTime;
 
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateTime(_elapsedTime);
+        UIManager.Instance.gameHUD.UpdateTime(_elapsedTime);
 
         if (!currentSpawnData)
         {
@@ -126,13 +133,13 @@ public class StageManager : MonoBehaviour
     public void ChangeKillCount (int amount)
     {
         KillCount += amount;
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateKillCount();
+        UIManager.Instance.gameHUD.UpdateKillCount();
     }
 
     public void ChangeGoldCount (int amount)
     {
         GoldCount += amount;
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateGold();
+        UIManager.Instance.gameHUD.UpdateGold();
     }
 
     public void StageClear()

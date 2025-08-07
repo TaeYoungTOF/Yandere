@@ -14296,6 +14296,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada898c8989b10b44889966d2f9f65aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveData:
+    playerId: 
+    accountLevel: 0
+    currentExp: 0
+    obsessionCrystals: 0
+    premiumCurrency: 0
+    facilityLevels: 
+    settingData:
+      masterVolume: 0
+      bgmVolume: 0
+      sfxVolume: 0
 --- !u!4 &880687488
 Transform:
   m_ObjectHideFlags: 0
@@ -27826,7 +27837,6 @@ MonoBehaviour:
   playerId: 
   accountLevel: 1
   currentExp: 0
-  requiredExp: 0
   obsessionCrystals: 0
   premiumCurrency: 0
   facilityLevels: 

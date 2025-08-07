@@ -55,7 +55,7 @@ public class Button_Skill : MonoBehaviour
         _skill.LevelUp();
 
         UIManager.Instance.SetUIState(UIState.None);
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateExpImage();
+        UIManager.Instance.gameHUD.UpdateExpImage();
 
         UIManager.Instance.GetPanel<UI_SkillSelect>().DestroyButtons();
     }

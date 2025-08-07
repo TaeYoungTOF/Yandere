@@ -853,6 +853,7 @@ MonoBehaviour:
   - {fileID: 6921777085334131711, guid: ab238eacc8aa1ad40b86cebc70cff8c0, type: 3}
   - {fileID: 6921777085334131711, guid: a786816c198ffcc468590aa9eefc2bc7, type: 3}
   - {fileID: 6921777085334131711, guid: 60c2cfe6f0fcdcb4abe150f0c23716d3, type: 3}
+  player: {fileID: 8237018194525571572}
   currentStageData: {fileID: 0}
   currentSpawnData: {fileID: 0}
   IsUIOpened: 0
@@ -1157,13 +1158,13 @@ MonoBehaviour:
     initialSize: 20
   - poolType: 104
     prefab: {fileID: 8273631399777830139, guid: 7a5972a35fa57de4cb80168f889ad18c, type: 3}
-    initialSize: 50
+    initialSize: 10
   - poolType: 105
     prefab: {fileID: 8804051856548064786, guid: 6ae5361daec56ff45b6169f3b380f99e, type: 3}
     initialSize: 100
   - poolType: 106
     prefab: {fileID: 4596775477161923934, guid: b969e772a6d742f43aded224e3059944, type: 3}
-    initialSize: 50
+    initialSize: 10
   - poolType: 201
     prefab: {fileID: 9026727680048791279, guid: 4bf47ff5ec573f94984d1528423d5bf3, type: 3}
     initialSize: 8
@@ -1184,13 +1185,13 @@ MonoBehaviour:
     initialSize: 50
   - poolType: 207
     prefab: {fileID: 8273631399777830139, guid: 1b414a60e2fb6b04bb62e4119bddf410, type: 3}
-    initialSize: 50
+    initialSize: 20
   - poolType: 208
     prefab: {fileID: 8804051856548064786, guid: 86a860529b9d09f458b4ca5225a011e5, type: 3}
     initialSize: 50
   - poolType: 209
     prefab: {fileID: 3000653826481396746, guid: 58b35db8183491541b696f33bbb7e341, type: 3}
-    initialSize: 50
+    initialSize: 10
   - poolType: 210
     prefab: {fileID: 4560481363790842488, guid: ba06ba517120a66449c7f6f7f390621e, type: 3}
     initialSize: 50
@@ -1718,6 +1719,7 @@ MonoBehaviour:
   _joyStick: {fileID: 190654503}
   bossStage: {fileID: 0}
   _currentState: 0
+  gameHUD: {fileID: 1904772977}
 --- !u!4 &1725014473
 Transform:
   m_ObjectHideFlags: 0
@@ -1911,6 +1913,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8040483769581730732, guid: de9a8d653177f7742b03585746921b20, type: 3}
   m_PrefabInstance: {fileID: 1904772975}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1904772977 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3349083662290577332, guid: de9a8d653177f7742b03585746921b20, type: 3}
+  m_PrefabInstance: {fileID: 1904772975}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ff564419b493644a50da8d5e22c68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1924991797
 GameObject:
   m_ObjectHideFlags: 0

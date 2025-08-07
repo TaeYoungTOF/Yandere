@@ -36,7 +36,7 @@ public class PouringAffection : ActiveSkill<PouringAffectionDataWrapper>
     {
         Vector2 center = transform.position;
         List<Vector2> spawnPositions = GenerateRandomPoints(data.projectileCount, data.xDistance, data.yDistance);
-        _lastSpawnedPoints = spawnPositions;
+        //_lastSpawnedPoints = spawnPositions;
 
         foreach (Vector2 offset in spawnPositions)
         {

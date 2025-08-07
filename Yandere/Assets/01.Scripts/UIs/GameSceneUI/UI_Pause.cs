@@ -1,13 +1,9 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class UI_Pause : ToggleableUI
 {
-    [SerializeField] private GameObject _pausePanel;
-    
     [Header("Pause Panel")]
     [SerializeField] private Button _settingButton;
     [SerializeField] private Button _homeButton;
@@ -25,8 +21,7 @@ public class UI_Pause : ToggleableUI
     
     private void Start()
     {
-        Init(_pausePanel);
-        _pausePanel.SetActive(false);
+        Init();
         
         _skillManager = SkillManager.Instance;
 
@@ -111,12 +106,6 @@ public class UI_Pause : ToggleableUI
     {
         _confirmPanel.SetActive(true);
         SoundManager.Instance.Play("LobbyClick01_SFX");
-    }
-
-    private void OnClickBackButton()
-    {
-        UIManager.Instance.SetUIState(UIState.None);
-        SoundManager.Instance.Play("LobbyClick02_SFX");
     }
 
     private void OnClickConfirmHomeButton()

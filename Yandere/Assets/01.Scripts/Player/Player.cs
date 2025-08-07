@@ -32,7 +32,7 @@ public class Player : MonoBehaviour, IDamagable
     [Header("Debug")]
     [SerializeField] private bool _GodMod = false;
 
-    public void Init(StageManager stageManager)
+    public void Init()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<CircleCollider2D>();
@@ -168,7 +168,7 @@ public class Player : MonoBehaviour, IDamagable
     public void GainExp(float amount)
     {
         stat.currentExp += amount * stat.expGain;
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateExpImage();
+        UIManager.Instance.gameHUD.UpdateExpImage();
 
         while (stat.currentExp >= stat.requiredExp)
         {
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour, IDamagable
             stat.requiredExp += 1f;
 
             UIManager.Instance.SetUIState(UIState.SkillSelect);
-            UIManager.Instance.GetPanel<UI_GameHUD>().UpdateLevel();
+            UIManager.Instance.gameHUD.UpdateLevel();
             SkillManager.Instance.isLevelUp = true;
 
             yield return new WaitForSeconds(0.1f);
@@ -204,7 +204,7 @@ public class Player : MonoBehaviour, IDamagable
     {
         stat.ChangeCurrentHp(amount);
 
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
+        UIManager.Instance.gameHUD.UpdateHealthImage();
     }
 
     public void TakeDamage(float amount)
@@ -216,7 +216,7 @@ public class Player : MonoBehaviour, IDamagable
 
         QuestManager.Instance.lastDamageTime = Time.time;
         
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateHealthImage();
+        UIManager.Instance.gameHUD.UpdateHealthImage();
     }
 
     public void ShowStunEffect(bool isOn)

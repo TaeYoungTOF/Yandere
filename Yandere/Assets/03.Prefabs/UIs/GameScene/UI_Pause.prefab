@@ -9569,7 +9569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a95897fcc59e64eb1b25367dfbfe06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pausePanel: {fileID: 8325267104938415943}
+  panel: {fileID: 8325267104938415943}
   _settingButton: {fileID: 4912172401341253336}
   _homeButton: {fileID: 5831094479936708714}
   _backButton: {fileID: 6172605223808649742}
