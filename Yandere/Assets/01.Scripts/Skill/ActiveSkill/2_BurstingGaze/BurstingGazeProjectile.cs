@@ -3,21 +3,25 @@ using UnityEngine;
 
 public class BurstingGazeProjectile : BaseProjectile
 {
-    private Vector2 _direction;
     private BurstingGazeDataWrapper _data;
     private Tween _moveTween;
 
+    //Gizmo
+    private Vector3 _startPos;
+    private Vector3 _targetPos;
+
     public override void Initialize() { }
 
-    public void Initialize(Vector2 direction, BurstingGazeDataWrapper data, LayerMask enemyLayer)
+    public void Initialize(Vector3 targetPos, BurstingGazeDataWrapper data, LayerMask enemyLayer)
     {
-        _direction = direction.normalized;
+        _startPos = transform.position;
+        _targetPos = targetPos;
+        
         _data = data;
         this.enemyLayer = enemyLayer;
 
         transform.localScale = Vector3.one * data.projectileSize;
 
-        Vector3 targetPos = transform.position + (Vector3)(_direction * _data.projectileDistance);
         _moveTween = transform.DOMove(targetPos,  _data.projectileDistance / _data.projectileSpeed)
                                     .SetEase(Ease.Linear)
                                     .OnComplete(ReturnToPool);
@@ -41,4 +45,15 @@ public class BurstingGazeProjectile : BaseProjectile
         _moveTween?.Kill();
         ObjectPoolManager.Instance.ReturnToPool(PoolType.BurstingGazeProj, gameObject);
     }
+    
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (_targetPos == Vector3.zero) return;
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(_startPos, _targetPos);
+        Gizmos.DrawSphere(_targetPos, 0.1f);
+    }
+#endif
 }
