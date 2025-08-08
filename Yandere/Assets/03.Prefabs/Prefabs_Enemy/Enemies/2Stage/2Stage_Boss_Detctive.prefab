@@ -115,7 +115,6 @@ MonoBehaviour:
   _monsterCurrentHealth: 0
   isInAttackRange: 0
   isDead: 0
-  isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
     dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
@@ -124,7 +123,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
-  pattern1Cooldown: 1
+  pattern1Cooldown: 3
   pattern2Cooldown: 15
   pattern3Cooldown: 7
   pattern1BulletPrefab: {fileID: 7160713118510500196, guid: 6946bcba1decb87438fa22934f987451, type: 3}
@@ -137,15 +136,17 @@ MonoBehaviour:
   pattern1Interval: 1
   pattern2GrenadeProjectilePrefab: {fileID: 686026195265482604, guid: 590f11c269fbd654182781a1b197d0f5, type: 3}
   pattern2GrenadeSpawnPoint: {fileID: 3295909504478681482}
+  pattern2Damage: 10
+  pattern2DebuffBlindDuration: 2
   pattern2Interval: 0
-  pattern2GrenadeRange: 7
+  pattern2GrenadeRange: 5
   grenadeThrowHeight: 2
   grenadeDuration: 1
   pattern3SlashEffectPrefab: {fileID: 5353035219650899071, guid: 94b9381a0b104304e853b30553dc2320, type: 3}
-  slashCount: 1
+  slashCount: 99
   slashInterval: 0.4
   pattern3SlashRange: 3
-  pattern3Damage: 100
+  pattern3Damage: 40
   knockbackForce: 10
 --- !u!1 &1744125318946743083
 GameObject:
