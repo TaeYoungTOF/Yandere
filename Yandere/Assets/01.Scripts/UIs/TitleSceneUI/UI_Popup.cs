@@ -16,6 +16,7 @@ public class UI_Popup : MonoBehaviour
     [SerializeField] private Button _confirmButton;
     [SerializeField] private Button _upgradeBackButton;
     
+    
     [Header("LackAccountLv Pop-up")]
     [SerializeField] private Button _lackAccountLvButton;
     
@@ -32,12 +33,26 @@ public class UI_Popup : MonoBehaviour
     [Header("Preparing Pop-up")]
     [SerializeField] private GameObject _preparingPanel;
     [SerializeField] private Button _prepaingBackButton;
+    
+    [Header("Resources Pop-up")]
+    [SerializeField] private GameObject _resourcesPanel;
+    [SerializeField] private Button _resourcesCloseBackButton;
+    
+    [Header("Record Pop-up")]
+    [SerializeField] private GameObject _recordPanel;
+    [SerializeField] private Button _recordBackButton;
+    
+    [Header("FullFacility Pop-up")]
+    [SerializeField] private Button _fullFacilityBackButton;
 
     public void Init()
     {
         _upgradeBackButton.onClick.AddListener(CloseUpgradePanel);
         _lackAccountLvButton.onClick.AddListener(CloseLackAccountLvPanel);
         _prepaingBackButton.onClick.AddListener(ClosePreparingPopUp);
+        _resourcesCloseBackButton.onClick.AddListener(CloseResourcesClosePopUp);
+        _recordBackButton.onClick.AddListener(CloseRecordPopUp);
+        _fullFacilityBackButton.onClick.AddListener(CloseFullFacilityLvPanel);
         
         _popUpPanel.SetActive(false);
         
@@ -60,7 +75,7 @@ public class UI_Popup : MonoBehaviour
 
     public void CloseUpgradePanel()
     {
-        SoundManager.Instance.Play("LobbyClick02_SFX");
+        SoundManager.Instance.Play("FacilityLvUp");
         _upgradePanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
@@ -87,7 +102,7 @@ public class UI_Popup : MonoBehaviour
     
     private void CloseLackAccountLvPanel()
     {
-        SoundManager.Instance.Play("LobbyClick02_SFX");
+        SoundManager.Instance.Play("FacilityLvUp");
         _lackAccountLvPanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
@@ -108,6 +123,27 @@ public class UI_Popup : MonoBehaviour
     {
         SoundManager.Instance.Play("LobbyClick02_SFX");
         _preparingPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+
+    private void CloseResourcesClosePopUp()
+    {
+        SoundManager.Instance.Play("FacilityLvUp");
+        _resourcesPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+
+    private void CloseRecordPopUp()
+    {
+        SoundManager.Instance.Play("FacilityLvUp");
+        _recordPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+    
+    private void CloseFullFacilityLvPanel()
+    {
+        SoundManager.Instance.Play("FacilityLvUp");
+        _fullFacilityLvPanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
 }

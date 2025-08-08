@@ -8,8 +8,8 @@ public class ResourceManager : MonoBehaviour
     
     [Header("개인실 인포")]
     [SerializeField] private FacilityMain facilityMain;
-    [SerializeField] private int currentStack = 0;                                                      // 방치형 현재 스택
-    [SerializeField] private int maxStack = 12;                                                         // 방치형 최대 스택
+    [SerializeField] public int currentStack = 0;                                                      // 방치형 현재 스택
+    [SerializeField] public int maxStack = 12;                                                         // 방치형 최대 스택
     [SerializeField] private float stackIntervalMinutes = 60f;                                          // 스택 보상 시간 (60초)
    
     [Header("⏱ 디버그용")]

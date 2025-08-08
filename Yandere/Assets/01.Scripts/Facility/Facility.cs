@@ -57,12 +57,12 @@ public class Facility : MonoBehaviour
     {
         if (currentLevel >= facilityData.maxLevel)
         {
-            SoundManager.Instance.Play("LobbyClick02_SFX");
+            SoundManager.Instance.Play("FacilityLvUp");
             UIManager_Title.Instance.popUp.CallFullFacilityLvPanel();
             return;
         }
         
-        SoundManager.Instance.Play("LobbyClick01_SFX");
+        SoundManager.Instance.Play("FacilityLvUp");
         UIManager_Title.Instance.popUp.CallUpgradePanel(this);
     }
     
@@ -71,12 +71,12 @@ public class Facility : MonoBehaviour
        
         if (DataManager.Instance.obsessionCrystals < currentCost)
         {
-            SoundManager.Instance.Play("LobbyClick02_SFX");
+            SoundManager.Instance.Play("FacilityLvUp");
             UIManager_Title.Instance.popUp.CallLackResourcePanel();
             return;
         }
         
-        SoundManager.Instance.Play("LobbyClick01_SFX");
+        SoundManager.Instance.Play("FacilityLvUp");
         
         ResourceManager.Instance.UseObsessionCrystals(currentCost);
         currentLevel++;
@@ -90,7 +90,7 @@ public class Facility : MonoBehaviour
     protected void UpdateUI()
     {
         levelText.text = $"Lv.{currentLevel.ToString()}";
-        levelDescriptionText.text = $"{facilityData.statTargetText} + {amount}%";
+        levelDescriptionText.text = $"{facilityData.statTargetText} + {amount}";
         
         DataManager.Instance.SetFacilityData(_index, currentLevel, amount);
     }
@@ -99,20 +99,20 @@ public class Facility : MonoBehaviour
     {
         if (facilityData.requiredAccountLevel > DataManager.Instance.accountLevel)
         {
-            SoundManager.Instance.Play("LobbyClick02_SFX");
+            SoundManager.Instance.Play("FacilityLvUp");
             UIManager_Title.Instance.popUp.CallLackAccountLvPanel();
             
         }
         else
         {
-            SoundManager.Instance.Play("LobbyClick01_SFX");
+            SoundManager.Instance.Play("FacilityLvUp");
             _lockGO.SetActive(false);
         }
     }
 
     private void OnClickInfoButton()
     {
-        SoundManager.Instance.Play("LobbyClick01_SFX");
+        SoundManager.Instance.Play("FacilityLvUp");
         UIManager_Title.Instance.popUp.CallInfoPanel(facilityData.facilityName, facilityData.description);
     }
 }
