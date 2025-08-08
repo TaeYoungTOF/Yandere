@@ -996,7 +996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 677.1}
+  m_AnchoredPosition: {x: 0.0000014305, y: 805}
   m_SizeDelta: {x: 1043.3, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5355788514004454323
@@ -1534,7 +1534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -32.906906, y: 6.9001465}
+  m_AnchoredPosition: {x: -29.967, y: 6.9001465}
   m_SizeDelta: {x: -67.82019, y: -31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5895263545804849691
@@ -2020,7 +2020,6 @@ MonoBehaviour:
   _levelText: {fileID: 3353890937046789075}
   _pauseButton: {fileID: 8153887670522304644}
   _achievementButton: {fileID: 9165887476257680636}
-  _healthUI: {fileID: 3545820880244381568}
   _healthImage: {fileID: 1274561625098046559}
 --- !u!1 &8729394965842133294
 GameObject:
