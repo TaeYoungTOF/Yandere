@@ -139,7 +139,7 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
 
     #region 몬스터 어택 로직
 
-    public void MonsterAttack()
+    public virtual void MonsterAttack()
     {
         _animator.SetTrigger("Attack");
         if (isDead) return;

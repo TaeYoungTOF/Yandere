@@ -5984,7 +5984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -198}
+  m_AnchoredPosition: {x: 0, y: -339}
   m_SizeDelta: {x: 296, y: 102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &334064996
@@ -6030,31 +6030,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 334064997}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 619390169}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1302673429}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &334064997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7145,6 +7121,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f056c3a4ea1a0db4ab9585951f9f10f3, type: 2}
   - {fileID: 11400000, guid: ef30f0d93589a2b40bb504aaaa14e0af, type: 2}
   - {fileID: 11400000, guid: 502fe4e7dd961c545935c2c9953151d5, type: 2}
+  - {fileID: 11400000, guid: 403f6340cca14934d9740c2598ea6f92, type: 2}
+  - {fileID: 11400000, guid: 3f36ba37dd474d34d9bb697da96f998d, type: 2}
   masterVolume: 1
   bgmVolume: 1
   sfxVolume: 1
@@ -10168,7 +10146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 197}
+  m_AnchoredPosition: {x: 0, y: 349.62085}
   m_SizeDelta: {x: -64.57001, y: 70.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593525679
@@ -10377,7 +10355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 3.3927917, y: 1.2229}
+  m_AnchoredPosition: {x: 3.3928223, y: 1.2229}
   m_SizeDelta: {x: -103.0215, y: 262.0466}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &601124203
@@ -10463,7 +10441,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -155.75934, z: 0, w: -133.96582}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10728,8 +10706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 934.07, y: 545.007}
+  m_AnchoredPosition: {x: 0, y: -33.773438}
+  m_SizeDelta: {x: 934.07, y: 860.3777}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &628001319
 GameObject:
@@ -11039,31 +11017,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 640907396}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1130787068}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1302673429}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &640907396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14296,6 +14250,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada898c8989b10b44889966d2f9f65aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveData:
+    playerId: 
+    accountLevel: 0
+    currentExp: 0
+    obsessionCrystals: 0
+    premiumCurrency: 0
+    facilityLevels: 
+    settingData:
+      masterVolume: 0
+      bgmVolume: 0
+      sfxVolume: 0
 --- !u!4 &880687488
 Transform:
   m_ObjectHideFlags: 0
@@ -16234,8 +16199,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.034967, y: 9.6446}
-  m_SizeDelta: {x: 921.7, y: 313.2892}
+  m_AnchoredPosition: {x: -0.034967, y: 13.144}
+  m_SizeDelta: {x: 921.7, y: 602.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &983433866
 GameObject:
@@ -16788,31 +16753,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1005751135}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 457110374}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1302673429}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1005751135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18876,6 +18817,11 @@ MonoBehaviour:
   _fullFacilityLvPanel: {fileID: 457110374}
   _preparingPanel: {fileID: 1923644765}
   _prepaingBackButton: {fileID: 1662922489}
+  _resourcesPanel: {fileID: 1130787068}
+  _resourcesCloseBackButton: {fileID: 640907395}
+  _recordPanel: {fileID: 619390169}
+  _recordBackButton: {fileID: 334064996}
+  _fullFacilityBackButton: {fileID: 1005751134}
 --- !u!4 &1089437804
 Transform:
   m_ObjectHideFlags: 0
@@ -26150,7 +26096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 201.37914}
+  m_AnchoredPosition: {x: 4, y: 354}
   m_SizeDelta: {x: 7.89, y: 0.0606}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1476620808
@@ -27826,7 +27772,6 @@ MonoBehaviour:
   playerId: 
   accountLevel: 1
   currentExp: 0
-  requiredExp: 0
   obsessionCrystals: 0
   premiumCurrency: 0
   facilityLevels: 

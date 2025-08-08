@@ -60,6 +60,10 @@ public enum PoolType
     EnemyDashSkill,
     EnemyChargeSkill,
     EnemyDashWarningEffect,
+    EnemyEAttackGrenadeProj01,
+    EnemyEAttackGrenadeProj02,
+    EnemyEAttackGrenadeProj03
+    
     
 }
 

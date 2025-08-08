@@ -15,9 +15,18 @@ public class DropEntry
     public float pickupDelay = 5f;
 }
 
+public enum DropMode
+{
+    DropAll,            // 각 아이템 개별 확률 -> 여러 개 드랍
+    DropOne             // 하나의 아이템만 개별 확률로 드랍
+}
+
 [CreateAssetMenu(fileName = "DropTable", menuName = "Stage/DropTable", order = 2)]
 public class DropTable : ScriptableObject
 {
     [Header("등롭 항목 목록")]
     public List<DropEntry> entries = new List<DropEntry>();
+    
+    [Header("드롭 방식 설정")]
+    public DropMode dropMode = DropMode.DropAll;
 }

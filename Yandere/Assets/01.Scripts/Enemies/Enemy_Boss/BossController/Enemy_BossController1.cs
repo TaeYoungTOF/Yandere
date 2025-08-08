@@ -346,7 +346,7 @@ public class Enemy_BossController1 : EnemyController
 // 🎯 3. 수류탄 생성
       GameObject grenade = ObjectPoolManager.Instance.GetFromPool(
          PoolType.Stage1BossSkillPattern3Proj01,
-         pattern3GrenadeSpawnPoint.position,
+         startPos,
          Quaternion.identity);
 
 // 🎯 4. 컴포넌트 찾고 Init
