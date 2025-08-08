@@ -4098,7 +4098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d2166f3fe3ab64f9c7686b13866595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameOverPanel: {fileID: 5803706687296259170}
+  panel: {fileID: 5803706687296259170}
   _homeButton: {fileID: 3893851281325900121}
   _restartButton: {fileID: 6364952763683657464}
   _resultText: {fileID: 7094770695958008710}

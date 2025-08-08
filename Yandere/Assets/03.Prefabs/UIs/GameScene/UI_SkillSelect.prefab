@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0d643fdc64ca44f962ebb32845e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillSelectPanel: {fileID: 7947561609199500791}
+  panel: {fileID: 7947561609199500791}
   _skillSelectButton: {fileID: 984587507805310703, guid: 90439014ae200fc45b811a62cf1ebd08, type: 3}
   _contentParent: {fileID: 310143599303682745}
   _hpButton: {fileID: 984587507805310703, guid: 5abe6e78dccadc9438350e22f946dbc1, type: 3}

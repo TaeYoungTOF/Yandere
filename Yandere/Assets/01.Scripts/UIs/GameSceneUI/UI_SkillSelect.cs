@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class UI_SkillSelect : ToggleableUI
 {
-    [SerializeField] private GameObject _skillSelectPanel;
     [SerializeField] private GameObject _skillSelectButton;
     [SerializeField] private Transform _contentParent;
 
@@ -13,8 +12,7 @@ public class UI_SkillSelect : ToggleableUI
 
     private void Start()
     {
-        Init(_skillSelectPanel);
-        _skillSelectPanel.SetActive(false);
+        Init();
     }
 
     public override UIState GetUIState()

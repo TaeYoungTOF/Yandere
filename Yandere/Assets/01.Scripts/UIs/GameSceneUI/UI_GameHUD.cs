@@ -18,16 +18,17 @@ public class UI_GameHUD : MonoBehaviour
 
     private void Start()
     {
-        UIManager.Instance.RegisterPanel(this);
+        _pauseButton.onClick.AddListener(OnClickPauseButton);
+        _achievementButton.onClick.AddListener(OnClickAchievementButton);
+    }
 
+    public void Init()
+    {
         _stat = StageManager.Instance.Player.stat;
-        
+
         UpdateTime(0);
         UpdateExpImage();
         UpdateLevel();
-
-        _pauseButton.onClick.AddListener(OnClickPauseButton);
-        _achievementButton.onClick.AddListener(OnClickAchievementButton);
     }
 
     public void UpdateKillCount()

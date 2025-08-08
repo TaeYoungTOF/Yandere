@@ -15,7 +15,6 @@ public class QuestPanel
 public class UI_Quest : ToggleableUI
 {
     [Header("Quest UI")]
-    [SerializeField] private GameObject _QuestPanel;
     [SerializeField] private Button _backButton;
     
     [Header("Quest UI ItemList")]
@@ -23,10 +22,9 @@ public class UI_Quest : ToggleableUI
 
     private void Start()
     {
-        Init(_QuestPanel);
-        _QuestPanel.SetActive(false);
+        Init();
         
-        _backButton.onClick.AddListener(() => UIManager.Instance.SetUIState(UIState.None));
+        _backButton.onClick.AddListener(OnClickBackButton);
 
         for (int i = 0; i < _panels.Count; i++)
         {

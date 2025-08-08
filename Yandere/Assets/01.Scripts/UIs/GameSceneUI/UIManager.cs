@@ -1,3 +1,4 @@
+using System;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
@@ -22,6 +23,8 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public UI_BossStage bossStage;
 
     [SerializeField] private UIState _currentState;
+    
+    public UI_GameHUD gameHUD;
 
     private void Awake()
     {
@@ -36,7 +39,10 @@ public class UIManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
 
+    private void Start()
+    {
         SetUIState(UIState.None);
     }
 

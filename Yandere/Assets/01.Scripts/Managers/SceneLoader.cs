@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Threading.Tasks;
 using DG.Tweening;
@@ -6,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public enum SceneName
 {
@@ -51,53 +49,6 @@ public class SceneLoader : MonoBehaviour
         _isLoading = false;
         ResetUI();
     }
-
-    /*public async Task LoadAsync(SceneName sceneName)
-    {
-        AsyncOperation asyncOp = SceneManager.LoadSceneAsync(sceneName.ToString());
-        asyncOp.allowSceneActivation = false;
-
-        switch (sceneName)
-        {
-            case SceneName.GameScene:
-                loadingSlider.value = 0;
-                progressText.text = "0%";
-                dialogueText.text = dialogues[Random.Range(0, dialogues.Length)];
-        
-                loadingPanel.SetActive(true);
-                break;
-            default:
-                loadingPanel.SetActive(false);
-                Debug.Log("[SceneLoader] Loading...");
-                break;
-        }
-
-        while (!asyncOp.isDone)
-        {
-            float progress = Mathf.Clamp01(asyncOp.progress / 0.9f);
-
-            if (sceneName == SceneName.GameScene)
-            {
-                UpdateProgress(progress);
-            }
-
-            if (asyncOp.progress >= 0.9f)
-            {
-                if (sceneName == SceneName.GameScene)
-                {
-                    SetComplete();
-                    await Task.Delay(300);
-                }
-                
-                asyncOp.allowSceneActivation = true;
-            }
-
-            await Task.Yield();
-        }
-        
-        Debug.Log("[SceneLoader] Load Complete");
-        loadingPanel.SetActive(false);
-    }*/
     
     public async Task LoadAsync(SceneName sceneName)
     {
@@ -135,7 +86,7 @@ public class SceneLoader : MonoBehaviour
         {
             UpdateProgress(1f);
             SetComplete();
-            await Task.Delay(3000);
+            await Task.Delay(300);
         }
 
         asyncOp.allowSceneActivation = true;
