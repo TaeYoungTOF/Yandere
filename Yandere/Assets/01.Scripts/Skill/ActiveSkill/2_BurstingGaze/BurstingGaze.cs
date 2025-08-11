@@ -48,6 +48,8 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
     {
         for (int i = 0; i < data.projectileCount; i++)
         {
+            yield return new WaitForSeconds(data.shootDelay);
+            
             float randomAngle = GetRandomAngle(-data.angle / 2f, data.angle / 2f, 0);
             Vector2 direction = Quaternion.Euler(0f, 0f, randomAngle) * player.GetLastMoveDirection();
             direction.Normalize();
@@ -58,8 +60,6 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
             var proj = projGo.GetComponent<BurstingGazeProjectile>();
             SoundManager.Instance.Play("InGame_PlayerSkill_2_BurstingGaze01");
             proj.Initialize(endPosition, data, _enemyLayer);
-            
-            yield return new WaitForSeconds(data.shootDelay);
         }
     }
 

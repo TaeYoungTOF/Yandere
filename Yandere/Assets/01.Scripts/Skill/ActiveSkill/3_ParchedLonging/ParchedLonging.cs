@@ -31,6 +31,7 @@ public class ParchedLonging : ActiveSkill<ParchedLongingDataWrapper>
         base.UpdateActiveData();
         
         // Leveling Data
+        data.projectileCount = CurrentData.projectileCount;
         data.projectileRadius = CurrentData.projectileRadius * player.stat.FinalSkillRange;
         
         // UnLeveling Data

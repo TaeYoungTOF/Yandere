@@ -50,6 +50,8 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
     {
         base.UpdateActiveData();
         
+        data.projectileCount = UpgradeData.projectileCount;
+        
         data.playerDistance = _playerDistance * player.stat.FinalSkillRange;
         data.projRadius = _projRadius * player.stat.FinalSkillRange;
     }
