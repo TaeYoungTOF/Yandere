@@ -34,6 +34,8 @@ public class ParchedLonging2 : UpgradeSkill<ParchedLonging2Wrapper>
     public override void UpdateActiveData()
     {
         base.UpdateActiveData();
+
+        data.projectileCount = UpgradeData.projectileCount;
         
         data.projRadius = _projRadius * player.stat.FinalSkillRange;
         data.duration = _duration * player.stat.FinalSkillDuration;

@@ -60,6 +60,10 @@ public enum PoolType
     EnemyDashSkill,
     EnemyChargeSkill,
     EnemyDashWarningEffect,
+    EnemyEAttackGrenadeProj01,
+    EnemyEAttackGrenadeProj02,
+    EnemyEAttackGrenadeProj03
+    
     
 }
 
@@ -151,20 +155,27 @@ public class ObjectPoolManager : MonoBehaviour
     {
         if (!_pools.TryGetValue(type, out var pool))
         {
-            Debug.LogWarning($"[pool] No pool found for {type}");
+            Debug.LogWarning($"[Pool] No pool found for {type}");
             return null;
         }
 
         if (pool.currentIndex >= pool.objects.Count)
         {
-            Debug.LogWarning($"[pool] Pool overflow: {type}");
+            Debug.Log($"[Pool] {type} : index 0");
             pool.currentIndex = 0;
         }
 
         GameObject obj = pool.objects[pool.currentIndex];
+        pool.currentIndex++;
+        
+        // ⛑ 안전 경고: 아직 비활성화되지 않았는데 재사용하려는 경우
+        if (obj.activeSelf)
+        {
+            Debug.LogWarning($"[Pool] Active object ({type}) at index {pool.currentIndex}. Consider increasing pool size.");
+        }
+        
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
-        pool.currentIndex++;
 
         return obj;
     }
@@ -177,7 +188,6 @@ public class ObjectPoolManager : MonoBehaviour
             return;
         }
 
-        pool.currentIndex = Mathf.Max(pool.currentIndex - 1, 0);
         obj.SetActive(false);
         obj.transform.SetParent(pool.parent);
     }
@@ -217,14 +227,21 @@ public class ObjectPoolManager : MonoBehaviour
 
         if (pool.currentIndex >= pool.objects.Count)
         {
-            Debug.LogWarning($"[pool] Pool overflow: {type}");
+            Debug.Log($"[Pool] {type} : index 0");
             pool.currentIndex = 0;
         }
 
         GameObject obj = pool.objects[pool.currentIndex];
+        pool.currentIndex++;
+        
+        // ⛑ 안전 경고: 아직 비활성화되지 않았는데 재사용하려는 경우
+        if (obj.activeSelf)
+        {
+            Debug.LogWarning($"[Pool] Active object ({type}) at index {pool.currentIndex}. Consider increasing pool size.");
+        }
+        
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
-        pool.currentIndex++;
 
         return obj;
     }
@@ -237,7 +254,6 @@ public class ObjectPoolManager : MonoBehaviour
             return;
         }
 
-        pool.currentIndex = Mathf.Max(pool.currentIndex - 1, 0);
         obj.SetActive(false);
         obj.transform.SetParent(pool.parent);
     }

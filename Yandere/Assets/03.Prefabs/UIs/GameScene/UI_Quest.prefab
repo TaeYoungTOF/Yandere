@@ -3507,7 +3507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa345601cbb4bd44a7deaeff98ddcc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _QuestPanel: {fileID: 7853268788110455518}
+  panel: {fileID: 7853268788110455518}
   _backButton: {fileID: 4911625663573070939}
   _panels:
   - starIcon: {fileID: 8777793169601359006}

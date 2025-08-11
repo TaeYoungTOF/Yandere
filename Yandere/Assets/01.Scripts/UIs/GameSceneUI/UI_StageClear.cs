@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class UI_StageClear : ToggleableUI
 {
-    [SerializeField] private GameObject _stageClearPanel;
     [SerializeField] private Button _homeButton;
     [SerializeField] private Button _advertiseButton;
     [SerializeField] private Button _backButton;
@@ -16,16 +14,13 @@ public class UI_StageClear : ToggleableUI
     [SerializeField] private TMP_Text _killText;
     [SerializeField] private TMP_Text _goldText;
     
-    //[Header("Quest UI")]
+    [Header("Quest UI")]
     [SerializeField] private GameObject[] _starIcons;
     [SerializeField] private QuestPanel[] _questPanels;
     
-    private StageManager _stageManager;
-
     private void Start()
     {
-        Init(_stageClearPanel);
-        _stageClearPanel.SetActive(false);
+        Init();
         foreach (var icon in _starIcons)
         {
             icon.SetActive(false);
@@ -36,8 +31,6 @@ public class UI_StageClear : ToggleableUI
         
         _homeButton.onClick.AddListener(() => GameManager.Instance.LoadScene(SceneName.TitleScene));
         _backButton.onClick.AddListener(() => GameManager.Instance.LoadScene(SceneName.TitleScene));
-        
-        _stageManager = StageManager.Instance;
     }
 
     public override UIState GetUIState()
@@ -55,7 +48,7 @@ public class UI_StageClear : ToggleableUI
 
         UpdateQuestUI();
         
-        _stageClearPanel.SetActive(true);
+        panel.SetActive(true);
     }
 
     private void UpdateQuestUI()

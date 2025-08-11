@@ -43,6 +43,7 @@ public class RagingEmotions : ActiveSkill<RagingEmotionsDataWrapper>
         base.UpdateActiveData();
 
         // Leveling Data
+        data.projectileCount = CurrentData.projectileCount;
         data.skillDuration = CurrentData.skillDuration * player.stat.FinalSkillDuration;
         data.knockbackDistance = CurrentData.knockbackDistance;
 

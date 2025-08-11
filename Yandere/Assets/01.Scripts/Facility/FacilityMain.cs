@@ -38,9 +38,10 @@ public class FacilityMain : Facility
    
    public void OnClickPhoto()
    {
-      SoundManager.Instance.Play("LobbyClick01_SFX");
+      SoundManager.Instance.Play("GetPicture");
       ResourceManager.Instance.UseStack(amount);
       UpdateUI();
+      UpdateStackUI(ResourceManager.Instance.currentStack, ResourceManager.Instance.maxStack);
    }
 
    public void UpdateTimeUI(string formatted)

@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 5580790371508943010}
   - component: {fileID: 231809317980687346}
   - component: {fileID: 5569739380141773139}
-  - component: {fileID: 8065796078529405819}
-  - component: {fileID: -7692475515387918713}
-  - component: {fileID: 8558856441385917589}
+  - component: {fileID: 7338116579995821022}
   m_Layer: 10
   m_Name: 3Stage_Elite_TypeE_Senior(needfix)
   m_TagString: Enemy_Elite
@@ -101,7 +99,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8065796078529405819
+--- !u!114 &7338116579995821022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,56 +108,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1439856908508736086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe7abffea73cd041974f15d7dbe24cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d07803abf2e3874c86040461c632966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 344a99490dbbd2b4b9deb6ff0282eaf5, type: 2}
   _monsterCurrentHealth: 0
   isInAttackRange: 0
   isDead: 0
-  isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
-    dropTable: {fileID: 11400000, guid: aecb069ede98fbe4e9902ead95baf185, type: 2}
+    dropTable: {fileID: 0}
   separationRadius: 0.3
   pushForce: 0.1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
---- !u!114 &-7692475515387918713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439856908508736086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 311b7ca296b879543ae1a150e8977aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 5967160219861529165, guid: fa0666a809288744893ef9761f96a150, type: 3}
+  cooldown: 5
+  cooldownTimer: 0
+  projectilePrefab: {fileID: 3648155978364920382, guid: 7b10bfbf3aa26494d9f18c2ea9cc7c60, type: 3}
   projectileSpawnPoint: {fileID: 2752694845013772231}
-  bulletCount: 0
-  bulletDelay: 0
-  dashSkill: {fileID: 0}
-  boomSkill: {fileID: 8558856441385917589}
---- !u!114 &8558856441385917589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439856908508736086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb032e5f2697144a82b0bb22b82a2e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boomPrefab: {fileID: 3946452558934508694, guid: 141e52bc75f96a9419e227c94f74dfba, type: 3}
-  boomSpawnPoint: {fileID: 2752694845013772231}
-  cooldown: 10
-  spreadAngle: 15
+  damagePerTick: 10
+  damagePerSecond: 1
+  damageDuration: 5
+  damagePerRadius: 3
+  grenadeThrowHeight: 3
+  grenadeDuration: 1.5
+  grenadeRange: 4.5
 --- !u!1 &2189584403132104672
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +338,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 3
 --- !u!114 &5711978838889047932
 MonoBehaviour:
   m_ObjectHideFlags: 0

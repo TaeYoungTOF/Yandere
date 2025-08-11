@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 [System.Serializable]
@@ -46,15 +48,18 @@ public class BurstingGaze : ActiveSkill<BurstingGazeDataWrapper>
     {
         for (int i = 0; i < data.projectileCount; i++)
         {
-            float randomAngle = GetRandomAngle(-data.angle / 2f, data.angle / 2f, 0);
-            Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * player.GetLastMoveDirection();
-
-            GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGazeProj, player.transform.position, Quaternion.identity);
-            var proj = projGO.GetComponent<BurstingGazeProjectile>();
-            SoundManager.Instance.Play("InGame_PlayerSkill_2_BurstingGaze01");
-            proj.Initialize(finalDir, data, _enemyLayer);
-
             yield return new WaitForSeconds(data.shootDelay);
+            
+            float randomAngle = GetRandomAngle(-data.angle / 2f, data.angle / 2f, 0);
+            Vector2 direction = Quaternion.Euler(0f, 0f, randomAngle) * player.GetLastMoveDirection();
+            direction.Normalize();
+
+            Vector3 endPosition = transform.position + (Vector3)(direction * data.projectileDistance);
+
+            GameObject projGo = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGazeProj, transform.position, Quaternion.identity);
+            var proj = projGo.GetComponent<BurstingGazeProjectile>();
+            SoundManager.Instance.Play("InGame_PlayerSkill_2_BurstingGaze01");
+            proj.Initialize(endPosition, data, _enemyLayer);
         }
     }
 
