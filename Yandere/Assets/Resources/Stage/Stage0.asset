@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 0
   stageName: "\uD29C\uD1A0\uB9AC\uC5BC"
-  stageDesc: "\uC774\uC81C\uBD80\uD130 \uADF8\uB97C \uB3C5\uCC28\uC9C0\uD558\uAE30
-    \uC704\uD55C \uACE0\uB3C5\uD55C \uC2F8\uC6C0\uC774 \uC2DC\uC791\uB429\uB2C8\uB2E4."
-  stageImage: {fileID: 21300000, guid: 414463c7e177e3c46861870dc16eef38, type: 3}
+  stageDesc: "\uAC70\uC808\uB2F9\uD55C \uC0AC\uB791\uC740 \uC99D\uC624\uAC00 \uC544\uB2CC,
+    \uAD11\uC801\uC778 \uC9D1\uCC29\uC73C\uB85C \uD53C\uC5B4\uB0AC\uC2B5\uB2C8\uB2E4.
+    \uC138\uC0C1\uC758 \uBAA8\uB4E0 \uBC29\uD574\uBB3C\uC744 \uBD80\uC218\uACE0,
+    \uADF8\uB97C \uC628\uC804\uD788 '\uB0B4 \uAC83'\uC73C\uB85C \uB9CC\uB4E4\uAE30
+    \uC704\uD55C \uACE0\uB3C5\uD55C \uC2F8\uC6C0\uC774 \uC9C0\uAE08 \uC2DC\uC791\uB429\uB2C8\uB2E4."
+  stageImage: {fileID: 21300000, guid: 721a40cabce8ebd4faef63643c7ef3b8, type: 3}
   spawnAreaMin: {x: -29, y: -28}
   spawnAreaMax: {x: 29, y: 28}
   clearTime: 480

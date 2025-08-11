@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - itemData: {fileID: 11400000, guid: fd0ffbf91a97151428c4e44c410f3328, type: 2}
-    probability: 25
+    probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 1e57d7cbc18cb2f45a61384d7259a647, type: 2}
-    probability: 10
+    probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 750d9f1dd0e984318b30a1caddf5e1c4, type: 2}
-    probability: 20
+    probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 97e2e344ab20a2b4eab155ec4189d39b, type: 2}
-    probability: 25
+    probability: 100
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: a306f29d289b1a74dbc3990b6fa60391, type: 2}
-    probability: 5
+    probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 005e70430f70a3b49a9dad750f374eb4, type: 2}
-    probability: 5
+    probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 47afa6227d947874d90bbc95d69172be, type: 2}
-    probability: 5
+    probability: 0
     pickupDelay: 1
   - itemData: {fileID: 11400000, guid: 608ead6b258d96d4091ee3a5887cad3f, type: 2}
-    probability: 5
+    probability: 0
     pickupDelay: 1
   dropMode: 1
