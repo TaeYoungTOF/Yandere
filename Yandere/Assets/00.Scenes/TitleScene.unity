@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 903341971}
-  sfxSource: {fileID: 1159762807}
+  sfxVoices: 8
   soundDataList:
   - {fileID: 11400000, guid: 13da6553d9f61154090f1b4306cdc030, type: 2}
   - {fileID: 11400000, guid: e7bd3d941e6dcba48896f1a8383241c9, type: 2}
@@ -473,6 +473,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 502fe4e7dd961c545935c2c9953151d5, type: 2}
   - {fileID: 11400000, guid: 403f6340cca14934d9740c2598ea6f92, type: 2}
   - {fileID: 11400000, guid: 3f36ba37dd474d34d9bb697da96f998d, type: 2}
+  - {fileID: 11400000, guid: 7eaba6de74547074b98d0333edeb8476, type: 2}
+  - {fileID: 11400000, guid: 0ffe6034d7073bf40aeb6d89bd88a415, type: 2}
+  - {fileID: 11400000, guid: 01bd8197e6d16cf42927db9681fcd9f5, type: 2}
+  - {fileID: 11400000, guid: daf398d0094d93c42ab74bec0e52bc31, type: 2}
   masterVolume: 1
   bgmVolume: 1
   sfxVolume: 1

@@ -107,15 +107,27 @@ public class SpawnManager : MonoBehaviour
     {
         var position = GetRandomSpawnPosition();
         //var instance = Instantiate(entry.enemyPrefab, position, Quaternion.identity, gameObject.transform);
+        // EnemyController enemy = instance.GetComponent<EnemyController>();
+        // enemy.SetEnemyId(entry.id);
+        
         GameObject instance = ObjectPoolManager.Instance.GetEnemyFromPool(entry.id, position, Quaternion.identity);
-        EnemyController enemy = instance.GetComponent<EnemyController>();
-        enemy.SetEnemyId(entry.id);
 
         if (instance.TryGetComponent<EnemyController>(out var controller))
         {
             var dropContext = new DropContext { dropTable = entry.dropTable };
             controller.SetDropContext(dropContext);
         }
+        
+        var dataToUse  = entry.enemyData != null ? entry.enemyData : controller.enemyData; // fallback
+        var tableToUse = entry.dropTable; // null이면 드롭 없음
+        
+        if (dataToUse == null)
+        {
+            Debug.LogError("[SpawnManager] EnemyData가 없습니다. entry.enemyData나 프리팹에 할당하세요.");
+            return;
+        }
+
+        controller.Init(entry.id, dataToUse, tableToUse, position);
     }
 
     public IEnumerator SpawnJarRoutine()

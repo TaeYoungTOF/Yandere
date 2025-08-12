@@ -59,6 +59,7 @@ public class BurningJealousy2Proj2 : BaseProjectile
             if (e.TryGetComponent(out IDamagable target))
             {
                 target.TakeDamage(_data.secondDmg);
+                SoundManager.Instance.PlayRandomSFX(SoundCategory.UpgradeFireball);
             }
         }
 
