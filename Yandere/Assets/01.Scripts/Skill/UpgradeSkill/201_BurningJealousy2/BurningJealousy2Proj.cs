@@ -68,6 +68,7 @@ public class BurningJealousy2Proj : BaseProjectile
             Vector3 dir = Quaternion.Euler(0f, 0f, angle) * Vector3.right;
 
             GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.BurningJealousy2Proj2, transform.position, Quaternion.identity);
+            SoundManager.Instance.PlayRandomSFX(SoundCategory.UpgradeFireProjectile);
             var proj = projGO.GetComponent<BurningJealousy2Proj2>();
             proj.Initialize(dir, _data, enemyLayer);
         }

@@ -16,6 +16,7 @@ public class EnemySpawnWeigth
     public EnemyID id;
     [Range(1, 100)] public int spawnWeight;
     public DropTable dropTable;
+    public EnemyData enemyData; 
 }
 
 [CreateAssetMenu(fileName = "WaveData", menuName = "Stage/WaveData", order = 1)]

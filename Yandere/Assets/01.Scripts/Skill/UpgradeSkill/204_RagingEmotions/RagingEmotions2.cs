@@ -10,12 +10,18 @@ public class RagingEmotions2Wrapper : UpgradeSkillWrapper
     public float knockbackDistance = 4f;
     public float damageInterval = 0.3f;
     public float rotationSpeed = 120f;
+    
+   
 }
 
 public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
 {
     [SerializeField] private float _playerDistance = 2.5f;
     [SerializeField] private float _projRadius = 1f;
+    
+    
+    private Coroutine _sfxLoopCo;                 // 🔹 SFX 루프 코루틴 핸들
+    private bool _skillActive;                    // 🔹 스킬 활성 상태
     
     [Header("References")]
     [SerializeField] private LayerMask _enemyLayer;
@@ -58,6 +64,12 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
 
     protected override void Activate()
     {
+        _skillActive = true; // ✅ 스킬 활성 플래그 ON (먼저!)
+    
+        // SFX 루프는 하나만
+        if (_sfxLoopCo == null)
+            _sfxLoopCo = StartCoroutine(SfxLoop(2f));
+        
         _activeCoroutine = StartCoroutine(SkillCoroutine());
     }
     
@@ -79,5 +91,45 @@ public class RagingEmotions2 : UpgradeSkill<RagingEmotions2Wrapper>
         }
 
         yield return null;
+    }
+    
+    private void StopSfxLoop()
+    {
+        _skillActive = false;
+        if (_sfxLoopCo != null)
+        {
+            StopCoroutine(_sfxLoopCo);
+            _sfxLoopCo = null;
+        }
+    }
+
+    private IEnumerator SfxLoop(float interval)
+    {
+        // 스킬이 활성화된 동안 2초마다 1번만 재생
+        while (_skillActive)
+        {
+            SoundManager.Instance.PlayRandomSFX(SoundCategory.UpgradeRagingEmotionsProjectile);
+            yield return new WaitForSeconds(interval);
+        }
+        _sfxLoopCo = null;
+    }
+    
+    private void Deactivate()
+    {
+        _skillActive = false; // ✅ 플래그 off
+        if (_activeCoroutine != null) { StopCoroutine(_activeCoroutine); _activeCoroutine = null; }
+        StopSfxLoop();
+
+        foreach (var proj in _spawnedProjectiles)
+            if (proj != null) proj.ReturnToPool();
+        _spawnedProjectiles.Clear();
+    }
+
+    
+    
+    private void OnDisable()
+    {
+        // 오브젝트 비활성화 시 정리
+        Deactivate();
     }
 }

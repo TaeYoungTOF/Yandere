@@ -22,6 +22,9 @@ public enum SoundCategory
     EtchedHatred,
     PouringAffection,
     PouringAffectionProjectile,
+    UpgradeFireball,
+    UpgradeFireProjectile,
+    UpgradeRagingEmotionsProjectile
 }
 
 [CreateAssetMenu(fileName = "SoundData", menuName = "Audio/SoundData")]

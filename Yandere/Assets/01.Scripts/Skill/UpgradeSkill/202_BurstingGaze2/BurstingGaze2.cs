@@ -58,7 +58,8 @@ public class BurstingGaze2 : UpgradeSkill<BurstingGaze2Wrapper>
         {
             float randomAngle = GetRandomAngle(-data.angle / 2f, data.angle / 2f, 0);
             Vector2 finalDir = Quaternion.Euler(0f, 0f, randomAngle) * player.GetLastMoveDirection();
-
+            
+            SoundManager.Instance.Play("InGame_PlayerSKill_Upgrade_BurstingGaze(Projectile)");
             GameObject projGo = ObjectPoolManager.Instance.GetFromPool(PoolType.BurstingGaze2Proj, player.transform.position, Quaternion.identity);
             var proj = projGo.GetComponent<BurstingGaze2Proj>();
             proj.Initialize(finalDir, data, _enemyLayer);

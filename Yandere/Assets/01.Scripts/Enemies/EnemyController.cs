@@ -58,10 +58,98 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         
     }
 
+    void OnEnable()
+    {
+        EnsureRefs();
+        ResetRuntimeState();
+    }
+
+    void OnDisable()
+    {
+        _rigidbody2D.velocity = Vector2.zero;
+        isInAttackRange = false;
+        isPatterning = false;
+        _dashSkill?.SetCanUseDash(false);
+    }
+    
+    public virtual void Init(EnemyID id, EnemyData data, DropTable dropTable, Vector3 spawnPos)
+    {
+        EnemyId        = id;
+        enemyData      = data;
+        transform.position = spawnPos;
+
+        if (_dropContext == null) _dropContext = new DropContext();
+        _dropContext.dropTable = dropTable;
+        _dropContext.position  = transform.position;
+
+        EnsureRefs();
+        ResetRuntimeState();
+    }
+
     public virtual void SetEnemyId(EnemyID id)
     {
         EnemyId = id;
     }
+    
+    private void EnsureRefs()
+    {
+        if (_playerTransform == null)
+        {
+            // 가능하면 StageManager.Instance.Player.transform 처럼 캐싱된 참조를 쓰자
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null) _playerTransform = player.transform;
+        }
+
+        // 인터페이스/컴포넌트는 재활성 때도 안전하게 다시 잡아두는 게 좋다
+        _attackModule = GetComponent<IEnemyAttack>();
+        _dashSkill    = GetComponent<EnemySkill_Dash>();
+    }
+    
+    protected virtual void ResetRuntimeState()
+    {
+        isDead = false;
+        isInAttackRange = false;
+        isPatterning = false;
+        
+        _monsterCurrentHealth = (enemyData != null) ? enemyData.monsterMaxHp : 1f;
+        attackTimer = 0f;
+        _rigidbody2D.velocity = Vector2.zero;
+
+        if (_animator)
+        {
+            // Animator 트리거/상태 초기화
+            _animator.Rebind();
+            _animator.Update(0f);
+            _animator.ResetTrigger("Hit");
+            _animator.ResetTrigger("Dead");
+            _animator.ResetTrigger("Attack");
+            _animator.SetBool("Run", false);
+        }
+        
+        ResetVisuals();
+
+        // 대시 스킬 등 상태 가진 컴포넌트 리셋
+        //_dashSkill?.ResetState(); // 없으면 만들어 두자 (CanUse, IsDashing 등 리셋)
+    }
+    
+    private void ResetVisuals()
+    {
+        // 자식 전부 커버 (이펙트/무기 스프라이트 포함)
+        var srs = GetComponentsInChildren<SpriteRenderer>(true);
+        foreach (var sr in srs)
+        {
+            var c = sr.color;
+            c.a = 1f;
+            sr.color = c;
+
+            // (선택) 머티리얼 프로퍼티블록을 쓰는 셰이더면 여기서도 초기화
+            // var mpb = new MaterialPropertyBlock();
+            // sr.GetPropertyBlock(mpb);
+            // if (mpb.IsEmpty() == false) { mpb.SetFloat("_Alpha", 1f); sr.SetPropertyBlock(mpb); }
+        }
+    }
+    
+    
     
     void FixedUpdate()
     {
