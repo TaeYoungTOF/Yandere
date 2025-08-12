@@ -61,67 +61,78 @@ public class EnemySkill_Dash : MonoBehaviour
 
     private IEnumerator DoDash()
     {
-        _isDashing = true;
-        timer = cooldown;
-        
-        Debug.Log("[에너미] 돌진 시작");
+          _isDashing = true;
+    timer = cooldown;
 
-        dashDir = (_player.position - transform.position).normalized;
-        
-        //  // ✅ 시전 준비시간
-        GameObject chargeEffect = ObjectPoolManager.Instance.GetFromPool(PoolType.EnemyChargeSkill, transform.position, Quaternion.identity);
-        StartCoroutine(ReturnToPoolAfterDelay(chargeEffect, 0.3f, PoolType.EnemyChargeSkill));
+    // ✅ 패턴 시작: 이동/런 애니 끄기
+    _controller.SetPatterning(true);
 
-        // ✅ 워닝 이펙트 표시
-        if (dashWarningEffect != null)
+    // 대시 방향 고정
+    dashDir = (_player.position - transform.position).normalized;
+
+    // ▷ 차지 이펙트 + 예열 동안 정지
+    GameObject charge = ObjectPoolManager.Instance.GetFromPool(
+        PoolType.EnemyChargeSkill, transform.position, Quaternion.identity);
+
+    // 경고 라인 키기
+    if (dashWarningEffect != null)
+    {
+        dashWarningEffect.enabled = true;
+        ShowDashPreview(dashDir);
+    }
+
+    // 예열 대기 (이 동안 EnemyController는 isPatterning으로 이동 안 함)
+    yield return new WaitForSeconds(patternWarningTime);
+
+    if (dashWarningEffect != null) dashWarningEffect.enabled = false;
+    StartCoroutine(ReturnToPoolAfterDelay(charge, 0.3f, PoolType.EnemyChargeSkill));
+
+    // ▷ 실제 대시 구간
+    float elapsed = 0f;
+    bool hitOnce = false;
+    SoundManager.Instance.Play("InGame_Enemy_DashRunSFX01");
+
+    while (elapsed < duration)
+    {
+        // 이펙트
+        GameObject dash = ObjectPoolManager.Instance.GetFromPool(
+            PoolType.EnemyDashSkill, transform.position, Quaternion.identity);
+        StartCoroutine(ReturnToPoolAfterDelay(dash, 0.3f, PoolType.EnemyDashSkill));
+
+        // 이동 (Rigidbody2D를 쓰면 velocity로 해도 좋음)
+        transform.position += (Vector3)(dashDir * dashSpeed * Time.deltaTime);
+        elapsed += Time.deltaTime;
+
+        // 충돌 1회 판정
+        if (!hitOnce)
         {
-            dashWarningEffect.enabled = true;
-            ShowDashPreview(dashDir); // 방향 고정
-        }
-
-        yield return new WaitForSeconds(patternWarningTime); // 경고 시간
-        
-        if (dashWarningEffect != null)
-            dashWarningEffect.enabled = false;
-        
-
-        // ▼ 아래는 기존 대시 로직 유지
-        float elapsed = 0f;
-        bool hitOnce = false;
-        
-        SoundManager.Instance.Play("InGame_Enemy_DashRunSFX01");
-        while (elapsed < duration)
-        {
-          
-            GameObject dash = ObjectPoolManager.Instance.GetFromPool(PoolType.EnemyDashSkill, transform.position, Quaternion.identity);
-            StartCoroutine(ReturnToPoolAfterDelay(dash, 0.3f, PoolType.EnemyDashSkill));
-
-            transform.position += (Vector3)(dashDir * dashSpeed * Time.deltaTime);
-            elapsed += Time.deltaTime;
-
-            // 충돌 감지
-            if (!hitOnce)
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.6f, Vector2.zero, 0f, playerLayer);
+            if (hit.collider != null)
             {
-                RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.8f, Vector2.zero, 0f, playerLayer);
-                if (hit.collider != null)
+                Player player = hit.collider.GetComponent<Player>();
+                if (player != null)
                 {
-                    Player player = hit.collider.GetComponent<Player>();
-                    if (player != null)
-                    {
-                        Vector2 knockDir = (player.transform.position - transform.position).normalized;
-                        player.TakeDamage(dashDamage);
-                        player.GetComponent<Rigidbody2D>()?.AddForce(knockDir * knockbackForce, ForceMode2D.Impulse);
-                        hitOnce = true;
-                    }
+                    Vector2 knockDir = (player.transform.position - transform.position).normalized;
+                    player.TakeDamage(dashDamage);
+                    player.GetComponent<Rigidbody2D>()?.AddForce(knockDir * knockbackForce, ForceMode2D.Impulse);
+                    hitOnce = true;
                 }
             }
-
-            yield return null;
         }
 
-        yield return new WaitForSeconds(afterDelay);
-        _isDashing = false;
-        _controller.DelayAttack(0.5f);
+        yield return null;
+    }
+
+    // 후딜
+    _rb.velocity = Vector2.zero; // 혹시 모를 잔여 속도 제거
+    yield return new WaitForSeconds(afterDelay);
+
+    // ✅ 패턴 종료: 다시 움직이게
+    _controller.SetPatterning(false);
+    _isDashing = false;
+
+    // 부모 공격 쿨 좀 밀기
+    _controller.DelayAttack(0.5f);
     }
     public float GetDetectRadius()
     {

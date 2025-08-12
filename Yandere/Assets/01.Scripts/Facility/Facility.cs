@@ -62,7 +62,7 @@ public class Facility : MonoBehaviour
             return;
         }
         
-        SoundManager.Instance.Play("FacilityLvUp");
+        SoundManager.Instance.Play("LobbyClick02_SFX");
         UIManager_Title.Instance.popUp.CallUpgradePanel(this);
     }
     
@@ -71,7 +71,7 @@ public class Facility : MonoBehaviour
        
         if (DataManager.Instance.obsessionCrystals < currentCost)
         {
-            SoundManager.Instance.Play("FacilityLvUp");
+            SoundManager.Instance.Play("wrong");
             UIManager_Title.Instance.popUp.CallLackResourcePanel();
             return;
         }
@@ -99,20 +99,20 @@ public class Facility : MonoBehaviour
     {
         if (facilityData.requiredAccountLevel > DataManager.Instance.accountLevel)
         {
-            SoundManager.Instance.Play("FacilityLvUp");
+            SoundManager.Instance.Play("wrong");
             UIManager_Title.Instance.popUp.CallLackAccountLvPanel();
             
         }
         else
         {
-            SoundManager.Instance.Play("FacilityLvUp");
+            SoundManager.Instance.Play("LobbyClick01_SFX");
             _lockGO.SetActive(false);
         }
     }
 
     private void OnClickInfoButton()
     {
-        SoundManager.Instance.Play("FacilityLvUp");
+        SoundManager.Instance.Play("LobbyClick01_SFX");
         UIManager_Title.Instance.popUp.CallInfoPanel(facilityData.facilityName, facilityData.description);
     }
 }
