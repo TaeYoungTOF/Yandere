@@ -1,10 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
+
+    // ✅ 어디서든 공유되는 최신값
+    public static float MasterVol = 1f;
+    public static float BgmVol = 1f;
+    public static float SfxVol = 1f;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void LoadVolumesEarly()
+    {
+        MasterVol = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        BgmVol    = PlayerPrefs.GetFloat("BGMVolume", 1f);
+        SfxVol    = PlayerPrefs.GetFloat("SFXVolume", 1f);
+    }
     
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgmSource;
@@ -12,10 +24,11 @@ public class SoundManager : MonoBehaviour
     
     [Header("Audio Data List")]
     [SerializeField] private List<SoundData> soundDataList;
-    
-    public float masterVolume = 1f;
-    public float bgmVolume = 1f;
-    public float sfxVolume = 1f;
+
+    // 인스펙터에 보이되 실제 값은 정적값을 미러링
+    public float masterVolume { get; private set; }
+    public float bgmVolume    { get; private set; }
+    public float sfxVolume    { get; private set; }
     
     private Dictionary<string, SoundData> soundDictionary;
     private Dictionary<SoundCategory, List<SoundData>> categorizedSFX = new();
@@ -25,14 +38,26 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            masterVolume = MasterVol;
+            bgmVolume    = BgmVol;
+            sfxVolume    = SfxVol;
+
+            InitSoundDictionary();
+            _settingPanel.SetActive(false);
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        
+    }
+
+    private void InitSoundDictionary()
+    {
         soundDictionary = new Dictionary<string, SoundData>();
         foreach (var sound in soundDataList)
         {
@@ -47,8 +72,6 @@ public class SoundManager : MonoBehaviour
                 categorizedSFX[sound.soundCategory].Add(sound);
             }
         }
-        
-        _settingPanel.SetActive(false);
     }
 
     public void Play(string soundName)
@@ -68,7 +91,6 @@ public class SoundManager : MonoBehaviour
             bgmSource.pitch = data.pitch;
             bgmSource.Play();
         }
-
         else if (data.soundType == SoundType.SFX)
         {
            sfxSource.clip = data.soundClips[0];
@@ -85,39 +107,33 @@ public class SoundManager : MonoBehaviour
         bgmSource.Stop();
     }
     
-    public void SetMasterVolume(float volume)
+    public void SetMasterVolume(float v)
     {
-        masterVolume = volume;
-        
-        if (bgmSource.isPlaying)
-        {
-            SoundData currentBGM = soundDataList.Find(x =>
-                x.soundClips != null && x.soundClips.Contains(bgmSource.clip));
-
-            if (currentBGM != null)
-                bgmSource.volume = currentBGM.volume * masterVolume * bgmVolume;
-        }
+        MasterVol = masterVolume = v;
+        PlayerPrefs.SetFloat("MasterVolume", v);
+        PlayerPrefs.Save();
+        UpdateBGMVolume();
     }
-    public void SetBGMVolume(float volume)
+    public void SetBGMVolume(float v)
     {
-        bgmVolume = volume;
-
-        if (bgmSource.isPlaying)
-        {
-            SoundData currentBGM = soundDataList.Find(x =>
-                x.soundClips != null && x.soundClips.Contains(bgmSource.clip));
-
-            if (currentBGM != null)
-            {
-                float dataVol = currentBGM.volume;
-                float finalVolume = dataVol * masterVolume * bgmVolume;
-                bgmSource.volume = finalVolume;
-            }
-        }
+        BgmVol = bgmVolume = v;
+        PlayerPrefs.SetFloat("BGMVolume", v);
+        PlayerPrefs.Save();
+        UpdateBGMVolume();
     }
-    public void SetSFXVolume(float volume)
+    public void SetSFXVolume(float v)
     {
-        sfxVolume = volume;
+        SfxVol = sfxVolume = v;
+        PlayerPrefs.SetFloat("SFXVolume", v);
+        PlayerPrefs.Save();
+    }
+
+    private void UpdateBGMVolume()
+    {
+        if (!bgmSource || !bgmSource.isPlaying) return;
+        var currentBGM = soundDataList.Find(x => x.soundClips != null && x.soundClips.Contains(bgmSource.clip));
+        if (currentBGM != null)
+            bgmSource.volume = currentBGM.volume * masterVolume * bgmVolume;
     }
 
     public void OpenSettingPanel()

@@ -45,15 +45,4 @@ public class BurstingGazeProjectile : BaseProjectile
         _moveTween?.Kill();
         ObjectPoolManager.Instance.ReturnToPool(PoolType.BurstingGazeProj, gameObject);
     }
-    
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        if (_targetPos == Vector3.zero) return;
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(_startPos, _targetPos);
-        Gizmos.DrawSphere(_targetPos, 0.1f);
-    }
-#endif
 }

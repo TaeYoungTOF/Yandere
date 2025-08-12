@@ -80,9 +80,15 @@ public class SaveLoadManager : MonoBehaviour
             DataManager.Instance.facilityLevels[i] = 0;
         }
 
-        SoundManager.Instance.masterVolume = 1f;
-        SoundManager.Instance.bgmVolume = 1f;
-        SoundManager.Instance.sfxVolume = 1f;
+        // 🔸 볼륨: PlayerPrefs 값이 있으면 그걸 우선 적용
+        float mv = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        float bv = PlayerPrefs.GetFloat("BGMVolume",    1f);
+        float sv = PlayerPrefs.GetFloat("SFXVolume",    1f);
+
+        // 반드시 Setter로 반영 (BGM 즉시 반영 + PlayerPrefs 동기화)
+        SoundManager.Instance.SetMasterVolume(mv);
+        SoundManager.Instance.SetBGMVolume(bv);
+        SoundManager.Instance.SetSFXVolume(sv);
     }
 
     private void LoadSaveData(SaveData save)
@@ -98,9 +104,13 @@ public class SaveLoadManager : MonoBehaviour
         
         DataManager.Instance.facilityLevels = save.facilityLevels;
 
-        SoundManager.Instance.masterVolume = save.settingData.masterVolume;
-        SoundManager.Instance.bgmVolume = save.settingData.bgmVolume;
-        SoundManager.Instance.sfxVolume = save.settingData.sfxVolume;
+        // 🔸 저장된 설정값을 SoundManager에 Setter로 반영
+        if (save.settingData != null)
+        {
+            SoundManager.Instance.SetMasterVolume(save.settingData.masterVolume);
+            SoundManager.Instance.SetBGMVolume(save.settingData.bgmVolume);
+            SoundManager.Instance.SetSFXVolume(save.settingData.sfxVolume);
+        }
     }
 
     public void UpdateSaveData(SaveData save)
