@@ -103,14 +103,15 @@ public class SaveLoadManager : MonoBehaviour
         DataManager.Instance.premiumCurrency = save.premiumCurrency;
         
         DataManager.Instance.facilityLevels = save.facilityLevels;
+        
+        // Sound Setting
+        float mv = PlayerPrefs.HasKey("MasterVolume") ? PlayerPrefs.GetFloat("MasterVolume") : save.settingData.masterVolume;
+        float bv = PlayerPrefs.HasKey("BGMVolume")    ? PlayerPrefs.GetFloat("BGMVolume")    : save.settingData.bgmVolume;
+        float sv = PlayerPrefs.HasKey("SFXVolume")    ? PlayerPrefs.GetFloat("SFXVolume")    : save.settingData.sfxVolume;
 
-        // 🔸 저장된 설정값을 SoundManager에 Setter로 반영
-        if (save.settingData != null)
-        {
-            SoundManager.Instance.SetMasterVolume(save.settingData.masterVolume);
-            SoundManager.Instance.SetBGMVolume(save.settingData.bgmVolume);
-            SoundManager.Instance.SetSFXVolume(save.settingData.sfxVolume);
-        }
+        SoundManager.Instance.SetMasterVolume(mv);
+        SoundManager.Instance.SetBGMVolume(bv);
+        SoundManager.Instance.SetSFXVolume(sv);
     }
 
     public void UpdateSaveData(SaveData save)

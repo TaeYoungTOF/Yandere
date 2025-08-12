@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BurstingGaze2Wrapper : UpgradeSkillWrapper
@@ -8,7 +7,7 @@ public class BurstingGaze2Wrapper : UpgradeSkillWrapper
     public float projectileDistance;
 
     [Header("Const Data")]
-    public float angle = 45f;
+    public float angle = 60f;
     public float projectileSpeed = 25f;
     public float shootDelay = 0.1f;
 
