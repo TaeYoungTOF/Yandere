@@ -288,8 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 6
   dashSpeed: 10
-  radius: 4
-  duration: 0.3
+  radius: 5
+  duration: 0.5
   afterDelay: 1
   knockbackForce: 10
   dashDamage: 18
@@ -299,7 +299,7 @@ MonoBehaviour:
   patternWarningTime: 1
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &2189584403132104672
 GameObject:
   m_ObjectHideFlags: 0

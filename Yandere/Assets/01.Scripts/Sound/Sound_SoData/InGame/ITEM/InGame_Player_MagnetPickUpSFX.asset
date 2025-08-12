@@ -15,7 +15,8 @@ MonoBehaviour:
   soundType: 1
   soundCategory: 0
   soundName: InGame_Player_MagnetPickUpSFX
-  volume: 0.05
+  volume: 0.8
+  pitch: 1
   loop: 0
   soundClips:
   - {fileID: 8300000, guid: d9f8d622b4fdd8e41bbeac548be0629b, type: 3}

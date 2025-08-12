@@ -153,14 +153,14 @@ MonoBehaviour:
   cooldown: 13
   dashSpeed: 7
   radius: 4
-  duration: 0.21
+  duration: 0.6
   afterDelay: 3
   knockbackForce: 10
   dashDamage: 13
   chargeEffect: {fileID: 6959135721157932711, guid: 6d2e1364598fab541bbd8843ae441b1c, type: 3}
   dashEffect: {fileID: 1370578815270207431, guid: c3246a47be3bb3e4987d2d55a30ba98f, type: 3}
   dashWarningEffect: {fileID: 2352484261586230952}
-  patternWarningTime: 0.5
+  patternWarningTime: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

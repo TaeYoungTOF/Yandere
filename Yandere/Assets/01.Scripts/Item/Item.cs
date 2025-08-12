@@ -47,9 +47,11 @@ public class Item : MonoBehaviour
                  break;
             case ItemType.BoomItem:
                 DoExplosionEffect();
+                SoundManager.Instance.Play("InGame_Player_BombPickUpSFX");
                 break;
             case ItemType.MagnetItem:
                 DoMagnetEffect(player);
+                SoundManager.Instance.Play("InGame_Player_MagnetPickUpSFX");
                 break;
             default:
                 Debug.LogWarning($"[Item] No Type of  {itemData.itemtpye}");

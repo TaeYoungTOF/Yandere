@@ -15,7 +15,8 @@ MonoBehaviour:
   soundType: 1
   soundCategory: 0
   soundName: InGame_Player_BombPickUpSFX
-  volume: 0.05
+  volume: 0.8
+  pitch: 1
   loop: 0
   soundClips:
   - {fileID: 8300000, guid: d0ac9f4eaeca2c943aa58905a92a4541, type: 3}

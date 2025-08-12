@@ -139,8 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 8
   dashSpeed: 10
-  radius: 4
-  duration: 0.3
+  radius: 5
+  duration: 0.5
   afterDelay: 1
   knockbackForce: 10
   dashDamage: 15
