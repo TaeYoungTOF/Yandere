@@ -47,10 +47,8 @@ public class Item_ItemDropEffect : MonoBehaviour
         transform.DOMove(_playerTransform.position, duration).SetEase(Ease.Linear);
     }
 
-    public void CollectItem()
+    private void CollectItem()
     {
-        Debug.Log($"{gameObject.name} 수집됨!");
-        
         if (TryGetComponent<Item>(out var item) && _playerTransform != null)
         {
             if (_playerTransform.TryGetComponent<Player>(out var player))
