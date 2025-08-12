@@ -75,7 +75,7 @@ public class UI_Popup : MonoBehaviour
 
     public void CloseUpgradePanel()
     {
-        SoundManager.Instance.Play("FacilityLvUp");
+        SoundManager.Instance.Play("LobbyClick02_SFX");
         _upgradePanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
@@ -102,7 +102,7 @@ public class UI_Popup : MonoBehaviour
     
     private void CloseLackAccountLvPanel()
     {
-        SoundManager.Instance.Play("FacilityLvUp");
+        SoundManager.Instance.Play("LobbyClick02_SFX");
         _lackAccountLvPanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
@@ -128,21 +128,21 @@ public class UI_Popup : MonoBehaviour
 
     private void CloseResourcesClosePopUp()
     {
-        SoundManager.Instance.Play("FacilityLvUp");
+        SoundManager.Instance.Play("LobbyClick02_SFX");
         _resourcesPanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
 
     private void CloseRecordPopUp()
     {
-        SoundManager.Instance.Play("FacilityLvUp");
+        SoundManager.Instance.Play("LobbyClick02_SFX");
         _recordPanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
     
     private void CloseFullFacilityLvPanel()
     {
-        SoundManager.Instance.Play("FacilityLvUp");
+        SoundManager.Instance.Play("LobbyClick02_SFX");
         _fullFacilityLvPanel.SetActive(false);
         _popUpPanel.SetActive(false);
     }
