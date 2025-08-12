@@ -99,7 +99,9 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void Start()
     {
-        _pools = new SerializedDictionary<PoolType, PoolData>();
+        if (_pools == null) _pools = new SerializedDictionary<PoolType, PoolData>();
+        if (_enemyPools == null) _enemyPools = new SerializedDictionary<EnemyID, PoolData>();
+
         InitializePools();
         InitializeEnemyPool(StageManager.Instance.currentStageData.enemyList);
     }
@@ -112,6 +114,7 @@ public class ObjectPoolManager : MonoBehaviour
 
         skillParent.SetParent(transform);
         upgradeSkillParent.SetParent(transform);
+        enemySkillParent.SetParent(transform);
         
         foreach (var entry in poolPrefabs)
         {
@@ -159,7 +162,7 @@ public class ObjectPoolManager : MonoBehaviour
             return null;
         }
 
-        if (pool.currentIndex >= pool.objects.Count)
+        /*if (pool.currentIndex >= pool.objects.Count)
         {
             pool.currentIndex = 0;
         }
@@ -171,7 +174,10 @@ public class ObjectPoolManager : MonoBehaviour
         if (obj.activeSelf)
         {
             Debug.LogWarning($"[Pool] Active object ({type}) at index {pool.currentIndex}. Consider increasing pool size.");
-        }
+        }*/
+
+        var obj = RentNextInactive(pool, type.ToString());
+        if (!obj) return null;
         
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
@@ -224,20 +230,9 @@ public class ObjectPoolManager : MonoBehaviour
             return null;
         }
 
-        if (pool.currentIndex >= pool.objects.Count)
-        {
-            Debug.Log($"[Pool] {type} : index 0");
-            pool.currentIndex = 0;
-        }
-
-        GameObject obj = pool.objects[pool.currentIndex];
-        pool.currentIndex++;
+        var obj = RentNextInactive(pool, type.ToString());
+        if (!obj) return null;
         
-        // ⛑ 안전 경고: 아직 비활성화되지 않았는데 재사용하려는 경우
-        if (obj.activeSelf)
-        {
-            Debug.LogWarning($"[Pool] Active object ({type}) at index {pool.currentIndex}. Consider increasing pool size.");
-        }
         
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
@@ -255,6 +250,34 @@ public class ObjectPoolManager : MonoBehaviour
 
         obj.SetActive(false);
         obj.transform.SetParent(pool.parent);
+    }
+
+    // 공용 헬퍼: 한 바퀴 안에서 비활성 객체 탐색
+    private static GameObject RentNextInactive(PoolData pool, string typeLabel)
+    {
+        if (pool == null || pool.objects == null || pool.objects.Count == 0)
+        {
+            Debug.LogWarning($"[Pool] '{typeLabel}' pool is empty.");
+            return null;
+        }
+
+        int checkedCount = 0;
+        while (checkedCount < pool.objects.Count)
+        {
+            if (pool.currentIndex >= pool.objects.Count)
+                pool.currentIndex = 0;
+
+            var candidate = pool.objects[pool.currentIndex];
+            pool.currentIndex = (pool.currentIndex + 1) % pool.objects.Count;
+
+            if (!candidate.activeSelf)
+                return candidate;
+
+            checkedCount++;
+        }
+
+        Debug.LogWarning($"[Pool] No inactive object available for {typeLabel}. Consider increasing pool size.");
+        return null; // 필요 시 여기서 '가장 오래된 객체' 강제 재사용으로 바꿀 수 있음
     }
 
     /*
