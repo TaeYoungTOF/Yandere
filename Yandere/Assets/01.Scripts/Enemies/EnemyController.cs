@@ -104,6 +104,16 @@ public class EnemyController : MonoBehaviour, IDamagable, IEnemy
         _attackModule = GetComponent<IEnemyAttack>();
         _dashSkill    = GetComponent<EnemySkill_Dash>();
     }
+    public void SetPatterning(bool value)
+    {
+        isPatterning = value;
+        if (value)
+        {
+            _rigidbody2D.velocity = Vector2.zero;
+            _animator.SetBool("Run", false);
+        }
+    }
+    
     
     protected virtual void ResetRuntimeState()
     {
