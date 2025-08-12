@@ -287,12 +287,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 6
-  dashSpeed: 10
-  radius: 4
-  duration: 0.3
+  dashSpeed: 17
+  radius: 5
+  duration: 0.45
   afterDelay: 1
-  knockbackForce: 10
-  dashDamage: 18
+  knockbackForce: 12
+  dashDamage: 20
   chargeEffect: {fileID: 6959135721157932711, guid: 6d2e1364598fab541bbd8843ae441b1c, type: 3}
   dashEffect: {fileID: 1370578815270207431, guid: c3246a47be3bb3e4987d2d55a30ba98f, type: 3}
   dashWarningEffect: {fileID: 8852752998112476110}
