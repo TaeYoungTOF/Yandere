@@ -116,7 +116,6 @@ MonoBehaviour:
   _monsterCurrentHealth: 0
   isInAttackRange: 0
   isDead: 0
-  isDashing: 0
   _dropContext:
     position: {x: 0, y: 0, z: 0}
     dropTable: {fileID: 0}
@@ -130,7 +129,7 @@ MonoBehaviour:
   pattern1LaserPrefab: {fileID: 7675876397032021012, guid: c0a765898e993244aa57c31167682c52, type: 3}
   pattern1LaserChargeEffectPrefab: {fileID: 4762597228785880839, guid: 1b8e5a100acf7014ebebb778b31c6614, type: 3}
   pattern1LaserSpawnPoint: {fileID: 3295909504478681482}
-  laserDamage: 100
+  laserDamage: 20
   laserChargeTime: 2
   laserCount: 3
   pattern1LaserRange: 10
@@ -344,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 3790309057131494843}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.004, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
