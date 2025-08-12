@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParchedLonging2Wrapper : UpgradeSkillWrapper
@@ -19,14 +17,14 @@ public class ParchedLonging2Wrapper : UpgradeSkillWrapper
 
 public class ParchedLonging2 : UpgradeSkill<ParchedLonging2Wrapper>
 {
-    [SerializeField] private float _projRadius = 5f;
+    [SerializeField] private float _projRadius = 2f;
     [SerializeField] private float _duration = 3f;
     [SerializeField] private float _damageDoT = 10f;
     [SerializeField] private float _playerDistance = 3f;
     
     [SerializeField] private float _secondDuration = 4f;
     [SerializeField] private float _secondDmg = 90f;
-    [SerializeField] private float _secondProjSize = 4f;
+    [SerializeField] private float _secondProjSize = 1.6f;
 
     [Header("References")]
     [SerializeField] private LayerMask _enemyLayer;

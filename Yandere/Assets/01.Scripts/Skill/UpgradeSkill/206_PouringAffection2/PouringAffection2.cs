@@ -11,8 +11,8 @@ public class PouringAffection2Wrapper : UpgradeSkillWrapper
 
 public class PouringAffection2 : UpgradeSkill<PouringAffection2Wrapper>
 {
-    [SerializeField] private float _explodeRadius = 14f;
-    [SerializeField] private float _secondExplodeRadius = 4f;
+    [SerializeField] private float _explodeRadius = 7f;
+    [SerializeField] private float _secondExplodeRadius = 2f;
     [SerializeField] private float _spawnDuration = 2f;
     
     [Header("References")]

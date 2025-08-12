@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -23,8 +21,8 @@ public class BurningJealousy2 : UpgradeSkill<BurningJealousy2Wrapper>
 {
     [SerializeField] private float _enemySearchRange = 5f;
     [SerializeField] private float _pjtDistance = 30f;
-    [SerializeField] private float _explodeRadius = 4f;
-    [SerializeField] private float _pjtSize = 0.8f;
+    [SerializeField] private float _explodeRadius = 2f;
+    [SerializeField] private float _pjtSize = 0.5f;
     [SerializeField] private float _secondDmg = 25f;
     [SerializeField] private float _secondExplodeRadius = 3f;
 
