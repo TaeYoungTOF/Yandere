@@ -1,0 +1,62 @@
+using System.Linq;
+using UnityEngine;
+
+public class BurningJealousy2Wrapper : UpgradeSkillWrapper
+{
+    [Header("Unleveling Data")]
+    public float enemySearchRange;
+    public float pjtDistance;
+    public float explodeRadius;
+    public float pjtSize;
+    public float secondDmg;
+    public float secondExplodeRadius;
+
+    [Header("Const Data")]
+    public float pjtSpeed = 15f;
+    public int secondPjtCount = 8;
+    public float secondPjtSize = 0.6f;
+}
+
+public class BurningJealousy2 : UpgradeSkill<BurningJealousy2Wrapper>
+{
+    [SerializeField] private float _enemySearchRange = 5f;
+    [SerializeField] private float _pjtDistance = 30f;
+    [SerializeField] private float _explodeRadius = 2f;
+    [SerializeField] private float _pjtSize = 0.5f;
+    [SerializeField] private float _secondDmg = 25f;
+    [SerializeField] private float _secondExplodeRadius = 3f;
+
+    [Header("References")]
+    [SerializeField] private LayerMask _enemyLayer;
+    
+    public override void UpdateActiveData()
+    {
+        base.UpdateActiveData();
+
+        data.enemySearchRange = _enemySearchRange * player.stat.FinalSkillRange;
+        data.pjtDistance = _pjtDistance * player.stat.FinalSkillRange;
+        data.explodeRadius =  _explodeRadius * player.stat.FinalSkillRange;
+        data.pjtSize = _pjtSize * player.stat.FinalSkillRange;
+        
+        data.secondDmg = CalculateDamage(_secondDmg);
+        data.secondExplodeRadius = _secondExplodeRadius * player.stat.FinalSkillRange;
+    }
+
+    protected override void Activate()
+    {
+        Vector2 origin = transform.position;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, data.enemySearchRange, _enemyLayer);
+        var sortedTargets = hits.OrderBy(h => Vector2.Distance(origin, h.transform.position))
+            .Take(data.projectileCount);
+
+        foreach (var target in sortedTargets)
+        {
+            Vector2 dir = ((Vector2)target.transform.position - origin).normalized;
+
+            GameObject projGO = ObjectPoolManager.Instance.GetFromPool(PoolType.BurningJealousy2Proj, origin, Quaternion.identity);
+            var proj = projGO.GetComponent<BurningJealousy2Proj>();
+            proj.Initialize(dir, data, _enemyLayer);
+        }
+    }
+}

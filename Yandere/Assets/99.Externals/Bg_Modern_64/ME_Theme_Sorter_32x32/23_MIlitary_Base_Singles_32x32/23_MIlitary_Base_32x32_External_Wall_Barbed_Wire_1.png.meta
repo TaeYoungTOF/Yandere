@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 39
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,763 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312.8889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6f90bbb55f2c1843834e6c01c8f3db7
+      internalID: 2001743394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 312.8889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 105525f299bff7f419d8169bd10d206c
+      internalID: 1480825868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 312.8889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e59f160847f3a7b4b9f9a5cbb4f43eb0
+      internalID: 223195542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 312.8889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d58b4b6c7d99883459f85716bbe06d0d
+      internalID: -1579813220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 273.8889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a386fde420d31e241b3b5f87e0bced35
+      internalID: 1255814147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 273.8889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a25ffa295b7b7cc4d83c9c7f2c09ac09
+      internalID: 655645100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 273.8889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9973242708534e4998b9dd79d33c85e
+      internalID: -581447439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 273.8889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f69a82ff1012914891f2114908b313d
+      internalID: 111360505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 234.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42c6780999ae4b7409fda68e1284bdca
+      internalID: 534970628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 234.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2ef93d5dbc1f714085b95e4f7f86564
+      internalID: -1134319331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 234.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8edcbe8a03581cf43a1464e522d9fd61
+      internalID: 490223197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 234.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 693004d8418fa4e4cb88a3a03bb65f16
+      internalID: -1836249067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 195.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6091c1fdc4c36ba41b41bf155cf51eed
+      internalID: 1939493354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 195.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a494bf3b7358d34a995146c76e4561e
+      internalID: 1023313785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 195.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe0b722468cdf747a7cd257284ad18b
+      internalID: 1906767777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 195.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89ed16631a456c14ca18b1ce36e79670
+      internalID: -1633595722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d47b43bcd6482240baab318dd6ac197
+      internalID: 309509281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 156.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33ee1e564e6d87418c8e0dbc9ef7e52
+      internalID: 1682107830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 156.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ada63850adfa534b81c09c8b8c1ea05
+      internalID: -1669893460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 156.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a88e945775acecd45a91ddeab147afe6
+      internalID: -384397825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 117.888885
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ffe533dc6c1ada409a0aeb3b23611c9
+      internalID: -906412467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 117.888885
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a0df329a6f759469a0e691031a28e2
+      internalID: -87321761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 117.888885
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 220bef561467140498b5fd4374c3c825
+      internalID: 1650737785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_23
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 117.888885
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a490eb3ee2314ba4e855828bfd282d44
+      internalID: -559061483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78.888885
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33a0762e602d8949a6ae33ce0a5fdb0
+      internalID: -1096702077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 78.888885
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbe0df6eb2affbc4b88101852e097180
+      internalID: 2025783137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 78.888885
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec82fc56aa7f804480dc6a4809ae826
+      internalID: -25384204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 78.888885
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f71b48392584d5940812741f58cfc6bf
+      internalID: -917457844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 39.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fd7de3737dd24146b6890c9b70a0a92
+      internalID: 538468226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_29
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 39.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16832bb4667419747825ad59076401e8
+      internalID: 1564242072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_30
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 39.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ddd30cdfaa618648aa551433360f9c5
+      internalID: -1321810461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_31
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 39.88889
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8daed0fa15f9c4a4fb0e8fc2319d3e7b
+      internalID: 54371761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.8888893
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9329d8ac81b7fc54aa6832370ae5e14b
+      internalID: 1513884919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_33
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0.8888893
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a55c26735465d84dbce34afd2ce283d
+      internalID: -1637574072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_34
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0.8888893
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64268f78a1efedb4fbfb236a44858c60
+      internalID: -814920389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_35
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0.8888893
+        width: 32
+        height: 39.11111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e6ae3078c23dc84ebfdf6284e346bb3
+      internalID: -525844353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +875,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_0: 2001743394
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_1: 1480825868
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_10: 490223197
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_11: -1836249067
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_12: 1939493354
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_13: 1023313785
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_14: 1906767777
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_15: -1633595722
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_16: 309509281
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_17: 1682107830
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_18: -1669893460
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_19: -384397825
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_2: 223195542
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_20: -906412467
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_21: -87321761
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_22: 1650737785
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_23: -559061483
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_24: -1096702077
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_25: 2025783137
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_26: -25384204
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_27: -917457844
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_28: 538468226
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_29: 1564242072
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_3: -1579813220
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_30: -1321810461
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_31: 54371761
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_32: 1513884919
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_33: -1637574072
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_34: -814920389
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_35: -525844353
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_4: 1255814147
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_5: 655645100
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_6: -581447439
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_7: 111360505
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_8: 534970628
+      23_MIlitary_Base_32x32_External_Wall_Barbed_Wire_1_9: -1134319331
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,23 +1,29 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    
+    private SaveLoadManager _saveLoadManager;
 
     /** @todo SaveSystem 추후 조정
     private AutoSaveSystem _autoSaveSystem;
     [SerializeField] private float autoSaveInterval = 30f;
     private float _timer;*/
 
+    public float[] InGameData { get; private set; }
+
     [Header("Stage Data")]
     public StageData[] stageDatas;
     [SerializeField] private int _maxStageIndex;
-    public int MaxStageIndex
-    {
-        get => _maxStageIndex;
-    }
+    public int MaxStageIndex => _maxStageIndex;
     public StageData currentStageData;
+
+    private bool _rewardPending;
+    private float _pendingExp;
+    private float _pendingGold;
 
     private void Awake()
     {
@@ -37,12 +43,15 @@ public class GameManager : MonoBehaviour
         // StageData 개수만큼 _maxStageIndex 자동 설정
         stageDatas = Resources.LoadAll<StageData>("Stage");
         _maxStageIndex = stageDatas.Length;
+        currentStageData = stageDatas[0];
         Debug.Log($"[GameManager] Loaded {_maxStageIndex} stages from Stages folder");
     }
 
     private void Start()
     {
         //_timer = 0f;
+        //SoundManagerTest.Instance.Play("Title_BGM");
+        _saveLoadManager = SaveLoadManager.Instance;
     }
 
     private void Update()
@@ -58,43 +67,59 @@ public class GameManager : MonoBehaviour
     public void SetStage(StageData stageData)
     {
         currentStageData = stageData;
-
-        Debug.Log($"[GameManager] Set Stage {currentStageData.stageIndex}");
     }
 
-    public void LoadGameScene()
+    public void LoadScene(SceneName sceneName)
     {
-        Debug.Log("[GameManager] Call Game Scene");
-
-        SceneManager.LoadScene("GameScene");
-    }
-
-    public void LoadTitleScene()
-    {
-        Debug.Log("[GameManager] Call Title Scene");
-
-        SceneManager.LoadScene("TitleScene");
-    }
-
-    public void LoadNextStage()
-    {
-        int nextIndex = currentStageData.stageIndex;
-
-        if (nextIndex >= MaxStageIndex)
+        switch (sceneName)
         {
-            Debug.Log("[GameManager] Last Stage. Return to Title");
-
-            LoadTitleScene();
-            return;
+            case SceneName.TitleScene:
+                _rewardPending = true;
+                _pendingExp = StageManager.Instance.Exp;
+                _pendingGold = StageManager.Instance.GoldCount;
+                break;
+            case SceneName.GameScene:
+                _saveLoadManager.UpdateSaveData(_saveLoadManager.CreateSaveData());
+                InGameData = DataManager.Instance.inGameDatas;
+                break;
+            default:
+                Debug.LogError("[GameManager] Invalid scene name: " + sceneName);
+                break;
         }
+        
+        //StartCoroutine(SceneLoader.Instance.LoadAsync(sceneName));
+        _ = SceneLoader.Instance.LoadAsync(sceneName);
+    }
+    
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
-        nextIndex++;
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
-        currentStageData = stageDatas[nextIndex - 1];
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "TitleScene":
+                SoundManager.Instance.Play("Title_BGM");
 
-        Debug.Log($"[GameManager] Load Next Stage: {currentStageData.stageIndex}");
-
-        LoadGameScene();
+                if (_rewardPending)
+                {
+                    DataManager.Instance.CalculateReward(_pendingExp, _pendingGold);
+                    _pendingExp = 0;
+                    _pendingGold = 0;
+                    _rewardPending = false;
+                }
+                break;
+            case "GameScene":
+                SoundManager.Instance.Play("Stage1_BGM");
+                break;
+        }
     }
 
     /** @todo SaveSystem 추후 조정

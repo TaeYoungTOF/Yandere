@@ -13,12 +13,39 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   stageIndex: 1
-  clearTime: 900
-  achievements: []
+  stageName: "\uD559\uAD50"
+  stageDesc: "\uACE0\uBC31\uC774 \uAC70\uC808\uB2F9\uD55C \uC21C\uAC04, \uADF8\uB140\uC758
+    \uC138\uC0C1\uC774 \uBB34\uB108\uC838 \uB0B4\uB838\uC2B5\uB2C8\uB2E4. \uD3ED\uC8FC\uD558\uB294
+    \uD798\uC740 \u2018\uADF8\u2019\uB97C \uB3C4\uB9DD\uCE58\uAC8C \uD588\uACE0,
+    \uC5B4\uC124\uD508 \uC704\uB85C\uC640 \uB3D9\uC815\uC73C\uB85C \uC55E\uC744 \uAC00\uB85C\uB9C9\uB294
+    \uCE5C\uAD6C\uC640 \uC120\uC0DD\uB4E4\uC740 \uC774\uC81C... \uBD80\uC234\uBC84\uB824\uC57C
+    \uD560 \uCCAB \uBC88\uC9F8 \uC7A5\uC560\uBB3C\uC77C \uBFD0\uC785\uB2C8\uB2E4."
+  stageImage: {fileID: 21300000, guid: cafd92f181b3d33408546521fda93410, type: 3}
+  spawnAreaMin: {x: -29, y: -28}
+  spawnAreaMax: {x: 29, y: 28}
+  clearTime: 660
+  enemyList:
+  - id: 0
+    enemyPrefab: {fileID: 1439856908508736086, guid: a30545f1766464844938f5a85a4bfdaa, type: 3}
+    initialSize: 50
+  - id: 1
+    enemyPrefab: {fileID: 1439856908508736086, guid: 197b96356b086a14887f4c75b6ac96f4, type: 3}
+    initialSize: 50
+  - id: 2
+    enemyPrefab: {fileID: 1439856908508736086, guid: 5be15d955a18b1145b4d9aa67da8d112, type: 3}
+    initialSize: 50
+  - id: 3
+    enemyPrefab: {fileID: 1439856908508736086, guid: a9336aff6b28b86419ca65b4b302add2, type: 3}
+    initialSize: 10
+  - id: 4
+    enemyPrefab: {fileID: 1439856908508736086, guid: 936498b1de8d65947808a245101cd6cb, type: 3}
+    initialSize: 10
+  - id: 5
+    enemyPrefab: {fileID: 1439856908508736086, guid: 2b75229ae81d72744abb15610c846721, type: 3}
+    initialSize: 1
   waveDatas:
-  - {fileID: 11400000, guid: b6170adc94fb54640a0aef83c1ff2701, type: 2}
-  - {fileID: 11400000, guid: 654f36019100efc41bb58bfb9c376cd2, type: 2}
-  - {fileID: 11400000, guid: f382ae796c2c8b0438fd5493c1903fc5, type: 2}
-  - {fileID: 11400000, guid: 1bc46502a93b17841a80f24f82633884, type: 2}
-  - {fileID: 11400000, guid: 26cdfa761ca7a6540979cb5a59c418e8, type: 2}
-  - {fileID: 11400000, guid: deb6d41a17c613f4fa2326ee81eae119, type: 2}
+  - {fileID: 11400000, guid: 26a0d158aea2b7243969b2c47a2205c9, type: 2}
+  - {fileID: 11400000, guid: 7382ee6c5af947d4aa7a78de04da937e, type: 2}
+  - {fileID: 11400000, guid: 588294562a186034090db6cf19c3b058, type: 2}
+  - {fileID: 11400000, guid: cc93d140948d1014ab3873a4bb005bdd, type: 2}
+  - {fileID: 11400000, guid: 500af5a2d03399146a2e14a60f3ef346, type: 2}

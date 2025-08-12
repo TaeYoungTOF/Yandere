@@ -4,6 +4,11 @@ public enum SkillId
 {
     // 액티브 스킬
     Fireball = 1,
+    BurstingGaze,
+    ParchedLonging,
+    RagingEmotions,
+    EtchedHatred,
+    PouringAffection,
     
     // 패시브 스킬
     ProjectileCount = 101,
@@ -12,21 +17,39 @@ public enum SkillId
     CoolDown,
     SkillRange,
     Crit,
+    
+    // 업그레이드 스킬
+    BurningJealousy2 = 201,
+    BurstingGaze2,
+    ParchedLonging2,
+    RagingEmotions2,
+    EtchedHatred2,
+    PouringAffection2,
 }
 
-
-public class BaseSkill : MonoBehaviour
+public abstract class BaseSkill : MonoBehaviour
 {
+    private static int _maxLevel;
+
     public SkillId skillId;
     public int level = 0;
+    
+    public Sprite SkillIcon { get; private set; }
 
-    public SkillData[] skillDatas = new SkillData[SkillManager.maxLevel];
+    public SkillData[] skillDatas = new SkillData[_maxLevel];
     public SkillData currentLevelData;
     public SkillData nextLevelData;
+    
+    protected Player player;
 
     public void Init()
     {
+        player = StageManager.Instance.Player;
+        _maxLevel = SkillManager.Instance.MaxLevel;
+        
         nextLevelData = skillDatas[0];
+        
+        SkillIcon = skillDatas[0].skillIcon;
     }
 
     public virtual void LevelUp()
@@ -34,14 +57,16 @@ public class BaseSkill : MonoBehaviour
         level ++;
         currentLevelData = nextLevelData;
 
-        if (level < SkillManager.maxLevel)
+        if (level < _maxLevel)
         {
             nextLevelData = skillDatas[level];
         }
         else
         {
             nextLevelData = null;
-            SkillManager.Instance.availableSkills.Remove(this);
+            
+            if (SkillManager.Instance.availableSkills.Contains(this))
+                SkillManager.Instance.availableSkills.Remove(this);
         }
     }
 }

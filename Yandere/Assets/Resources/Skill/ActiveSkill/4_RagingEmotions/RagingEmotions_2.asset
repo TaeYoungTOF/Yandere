@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3113e985e7dbc449d1cd1ca98a8b3f, type: 3}
+  m_Name: RagingEmotions_2
+  m_EditorClassIdentifier: 
+  level: 2
+  skillName: "\uD718\uBAB0\uC544\uCE58\uB294 \uAC10\uC815"
+  skillIcon: {fileID: 21300000, guid: abb8504aa8b546c498ff579827f9b144, type: 3}
+  dialogue: "\uB0B4 \uB9C8\uC74C, \uC9C0\uAE08 \uC880 \uC704\uD5D8\uD558\uB2C8\uAE50"
+  levelupTooltip: "\uD68C\uC624\uB9AC 2\uAC1C\uAC00 \uC8FC\uBCC0\uC744 \uD68C\uC804\uD569\uB2C8\uB2E4"
+  projectileCount: 2
+  skillDamage: 20
+  coolTime: 5
+  skillDuration: 8
+  knockbackDistance: 1

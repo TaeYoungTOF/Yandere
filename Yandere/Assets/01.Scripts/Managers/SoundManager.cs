@@ -1,67 +1,210 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance;
-    
-    // 사운드의 타입
-    public enum EBgm
+    public static SoundManager Instance { get; private set; }
+
+    // ✅ 어디서든 공유되는 최신값
+    public static float MasterVol = 1f;
+    public static float BgmVol = 1f;
+    public static float SfxVol = 1f;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void LoadVolumesEarly()
     {
-        BGM_TITLE,
-        BGM_MAIN,
+        MasterVol = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        BgmVol    = PlayerPrefs.GetFloat("BGMVolume", 1f);
+        SfxVol    = PlayerPrefs.GetFloat("SFXVolume", 1f);
     }
     
-    public enum ESfx
-    {
-        SFX_BUTTON,
-        SFX_ENDING,
-        SFX_CLCIK,
-    }
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource bgmSource;
+    [SerializeField] private int sfxVoices = 8;                 // 동시 재생 가능한 SFX 소스 수
+    private AudioSource[] sfxSource;
+    private int sfxIndex = 0;
     
-    // audioclop 담을 수 있는 배열
-    [SerializeField] private AudioClip[] bgms;
-    [SerializeField] private AudioClip[] sfxs;
+    [Header("Audio Data List")]
+    [SerializeField] private List<SoundData> soundDataList;
+
+    // 인스펙터에 보이되 실제 값은 정적값을 미러링
+    public float masterVolume { get; private set; }
+    public float bgmVolume    { get; private set; }
+    public float sfxVolume    { get; private set; }
     
-    // 플레이 하는 audiosource
-    [SerializeField] AudioSource audioBgm;
-    [SerializeField] AudioSource audioSfx;
+    private Dictionary<string, SoundData> soundDictionary;
+    private Dictionary<SoundCategory, List<SoundData>> categorizedSFX = new();
+
+    [Header("UI")]
+    [SerializeField] private GameObject _settingPanel;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            masterVolume = MasterVol;
+            bgmVolume    = BgmVol;
+            sfxVolume    = SfxVol;
+
+            InitSoundDictionary();
+            _settingPanel.SetActive(false);
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-        Instance = this;
-    }
-    
-    // EBgm 열거형을 매개변수로 받아 해당되는 배경음악 클립을 재생
-    public void PlayBGM(EBgm bgmidx)
-    {
-        //enum int형으로 형변환
-        audioBgm.clip = bgms[(int)bgmidx];
-        audioBgm.Play();
-    }
-    
-    // 현재 재생 중인 배경 음악 정지
-    public void StopBGM()
-    {
-        audioBgm.Stop();
-    }
-    
-    // ESfx를 열거형을 매개변수로 받아 해당되는 효과음을 재생
-    public void PlaySFX(ESfx esfx)
-    {
-        audioSfx.PlayOneShot(sfxs[(int)esfx]);
     }
 
-    public void OnClickBack()
+    private void InitSoundDictionary()
     {
-        SoundManager.Instance.PlayBGM(SoundManager.EBgm.BGM_MAIN);
+        soundDictionary = new Dictionary<string, SoundData>();
+        foreach (var sound in soundDataList)
+        {
+            if (!soundDictionary.ContainsKey(sound.soundName))
+                soundDictionary.Add(sound.soundName, sound);
+            // 🔥 SFX만 분류
+            if (sound.soundType == SoundType.SFX)
+            {
+                if (!categorizedSFX.ContainsKey(sound.soundCategory))
+                    categorizedSFX[sound.soundCategory] = new List<SoundData>();
+
+                categorizedSFX[sound.soundCategory].Add(sound);
+            }
+        }
+        // ▶ SFX용 다중 AudioSource 생성
+        sfxVoices = Mathf.Max(2, sfxVoices); // 최소 2개 권장
+        sfxSource = new AudioSource[sfxVoices];
+        for (int i = 0; i < sfxVoices; i++)
+        {
+            var src = gameObject.AddComponent<AudioSource>();
+            src.playOnAwake = false;
+            src.loop = false;
+            sfxSource[i] = src;
+        }
         
+        // 🔊 BGM을 최우선으로
+        if (bgmSource != null)
+        {
+            bgmSource.priority = 0;            // 0 = 최우선, 256 = 최하
+            bgmSource.ignoreListenerPause = true; // (선택) 전체 일시정지와 분리
+        }
+
+        // 🔊 SFX는 BGM보다 낮게
+        if (sfxSource != null)
+        {
+            foreach (var src in sfxSource)
+                if (src != null) src.priority = 128; // 또는 192/256
+        }
     }
+
+    public void Play(string soundName)
+    {
+        if (!soundDictionary.ContainsKey(soundName))
+        {
+            Debug.LogWarning($"[SoundManager] '{name}'가 없습니다.");
+            return;
+        }
+        SoundData data = soundDictionary[soundName];
+
+        if (data.soundType == SoundType.BGM)
+        {
+            bgmSource.clip = data.soundClips[0];
+            bgmSource.volume = data.volume * masterVolume * bgmVolume;
+            bgmSource.loop = data.loop;
+            bgmSource.pitch = data.pitch;
+            bgmSource.Play();
+        }
+        
+        else // SFX
+        {
+            PlaySFXData(data);
+        }
+
+        // else if (data.soundType == SoundType.SFX)
+        // {
+        //    sfxSource.clip = data.soundClips[0];
+        //    sfxSource.volume = data.volume * masterVolume * sfxVolume;
+        //    sfxSource.pitch = data.pitch;
+        //    sfxSource.loop = data.loop;
+        //    sfxSource.Play();
+        //     //sfxSource.PlayOneShot(data.soundClips[0]);
+        // }
+    }
+    private void PlaySFXData(SoundData data)
+    {
+        if (data.soundClips == null || data.soundClips.Count == 0) return;
+
+        // 랜덤 클립 하나 선택
+        var clip = data.soundClips[Random.Range(0, data.soundClips.Count)];
+
+        // 순환으로 다음 소스 선택
+        var src = sfxSource[sfxIndex];
+        sfxIndex = (sfxIndex + 1) % sfxSource.Length;
+
+        // 피치가 클립마다 다르면 PlayOneShot 전에 설정
+        src.pitch = data.pitch;
+        // loop는 PlayOneShot엔 의미 없음
+
+        // 최종 볼륨
+        float vol = data.volume * masterVolume * sfxVolume;
+
+        // 겹쳐도 끊기지 않음
+        src.PlayOneShot(clip, vol);
+    }
+    
+
+    public void StopBGM()
+    {
+        bgmSource.Stop();
+    }
+    
+    public void SetMasterVolume(float v)
+    {
+        MasterVol = masterVolume = v;
+        PlayerPrefs.SetFloat("MasterVolume", v);
+        PlayerPrefs.Save();
+        UpdateBGMVolume();
+    }
+    public void SetBGMVolume(float v)
+    {
+        BgmVol = bgmVolume = v;
+        PlayerPrefs.SetFloat("BGMVolume", v);
+        PlayerPrefs.Save();
+        UpdateBGMVolume();
+    }
+    public void SetSFXVolume(float v)
+    {
+        SfxVol = sfxVolume = v;
+        PlayerPrefs.SetFloat("SFXVolume", v);
+        PlayerPrefs.Save();
+    }
+
+    private void UpdateBGMVolume()
+    {
+        if (!bgmSource || !bgmSource.isPlaying) return;
+        var currentBGM = soundDataList.Find(x => x.soundClips != null && x.soundClips.Contains(bgmSource.clip));
+        if (currentBGM != null)
+            bgmSource.volume = currentBGM.volume * masterVolume * bgmVolume;
+    }
+
+    public void OpenSettingPanel()
+    {
+        _settingPanel.SetActive(true);
+        Play("LobbyClick01_SFX");
+    }
+
+    public void PlayRandomSFX(SoundCategory category)
+    {
+        if (!categorizedSFX.TryGetValue(category, out var list) || list.Count == 0)
+        {
+            Debug.LogWarning($"[SoundManager] 카테고리 '{category}'에 사운드가 없습니다.");
+            return;
+        }
+        var data = list[Random.Range(0, list.Count)];
+        PlaySFXData(data);
+    }
+   
 }

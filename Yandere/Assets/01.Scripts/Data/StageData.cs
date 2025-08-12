@@ -2,26 +2,59 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct Achievement
+public class SpawnEnemyEntry
 {
-    [Range(0, 2)] public int rank;
-    public bool isCleared;
-    [Multiline(3)] public string description;
+    public EnemyID id;
+    public GameObject enemyPrefab;
+    public int initialSize;
 }
 
 [CreateAssetMenu(fileName = "StageData", menuName = "Stage/StageData", order = 0)]
 public class StageData : ScriptableObject {
     public int stageIndex;
+    public string stageName;
+    public string stageDesc;
+    public Sprite stageImage;
+
+    [Header("Spawn Area")]
+    public Vector2 spawnAreaMin;
+    public Vector2 spawnAreaMax;
 
     [Tooltip("초 단위로 작성")]
     public float clearTime;
 
-    public List<Achievement> achievements;
+    public List<SpawnEnemyEntry> enemyList;
 
     public List<WaveData> waveDatas;
-    
-    // clearRewards 리스트
+}
 
-
+public enum EnemyID
+{
+    // Stage 0
     
+    // Stage 1
+    StudentMan,
+    StudentGirl,
+    Teacher,
+    StudentCouncil,
+    Swimming,
+    Patrol,
+    // Stage 2
+    Aunty,
+    Uncle,
+    Shopkeeper,
+    Bully,
+    Detctive,
+    // Stage 3
+    SecurityGuard,
+    Firemen,
+    Senior,
+    FireCaptain,
+    EliteSoliders,
+    // Stage 4
+    Corporal,
+    PrivateFirst,
+    Sergent,
+    Staff,
+    Secret
 }

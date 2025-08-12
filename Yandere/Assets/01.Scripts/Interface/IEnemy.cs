@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface IEnemy
 {
-   void MonsterMove();
    void MonsterAttack();
 }

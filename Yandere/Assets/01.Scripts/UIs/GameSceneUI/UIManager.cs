@@ -1,12 +1,11 @@
-using System.Collections.Generic;
-using TMPro;
+using System;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public enum UIState
 {
     None,
     Pause,
-    Setting,
     SkillSelect,
     StageClear,
     GameOver,
@@ -16,12 +15,16 @@ public enum UIState
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
+    [SerializeField] private GameObject blindOverlay;
 
     [Header("Panels")]
     [SerializeField] private GameObject _joyStick;
-    private Dictionary<System.Type, Component> _typedPanels = new();
+    private SerializedDictionary<System.Type, Component> _typedPanels = new();
+    [HideInInspector] public UI_BossStage bossStage;
 
     [SerializeField] private UIState _currentState;
+    
+    public UI_GameHUD gameHUD;
 
     private void Awake()
     {
@@ -36,7 +39,10 @@ public class UIManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
 
+    private void Start()
+    {
         SetUIState(UIState.None);
     }
 
@@ -68,7 +74,6 @@ public class UIManager : MonoBehaviour
         if (!_typedPanels.ContainsKey(type))
         {
             _typedPanels.Add(type, panel);
-            //Debug.Log($"[UIManager] Register success {typedPanels[type].name}");
         }
         else
         {
@@ -84,5 +89,11 @@ public class UIManager : MonoBehaviour
 
         Debug.LogWarning($"[UIManager] Panel of type {type.Name} not found.");
         return null;
+    }
+    
+    public void ShowBlindOverlay(bool show)
+    {
+        if (blindOverlay != null)
+            blindOverlay.SetActive(show);
     }
 }

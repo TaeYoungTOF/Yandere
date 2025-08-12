@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8771203914740520520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4753209594677247665}
+  - component: {fileID: 7827375455897770699}
+  m_Layer: 0
+  m_Name: ParchedLonging
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4753209594677247665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771203914740520520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7827375455897770699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771203914740520520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26911e6ec1443e4aa37710480bf27c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 3
+  level: 0
+  skillDatas:
+  - {fileID: 11400000, guid: c89d4abc9d6b987429420b27e4128062, type: 2}
+  - {fileID: 11400000, guid: 2791ed07dee2d6f428eafdefd2110d84, type: 2}
+  - {fileID: 11400000, guid: 6958bbbef7a857349a9bb3d425adf93e, type: 2}
+  - {fileID: 11400000, guid: 7e4184abe7e08e645b8257684be480ee, type: 2}
+  - {fileID: 11400000, guid: 2235908984d140e4bb02acbf1a1e9182, type: 2}
+  currentLevelData: {fileID: 0}
+  nextLevelData: {fileID: 0}
+  coolDownTimer: 0
+  data:
+    projectileCount: 0
+    skillDamage: 0
+    coolTime: 0
+    projectileRadius: 0
+    duration: 0
+    damageDoT: 0
+  _duration: 3
+  _damageDoT: 10
+  _parchedLongingProjectilePrefab: {fileID: 5310618298424018448, guid: 7409a9a584fc8844088dbf5c3c2a3865, type: 3}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 5120

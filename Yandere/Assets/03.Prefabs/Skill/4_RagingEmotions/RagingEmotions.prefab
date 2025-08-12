@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9037137005491934119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5396596170453054554}
+  - component: {fileID: 5130293722643786463}
+  m_Layer: 0
+  m_Name: RagingEmotions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5396596170453054554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9037137005491934119}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5130293722643786463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9037137005491934119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7609c83b23043459f208c476dec05e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 4
+  level: 0
+  skillDatas:
+  - {fileID: 11400000, guid: 5c8ba1dce262fd1458a2460915b71ce4, type: 2}
+  - {fileID: 11400000, guid: 14199c569f40b7c4cac62bc2bc968553, type: 2}
+  - {fileID: 11400000, guid: 1c002d2006ae82b4d81b318e2cf7653a, type: 2}
+  - {fileID: 11400000, guid: cc807b4e7a2d56c4babdafdf14a2ccae, type: 2}
+  - {fileID: 11400000, guid: 696d17e11d6023c45ac80c7ba4b4a2f2, type: 2}
+  currentLevelData: {fileID: 0}
+  nextLevelData: {fileID: 0}
+  coolDownTimer: 0
+  Data:
+    projectileCount: 0
+    skillDamage: 0
+    coolTime: 0
+    skillDuration: 0
+    knockbackDistance: 0
+    playerDistance: 0
+    projectileRadius: 0
+    damageInterval: 0.3
+    rotationSpeed: 120
+  _playerDistance: 2.5
+  _projectileRadius: 1
+  _RagingEmotionsProjectilePrefab: {fileID: 8273631399777830139, guid: 7a5972a35fa57de4cb80168f889ad18c, type: 3}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 5120

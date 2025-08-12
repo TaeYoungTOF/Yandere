@@ -15,40 +15,30 @@ public class UI_GameHUD : MonoBehaviour
     [SerializeField] private Image _healthImage;
 
     private PlayerStat _stat;
-    private int _gold = 0;
-    private int _killCount = 0;
 
     private void Start()
     {
-        UIManager.Instance.RegisterPanel(this);
+        _pauseButton.onClick.AddListener(OnClickPauseButton);
+        _achievementButton.onClick.AddListener(OnClickAchievementButton);
+    }
 
+    public void Init()
+    {
         _stat = StageManager.Instance.Player.stat;
 
-        UpdateGold(0);
-        UpdateKillCount(0);
         UpdateTime(0);
         UpdateExpImage();
         UpdateLevel();
-
-        _pauseButton.onClick.RemoveAllListeners();
-        _pauseButton.onClick.AddListener(OnClickPauseBUtton);
-        
-        _achievementButton.onClick.RemoveAllListeners();
-        _achievementButton.onClick.AddListener(OnClickachivementBUtton);
     }
 
-    public void UpdateGold(int amount)
+    public void UpdateKillCount()
     {
-        _gold = _gold + amount;
-        _goldCountText.text = _gold.ToString();
-        Debug.Log("[GameHUD UI] Increase gold");
+        _killCountText.text = StageManager.Instance.KillCount.ToString();
     }
 
-    public void UpdateKillCount(int amount)
+    public void UpdateGold()
     {
-        _killCount = _killCount + amount;
-        _killCountText.text = _killCount.ToString();
-        Debug.Log("[GameHUD UI] Increase kill count");
+        _goldCountText.text = StageManager.Instance.GoldCount.ToString();
     }
 
     public void UpdateTime(float time)
@@ -69,17 +59,19 @@ public class UI_GameHUD : MonoBehaviour
 
     public void UpdateHealthImage()
     {
-        float ratio = _stat.currentHealth / _stat.maxHealth;
+        float ratio = _stat.CurrentHp / _stat.FinalHp;
         _healthImage.fillAmount = Mathf.Clamp01(ratio);
     }
 
-    public void OnClickPauseBUtton()
+    private void OnClickPauseButton()
     {
         UIManager.Instance.SetUIState(UIState.Pause);
+        SoundManager.Instance.Play("LobbyClick01_SFX");
     }
 
-    public void OnClickachivementBUtton()
+    private void OnClickAchievementButton()
     {
         UIManager.Instance.SetUIState(UIState.Achievement);   
+        SoundManager.Instance.Play("LobbyClick01_SFX");
     }
 }

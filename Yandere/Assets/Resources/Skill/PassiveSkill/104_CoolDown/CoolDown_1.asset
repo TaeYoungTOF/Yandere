@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb9df6a174e2954bacffcd9ef4837c0, type: 3}
+  m_Name: CoolDown_1
+  m_EditorClassIdentifier: 
+  level: 1
+  skillName: "\uAC00\uC18D\uD558\uB294 \uAD11\uAE30"
+  skillIcon: {fileID: 21300000, guid: aa6c568d0ffe7ad4cb1b67571569a92a, type: 3}
+  levelupTooltip: "\uBAA8\uB4E0 \uC2A4\uD0AC\uC758 \uCFE8\uD0C0\uC784\uC774 8% \uAC10\uC18C\uD569\uB2C8\uB2E4"
+  value: 8
+  dialogue: "\uAE30\uB2E4\uB9AC\uB294 \uAC74 \uC774\uC81C \uC9C0\uCCE4\uC5B4"

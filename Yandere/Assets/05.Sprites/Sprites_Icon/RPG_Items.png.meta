@@ -178,7 +178,7 @@ TextureImporter:
         width: 11
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,6 +186,48 @@ TextureImporter:
       bones: []
       spriteID: ce929bd51e848f84c89739f4097d4eb5
       internalID: -1518520351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPG_Items_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 113
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 293cacf25223d9346a8c5c1959678a24
+      internalID: -411860748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPG_Items_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 65
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f400da2e809eeee4ba68ba581757ffba
+      internalID: 564964005
       vertices: []
       indices: 
       edges: []
@@ -203,6 +245,8 @@ TextureImporter:
     nameFileIdTable:
       GoldIcon_02: 31294794
       MonsterIcon_01: -1518520351
+      RPG_Items_0: -411860748
+      RPG_Items_1: 564964005
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

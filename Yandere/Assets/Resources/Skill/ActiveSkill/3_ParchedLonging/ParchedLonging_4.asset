@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a8eac15f71d7946893a7c3a77bfd11, type: 3}
+  m_Name: ParchedLonging_4
+  m_EditorClassIdentifier: 
+  level: 4
+  skillName: "\uBA54\uB9C8\uB978 \uAC08\uB9DD"
+  skillIcon: {fileID: 21300000, guid: 629d04ec46559e44c92d2ae9009b0457, type: 3}
+  dialogue: "\uC804\uBD80 \uC774\uB9AC \uC640. \uB0B4 \uC678\uB85C\uC6C0 \uC18D\uC73C\uB85C"
+  levelupTooltip: "\uBE14\uB799\uD640\uC758 \uBC94\uC704, \uD3ED\uBC1C \uD53C\uD574\uB7C9\uC774
+    \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  projectileCount: 3
+  skillDamage: 100
+  coolTime: 8
+  projectileRadius: 2

@@ -1,0 +1,149 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UI_Popup : MonoBehaviour
+{
+    [SerializeField] private GameObject _popUpPanel;
+    
+    [Header("Upgrade Pop-up")]
+    [SerializeField] private GameObject _upgradePanel;
+    [SerializeField] private TMP_Text _lvTitleText;
+    [SerializeField] private TMP_Text _beforeText;
+    [SerializeField] private TMP_Text _afterText;
+    [SerializeField] private TMP_Text _descriptionText;
+    [SerializeField] private TMP_Text _costText;
+    [SerializeField] private Button _confirmButton;
+    [SerializeField] private Button _upgradeBackButton;
+    
+    
+    [Header("LackAccountLv Pop-up")]
+    [SerializeField] private Button _lackAccountLvButton;
+    
+    [Header("Info Pop-up")]
+    [SerializeField] private GameObject _infoPanel;
+    [SerializeField] private TMP_Text _infoTitleText;
+    [SerializeField] private TMP_Text _infoText;
+    
+    [Header("Alarm Pop-up")]
+    [SerializeField] private GameObject _lackResourcePanel;
+    [SerializeField] private GameObject _lackAccountLvPanel;
+    [SerializeField] private GameObject _fullFacilityLvPanel;
+    
+    [Header("Preparing Pop-up")]
+    [SerializeField] private GameObject _preparingPanel;
+    [SerializeField] private Button _prepaingBackButton;
+    
+    [Header("Resources Pop-up")]
+    [SerializeField] private GameObject _resourcesPanel;
+    [SerializeField] private Button _resourcesCloseBackButton;
+    
+    [Header("Record Pop-up")]
+    [SerializeField] private GameObject _recordPanel;
+    [SerializeField] private Button _recordBackButton;
+    
+    [Header("FullFacility Pop-up")]
+    [SerializeField] private Button _fullFacilityBackButton;
+
+    public void Init()
+    {
+        _upgradeBackButton.onClick.AddListener(CloseUpgradePanel);
+        _lackAccountLvButton.onClick.AddListener(CloseLackAccountLvPanel);
+        _prepaingBackButton.onClick.AddListener(ClosePreparingPopUp);
+        _resourcesCloseBackButton.onClick.AddListener(CloseResourcesClosePopUp);
+        _recordBackButton.onClick.AddListener(CloseRecordPopUp);
+        _fullFacilityBackButton.onClick.AddListener(CloseFullFacilityLvPanel);
+        
+        _popUpPanel.SetActive(false);
+        
+    }
+
+    public void CallUpgradePanel(Facility facility)
+    {
+        _lvTitleText.text = facility.FacilityData.statTargetText;
+        _beforeText.text = $"{facility.Amount}%";
+        _afterText.text = $"{facility.Amount + facility.FacilityData.valuePerLevel}%";
+        _descriptionText.text = facility.FacilityData.levelUpTexts[facility.CurrentLevel + 1];
+        _costText.text = facility.CurrentCost.ToString();
+        
+        _confirmButton.onClick.RemoveAllListeners();
+        _confirmButton.onClick.AddListener(facility.UpgradeButtonClick);
+        
+        _popUpPanel.SetActive(true);
+        _upgradePanel.SetActive(true);
+    }
+
+    public void CloseUpgradePanel()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _upgradePanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+
+    public void CallInfoPanel(string facilityName, string info)
+    {
+        _infoTitleText.text = facilityName;
+        _infoText.text = info;
+        _popUpPanel.SetActive(true);
+        _infoPanel.SetActive(true);
+    }
+
+    public void CallLackResourcePanel()
+    {
+        _popUpPanel.SetActive(true);
+        _lackResourcePanel.SetActive(true);
+    }
+    
+    public void CallLackAccountLvPanel()
+    {
+        _popUpPanel.SetActive(true);
+        _lackAccountLvPanel.SetActive(true);
+    }
+    
+    private void CloseLackAccountLvPanel()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _lackAccountLvPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+    
+    public void CallFullFacilityLvPanel()
+    {
+        _popUpPanel.SetActive(true);
+        _fullFacilityLvPanel.SetActive(true);
+    }
+
+    public void CallPreparingPopUp()
+    {
+        _popUpPanel.SetActive(true);
+        _preparingPanel.SetActive(true);
+    }
+
+    private void ClosePreparingPopUp()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _preparingPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+
+    private void CloseResourcesClosePopUp()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _resourcesPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+
+    private void CloseRecordPopUp()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _recordPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+    
+    private void CloseFullFacilityLvPanel()
+    {
+        SoundManager.Instance.Play("LobbyClick02_SFX");
+        _fullFacilityLvPanel.SetActive(false);
+        _popUpPanel.SetActive(false);
+    }
+}

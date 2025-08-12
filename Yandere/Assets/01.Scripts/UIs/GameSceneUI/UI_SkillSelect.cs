@@ -4,21 +4,15 @@ using UnityEngine.UI;
 
 public class UI_SkillSelect : ToggleableUI
 {
-    [SerializeField] private GameObject _skillSelectPanel;
     [SerializeField] private GameObject _skillSelectButton;
     [SerializeField] private Transform _contentParent;
 
-    // 임시
-    [SerializeField] private Button _goldButton;
+    [SerializeField] private GameObject _hpButton;
+    [SerializeField] private GameObject _goldButton;
 
     private void Start()
     {
-        Init(_skillSelectPanel);
-        _skillSelectPanel.SetActive(false);
-
-        _goldButton.onClick.RemoveAllListeners();
-        _goldButton.onClick.AddListener(OnClickGoldButton);
-        _goldButton.gameObject.SetActive(false);
+        Init();
     }
 
     public override UIState GetUIState()
@@ -36,11 +30,11 @@ public class UI_SkillSelect : ToggleableUI
         }
         else
         {
-            _goldButton.gameObject.SetActive(true);
+            InstantiateHpAndGoldButton();
         }        
     }
     
-    public void InstantiateSkillButtons(List<BaseSkill> options)
+    private void InstantiateSkillButtons(List<BaseSkill> options)
     {
         for (int i = 0; i < options.Count; i++)
         {
@@ -48,6 +42,17 @@ public class UI_SkillSelect : ToggleableUI
             Button_Skill skillButton = buttonObj.GetComponent<Button_Skill>();
             skillButton.Setup(options[i]);
         }
+    }
+
+    private void InstantiateHpAndGoldButton()
+    {
+        GameObject hpButtonObj = Instantiate(_hpButton, _contentParent);
+        Button hpButton = hpButtonObj.GetComponent<Button>();
+        hpButton.onClick.AddListener(OnClickHpButton);
+        
+        GameObject goldButtonObj = Instantiate(_goldButton, _contentParent);
+        Button goldButton = goldButtonObj.GetComponent<Button>();
+        goldButton.onClick.AddListener(OnClickGoldButton);
     }
 
     public void DestroyButtons()
@@ -58,11 +63,15 @@ public class UI_SkillSelect : ToggleableUI
         }
     }
 
+    private void OnClickHpButton()
+    {
+        StageManager.Instance.Player.stat.ChangeCurrentHp(50);
+        UIManager.Instance.SetUIState(UIState.None);
+    }
+    
     private void OnClickGoldButton()
     {
-        UIManager.Instance.GetPanel<UI_GameHUD>().UpdateGold(10);
+        StageManager.Instance.ChangeGoldCount(50);
         UIManager.Instance.SetUIState(UIState.None);
-
-        _goldButton.gameObject.SetActive(false);
     }
 }
