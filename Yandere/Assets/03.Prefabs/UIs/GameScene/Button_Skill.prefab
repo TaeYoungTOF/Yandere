@@ -764,7 +764,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -946,7 +946,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 3, y: -89}
-  m_SizeDelta: {x: 260, y: 138.392}
+  m_SizeDelta: {x: 250, y: 138.392}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2456490558775870124
 CanvasRenderer:
@@ -978,8 +978,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC124\uBA85"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2ce35903b56cde247a0c2040872a8494, type: 2}
-  m_sharedMaterial: {fileID: 2510072867844052325, guid: 2ce35903b56cde247a0c2040872a8494, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35e046fa94a6b47499a2c645a4dce050, type: 2}
+  m_sharedMaterial: {fileID: 4724008762594611626, guid: 35e046fa94a6b47499a2c645a4dce050, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1187,8 +1187,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC774\uB984"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 10664220d2d105e4caf751370dffe5dc, type: 2}
-  m_sharedMaterial: {fileID: 2510072867844052325, guid: 10664220d2d105e4caf751370dffe5dc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a003f795294c25246b1a2488b1a08dd0, type: 2}
+  m_sharedMaterial: {fileID: -7059633658144040938, guid: a003f795294c25246b1a2488b1a08dd0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
