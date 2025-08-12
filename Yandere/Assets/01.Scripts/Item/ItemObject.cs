@@ -6,12 +6,13 @@ public class ItemObject : MonoBehaviour, IDamagable
     [SerializeField] private DropContext _dropContext;
     private float currentHealth;
     
-    private bool isBroken = false;
+    private bool isBroken;
     private Animator _animator;
     
 
     public void Init()
     {
+        isBroken = false;
         currentHealth = objectMaxHealth;
         _animator = GetComponent<Animator>();
     }

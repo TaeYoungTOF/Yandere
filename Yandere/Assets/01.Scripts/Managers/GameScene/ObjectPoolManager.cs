@@ -161,7 +161,6 @@ public class ObjectPoolManager : MonoBehaviour
 
         if (pool.currentIndex >= pool.objects.Count)
         {
-            Debug.Log($"[Pool] {type} : index 0");
             pool.currentIndex = 0;
         }
 
