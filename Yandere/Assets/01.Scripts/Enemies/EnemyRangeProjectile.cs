@@ -34,7 +34,6 @@ public class EnemyRangeProjectile  : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("[RangeProjectile] 플레이어 피격!");
             StageManager.Instance.Player.TakeDamage(damage);
             DestroyProj();
         }

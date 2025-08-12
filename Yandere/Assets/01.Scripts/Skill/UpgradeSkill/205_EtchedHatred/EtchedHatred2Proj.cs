@@ -33,7 +33,7 @@ public class EtchedHatred2Proj : BaseProjectile
         
         while (true)
         {
-            if (_target)
+            if (_target.gameObject.activeSelf)
             {
                 transform.position = _target.position;
             }
