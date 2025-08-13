@@ -14,21 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 3
   endTime: 180
-  spawnInterval: 3
+  spawnInterval: 6
   spawnAmount: 13
   enemyList:
   - id: 0
     spawnWeight: 4
     dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
+    enemyData: {fileID: 0}
   - id: 1
     spawnWeight: 4
     dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
+    enemyData: {fileID: 0}
   - id: 2
+    spawnWeight: 2
+    dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
+    enemyData: {fileID: 0}
+  - id: 3
     spawnWeight: 1
     dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
-  - id: 3
-    spawnWeight: 3
-    dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
+    enemyData: {fileID: 0}
   - id: 4
     spawnWeight: 1
     dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
+    enemyData: {fileID: 0}

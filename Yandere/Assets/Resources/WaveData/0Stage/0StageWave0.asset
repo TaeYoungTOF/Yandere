@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: 0StageWave0
   m_EditorClassIdentifier: 
   eventType: 0
-  endTime: 30
+  endTime: 50
   spawnInterval: 6
   spawnAmount: 3
   enemyList:
   - id: 0
     spawnWeight: 1
     dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
+    enemyData: {fileID: 0}
   - id: 1
-    spawnWeight: 2
+    spawnWeight: 1
     dropTable: {fileID: 11400000, guid: 24578039d0ca2f1449a91d8f85720883, type: 2}
+    enemyData: {fileID: 0}
