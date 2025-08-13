@@ -32,13 +32,13 @@ MonoBehaviour:
     initialSize: 50
   - id: 2
     enemyPrefab: {fileID: 1439856908508736086, guid: 0929312f3fd662e46a0e8d27e416d6a1, type: 3}
-    initialSize: 50
+    initialSize: 10
   - id: 3
     enemyPrefab: {fileID: 1439856908508736086, guid: 3d42473cf94d92840b1b6c7af74f8166, type: 3}
-    initialSize: 10
+    initialSize: 5
   - id: 4
-    enemyPrefab: {fileID: 1439856908508736086, guid: 0350082d0a9c156429f11cd9e79532e5, type: 3}
-    initialSize: 10
+    enemyPrefab: {fileID: 1439856908508736086, guid: 3fdbcd0e9e9065a4d962b3c83744056b, type: 3}
+    initialSize: 5
   - id: 5
     enemyPrefab: {fileID: 1439856908508736086, guid: 2b75229ae81d72744abb15610c846721, type: 3}
     initialSize: 1
