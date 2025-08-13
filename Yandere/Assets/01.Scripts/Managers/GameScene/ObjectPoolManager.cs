@@ -85,7 +85,7 @@ public class ObjectPoolManager : MonoBehaviour
     private class PoolData
     {
         public List<GameObject> objects = new();
-        public int currentIndex = 0;
+        public int currentIndex;
         public Transform parent;
     }
 
