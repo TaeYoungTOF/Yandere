@@ -198,24 +198,7 @@ public class StageManager : MonoBehaviour
         SoundManager.Instance.Play("InGame_Player_Die");
         SoundManager.Instance.StopBGM();
         
-        switch (currentStageData.stageIndex)
-        {
-            case 1:
-                GoldCount += KillCount;
-                break;
-            case 2:
-                GoldCount += (int)(KillCount * 1.25f);
-                break;
-            case 3:
-                GoldCount +=(int)(KillCount * 1.5f);
-                break;
-            case 4:
-                GoldCount += (int)(KillCount * 1.75f);
-                break;
-            default:
-                GoldCount += KillCount;
-                break;
-        }
+        GoldCount += KillCount;
         
         UIManager.Instance.SetUIState(UIState.GameOver);
     }
