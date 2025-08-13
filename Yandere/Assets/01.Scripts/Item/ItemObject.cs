@@ -37,7 +37,7 @@ public class ItemObject : MonoBehaviour, IDamagable
         _dropContext.position = transform.position;
         StageManager.Instance.ItemDropManager.HandleDrop(_dropContext);
         SoundManager.Instance.Play("InGame_ObjectField_DestroySFX");
-        
+        StageManager.Instance.mapObjectCount--;
     }
     
     public void ObjectBreakAnimationEnd()

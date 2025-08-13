@@ -138,8 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dcd7eb35c19f14d9dc1a2323dc7b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSkill: {fileID: 2225890990482138536}
-  boomSkill: {fileID: 0}
 --- !u!114 &2225890990482138536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,17 +150,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1eee1d2695a3043bc5cea91403addc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 10
-  dashSpeed: 10
+  cooldown: 13
+  dashSpeed: 7
   radius: 4
-  duration: 0.3
-  afterDelay: 1
+  duration: 0.6
+  afterDelay: 3
   knockbackForce: 10
-  dashDamage: 20
+  dashDamage: 13
   chargeEffect: {fileID: 6959135721157932711, guid: 6d2e1364598fab541bbd8843ae441b1c, type: 3}
   dashEffect: {fileID: 1370578815270207431, guid: c3246a47be3bb3e4987d2d55a30ba98f, type: 3}
   dashWarningEffect: {fileID: 2352484261586230952}
-  patternWarningTime: 0.5
+  patternWarningTime: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

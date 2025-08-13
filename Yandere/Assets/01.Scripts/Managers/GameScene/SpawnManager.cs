@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -10,8 +9,7 @@ public class SpawnManager : MonoBehaviour
     
     [Header("Object Settings")]
     [SerializeField] private int maxItemObjectPrefabCount = 10; // 동시에 존재 가능한 최대 개수
-    [SerializeField] private float spawnInterval = 5f; // 스폰 간격 (초)
-    private List<GameObject> spawnedItemObjectPrefab = new List<GameObject>();
+    [SerializeField] private float objectSpawnInterval = 5f; // 스폰 간격 (초)
 
     [Header("Spawn Settings")]
     [SerializeField] private float _spawnRadius = 10f;
@@ -138,16 +136,13 @@ public class SpawnManager : MonoBehaviour
         
         while (true)
         {
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(objectSpawnInterval);
 
             // 현재 개수가 최대보다 적으면 생성
-            if (spawnedItemObjectPrefab.Count < maxItemObjectPrefabCount)
+            if (StageManager.Instance.mapObjectCount < maxItemObjectPrefabCount)
             {
                 SpawnItemObjectPrefab();
             }
-
-            // 리스트에서 null(파괴된) 오브젝트 정리
-            spawnedItemObjectPrefab.RemoveAll(jar => jar == null);
         }
     }
 
@@ -157,8 +152,7 @@ public class SpawnManager : MonoBehaviour
         GameObject ItemObjectPrefab = ObjectPoolManager.Instance.GetFromPool(PoolType.FieldObject, spawnPos, Quaternion.identity);
         ItemObject item = ItemObjectPrefab.GetComponent<ItemObject>();
         item.Init();
-        
-        spawnedItemObjectPrefab.Add(ItemObjectPrefab);
+        StageManager.Instance.mapObjectCount++;
     }
 
     private Vector3 GetRandomSpawnPosition()

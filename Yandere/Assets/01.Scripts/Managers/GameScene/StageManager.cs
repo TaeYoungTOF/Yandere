@@ -17,6 +17,7 @@ public class StageManager : MonoBehaviour
     public int Exp { get; private set; }
     public int KillCount { get; private set; }
     public int GoldCount { get; private set; }
+    public int mapObjectCount;
 
 
     public bool IsUIOpened = false;

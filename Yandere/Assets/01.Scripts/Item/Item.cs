@@ -47,9 +47,11 @@ public class Item : MonoBehaviour
                  break;
             case ItemType.BoomItem:
                 DoExplosionEffect();
+                SoundManager.Instance.Play("InGame_Player_BombPickUpSFX");
                 break;
             case ItemType.MagnetItem:
                 DoMagnetEffect(player);
+                SoundManager.Instance.Play("InGame_Player_MagnetPickUpSFX");
                 break;
             default:
                 Debug.LogWarning($"[Item] No Type of  {itemData.itemtpye}");
@@ -95,7 +97,7 @@ public class Item : MonoBehaviour
         Debug.Log("[Item] 자석 효과 발동!");
 
         float radius = itemData.magnetRadius;
-        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item_ExpOrb");
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
 
         foreach (GameObject obj in allItems)
         {
@@ -106,7 +108,7 @@ public class Item : MonoBehaviour
             {
                 if (obj.TryGetComponent<Item_ItemDropEffect>(out var dropEffect))
                 {
-                    dropEffect.MoveToPlayerInstantly(5f); // 속도는 정해도 되고, SO에 추가해도 됨
+                    dropEffect.MoveToPlayerInstantly(15f); // 속도는 정해도 되고, SO에 추가해도 됨
                 }
             }
         }

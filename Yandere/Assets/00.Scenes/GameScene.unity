@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxItemObjectPrefabCount: 10
-  spawnInterval: 5
+  objectSpawnInterval: 5
   _spawnRadius: 8
   _spawnWeights: []
   _spawnInterval: 0
@@ -850,6 +850,7 @@ MonoBehaviour:
   player: {fileID: 8237018194525571572}
   currentStageData: {fileID: 0}
   currentSpawnData: {fileID: 0}
+  mapObjectCount: 0
   IsUIOpened: 0
   timeScale: 1
   _maxTime: 0
@@ -1137,7 +1138,7 @@ MonoBehaviour:
   poolPrefabs:
   - poolType: 4
     prefab: {fileID: 8906970490064105965, guid: e7fc76a3b76053947a1a2daa49bfa77f, type: 3}
-    initialSize: 10
+    initialSize: 11
   - poolType: 3
     prefab: {fileID: 9025320943301313202, guid: f111e282255bf4f92b975d357cbac617, type: 3}
     initialSize: 100
